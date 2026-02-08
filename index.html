@@ -26,6 +26,9 @@
             min-height: 100vh;
         }
 
+        /* --- CLASSE CRÍTICA PARA TROCA DE TELA --- */
+        .hidden { display: none !important; }
+
         /* MENU INICIAL */
         #menu-inicial {
             width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box;
@@ -39,16 +42,26 @@
             background: #2c2c2c; border: 1px solid #444; color: white;
             padding: 18px; font-size: 16px; border-radius: 12px; cursor: pointer;
             display: flex; justify-content: space-between; align-items: center;
+            transition: transform 0.2s, background 0.2s;
         }
         .btn-menu:active { transform: scale(0.98); }
+        .btn-menu:hover { background: #383838; border-color: #666; }
+
         .btn-destaque { background: linear-gradient(135deg, #1565c0, #0d47a1); border: none; font-weight: bold; box-shadow: 0 4px 15px rgba(21, 101, 192, 0.4); }
         .btn-continuar { background: linear-gradient(135deg, #2e7d32, #1b5e20); border: none; font-weight: bold; display: none; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4); }
 
         .grid-provas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-        .btn-prova { background: #1e1e1e; border: 1px solid #333; padding: 15px; border-radius: 10px; color: #ddd; cursor: pointer; }
+        
+        .btn-prova { 
+            background: #1e1e1e; border: 1px solid #333; padding: 15px; 
+            border-radius: 10px; color: #ddd; cursor: pointer; text-align: center;
+            transition: background 0.2s;
+        }
+        .btn-prova:hover { background: #333; border-color: #555; }
         
         /* TELA QUIZ */
         #tela-quiz { display: none; width: 100%; flex-direction: column; align-items: center; }
+        
         #quiz-container { 
             width: 100%; max-width: 700px; background: var(--card-color); 
             padding: 20px; margin-top: 10px; margin-bottom: 110px;
@@ -63,9 +76,9 @@
         }
 
         .header-stats { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: #252525; padding: 12px 20px; border-radius: 12px; border: 1px solid #333; }
-        .badge { padding: 5px 12px; border-radius: 8px; font-weight: bold; font-size: 15px; }
-        .badge-green { color: #81c784; background: rgba(46, 125, 50, 0.2); }
-        .badge-red { color: #e57373; background: rgba(198, 40, 40, 0.2); }
+        .badge { padding: 5px 12px; border-radius: 8px; font-weight: bold; font-size: 15px; display: flex; align-items: center; gap: 5px; }
+        .badge-green { color: #81c784; background: rgba(46, 125, 50, 0.2); border: 1px solid #1b5e20; }
+        .badge-red { color: #e57373; background: rgba(198, 40, 40, 0.2); border: 1px solid #b71c1c; }
         
         .pergunta { font-size: 19px; line-height: 1.6; margin-bottom: 25px; color: #fff; font-weight: 500; }
 
@@ -75,6 +88,8 @@
             border-radius: 10px; cursor: pointer; text-align: left; font-size: 17px;
             position: relative; transition: all 0.2s;
         }
+        .opcao:active { transform: scale(0.98); }
+        
         .resposta-certa { background-color: #1b5e20 !important; border-color: #4caf50 !important; color: white !important; }
         .resposta-errada { background-color: #b71c1c !important; border-color: #ef5350 !important; opacity: 0.8; }
         .resposta-certa::after { content: "✅"; position: absolute; right: 15px; }
@@ -94,6 +109,7 @@
             border-radius: 8px; font-size: 18px; cursor: pointer; flex: 1; max-width: 160px;
             display: flex; justify-content: center; align-items: center; position: relative;
         }
+        .nav-btn:hover { background: #444; }
         .timer-on { background-color: #1b5e20; border-color: #2e7d32; color: #a5d6a7; }
         .btn-next { background-color: #0d47a1; border-color: #1565c0; }
 
@@ -113,20 +129,14 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             animation: bounce 1s infinite alternate;
             display: none; /* Controlado via JS */
+            z-index: 101;
         }
         .tooltip-timer::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -6px;
-            border-width: 6px;
-            border-style: solid;
-            border-color: #ff9800 transparent transparent transparent;
+            content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px;
+            border-width: 6px; border-style: solid; border-color: #ff9800 transparent transparent transparent;
         }
 
         @keyframes bounce { from { transform: translateX(-50%) translateY(0); } to { transform: translateX(-50%) translateY(-5px); } }
-        .hidden { display: none !important; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     </style>
@@ -138,26 +148,36 @@
             <h1>⚓ Quiz Offshore</h1>
             <p>Simulador de Potencial Eletroquímico</p>
         </div>
+        
         <button id="btn-continuar" class="btn-menu btn-continuar" onclick="retomarJogo()">
             <span>▶ Continuar de onde parei</span>
             <small id="info-save" style="opacity: 0.8">Q. 1</small>
         </button>
+
         <button class="btn-menu btn-destaque" onclick="iniciarProva('completa')">
             <span>🚀 Simulado Completo (1-560)</span><span>➤</span>
         </button>
+
         <button class="btn-menu" onclick="iniciarProva('aleatoria')">
             <span>🎲 Modo Aleatório (40 questões)</span><span>➤</span>
         </button>
+
         <h3 style="margin-top: 20px; color: #888; font-size: 14px; text-transform: uppercase;">Provas Individuais</h3>
-        <div class="grid-provas" id="grid-provas"></div>
-        <p style="text-align: center; color: #555; margin-top: 30px; font-size: 12px;">v2.2 - Offline Ready</p>
+        
+        <div class="grid-provas" id="grid-provas">
+            <p style="color: #666; font-size: 14px;">Carregando botões...</p>
+        </div>
+        
+        <p style="text-align: center; color: #555; margin-top: 30px; font-size: 12px;">v3.0 - Offline Ready</p>
     </div>
+
 
     <div id="tela-quiz" class="hidden">
         <div id="quiz-container">
             <div style="margin-bottom: 10px;">
                 <button onclick="voltarAoMenu()" style="background: none; border: none; color: #888; cursor: pointer; font-size: 14px;">⬅ Voltar ao Menu</button>
             </div>
+            
             <div class="header-stats">
                 <span id="progresso-txt" style="color: #aaa; font-weight: 500;">Iniciando...</span>
                 <div class="score-box">
@@ -165,6 +185,7 @@
                     <span class="badge badge-red">✖ <span id="erros">0</span></span>
                 </div>
             </div>
+
             <div id="pergunta-texto" class="pergunta">...</div>
             <div id="opcoes-container"></div>
             <div id="feedback"></div>

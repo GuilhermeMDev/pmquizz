@@ -1,4 +1,4 @@
-// CONFIGURAÇÃO DOS ARQUIVOS
+// LISTA DE ARQUIVOS JSON
 const arquivos = [
     "prova_1_questoes.json", "prova_2_questoes.json", "prova_3_questoes.json",
     "prova_4_questoes.json", "prova_5_questoes.json", "prova_6_questoes.json",
@@ -7,8 +7,11 @@ const arquivos = [
     "prova_13_questoes.json", "prova_14_questoes.json"
 ];
 
+// ESTADO GLOBAL
 let bancoCompleto = [];
-let appCarregado = false;
+let appCarregado = false; // Trava de segurança
+
+// ESTADO DA SESSÃO
 let questoesDaProva = []; 
 let indiceAtual = 0;
 let acertos = 0;
@@ -17,24 +20,23 @@ let historicoRespostas = {};
 let modoAutomaticoAtivo = false; 
 let tipoProvaAtual = ""; 
 
-// CONTROLES DE TIMER
+// TIMER
 let intervaloContagem = null; 
-let tempoRestante = 3; // AJUSTADO PARA 3 SEGUNDOS
+let tempoRestante = 3;
 
+// --- INICIALIZAÇÃO ---
 window.onload = async () => {
     await carregarBancoDeDados();
     gerarBotoesProvas();
     verificarSaveGame();
     
-    // LÓGICA DO BALÃO DE DICA
+    // Mostra Dica do Timer (Some sozinho após 8s)
     if (!localStorage.getItem('timer_dica_visto')) {
         const tooltip = document.getElementById('tooltip-timer');
         if (tooltip) {
             tooltip.style.display = 'block';
-            
-            // SOME SOZINHO APÓS 8 SEGUNDOS (Para não irritar)
             setTimeout(() => {
-                tooltip.style.opacity = '0'; // Efeito visual se quiser adicionar transição CSS depois
+                tooltip.style.opacity = '0';
                 setTimeout(() => tooltip.style.display = 'none', 500);
             }, 8000);
         }
@@ -49,20 +51,26 @@ async function carregarBancoDeDados() {
             const dados = await res.json();
             bancoCompleto = [...bancoCompleto, ...dados];
         }
+        // Ordena 1 ao 560 (garantia)
         bancoCompleto.sort((a, b) => a.id - b.id);
+        
         appCarregado = true;
+        console.log("Banco carregado com sucesso.");
     } catch (e) {
-        alert("Erro ao carregar banco de dados.");
+        console.error(e);
+        document.getElementById('grid-provas').innerHTML = "<p style='color:red'>Erro ao carregar arquivos JSON. Verifique a pasta.</p>";
     }
 }
 
 function gerarBotoesProvas() {
     const grid = document.getElementById('grid-provas');
     grid.innerHTML = "";
+    
     for (let i = 1; i <= 14; i++) {
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
         btn.innerHTML = `<strong>Prova ${i}</strong><br><small>Q. ${(i-1)*40 + 1} - ${i*40}</small>`;
+        // Atenção aqui: Chamada da função iniciarProva
         btn.onclick = () => iniciarProva('prova_' + i);
         grid.appendChild(btn);
     }
@@ -71,39 +79,51 @@ function gerarBotoesProvas() {
 function verificarSaveGame() {
     const save = localStorage.getItem('quiz_offshore_save');
     const btn = document.getElementById('btn-continuar');
+    
     if (save) {
         const dados = JSON.parse(save);
         btn.style.display = 'flex';
         const nomeModo = dados.tipo.includes('prova_') ? dados.tipo.replace('prova_', 'Prova ') : 'Simulado';
         
-        let proximoIndiceReal = dados.indice;
+        let proximoIndice = dados.indice;
+        // Tenta achar a próxima questão em branco
         if (dados.idsQuestao && dados.historico) {
             const idxNaoRespondido = dados.idsQuestao.findIndex(id => !dados.historico[id]);
-            if (idxNaoRespondido !== -1) proximoIndiceReal = idxNaoRespondido;
-            else proximoIndiceReal = dados.idsQuestao.length - 1;
+            if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
+            else proximoIndice = dados.idsQuestao.length - 1;
         }
-        document.getElementById('info-save').innerText = `${nomeModo} • Retomar na Q. ${proximoIndiceReal + 1}`;
+        document.getElementById('info-save').innerText = `${nomeModo} • Retomar na Q. ${proximoIndice + 1}`;
     } else {
         btn.style.display = 'none';
     }
 }
 
+// --- NAVEGAÇÃO ENTRE TELAS ---
+
 function iniciarProva(tipo) {
-    if (!appCarregado) return;
+    if (!appCarregado) return; // Se clicou antes de carregar, ignora
+
+    // Reseta variaveis
     indiceAtual = 0;
     acertos = 0;
     erros = 0;
     historicoRespostas = {};
     tipoProvaAtual = tipo;
 
-    if (tipo === 'completa') questoesDaProva = [...bancoCompleto];
-    else if (tipo === 'aleatoria') questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
+    // Filtra questões
+    if (tipo === 'completa') {
+        questoesDaProva = [...bancoCompleto];
+    } 
+    else if (tipo === 'aleatoria') {
+        questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
+    }
     else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
         const inicio = (numProva - 1) * 40;
         const fim = inicio + 40;
         questoesDaProva = bancoCompleto.slice(inicio, fim);
     }
+
     abrirTelaQuiz();
     mostrarQuestao();
 }
@@ -111,31 +131,36 @@ function iniciarProva(tipo) {
 function retomarJogo() {
     const save = localStorage.getItem('quiz_offshore_save');
     if (!save) return;
+
     const dados = JSON.parse(save);
     acertos = dados.acertos;
     erros = dados.erros;
     historicoRespostas = dados.historico;
     tipoProvaAtual = dados.tipo;
     
+    // Reconstrói a prova
     if (dados.idsQuestao && dados.idsQuestao.length > 0) {
         questoesDaProva = dados.idsQuestao.map(id => bancoCompleto.find(q => q.id === id)).filter(q => q);
     } else {
         questoesDaProva = [...bancoCompleto];
     }
 
+    // Retomada Inteligente
     let indiceInteligente = 0;
     const primeiroNaoRespondido = questoesDaProva.findIndex(q => !historicoRespostas[q.id]);
     if (primeiroNaoRespondido !== -1) indiceInteligente = primeiroNaoRespondido;
     else indiceInteligente = questoesDaProva.length - 1;
     
     indiceAtual = indiceInteligente;
+
     abrirTelaQuiz();
     mostrarQuestao();
 }
 
 function abrirTelaQuiz() {
     document.getElementById('menu-inicial').classList.add('hidden');
-    document.getElementById('tela-quiz').classList.remove('hidden');
+    document.getElementById('tela-quiz').classList.remove('hidden'); // Remove a classe hidden
+    document.getElementById('tela-quiz').style.display = 'flex'; // Garante o display flex
     document.getElementById('acertos').innerText = acertos;
     document.getElementById('erros').innerText = erros;
 }
@@ -147,7 +172,7 @@ function voltarAoMenu() {
     verificarSaveGame(); 
 }
 
-// --- MOTOR DO JOGO ---
+// --- MOTOR DO QUIZ ---
 
 function mostrarQuestao() {
     pararContagem(); 
@@ -189,7 +214,9 @@ function mostrarQuestao() {
         });
     }
 
-    if (estado && estado.respondida) exibirFeedbackVisual(estado.acertou, q.resposta);
+    if (estado && estado.respondida) {
+        exibirFeedbackVisual(estado.acertou, q.resposta);
+    }
     salvarProgresso();
 }
 
@@ -226,9 +253,9 @@ function verificarResposta(escolhida, gabarito, botao, idQuestao) {
     }
 }
 
-// --- LÓGICA DE TIMER 3 SEGUNDOS ---
+// --- TIMER 3 SEGUNDOS ---
 function iniciarContagemRegressiva() {
-    tempoRestante = 3; // Começa em 3
+    tempoRestante = 3; 
     atualizarTextoTimer(tempoRestante);
     
     if (intervaloContagem) clearInterval(intervaloContagem);
@@ -255,7 +282,7 @@ function atualizarTextoTimer(segundos) {
     txt.innerText = `⏰ ${segundos}...`;
 }
 
-// --- NAVEGAÇÃO E CONTROLES ---
+// --- CONTROLES E SAVE ---
 
 function navegar(direcao) {
     pararContagem(); 
@@ -272,13 +299,12 @@ function alternarTimer() {
     const txt = document.getElementById('txt-timer');
     const tooltip = document.getElementById('tooltip-timer');
     
-    // Esconde a dica se clicar
     if(tooltip) tooltip.style.display = 'none';
     localStorage.setItem('timer_dica_visto', 'true');
 
     if (modoAutomaticoAtivo) {
         btn.className = "nav-btn timer-on";
-        txt.innerText = "⏰ 3s"; // Texto padrão quando ativo
+        txt.innerText = "⏰ 3s"; 
     } else {
         btn.className = "nav-btn timer-off";
         txt.innerText = "⏰ Off";

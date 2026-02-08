@@ -7,25 +7,38 @@ const arquivos = [
     "prova_13_questoes.json", "prova_14_questoes.json"
 ];
 
-// ESTADO GLOBAL (Banco de Dados completo na memória)
 let bancoCompleto = [];
 let appCarregado = false;
-
-// ESTADO DA SESSÃO ATUAL
-let questoesDaProva = []; // Apenas as questões selecionadas para agora
+let questoesDaProva = []; 
 let indiceAtual = 0;
 let acertos = 0;
 let erros = 0;
 let historicoRespostas = {}; 
 let modoAutomaticoAtivo = false; 
-let timerAutomatico = null; 
-let tipoProvaAtual = ""; // 'completa', 'prova_1', etc.
+let tipoProvaAtual = ""; 
 
-// --- INICIALIZAÇÃO ---
+// CONTROLES DE TIMER
+let intervaloContagem = null; 
+let tempoRestante = 3; // AJUSTADO PARA 3 SEGUNDOS
+
 window.onload = async () => {
     await carregarBancoDeDados();
     gerarBotoesProvas();
     verificarSaveGame();
+    
+    // LÓGICA DO BALÃO DE DICA
+    if (!localStorage.getItem('timer_dica_visto')) {
+        const tooltip = document.getElementById('tooltip-timer');
+        if (tooltip) {
+            tooltip.style.display = 'block';
+            
+            // SOME SOZINHO APÓS 8 SEGUNDOS (Para não irritar)
+            setTimeout(() => {
+                tooltip.style.opacity = '0'; // Efeito visual se quiser adicionar transição CSS depois
+                setTimeout(() => tooltip.style.display = 'none', 500);
+            }, 8000);
+        }
+    }
 };
 
 async function carregarBancoDeDados() {
@@ -36,20 +49,16 @@ async function carregarBancoDeDados() {
             const dados = await res.json();
             bancoCompleto = [...bancoCompleto, ...dados];
         }
-        // Ordena 1 ao 560
         bancoCompleto.sort((a, b) => a.id - b.id);
         appCarregado = true;
-        console.log(`Banco carregado: ${bancoCompleto.length} questões.`);
     } catch (e) {
-        alert("Erro ao carregar banco de dados. Verifique os arquivos JSON.");
+        alert("Erro ao carregar banco de dados.");
     }
 }
 
 function gerarBotoesProvas() {
     const grid = document.getElementById('grid-provas');
     grid.innerHTML = "";
-    
-    // Gera 14 botões
     for (let i = 1; i <= 14; i++) {
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
@@ -59,18 +68,21 @@ function gerarBotoesProvas() {
     }
 }
 
-// --- LÓGICA DE MENU E NAVEGAÇÃO ---
-
 function verificarSaveGame() {
     const save = localStorage.getItem('quiz_offshore_save');
     const btn = document.getElementById('btn-continuar');
-    
     if (save) {
         const dados = JSON.parse(save);
         btn.style.display = 'flex';
-        // Mostra info no botão (ex: Prova 2 - Q. 45)
         const nomeModo = dados.tipo.includes('prova_') ? dados.tipo.replace('prova_', 'Prova ') : 'Simulado';
-        document.getElementById('info-save').innerText = `${nomeModo} • Parou na Q. ${dados.indice + 1}`;
+        
+        let proximoIndiceReal = dados.indice;
+        if (dados.idsQuestao && dados.historico) {
+            const idxNaoRespondido = dados.idsQuestao.findIndex(id => !dados.historico[id]);
+            if (idxNaoRespondido !== -1) proximoIndiceReal = idxNaoRespondido;
+            else proximoIndiceReal = dados.idsQuestao.length - 1;
+        }
+        document.getElementById('info-save').innerText = `${nomeModo} • Retomar na Q. ${proximoIndiceReal + 1}`;
     } else {
         btn.style.display = 'none';
     }
@@ -78,30 +90,20 @@ function verificarSaveGame() {
 
 function iniciarProva(tipo) {
     if (!appCarregado) return;
-
-    // Reseta estado
     indiceAtual = 0;
     acertos = 0;
     erros = 0;
     historicoRespostas = {};
     tipoProvaAtual = tipo;
 
-    // FILTRA AS QUESTÕES BASEADO NO TIPO
-    if (tipo === 'completa') {
-        questoesDaProva = [...bancoCompleto];
-    } 
-    else if (tipo === 'aleatoria') {
-        // Pega 40 aleatórias
-        questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
-    }
+    if (tipo === 'completa') questoesDaProva = [...bancoCompleto];
+    else if (tipo === 'aleatoria') questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
     else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
         const inicio = (numProva - 1) * 40;
         const fim = inicio + 40;
-        // Fatia o array original (slice não inclui o fim, então +40 está certo)
         questoesDaProva = bancoCompleto.slice(inicio, fim);
     }
-
     abrirTelaQuiz();
     mostrarQuestao();
 }
@@ -109,25 +111,24 @@ function iniciarProva(tipo) {
 function retomarJogo() {
     const save = localStorage.getItem('quiz_offshore_save');
     if (!save) return;
-
     const dados = JSON.parse(save);
-    
-    // Restaura o estado
-    indiceAtual = dados.indice;
     acertos = dados.acertos;
     erros = dados.erros;
     historicoRespostas = dados.historico;
     tipoProvaAtual = dados.tipo;
     
-    // RECONSTRÓI A LISTA DE QUESTÕES
-    // Nota: Salvamos os IDs das questões para garantir fidelidade
     if (dados.idsQuestao && dados.idsQuestao.length > 0) {
         questoesDaProva = dados.idsQuestao.map(id => bancoCompleto.find(q => q.id === id)).filter(q => q);
     } else {
-        // Fallback para versões antigas ou erro (reinicia modo completo)
         questoesDaProva = [...bancoCompleto];
     }
 
+    let indiceInteligente = 0;
+    const primeiroNaoRespondido = questoesDaProva.findIndex(q => !historicoRespostas[q.id]);
+    if (primeiroNaoRespondido !== -1) indiceInteligente = primeiroNaoRespondido;
+    else indiceInteligente = questoesDaProva.length - 1;
+    
+    indiceAtual = indiceInteligente;
     abrirTelaQuiz();
     mostrarQuestao();
 }
@@ -135,23 +136,21 @@ function retomarJogo() {
 function abrirTelaQuiz() {
     document.getElementById('menu-inicial').classList.add('hidden');
     document.getElementById('tela-quiz').classList.remove('hidden');
-    
-    // Atualiza placar visualmente
     document.getElementById('acertos').innerText = acertos;
     document.getElementById('erros').innerText = erros;
 }
 
 function voltarAoMenu() {
-    salvarProgresso(); // Salva antes de sair
+    salvarProgresso(); 
     document.getElementById('tela-quiz').classList.add('hidden');
     document.getElementById('menu-inicial').classList.remove('hidden');
-    verificarSaveGame(); // Atualiza o botão continuar
+    verificarSaveGame(); 
 }
 
 // --- MOTOR DO JOGO ---
 
 function mostrarQuestao() {
-    clearTimeout(timerAutomatico);
+    pararContagem(); 
 
     if (indiceAtual >= questoesDaProva.length) {
         finalizarQuiz();
@@ -161,7 +160,6 @@ function mostrarQuestao() {
     const q = questoesDaProva[indiceAtual];
     const estado = historicoRespostas[q.id];
 
-    // Atualiza Interface
     document.getElementById('progresso-txt').innerText = `PDF #${q.id} (Seq: ${indiceAtual + 1}/${questoesDaProva.length})`;
     document.getElementById('pergunta-texto').innerText = q.pergunta;
     
@@ -182,7 +180,6 @@ function mostrarQuestao() {
                 btn.disabled = true;
                 const letraOp = opcao.trim().charAt(0).toUpperCase();
                 const letraResp = q.resposta.trim().toUpperCase();
-                
                 if (letraOp === letraResp) btn.classList.add('resposta-certa');
                 if (!estado.acertou && letraOp === estado.escolha) btn.classList.add('resposta-errada');
             } else {
@@ -192,11 +189,7 @@ function mostrarQuestao() {
         });
     }
 
-    if (estado && estado.respondida) {
-        exibirFeedbackVisual(estado.acertou, q.resposta);
-    }
-    
-    // Salva automaticamente a cada questão mostrada (para gravar o índice)
+    if (estado && estado.respondida) exibirFeedbackVisual(estado.acertou, q.resposta);
     salvarProgresso();
 }
 
@@ -210,11 +203,7 @@ function verificarResposta(escolhida, gabarito, botao, idQuestao) {
     const letraCorreta = gabarito ? gabarito.trim().toUpperCase() : "?";
     const acertou = (letraEscolhida === letraCorreta);
 
-    historicoRespostas[idQuestao] = {
-        respondida: true,
-        acertou: acertou,
-        escolha: letraEscolhida
-    };
+    historicoRespostas[idQuestao] = { respondida: true, acertou: acertou, escolha: letraEscolhida };
 
     if (acertou) {
         acertos++;
@@ -225,17 +214,75 @@ function verificarResposta(escolhida, gabarito, botao, idQuestao) {
         document.getElementById('erros').innerText = erros;
         botao.classList.add('resposta-errada');
         botoes.forEach(b => {
-            if (b.innerText.trim().charAt(0).toUpperCase() === letraCorreta) {
-                b.classList.add('resposta-certa');
-            }
+            if (b.innerText.trim().charAt(0).toUpperCase() === letraCorreta) b.classList.add('resposta-certa');
         });
     }
 
     exibirFeedbackVisual(acertou, letraCorreta);
-    salvarProgresso(); // Salva o resultado
+    salvarProgresso(); 
 
     if (modoAutomaticoAtivo) {
-        timerAutomatico = setTimeout(() => navegar(1), 4000); 
+        iniciarContagemRegressiva();
+    }
+}
+
+// --- LÓGICA DE TIMER 3 SEGUNDOS ---
+function iniciarContagemRegressiva() {
+    tempoRestante = 3; // Começa em 3
+    atualizarTextoTimer(tempoRestante);
+    
+    if (intervaloContagem) clearInterval(intervaloContagem);
+
+    intervaloContagem = setInterval(() => {
+        tempoRestante--;
+        atualizarTextoTimer(tempoRestante);
+        
+        if (tempoRestante <= 0) {
+            clearInterval(intervaloContagem);
+            navegar(1);
+        }
+    }, 1000); 
+}
+
+function pararContagem() {
+    if (intervaloContagem) clearInterval(intervaloContagem);
+    const txt = document.getElementById('txt-timer');
+    txt.innerText = modoAutomaticoAtivo ? "⏰ 3s" : "⏰ Off";
+}
+
+function atualizarTextoTimer(segundos) {
+    const txt = document.getElementById('txt-timer');
+    txt.innerText = `⏰ ${segundos}...`;
+}
+
+// --- NAVEGAÇÃO E CONTROLES ---
+
+function navegar(direcao) {
+    pararContagem(); 
+    const novoIndice = indiceAtual + direcao;
+    if (novoIndice >= 0 && novoIndice < questoesDaProva.length) {
+        indiceAtual = novoIndice;
+        mostrarQuestao();
+    }
+}
+
+function alternarTimer() {
+    modoAutomaticoAtivo = !modoAutomaticoAtivo;
+    const btn = document.getElementById('btn-timer');
+    const txt = document.getElementById('txt-timer');
+    const tooltip = document.getElementById('tooltip-timer');
+    
+    // Esconde a dica se clicar
+    if(tooltip) tooltip.style.display = 'none';
+    localStorage.setItem('timer_dica_visto', 'true');
+
+    if (modoAutomaticoAtivo) {
+        btn.className = "nav-btn timer-on";
+        txt.innerText = "⏰ 3s"; // Texto padrão quando ativo
+    } else {
+        btn.className = "nav-btn timer-off";
+        txt.innerText = "⏰ Off";
+        pararContagem(); 
     }
 }
 
@@ -247,24 +294,6 @@ function exibirFeedbackVisual(acertou, letraCorreta) {
         : `<span style='color: #e57373'>Errou! A correta é <strong>${letraCorreta}</strong></span>`;
 }
 
-function navegar(direcao) {
-    clearTimeout(timerAutomatico);
-    const novoIndice = indiceAtual + direcao;
-    if (novoIndice >= 0 && novoIndice < questoesDaProva.length) {
-        indiceAtual = novoIndice;
-        mostrarQuestao();
-    }
-}
-
-function alternarTimer() {
-    modoAutomaticoAtivo = !modoAutomaticoAtivo;
-    const btn = document.getElementById('btn-timer');
-    btn.className = modoAutomaticoAtivo ? "nav-btn timer-on" : "nav-btn timer-off";
-    btn.innerHTML = modoAutomaticoAtivo ? "⏰ 4s" : "⏰ Off";
-}
-
-// --- PERSISTÊNCIA (SALVAR/CARREGAR) ---
-
 function salvarProgresso() {
     const dados = {
         tipo: tipoProvaAtual,
@@ -272,7 +301,6 @@ function salvarProgresso() {
         acertos: acertos,
         erros: erros,
         historico: historicoRespostas,
-        // Salvamos os IDs da prova atual para poder reconstruir a mesma lista depois
         idsQuestao: questoesDaProva.map(q => q.id),
         data: new Date().getTime()
     };
@@ -295,6 +323,5 @@ function finalizarQuiz() {
         <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444;">Voltar ao Início</button>
     `;
     document.querySelector('.nav-bar').style.display = 'none';
-    // Limpa o save ao finalizar, para não ficar preso num loop de fim
     localStorage.removeItem('quiz_offshore_save');
 }

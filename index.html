@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Offshore - Simulado</title>
+    <title>Quiz Offshore Profissional</title>
     <style>
+        :root {
+            --bg-color: #121212;
+            --card-color: #1e1e1e;
+            --primary: #1565c0;
+            --success: #2e7d32;
+            --error: #c62828;
+            --text-main: #e0e0e0;
+        }
+
         body { 
-            background-color: #121212; 
-            color: #e0e0e0; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
             margin: 0; 
             padding: 0;
@@ -16,180 +25,228 @@
             align-items: center; 
             min-height: 100vh;
         }
+
+        /* --- TELA DE MENU --- */
+        #menu-inicial {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex; /* Começa visível */
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeIn 0.5s;
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
         
-        /* Container Principal - Ajustado para não ficar "espalhado" no PC */
+        .logo-area h1 { margin: 0; font-size: 28px; color: white; }
+        .logo-area p { color: #aaa; margin-top: 5px; }
+
+        .btn-menu {
+            background: #2c2c2c;
+            border: 1px solid #444;
+            color: white;
+            padding: 18px;
+            font-size: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-menu:active { transform: scale(0.98); }
+        .btn-menu:hover { background: #383838; border-color: #666; }
+
+        .btn-destaque {
+            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            border: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(21, 101, 192, 0.4);
+        }
+
+        .btn-continuar {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            border: none;
+            font-weight: bold;
+            display: none; /* Só aparece se tiver save */
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
+        }
+
+        .grid-provas {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 colunas */
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn-prova {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 10px;
+            color: #ddd;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-prova:hover { background: #333; }
+
+        /* --- TELA DO QUIZ --- */
+        #tela-quiz {
+            display: none; /* Começa invisível */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         #quiz-container { 
             width: 100%; 
-            max-width: 700px; /* Largura ideal para leitura */
-            background: #1e1e1e; 
+            max-width: 700px;
+            background: var(--card-color); 
             padding: 20px; 
             margin-top: 10px;
-            margin-bottom: 100px; /* Espaço para a barra fixa */
-            border-radius: 0 0 16px 16px; /* Arredondado só embaixo no mobile */
+            margin-bottom: 110px; /* Espaço para a barra fixa */
+            border-radius: 0 0 16px 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.6); 
             box-sizing: border-box; 
         }
 
         @media (min-width: 768px) {
             body { padding: 20px; }
-            #quiz-container {
-                border-radius: 16px; /* Arredondado total no PC */
-                margin-top: 20px;
-                padding: 40px;
-            }
+            #quiz-container { border-radius: 16px; margin-top: 20px; padding: 40px; }
+            #menu-inicial { max-width: 800px; }
+            .grid-provas { grid-template-columns: 1fr 1fr 1fr 1fr; } /* 4 colunas no PC */
         }
 
-        /* PLACAR */
+        /* PLACAR E PERGUNTA */
         .header-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            background: #252525;
-            padding: 12px 20px;
-            border-radius: 12px;
-            border: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 25px; background: #252525; padding: 12px 20px;
+            border-radius: 12px; border: 1px solid #333;
         }
-
-        .score-box { display: flex; gap: 15px; }
-
-        .badge {
-            padding: 5px 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .badge-green { background: rgba(46, 125, 50, 0.2); color: #81c784; border: 1px solid #2e7d32; }
-        .badge-red { background: rgba(198, 40, 40, 0.2); color: #e57373; border: 1px solid #c62828; }
-
-        .pergunta { 
-            font-size: 19px; 
-            line-height: 1.6; 
-            margin-bottom: 25px; 
-            color: #ffffff;
-            font-weight: 500;
-        }
+        .badge { padding: 5px 12px; border-radius: 8px; font-weight: bold; font-size: 15px; }
+        .badge-green { color: #81c784; background: rgba(46, 125, 50, 0.2); }
+        .badge-red { color: #e57373; background: rgba(198, 40, 40, 0.2); }
         
-        /* BOTÕES DE OPÇÃO */
+        .pergunta { font-size: 19px; line-height: 1.6; margin-bottom: 25px; color: #fff; font-weight: 500; }
+
         .opcao { 
-            display: block; 
-            width: 100%; 
-            padding: 16px 20px; 
-            margin: 12px 0; 
-            background: #2c2c2c; 
-            border: 1px solid #444; 
-            color: #e0e0e0; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            text-align: left; 
-            font-size: 17px; 
-            transition: all 0.2s ease;
-            position: relative;
+            display: block; width: 100%; padding: 16px 20px; margin: 12px 0;
+            background: #2c2c2c; border: 1px solid #444; color: #e0e0e0;
+            border-radius: 10px; cursor: pointer; text-align: left; font-size: 17px;
+            position: relative; transition: all 0.2s;
         }
+        .opcao:active { transform: scale(0.98); }
         
-        .opcao:hover:not(:disabled) { background: #383838; border-color: #666; transform: translateX(5px); }
-        .opcao:active:not(:disabled) { transform: scale(0.98); }
-        
-        /* ESTILOS DE RESPOSTA (USADOS QUANDO VOLTA NA QUESTÃO) */
-        .opcao:disabled { cursor: default; opacity: 1; color: #bbb; }
-        
-        .resposta-certa { 
-            background-color: #1b5e20 !important; 
-            border-color: #4caf50 !important; 
-            color: white !important;
-        }
-        
-        .resposta-errada { 
-            background-color: #b71c1c !important; 
-            border-color: #ef5350 !important;
-            opacity: 0.7;
-        }
-
-        /* Marcador visual de seleção */
+        .resposta-certa { background-color: #1b5e20 !important; border-color: #4caf50 !important; color: white !important; }
+        .resposta-errada { background-color: #b71c1c !important; border-color: #ef5350 !important; opacity: 0.8; }
         .resposta-certa::after { content: "✅"; position: absolute; right: 15px; }
         .resposta-errada::after { content: "❌"; position: absolute; right: 15px; }
 
-        #feedback { 
-            margin-top: 20px; 
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center; 
-            font-size: 18px; 
-            background: #252525;
-            display: none; /* Escondido por padrão */
-        }
+        #feedback { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; background: #252525; display: none; }
 
-        /* BARRA DE NAVEGAÇÃO */
+        /* BARRA DE NAVEGAÇÃO (CORRIGIDA) */
         .nav-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background-color: #181818;
-            padding: 15px;
+            /* AQUI ESTÁ A CORREÇÃO DO ESPAÇAMENTO LATERAL */
+            padding: 15px 20px; 
+            box-sizing: border-box; /* Garante que o padding não estoure a largura */
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.8);
             z-index: 100;
             border-top: 1px solid #333;
         }
 
         .nav-btn {
-            background: #333;
-            color: white;
-            border: 1px solid #444;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background 0.2s;
-            flex: 1;
-            max-width: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: #333; color: white; border: 1px solid #444;
+            padding: 12px 0; /* Padding lateral zero, controlado pelo flex */
+            border-radius: 8px; font-size: 18px; cursor: pointer;
+            flex: 1; /* Todos botões ocupam espaço igual */
+            max-width: 160px; /* Limite para não ficar gigante no PC */
+            display: flex; justify-content: center; align-items: center;
         }
-
-        .nav-btn:hover { background: #444; }
-        .nav-btn:active { transform: scale(0.95); }
-
-        .timer-on { background-color: #1b5e20; border-color: #2e7d32; color: #a5d6a7; }
-        .timer-off { background-color: #222; color: #666; border-style: dashed; }
         
-        .btn-next { background-color: #0d47a1; border-color: #1565c0; font-weight: bold; }
-        .btn-next:hover { background-color: #1565c0; }
+        .timer-on { background-color: #1b5e20; border-color: #2e7d32; color: #a5d6a7; }
+        .btn-next { background-color: #0d47a1; border-color: #1565c0; }
+        
+        /* Utilitário para esconder telas */
+        .hidden { display: none !important; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     </style>
 </head>
 <body>
-    <div id="quiz-container">
-        <div class="header-stats">
-            <span id="progresso" style="color: #aaa; font-weight: 500;">Carregando...</span>
-            <div class="score-box">
-                <span class="badge badge-green">✔ <span id="acertos">0</span></span>
-                <span class="badge badge-red">✖ <span id="erros">0</span></span>
-            </div>
+
+    <div id="menu-inicial">
+        <div class="logo-area">
+            <h1>⚓ Quiz Offshore</h1>
+            <p>Simulador de Potencial Eletroquímico</p>
         </div>
 
-        <div id="pergunta-texto" class="pergunta">...</div>
+        <button id="btn-continuar" class="btn-menu btn-continuar" onclick="retomarJogo()">
+            <span>▶ Continuar de onde parei</span>
+            <small id="info-save" style="opacity: 0.8">Q. 1</small>
+        </button>
+
+        <button class="btn-menu btn-destaque" onclick="iniciarProva('completa')">
+            <span>🚀 Simulado Completo (1-560)</span>
+            <span>➤</span>
+        </button>
+
+        <button class="btn-menu" onclick="iniciarProva('aleatoria')">
+            <span>🎲 Modo Aleatório (40 questões)</span>
+            <span>➤</span>
+        </button>
+
+        <h3 style="margin-top: 20px; color: #888; font-size: 14px; text-transform: uppercase;">Provas Individuais</h3>
+        <div class="grid-provas" id="grid-provas">
+            </div>
         
-        <div id="opcoes-container"></div>
-        
-        <div id="feedback"></div>
+        <p style="text-align: center; color: #555; margin-top: 30px; font-size: 12px;">v2.1 - Offline Ready</p>
     </div>
 
-    <div class="nav-bar">
-        <button class="nav-btn" onclick="navegar(-1)">⬅️</button>
-        
-        <button id="btn-timer" class="nav-btn timer-off" onclick="alternarTimer()" style="flex: 0.6;">
-            ⏰ Off
-        </button>
-        
-        <button class="nav-btn btn-next" onclick="navegar(1)">➡️</button>
+
+    <div id="tela-quiz" class="hidden">
+        <div id="quiz-container">
+            <div style="margin-bottom: 10px;">
+                <button onclick="voltarAoMenu()" style="background: none; border: none; color: #888; cursor: pointer; font-size: 14px;">⬅ Voltar ao Menu</button>
+            </div>
+
+            <div class="header-stats">
+                <span id="progresso-txt" style="color: #aaa; font-weight: 500;">Iniciando...</span>
+                <div class="score-box">
+                    <span class="badge badge-green">✔ <span id="acertos">0</span></span>
+                    <span class="badge badge-red">✖ <span id="erros">0</span></span>
+                </div>
+            </div>
+
+            <div id="pergunta-texto" class="pergunta">...</div>
+            <div id="opcoes-container"></div>
+            <div id="feedback"></div>
+        </div>
+
+        <div class="nav-bar">
+            <button class="nav-btn" onclick="navegar(-1)">⬅️</button>
+            <button id="btn-timer" class="nav-btn timer-off" onclick="alternarTimer()" style="flex: 0.6;">⏰ Off</button>
+            <button class="nav-btn btn-next" onclick="navegar(1)">➡️</button>
+        </div>
     </div>
 
     <script src="script.js"></script>

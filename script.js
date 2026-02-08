@@ -9,10 +9,14 @@ const arquivos = [
 let todasQuestoes = [];
 let indiceAtual = 0;
 let acertos = 0;
+let erros = 0;
 
-// CONTROLES DE NAVEGAÇÃO
-let modoAutomaticoAtivo = false; // Começa desligado (Manual)
-let timerAutomatico = null; // Guarda o ID do relógio para poder cancelar
+// MEMÓRIA DO JOGO
+// Aqui guardamos o estado de cada questão: { respondida: true, acertou: false, escolha: "A" }
+let historicoRespostas = {}; 
+
+let modoAutomaticoAtivo = false; 
+let timerAutomatico = null; 
 
 async function iniciarApp() {
     try {
@@ -23,20 +27,19 @@ async function iniciarApp() {
             todasQuestoes = [...todasQuestoes, ...dados];
         }
 
-        // Ordena 1 ao 560
+        // Garante a ordem correta
         todasQuestoes.sort((a, b) => a.id - b.id);
         
         console.log(`Carregadas ${todasQuestoes.length} questões.`);
         mostrarQuestao();
-        atualizarInterfaceTimer(); // Atualiza a cor do botão do relógio
+        atualizarInterfaceTimer();
     } catch (e) {
-        console.error("Erro crítico:", e);
-        document.getElementById('pergunta-texto').innerText = "Erro ao carregar arquivos JSON.";
+        console.error(e);
+        document.getElementById('pergunta-texto').innerText = "Erro ao carregar dados.";
     }
 }
 
 function mostrarQuestao() {
-    // Cancela qualquer timer pendente (segurança)
     clearTimeout(timerAutomatico);
 
     if (indiceAtual >= todasQuestoes.length) {
@@ -45,68 +48,121 @@ function mostrarQuestao() {
     }
 
     const q = todasQuestoes[indiceAtual];
-    
-    // Atualiza textos
+    const estado = historicoRespostas[q.id]; // Verifica se já respondemos essa
+
+    // Atualiza Topo
     document.getElementById('progresso').innerText = `Questão PDF #${q.id} (${indiceAtual + 1}/${todasQuestoes.length})`;
     document.getElementById('pergunta-texto').innerText = q.pergunta;
-    document.getElementById('feedback').innerText = "";
+    
+    // Limpa Feedback anterior
+    const feedbackDiv = document.getElementById('feedback');
+    feedbackDiv.style.display = 'none';
+    feedbackDiv.innerHTML = "";
     
     const container = document.getElementById('opcoes-container');
     container.innerHTML = ""; 
 
-    // Desenha botões
     if (q.opcoes && q.opcoes.length > 0) {
         q.opcoes.forEach(opcao => {
             const btn = document.createElement('button');
             btn.className = 'opcao';
             btn.innerText = opcao;
-            btn.onclick = () => verificarResposta(opcao, q.resposta, btn);
+            
+            // Se já respondida, desabilita e aplica cores
+            if (estado && estado.respondida) {
+                btn.disabled = true;
+                const letraOpcao = opcao.trim().charAt(0).toUpperCase();
+                const letraCorreta = q.resposta.trim().toUpperCase();
+                
+                // Pinta a correta de verde
+                if (letraOpcao === letraCorreta) {
+                    btn.classList.add('resposta-certa');
+                }
+                // Se o usuário errou, pinta a escolha dele de vermelho
+                if (!estado.acertou && letraOpcao === estado.escolha) {
+                    btn.classList.add('resposta-errada');
+                }
+            } else {
+                // Se não respondeu ainda, adiciona o clique
+                btn.onclick = () => verificarResposta(opcao, q.resposta, btn, q.id);
+            }
+
             container.appendChild(btn);
         });
     }
+
+    // Se já respondeu, mostra o feedback imediatamente (sem somar ponto de novo)
+    if (estado && estado.respondida) {
+        exibirFeedbackVisual(estado.acertou, q.resposta);
+    }
 }
 
-function verificarResposta(escolhida, gabarito, botao) {
-    // Trava botões
+function verificarResposta(escolhida, gabarito, botao, idQuestao) {
+    // SEGURANÇA: Se já está no histórico, para tudo!
+    if (historicoRespostas[idQuestao]) return;
+
     const botoes = document.querySelectorAll('.opcao');
     botoes.forEach(b => b.disabled = true); 
 
     const letraEscolhida = escolhida.trim().charAt(0).toUpperCase();
     const letraCorreta = gabarito ? gabarito.trim().toUpperCase() : "?";
+    const acertou = (letraEscolhida === letraCorreta);
 
-    if (letraEscolhida === letraCorreta) {
+    // Salva no histórico para não pontuar de novo
+    historicoRespostas[idQuestao] = {
+        respondida: true,
+        acertou: acertou,
+        escolha: letraEscolhida
+    };
+
+    // Pontuação
+    if (acertou) {
         acertos++;
-        document.getElementById('acertos').innerText = `Acertos: ${acertos}`;
-        document.getElementById('feedback').innerHTML = "<span style='color: #4caf50'>Correto! ✅</span>";
-        botao.style.background = "#2e7d32";
+        document.getElementById('acertos').innerText = acertos;
+        botao.classList.add('resposta-certa');
     } else {
-        document.getElementById('feedback').innerHTML = `<span style='color: #ff5252'>Incorreto! ❌<br><small style="color: #aaa">Gabarito: ${letraCorreta}</small></span>`;
-        botao.style.background = "#c62828";
+        erros++;
+        document.getElementById('erros').innerText = erros;
+        botao.classList.add('resposta-errada');
+        
+        // Também mostra qual era a certa para o usuário aprender
+        botoes.forEach(b => {
+            if (b.innerText.trim().charAt(0).toUpperCase() === letraCorreta) {
+                b.classList.add('resposta-certa');
+            }
+        });
     }
 
-    // LÓGICA DO TIMER: Só avança sozinho se o modo estiver ATIVO
+    exibirFeedbackVisual(acertou, letraCorreta);
+
     if (modoAutomaticoAtivo) {
         timerAutomatico = setTimeout(() => {
             navegar(1);
-        }, 4000); // 4 segundos para ler
+        }, 4000); 
     }
 }
 
-// FUNÇÃO DE NAVEGAÇÃO MANUAL (Avançar e Voltar)
-function navegar(direcao) {
-    // Se o usuário clicar, cancelamos o timer automático imediatamente
-    clearTimeout(timerAutomatico);
+function exibirFeedbackVisual(acertou, letraCorreta) {
+    const feedbackDiv = document.getElementById('feedback');
+    feedbackDiv.style.display = 'block';
+    
+    if (acertou) {
+        feedbackDiv.innerHTML = "<span style='color: #81c784'>Correto! ✅</span>";
+    } else {
+        feedbackDiv.innerHTML = `<span style='color: #e57373'>Errou! A correta é a letra <strong>${letraCorreta}</strong></span>`;
+    }
+}
 
+function navegar(direcao) {
+    clearTimeout(timerAutomatico);
     const novoIndice = indiceAtual + direcao;
 
-    // Impede de voltar antes da primeira ou passar da última
     if (novoIndice >= 0 && novoIndice < todasQuestoes.length) {
         indiceAtual = novoIndice;
         mostrarQuestao();
     }
 }
 
-// LIGA/DESLIGA O MODO AUTOMÁTICO
 function alternarTimer() {
     modoAutomaticoAtivo = !modoAutomaticoAtivo;
     atualizarInterfaceTimer();
@@ -125,11 +181,21 @@ function atualizarInterfaceTimer() {
 
 function finalizarQuiz() {
     document.getElementById('quiz-container').innerHTML = `
-        <h2 style="text-align: center">Simulado Finalizado!</h2>
-        <p style="text-align: center; font-size: 20px;">Acertos finais: ${acertos} de ${todasQuestoes.length}</p>
-        <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444; margin-top: 20px">Reiniciar</button>
+        <h2 style="text-align: center; margin-bottom: 30px;">Fim do Simulado!</h2>
+        
+        <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px;">
+            <div style="text-align: center;">
+                <div style="font-size: 50px; color: #81c784; font-weight: bold;">${acertos}</div>
+                <div style="color: #aaa; text-transform: uppercase; letter-spacing: 1px;">Acertos</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 50px; color: #e57373; font-weight: bold;">${erros}</div>
+                <div style="color: #aaa; text-transform: uppercase; letter-spacing: 1px;">Erros</div>
+            </div>
+        </div>
+
+        <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444;">Reiniciar</button>
     `;
-    // Esconde a barra de navegação no final
     document.querySelector('.nav-bar').style.display = 'none';
 }
 

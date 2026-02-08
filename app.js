@@ -1,6 +1,5 @@
 const { useState, useEffect } = React;
 
-// Nomes exatos dos seus arquivos JSON
 const arquivosJson = [
   "prova_1_questoes_1_a_40.json", "prova_2_questoes_41_a_80.json",
   "prova_3_questoes_81_a_120.json", "prova_4_questoes_121_a_160.json",
@@ -19,13 +18,18 @@ function QuizApp() {
 
   useEffect(() => {
     async function carregar() {
-      let todas = [];
-      for (const nome of arquivosJson) {
-        const res = await fetch(`./${nome}`);
-        const data = await res.json();
-        todas = [...todas, ...data];
+      try {
+        let todas = [];
+        for (const nome of arquivosJson) {
+          // Agora buscamos direto na raiz
+          const res = await fetch(`/${nome}`);
+          const data = await res.json();
+          todas = [...todas, ...data];
+        }
+        setQuestoes(todas.sort(() => Math.random() - 0.5));
+      } catch (e) {
+        console.error("Erro ao carregar questões:", e);
       }
-      setQuestoes(todas.sort(() => Math.random() - 0.5));
     }
     carregar();
   }, []);
@@ -42,8 +46,8 @@ function QuizApp() {
     setTimeout(() => { setIndex(index + 1); setFeedback(null); }, 2000);
   };
 
-  if (questoes.length === 0) return React.createElement('div', null, 'Carregando questões...');
-  if (index >= questoes.length) return React.createElement('div', null, `Fim! Pontos: ${pontos}`);
+  if (questoes.length === 0) return React.createElement('div', {style: {color: 'white', padding: '20px'}}, 'Carregando 560 questões...');
+  if (index >= questoes.length) return React.createElement('div', {style: {color: 'white', padding: '20px'}}, `Fim! Você acertou ${pontos} de ${questoes.length}`);
 
   return React.createElement('div', { style: estilos.container },
     React.createElement('div', { style: estilos.header }, 
@@ -51,12 +55,16 @@ function QuizApp() {
       React.createElement('span', null, `Acertos: ${pontos}`)
     ),
     React.createElement('div', { style: estilos.card },
-      React.createElement('h3', null, questoes[index].pergunta),
+      React.createElement('h3', { style: {marginBottom: '20px'} }, questoes[index].pergunta),
       questoes[index].opcoes.map((opt, i) => 
         React.createElement('button', {
           key: i,
           onClick: () => responder(opt),
-          style: { ...estilos.botao, backgroundColor: feedback ? (opt === questoes[index].resposta ? '#2e7d32' : '#333') : '#444' }
+          style: { 
+            ...estilos.botao, 
+            backgroundColor: feedback ? (opt === questoes[index].resposta ? '#2e7d32' : '#333') : '#444',
+            border: feedback && opt !== questoes[index].resposta && opt === feedback.opcaoClicada ? '1px solid red' : '1px solid #555'
+          }
         }, opt)
       )
     ),
@@ -66,10 +74,10 @@ function QuizApp() {
 
 const estilos = {
   container: { backgroundColor: '#121212', color: '#fff', minHeight: '100vh', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', fontFamily: 'sans-serif' },
-  header: { width: '100%', maxWidth: '600px', display: 'flex', justifyContent: 'space-between', marginBottom: '20px' },
-  card: { backgroundColor: '#1e1e1e', padding: '20px', borderRadius: '12px', width: '100%', maxWidth: '600px' },
-  botao: { display: 'block', width: '100%', color: '#fff', padding: '15px', margin: '10px 0', borderRadius: '8px', border: '1px solid #555', textAlign: 'left', cursor: 'pointer' },
-  feedback: { marginTop: '20px', fontSize: '20px' }
+  header: { width: '100%', maxWidth: '600px', display: 'flex', justifyContent: 'space-between', marginBottom: '20px', fontSize: '14px', color: '#aaa' },
+  card: { backgroundColor: '#1e1e1e', padding: '20px', borderRadius: '12px', width: '100%', maxWidth: '600px', boxShadow: '0 4px 10px rgba(0,0,0,0.5)' },
+  botao: { display: 'block', width: '100%', color: '#fff', padding: '15px', margin: '10px 0', borderRadius: '8px', border: '1px solid #555', textAlign: 'left', cursor: 'pointer', fontSize: '16px' },
+  feedback: { marginTop: '20px', fontSize: '20px', fontWeight: 'bold' }
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

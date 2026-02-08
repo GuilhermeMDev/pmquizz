@@ -3,19 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="/manifest.json">
     <title>Quiz Offshore</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <style>
+        body { background-color: #121212; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        h1 { border: 2px solid #444; padding: 20px; border-radius: 10px; }
+    </style>
 </head>
-<body style="margin: 0; background-color: #121212;">
-    <div id="root"></div>
-    <script src="/app.js"></script>
-    <script>
-        // Registra o Service Worker para funcionar offline
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
-        }
-    </script>
+<body>
+    <h1>Quiz: Fase 1 Online!</h1>
 </body>
 </html>

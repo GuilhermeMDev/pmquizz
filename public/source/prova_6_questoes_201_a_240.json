@@ -1,0 +1,242 @@
+[
+  {
+    "id": 201,
+    "pergunta": "Na medição de potencial eletroquímico, por inspetor subaquático (método \ndireto) e por veículo de operação remota / ROV (método remoto), a semicélula \nusada nos equipamentos é a de: \nA) Cu/CuSO4 \nB) Ag/AgCl água do mar \nC) Zinco \nD) Platina",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 202,
+    "pergunta": "No caso de se utilizar uma semicélula afastada do multímetro, para medição \ndo potencial eletroquímico, qual a distância máxima que deve existir entre ela e a \nsuperfície a ser medida: \nA) 20 mm \nB) 40 mm \nC) 30 mm \nD) 50 mm",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 203,
+    "pergunta": "O multímetro utilizado na medi ção de potencial eletroquímico deve ter uma \ncaracterística que é muito importante para que não haja interferência nos valores \nmedidos. Esse multímetro tem que ter: \nA) Alta impedância \nB) Baixa impedância \nC) Média impedância \nD)Alta amperagem",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 204,
+    "pergunta": "Acontece n os materiais formadores de película protetora. Se a película for \ndanificada em algum ponto aparecerá uma área ativa (anódica) na presença de \numa grande área passiva (catódica) com o consequente aparecimento de uma forte \npilha de corrosão:  \na) Pilha de ação local  \nb) Pilha de concentração diferencial  \nc) Pilha de aeração diferencial  \nd) Pilha ativa – passiva",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 205,
+    "pergunta": "A polarização por ativação na área catódica se dá pela sobrete nsão ou \nsobrevoltagem do: \nA) Oxigênio do meio \nB) Oxigênio e do cloro \nC) Hidrogênio liberado \nD) Cloro liberado",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 206,
+    "pergunta": "A ............ é a pilha de corrosão mais frequente na natureza e aparece no metal \ndevido a heterogeneidades diversas inerentes ao próprio material como \ndescontinuidades, estados diferentes de tensões, tratamentos térmicos diferentes, \nmateriais de diferentes épocas de fabricação, etc.  \nA) Pilha ativa-passiva \nB) Pilha galvânica \nC) Pilha de ação local \nD) Pilha de oxigenação diferencial",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 207,
+    "pergunta": "O potencial de um eletrodo para uma concentração qualquer pode ser \ncalculado pela equação de:  \nA) Faraday \nB) Snell \nC) Nernst \nD)Tafel",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 208,
+    "pergunta": "Quando uma estrutura de aço carbono é exposta a concentrações diferentes \nde oxigênio, como no caso da interface ar/água salgada ou água salgada/leito \nmarinho, a pilha de corrosão formada nesse processo é:  \nA) de aeração diferencial \nB) de concentração iônica \nC) de ação local  \nD) Não existe processo corrosivo",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 209,
+    "pergunta": "A passivação ocorre quando o potencial de um eletrodo é abaixado, ou seja, se \ntorna mais catódico ou mais nobre, devido à formação de uma pelícu la de produto \nde corrosão. Esta camada de proteção é denominada: \nA) Película adsorvida \nB) Película eletrostática \nC) Película passivante \nD) Película dielétrica",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 210,
+    "pergunta": "Dentre as consequências criadas pela célula eletroquímica ou eletrolítica \nartificial formada pela proteção catódica, qual não é verdadeira: \nA) O potencial do metal é diminuído de tal forma que todas as áreas se tornam \ncatódicas \nB) Inicia-se um processo de polarização da superfície metálica por ativação, devido \na sobrevoltagem do hidrogênio que é liberado e absorvido em parte no catodo \nC) Inicia -se um processo de polarização ôhmica da superfície metálica pela \nprecipitação de compostos insolúveis tais como CaCO3 e Mg(OH)2 \nD) Há uma diminuição do pH no entorno do catodo que favorece a imunidade do \nmetal",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 211,
+    "pergunta": "Quais  os tipos de anodos que podem ser utilizados na proteção catódica \natravés do sistema por corrente impressa, na água do mar:  \nA) Ti - platinizado, Ti – óxido de metais nobres, Nb - Platinizado.  \nB) Al, Mg, Zn.  \nC) Fe-Si, Zn, Al.  \nD) Zn,Mg,Grafíte.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 212,
+    "pergunta": "No sistema de proteção catódica por corrente impressa, como são feitas as \nligações elétricas na saída do retificador, para que não haja inversão da polaridade \nno valor do Potencial Eletroquímico? \na) Negativo no anodo, positivo no catodo (estrutura a proteger).  \nb) Positivo no eletrodo de referência, negativo no anodo.  \nc) Positivo no anodo, negativo no catodo (estrutura a proteger).  \nd) Positivo no catodo, negativo no eletrodo de referência.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 213,
+    "pergunta": "Podemos dizer que uma estrutura de aço carbono se encontra prot egida \ncatodicamente se o seu potencial eletroquímico, em relação a semicélula de \nAg/AgCl água do mar, for: \nA) - 0,60 V.  \nB) Entre - 0,60 V a - 0,70 V.  \nC) Igual ou mais negativo do que - 0,80 V \nD) Mais positivo do que - 0,80 V.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 214,
+    "pergunta": "Confor me a norma ABNT NBR 16482, o eletrodo de calomelano saturado \n(ECS) à ser utilizado no teste do aparelho no campo, deve ser selecionado segundo \num critério pré -definido. Desta forma para que os três eletrodos de calomelanos \napresentem leituras aceitáveis é necessário que e stejam compreendidos na faixa \nde:  \nA) 0 ± 5 mV.  \nB) -2 ±2 mV.  \nC) 0 ± 2 mV.  \nD) 0 ± 3 mV.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 215,
+    "pergunta": "Um ponto crítico de uma estrutura submarina é a distribuição da corrente \nelétrica para Proteção Catódica ao longo de toda sua superfície e, se a  corrente \nliberada para proteção for muito alta há risco de ocorrer superproteção catódica \nem algumas áreas,  o que poderá ser prejudicial à estrutura. Qual o sistema de \nproteção catódica poderá propiciar este acontecimento:  \nA) Sistema de proteção catódica galvânica  \nB) Sistema de proteção catódica galvânica associada a revestimento  \nC) Sistema de monitoração para acompanhamento do potência da estrutura  \nD) Sistema de proteção catódica por corrente impressa",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 216,
+    "pergunta": "Nas plataformas existem os tubos que conduze m o petróleo em temperaturas \nbem superior à ambiente, mantendo -os constantemente aquecidos. São os \nchamados risers. Esta é uma condição muito crítica o que requer para que o \ncálculo da sua proteção atenda aos critérios da proteção catódica:  \nA) Uma densidade de corrente menor  \nB) Uma densidade de corrente nula  \nC) Uma densidade de corrente maior  \nD) Uma densidade de corrente variável, ora alta e ora baixa",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 217,
+    "pergunta": "No caso da calibração do voltímetro e semicélula de Ag/AgCl  água do mar  \nacoplados formando um con junto solidário, ou da CP Probe do ROV que também \ncontém a semicélula de Ag/AgCl  água do mar , os aparelhos s erão considerados \naceitáveis se a diferença entre as leituras do potencial eletroquímico por eles \nobtidas e as do voltímetro, em relação ao ECS padrão, for de:  \nA) (-5 ± 5) mV \nB) (5 ± 5) mV \nC) (8 ± 5) mV \nD) (-8 ±5) mV",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 218,
+    "pergunta": "Caso tenhamos uma estrutura metá lica submersa protegida catodicamente \natravés dos anodos de liga de zinco e, após uma inspeção submarina pela técnica de \nMedição de Potencial Eletro químico e Visual, constatamos a necessidade em se \nadicionar mais anodos galvânicos. Temos em nosso depósito uma quantidade \nsuficiente de anodos de liga de alumínio (Al) e de magnésio (Mg), que podem ser \nadicionados na estrutura metálica. O que fazemos?  \nA) Permitimos a instalação dos anodos de Al e Mg.  \nB) Permitimos a instalação somente dos anodos de Al.  \nC) Não permitimos a instalação, pois não se mistura anodos de outras ligas.  \nD) Permitimos a instalação somente dos anodos de Mg.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 219,
+    "pergunta": "No caso de se uti lizar a liga de zinco, como eletrodo de medição para \nestruturas metálicas submersas na água do mar, a partir de que valor o aço \ncarbono será considerado protegido catodicamente, quando seu potencial \neletroquímico for lido através de um  voltímetro de corren te contínua de alta \nresistência interna ( ≥ 10 MΩ) ?  \nA) – 0,25 V \nB) + 0,80 V \nC) - 0,80 V \nD) + 0,25 V",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 220,
+    "pergunta": "Corrosão que se processa em toda a superfície metálica, sendo comum nos \nmetais que não formam película protetora. Esta forma de corrosão geralmente é \nocasionada pela formação de micropilhas de ação local, sendo o tipo mais comum \nde corrosão. \nA) Corrosão puntiforme \nB) Corrosão alveolar \nC) Corrosão uniforme \nD) Corrosão intergranular",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 221,
+    "pergunta": "A corrosão eletroquímica não tem como característica: \nA) Ocorrer necessariamente na presença de água líquida \nB) Ocorrer normalmente na temperatura ambiente \nC) Ocorrer devido à formação de uma pilha ou célula de corrosão \nD) Ocorrer, em geral, em temperaturas elevadas (acima do ponto de orvalh o da \nágua)",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 222,
+    "pergunta": "A pilha ou célula de corrosão eletroquímica é constituída de quatro elementos \nque formam um circuito elétrico completo, permitindo o fluxo de corrente. São \neles: \nA) Área anódica, área catódica, eletrodo de referência e eletrólito \nB) Área anódica, área catódica, ligação metálica e eletrólito \nC) Área anódica, área catódica, ligação dielétrica e eletrólito \nD) Área anódica, área catódica, elastômero e solução ácida",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 223,
+    "pergunta": "A inversão da polaridade no sistema de proteção catódica por corrente \nforçada pode acarretar: \nA) Uma corrosão acelerada da estrutura \nB) A superproteção da instalação  \nC) O desgaste dos anodos inertes \nD) Trincas nos anodos inertes",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 224,
+    "pergunta": "Qual o período de tempo que o eletrodo de prata/cloreto de prata deve ficar \nimerso na água salgada para sua correta ativação e estabilização: \nA) 40 minutos  \nB) 30 minutos  \nC) 60 minutos  \nD) 50 minutos",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 225,
+    "pergunta": "Quanto tempo leva para uma estrutura marítima se polarizar: \nA) Horas \nB) Segundos  \nC) Minutos \nD) Meses",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 226,
+    "pergunta": "Em uma pilha de corrosão eletroquímica, como ocorre o fluxo de co rrente \nelétrica entre as áreas anódicas e catódicas: \nA) Movimento de elétrons livres no eletrólito \nB) Movimento de íons no eletrólito e elétrons no metal \nC) Apenas movimento de íons positivos no metal  \nD) Movimento de elétrons no eletrólito e de íons no metal",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 227,
+    "pergunta": "A medição do potencial de proteção catódica de uma estrutura submersa \nconsiste na determinação de uma diferença de potencial (ddp) entre: \nA) Um ponto da estrutura e um eletrodo de referência \nB) Um ponto da estrutura e o anodo de sacrifício \nC) Um ponto da estrutura e o revestimento protetor \nD) A estrutura e as áreas com revestimento danificado",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 228,
+    "pergunta": "Ao encostar a probe do bathycorrometer na estrutura, esse contato elétrico \ntem: \nA) Tendência a evitar a despolarização do ponto medido  \nB) Tendência a causar a despolarização do ponto medido \nC) Influência na aderência do revestimento protetor \nD) Grande importância na passivação do ponto",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 229,
+    "pergunta": "Em uma estrutura protegida catodicamente, a faixa ideal de proteção se situa \nentre os valores: \nA) -0,800 V a -1,000 V \nB) -0,800 V a -1,050 V \nC) -0,550 V a -1,050 V \nD) -1,050 V a -1,100 V",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 230,
+    "pergunta": "A tabela de potenciais eletroquímicos padrão é feita para as seguintes \ncondições: \nA) Metal puro, solução 1 M, eletrodo padrão de hidrogênio e temperatura de 25 \ngraus centígrados. \nB) Metal puro, solução 1 M, eletrodo padrão de Ag/AgCl e temperatura de 25 \ngraus centígrados. \nC) Liga metálica, solução 1 M, eletrodo padrão de hidrogênio e temperatura de 25 \ngraus centígrados. \nD) Metal puro, solução 1 M, eletrodo padrão de Calomelano e  temperatura de 25 \ngraus centígrados.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 231,
+    "pergunta": "Um material metálico homogêneo sem descontinuidades ou tensões internas \nsofreria corrosão apenas em pilhas de: \nA) Ação local e iônica \nB) Oxigenação diferencial e ação local \nC) Galvânica e concentração diferencial \nD) Ação local e galvânica",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 232,
+    "pergunta": "Para estruturas de aço carbono uma elevação do pH do eletrólito provocará: \nA) Corrosão acelerada na estrutura \nB) Corrosão devido ao aumento da acidez do eletrólito \nC) Passivação \nD) Corrosão por aeração diferencial",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 233,
+    "pergunta": "Assinale a afirmativa falsa.... \nA) A medição de potencial eletroquímico deve ser realizada antes de qualquer \nlimpeza na superfície metálica, para não alterar os valores encontrados \n(despolarização) \nB) Entre duas medidas no mesmo ponto não pode haver diferença s maiores que 10 \nmV \nC) O valor escolhido para registro no relatório deve ser o de maior valor absoluto \nD) O bathycorrometer deverá ser verificado antes e depois do en saio, com relação \na sua calibração.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 234,
+    "pergunta": "Para que uma pilha de corrosão seja espontânea, a variação de energia livre \ndo circuito deverá ser:  \nA) Negativa \nB) Neutra \nC) Positiva  \nD) Oxidativa",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 235,
+    "pergunta": "A proteção catódica galvânica só é aplicável com bons resu ltados para \nestruturas instaladas em eletrólitos de:  \nA) Muito alta resistividade  \nB) Média resistividade  \nC) Alta resistividade \nD) Baixa resistividade",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 236,
+    "pergunta": "Na tabela de potenciais padrões os potenciais dos metais foram medidos em \nrelação ao eletrodo padrão de: \nA) Calomelano \nB) Prata/Cloreto de prata \nC) Hidrogênio \nD) Zinco",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 237,
+    "pergunta": "Em uma platafo rma fixa de aço, as estruturas metálicas que podem ser \nprotegidas catodicamente são: \nA) As regiões enterradas e submersas \nB) Só as áreas submersas  \nC) Partes aéreas e submersas \nD) Partes aéreas e enterradas",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 238,
+    "pergunta": "A polarização ôhmica ocorre em geral: \nA) Nas áreas catódicas e anódicas \nB) Nas áreas catódicas \nC) Na região mediana entre áreas catódicas e anódicas  \nD) Nas áreas anódicas",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 239,
+    "pergunta": "A proteção catódica de uma estrutura submersa ou enterrada pode ser por: \nA) Tensão retificada de meia onda \nB) revestimentos metálicos anticorrosivos \nC) Corrente alternada na estrutura \nD) Anodos de sacrifício e corrente impressa",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 240,
+    "pergunta": "No sistema de proteção catódica por corrente forçada os anodos instalados na \nestrutura tem a função de: \nA) Medir a corrente gerada \nB) Dispersar a corrente no eletrólito  \nC) Limitar a emissão de corrente. \nD) Gerar corrente por intermédio de seu desgaste",
+    "opcoes": {},
+    "resposta": "B"
+  }
+]

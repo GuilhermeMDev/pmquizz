@@ -1,2 +1,2 @@
 # pequizz
-Quiz para Potencial Eletroquímico
+Quizz em PWA (Progressive Web Applications) para Potencial Eletroquímico

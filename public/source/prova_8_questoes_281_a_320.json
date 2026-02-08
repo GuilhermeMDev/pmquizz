@@ -1,0 +1,267 @@
+[
+  {
+    "id": 281,
+    "pergunta": "Na medição de potencial eletroquímico através de ROV, após a  calibração do \nCP Probe, ele é afixado ao braço do ROV sendo retirado da água para isso. \nQuando o ROV é colocado na água, quanto tempo tem que se esperar para poder \nrealizar as medições na estrutura a ser inspecionada: \na) mínimo de 30 minutos. \nb) mínimo de 60 minutos. \nc) mínimo de 15 minutos. \nd) Não precisa esperar, pois o equipamento já foi calibrado na superfície.",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 282,
+    "pergunta": "Na sequência de testes para escolha do ECS, de acordo com a Norma ABNT \nNBR 16482, o ECS 1 sempre é colocado no polo: \na) negativo do multímetro, estando o mesmo na escala de mV, CC. \nb) positivo do multímetro, estando o mesmo na escala de mV, CA. \nc) positivo do multímetro, estando o mesmo na escala de mV, CC. \nd) negativo do multímetro, estando o mesmo na escala de mV, CA.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 283,
+    "pergunta": "No trabal ho de campo utilizando o bathycorrometer, ao se fazer as duas \nmedidas na peça, a diferença aceitável entre as duas medidas é de: \na)  20 mV. \nb)  5 mV. \nc)  10 mV. \nd)  8 mV.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 284,
+    "pergunta": "Na área anódica onde se processa o desgaste, ocorrem reações de oxidação, \nsendo a principal a de passagem do metal da forma reduzida para a forma iônica. \na) Verdadeiro. \nb) Falso.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 285,
+    "pergunta": "A pilha ou célula de corrosão eletroquímica é formada de quatro elementos \nque interagem entre si: \na) área anódica, área catódica, umidade relativa do ar e ligação elétrica. \nb) área anódica, área catódica, ligação elétrica e força eletromotriz. \nc) área anódica, área catódica, eletrólito e ligação elétrica. \nd) área anódica, área catódica, eletrólito e voltímetro.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 286,
+    "pergunta": "A proteção catódica galvânica também é conhecida como: \na) Proteção catódica por anodos galvânicos de sacrifício. \nb) Proteção catódica por eletrodos de imersão. \nc) Proteção catódica por corrente impressa. \nd) Proteção catódica por corrente forçada.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 287,
+    "pergunta": "A polarização ocasionada pela precipitação de compostos, principalmente \ncarbonatos e hidróxidos, que se tornam insolúveis com a elevação d o pH ao redor \ndas áreas catódicas é chamada de polarização: \na) Catódica. \nb) Anódica. \nc) Ôhmica. \nd) Passiva.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 288,
+    "pergunta": "A calibração do equipamento de medição de potencial eletroquímico deve ser \nfeita: \na) somente antes do ensaio.  \nb) somente após o ensaio.  \nc) precisa ser feita uma vez só durante o dia de trabalho.  \nd) antes e após as medidas na peça.",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 289,
+    "pergunta": "A variação do potencial de um e letrodo causada pela passagem de uma \ncorrente elétrica é chamada de: \na) Oxidação. \nb) Polarização. \nc) Passivação. \nd) Energização.",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 290,
+    "pergunta": "Pilha formada quando a superfície metálica é exposta a concentrações \ndiferentes de oxigênio. \na) Pilha ativa-passiva. \nb) Pilha de aeração diferencial. \nc) Pilha de ação local. \nd) Pilha galvânica.",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 291,
+    "pergunta": "As formas de corrosão mais encontradas na inspeção subaquática de unidades \nmarítimas são: \na) Uniforme, alveolar e por placas. \nb) Alveolar, pitiforme e filiforme. \nc) Alveolar, uniforme e pitiforme. \nd) Uniforme, pitiforme e por escamação.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 292,
+    "pergunta": "Na pilha de corrosão, a ligação metálica (ou ligação elétrica) é responsável: \na) pela ligação da área anódica e catódica, por onde fluem os íons positivos \nresultantes da reação anódica.  \nb) pela ligação da área anódica e catódica, por onde fluem os íons  hidroxila \nresultantes da reação anódica.  \nc) pela ligação da área anódica e catódica, por onde fluem os elétrons   resultantes \nda reação anódica.  \nd) todas as respostas estão erradas.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 293,
+    "pergunta": "A inversão da polaridade no sistema de proteção catódica por corrente \nforçada pode acarretar: \na) Uma corrosão acelerada da estrutura. \nb) A superproteção da instalação causando o empolamento do revestimento se a \nestrutura estivar revestida. \nc) Um maior consumo dos anodos instalados. \nd) O aparecimento de trincas na área catódica.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 294,
+    "pergunta": "Na medição de potencial eletroquímico, para que  uma leitura seja registrada, \nesta deve estar estabilizada. Para considerar a leitura estabilizada, de acordo com \na Norma ABNT NBR 16482 recomenda-se um tempo de: \na) 05 segundos. \nb) 10 segundos.  \nc) 15 segundos.  \nd) 20 segundos.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 295,
+    "pergunta": "Em uma pilha de corrosão, na área anódica ocorrem: \na) reações de redução. \nb) reações de oxirredução.  \nc) reações de oxidação. \nd) todas as respostas estão erradas.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 296,
+    "pergunta": "As regiões de uma plataforma marítima que apresentam danos mecânicos, \ntensões ou esforços cíclicos são predominantemente áreas:",
+    "opcoes": {
+      "A": "passivadas",
+      "B": "anódicas",
+      "C": "com descontinuidades",
+      "D": "catódicas"
+    },
+    "resposta": "B"
+  },
+  {
+    "id": 297,
+    "pergunta": "A corrosão eletroquímica promove a passagem do material metálico da forme \nreduzida para a forma de íons:",
+    "opcoes": {
+      "A": "positivos",
+      "B": "do tipo ânions",
+      "C": "negativos",
+      "D": "eletricamente descarregados"
+    },
+    "resposta": "A"
+  },
+  {
+    "id": 298,
+    "pergunta": "Na medição de potencial eletroquímico em uma estrutura marítima, a área a \nser limpa para a medição deve: \na) ser em torno de 50 mm de diâmetro. \nb) ser apenas o suficiente para que haja o perfeito contato elétrico da probe do \nequipamento com a peça.  \nc) ser em torno de 25 mm de diâmetro.  \nd) ser em torno de 10 mm de diâmetro.",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 299,
+    "pergunta": "Na polarização  por concentração, a concentração de íons do metal, devido a \nmovimentação do eletrólito ser nula ou restrita, ocorre na:  \na) área catódica. \nb) área anódica. \nc) área de oxigenação diferencial.  \nd) área onde o metal está revestido.",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 300,
+    "pergunta": "O potencial de um eletrodo para uma concentração qualquer pode ser \ncalculado pela equação de:  \na) Faraday. \nb) Snell. \nc) Nernst.  \nd) Tafel.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 301,
+    "pergunta": "Os voltímetros  usados na medição de potencial pelos inspetores subaquáticos \npossuem acoplados um eletrodo de referência de:",
+    "opcoes": {
+      "A": "zinco",
+      "B": "calomelano",
+      "C": "prata/cloreto de prata",
+      "D": "cobre/sulfato de cobre"
+    },
+    "resposta": "C"
+  },
+  {
+    "id": 302,
+    "pergunta": "A polarização por ativação na área catódica se dá pela sobret ensão ou \nsobrevoltagem do:",
+    "opcoes": {
+      "A": "oxigênio do meio",
+      "B": "oxigênio e do cloro",
+      "C": "hidrogênio liberado",
+      "D": "cloro liberado"
+    },
+    "resposta": "C"
+  },
+  {
+    "id": 303,
+    "pergunta": "Quando um mesmo metal é exposto a concentrações diferentes de oxigênio, \ncomo o caso da interface ar/água salgada, a pilha de corrosão f ormada nesse \nprocesso é:  \na) de aeração diferenciada. \nb) de concentração iônica. \nc) de ação local.  \nd) Não existe processo corrosivo.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 304,
+    "pergunta": "A fórmula M=e.I.t é utilizada para calcular a massa do material desgastado. \nEssa equação é chamada de: \na) equação de Tafel. \nb) equação da energia livre.  \nc) equação Curier. \nd) equação de Faraday.",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 305,
+    "pergunta": "A passivação ocorre quando o potencial de um eletrodo é abaixado, ou seja, se \ntorna mais catódico ou mais nobre, devido à formação de uma película de produto \nde corrosão. Esta camada de proteção é denominada: \na) película adsorvida. \nb) película eletrostática. \nc) película passivante.   \nd) película dielétrica.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 306,
+    "pergunta": "A ............ é a pilha de corrosão mais frequente na natureza e aparece no metal \ndevido a heterogeneidades in erentes ao próprio material como descontinuidades, \nestados diferentes d e tensões, tratamentos térmicos diferentes, materiais de \ndiferentes épocas de fabricação, etc.  \na) pilha ativa-passiva. \nb) pilha galvânica. \nc) pilha de ação local. \nd) pilha de oxigenação diferencial.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 307,
+    "pergunta": "A proteção de uma estrutura de aço submersa na águ a salgada, utilizando a \nproteção catódica, se torna crítica na zona de transição (splash zone) já que nessa \nfaixa da estrutura não existe uma boa continuidade elétrica dada pelo eletrólito. \na) Verdadeiro. \nb) Falso.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 308,
+    "pergunta": "Pilha que surge sempre que dois meta is ou ligas metálicas diferentes são \ncolocados em contato elétrico na presença de um eletrólito. \na) Pilha ativa-passiva. \nb) Pilha de aeração diferencial. \nc) Pilha de ação local. \nd) Pilha galvânica.",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 309,
+    "pergunta": "Se na fórmula de variação de energia livre ( G = -nF.E), o resultado for \nnegativo, a reação será: \na) espontânea. \nb) não espontânea.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 310,
+    "pergunta": "Nas reações eletroquímicas que ocorrem em uma célula de corrosão as \nreações são de: \na) Oxirredução. \nb) Apenas de oxidação. \nc) Apenas de redução. \nd) Não ocorrem reações exotérmicas.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 311,
+    "pergunta": "A corrosão eletroquímica é um processo que se realiza na presença de água, \nem geral na temperatura ambiente, devido à formação de uma pilha ou célula de \ncorrosão. \na) Verdadeiro. \nb) Falso.",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 312,
+    "pergunta": "Na aferição do bathycorrometer com o eletrodo de calomelano saturado existe \numa diferença aceitável entre os dois valores medidos. Essa diferença é dada pela \nfórmula: \na) (010) mV. \nb) (+35) mV. \nc) (-85) mV. \nd) (02) mV.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 313,
+    "pergunta": "A capacidade de corrente de um anodo é expressa em:",
+    "opcoes": {
+      "A": "voltagem.h / quilograma",
+      "B": "resistência.hora / quilograma",
+      "C": "mA/m2",
+      "D": "ampère.hora / quilograma"
+    },
+    "resposta": "D"
+  },
+  {
+    "id": 314,
+    "pergunta": "A corrosão se processa na superfície metálica em forma de cavidades rasas, \npossuindo a sua profundidade menor que  seu diâmetro. \na) Corrosão por placas. \nb) Corrosão uniforme. \nc) Corrosão alveolar. \nd) Corrosão pitiforme.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 315,
+    "pergunta": "Com a finalidade de ativar e estabilizar o potencial do eletrodo de referência \nde Ag/AgCl antes da execução de qualquer medição, conforme previsto na norma \nABNT NBR 16482, ele deverá ser imerso por um tempo mínimo de: \na) 40 minutos.  \nb) 30 minutos.  \nc) 60 minutos.  \nd) 50 minutos.",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 316,
+    "pergunta": "Conforme a norma ABNT NBR 16482, o ECS a ser utilizado no teste do \naparelho no campo, deve ser sel ecionado segundo um critério predefinido. Para \nque os três ECS's apresentem leituras aceitáveis é necessário que a diferença entre \neles esteja na faixa de: \na) 0±5 mV. \nb) -2 ±2 mV.  \nC) 0±2 mV. \nd) 0±3 mV",
+    "opcoes": {},
+    "resposta": "C"
+  },
+  {
+    "id": 317,
+    "pergunta": "No caso de se utilizar uma semicélula afastada d o multímetro, para medição \ndo potencial eletroq uímico, qual a distância máxima que deve existir entre ela e a \nsuperfície a ser medida: \nA) 20 mm \nB) 40 mm \nC) 30 mm \nD) 50 mm",
+    "opcoes": {},
+    "resposta": "D"
+  },
+  {
+    "id": 318,
+    "pergunta": "Por que na medição de potencial eletroquímico deve -se limpar apenas o \nnecessário para a medição do ponto selecionado: \na) Para não passivar a estrutura. \nb) Para não causar a despolarização na área inspecionada. \nc) Para não aumentar a corrosão química na região. \nd) Para não diminuir a dispersão de corrente.",
+    "opcoes": {},
+    "resposta": "B"
+  },
+  {
+    "id": 319,
+    "pergunta": "O multímetro utilizado  na medição de potencial eletroquímico deve ter  uma \ncaracterística que é muito importante para que não haja interferência nos valores \nmedidos. Esse multímetro tem que ter: \nA) Alta impedância \nB) Baixa impedância \nC) Média impedância \nD)Alta amperagem",
+    "opcoes": {},
+    "resposta": "A"
+  },
+  {
+    "id": 320,
+    "pergunta": "Na medição de potencial de um ponto de uma jaqueta, na primeira medida o \ninspetor registrou o valor de -0,940V e na segunda, -0,970V. De acordo com a \nNorma ABNT NBR 16482, o que tem que ser feito?  \na) Parar o ensaio e fazer novamente a verificação da calibração do equipamento na \nsuperfície. Refazer as medidas, e se os valores persistirem, anotar o dois valores \n(diferença aceitável é de 10mV). \nb) Anotar a medida de menor valor absoluto. \nc) Anotar a mediada de maior valor absoluto. \nd) Parar o ensaio e fazer novamente a verificação da calibração do equipamento na \nsuperfície. Refazer as medidas, e se os valores persistirem, anotar o dois valores \n(diferença aceitável é de 15mV).",
+    "opcoes": {},
+    "resposta": "A"
+  }
+]

@@ -1,4 +1,3 @@
-// LISTA DE ARQUIVOS JSON
 const arquivos = [
     "prova_1_questoes.json", "prova_2_questoes.json", "prova_3_questoes.json",
     "prova_4_questoes.json", "prova_5_questoes.json", "prova_6_questoes.json",
@@ -7,11 +6,8 @@ const arquivos = [
     "prova_13_questoes.json", "prova_14_questoes.json"
 ];
 
-// ESTADO GLOBAL
 let bancoCompleto = [];
-let appCarregado = false; // Trava de segurança
-
-// ESTADO DA SESSÃO
+let appCarregado = false;
 let questoesDaProva = []; 
 let indiceAtual = 0;
 let acertos = 0;
@@ -19,18 +15,13 @@ let erros = 0;
 let historicoRespostas = {}; 
 let modoAutomaticoAtivo = false; 
 let tipoProvaAtual = ""; 
-
-// TIMER
 let intervaloContagem = null; 
 let tempoRestante = 3;
 
-// --- INICIALIZAÇÃO ---
 window.onload = async () => {
     await carregarBancoDeDados();
     gerarBotoesProvas();
     verificarSaveGame();
-    
-    // Mostra Dica do Timer (Some sozinho após 8s)
     if (!localStorage.getItem('timer_dica_visto')) {
         const tooltip = document.getElementById('tooltip-timer');
         if (tooltip) {
@@ -51,26 +42,23 @@ async function carregarBancoDeDados() {
             const dados = await res.json();
             bancoCompleto = [...bancoCompleto, ...dados];
         }
-        // Ordena 1 ao 560 (garantia)
         bancoCompleto.sort((a, b) => a.id - b.id);
-        
         appCarregado = true;
-        console.log("Banco carregado com sucesso.");
     } catch (e) {
         console.error(e);
-        document.getElementById('grid-provas').innerHTML = "<p style='color:red'>Erro ao carregar arquivos JSON. Verifique a pasta.</p>";
+        document.getElementById('grid-provas').innerHTML = "<p style='color:red'>Erro ao carregar dados.</p>";
     }
 }
 
 function gerarBotoesProvas() {
     const grid = document.getElementById('grid-provas');
     grid.innerHTML = "";
-    
     for (let i = 1; i <= 14; i++) {
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
-        btn.innerHTML = `<strong>Prova ${i}</strong><br><small>Q. ${(i-1)*40 + 1} - ${i*40}</small>`;
-        // Atenção aqui: Chamada da função iniciarProva
+        const inicio = (i - 1) * 40 + 1;
+        const fim = i * 40;
+        btn.innerHTML = `<strong>Prova ${i}</strong><br><small>Q. ${inicio} a ${fim}</small>`;
         btn.onclick = () => iniciarProva('prova_' + i);
         grid.appendChild(btn);
     }
@@ -79,51 +67,50 @@ function gerarBotoesProvas() {
 function verificarSaveGame() {
     const save = localStorage.getItem('quiz_offshore_save');
     const btn = document.getElementById('btn-continuar');
-    
     if (save) {
         const dados = JSON.parse(save);
         btn.style.display = 'flex';
-        const nomeModo = dados.tipo.includes('prova_') ? dados.tipo.replace('prova_', 'Prova ') : 'Simulado';
+        // Nome inteligente no botão
+        let label = "Simulado";
+        if (dados.tipo.startsWith('prova_')) {
+            const n = dados.tipo.split('_')[1];
+            label = `Prova ${n}`;
+        }
         
         let proximoIndice = dados.indice;
-        // Tenta achar a próxima questão em branco
         if (dados.idsQuestao && dados.historico) {
             const idxNaoRespondido = dados.idsQuestao.findIndex(id => !dados.historico[id]);
             if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
             else proximoIndice = dados.idsQuestao.length - 1;
         }
-        document.getElementById('info-save').innerText = `${nomeModo} • Retomar na Q. ${proximoIndice + 1}`;
+        // Mostra o ID real da próxima questão (pegando do array salvo)
+        let idReal = "?";
+        if(dados.idsQuestao && dados.idsQuestao[proximoIndice]) {
+            idReal = dados.idsQuestao[proximoIndice];
+        }
+        
+        document.getElementById('info-save').innerText = `${label} • Retomar na Q. ${idReal}`;
     } else {
         btn.style.display = 'none';
     }
 }
 
-// --- NAVEGAÇÃO ENTRE TELAS ---
-
 function iniciarProva(tipo) {
-    if (!appCarregado) return; // Se clicou antes de carregar, ignora
-
-    // Reseta variaveis
+    if (!appCarregado) return;
     indiceAtual = 0;
     acertos = 0;
     erros = 0;
     historicoRespostas = {};
     tipoProvaAtual = tipo;
 
-    // Filtra questões
-    if (tipo === 'completa') {
-        questoesDaProva = [...bancoCompleto];
-    } 
-    else if (tipo === 'aleatoria') {
-        questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
-    }
+    if (tipo === 'completa') questoesDaProva = [...bancoCompleto];
+    else if (tipo === 'aleatoria') questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
     else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
         const inicio = (numProva - 1) * 40;
         const fim = inicio + 40;
         questoesDaProva = bancoCompleto.slice(inicio, fim);
     }
-
     abrirTelaQuiz();
     mostrarQuestao();
 }
@@ -131,36 +118,32 @@ function iniciarProva(tipo) {
 function retomarJogo() {
     const save = localStorage.getItem('quiz_offshore_save');
     if (!save) return;
-
     const dados = JSON.parse(save);
     acertos = dados.acertos;
     erros = dados.erros;
     historicoRespostas = dados.historico;
     tipoProvaAtual = dados.tipo;
     
-    // Reconstrói a prova
     if (dados.idsQuestao && dados.idsQuestao.length > 0) {
         questoesDaProva = dados.idsQuestao.map(id => bancoCompleto.find(q => q.id === id)).filter(q => q);
     } else {
         questoesDaProva = [...bancoCompleto];
     }
 
-    // Retomada Inteligente
     let indiceInteligente = 0;
     const primeiroNaoRespondido = questoesDaProva.findIndex(q => !historicoRespostas[q.id]);
     if (primeiroNaoRespondido !== -1) indiceInteligente = primeiroNaoRespondido;
     else indiceInteligente = questoesDaProva.length - 1;
     
     indiceAtual = indiceInteligente;
-
     abrirTelaQuiz();
     mostrarQuestao();
 }
 
 function abrirTelaQuiz() {
     document.getElementById('menu-inicial').classList.add('hidden');
-    document.getElementById('tela-quiz').classList.remove('hidden'); // Remove a classe hidden
-    document.getElementById('tela-quiz').style.display = 'flex'; // Garante o display flex
+    document.getElementById('tela-quiz').classList.remove('hidden'); 
+    document.getElementById('tela-quiz').style.display = 'flex';
     document.getElementById('acertos').innerText = acertos;
     document.getElementById('erros').innerText = erros;
 }
@@ -171,8 +154,6 @@ function voltarAoMenu() {
     document.getElementById('menu-inicial').classList.remove('hidden');
     verificarSaveGame(); 
 }
-
-// --- MOTOR DO QUIZ ---
 
 function mostrarQuestao() {
     pararContagem(); 
@@ -185,7 +166,25 @@ function mostrarQuestao() {
     const q = questoesDaProva[indiceAtual];
     const estado = historicoRespostas[q.id];
 
-    document.getElementById('progresso-txt').innerText = `PDF #${q.id} (Seq: ${indiceAtual + 1}/${questoesDaProva.length})`;
+    // --- MONTAGEM DOS TÍTULOS DESCRITIVOS ---
+    let tituloPrincipal = "";
+    if (tipoProvaAtual.startsWith('prova_')) {
+        const num = parseInt(tipoProvaAtual.split('_')[1]);
+        const inicio = (num - 1) * 40 + 1;
+        const fim = num * 40;
+        tituloPrincipal = `Prova ${num} (${inicio} a ${fim})`;
+    } else if (tipoProvaAtual === 'aleatoria') {
+        tituloPrincipal = "Modo Aleatório";
+    } else {
+        tituloPrincipal = "Simulado Completo";
+    }
+
+    // Linha 1: Nome do Bloco (Ex: Prova 1 (1 a 40))
+    document.getElementById('txt-prova').innerText = tituloPrincipal;
+    
+    // Linha 2: Questão Real (Ex: Questão PDF #5)
+    document.getElementById('txt-seq').innerText = `Questão PDF #${q.id}`;
+
     document.getElementById('pergunta-texto').innerText = q.pergunta;
     
     const feedbackDiv = document.getElementById('feedback');
@@ -253,7 +252,6 @@ function verificarResposta(escolhida, gabarito, botao, idQuestao) {
     }
 }
 
-// --- TIMER 3 SEGUNDOS ---
 function iniciarContagemRegressiva() {
     tempoRestante = 3; 
     atualizarTextoTimer(tempoRestante);
@@ -281,8 +279,6 @@ function atualizarTextoTimer(segundos) {
     const txt = document.getElementById('txt-timer');
     txt.innerText = `⏰ ${segundos}...`;
 }
-
-// --- CONTROLES E SAVE ---
 
 function navegar(direcao) {
     pararContagem(); 

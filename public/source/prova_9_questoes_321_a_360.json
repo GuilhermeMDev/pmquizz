@@ -55,6 +55,18 @@
     "resposta": "A"
   },
   {
+  "id": 326,
+  "pergunta": "São exemplos de instalações nas quais se pode aplicar proteção catódica:",
+  "opcoes": {
+    "A": "casco de embarcações",
+    "B": "monoboias",
+    "C": "jaqueta de plataformas fixas",
+    "D": "manifolds submarinos",
+    "E": "todas estão corretas"
+  },
+  "resposta": "E"
+},
+  {
     "id": 327,
     "pergunta": "A polarização por ativação que ocorre nas áreas catódica se dá pela \nsobretensão ou sobrevoltagem do:",
     "opcoes": {

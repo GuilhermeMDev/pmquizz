@@ -15,19 +15,28 @@ let acertos = 0;
 async function iniciarApp() {
     try {
         for (const arquivo of arquivos) {
-            // Buscamos na raiz. O ponto final indica a pasta atual.
             const res = await fetch("./" + arquivo);
-            if (!res.ok) throw new Error("Não achei o arquivo: " + arquivo);
+            if (!res.ok) continue;
             const dados = await res.json();
-            todasQuestoes = [...todasQuestoes, ...dados];
+            
+            // Analisa cada questão do arquivo antes de adicionar
+            dados.forEach((q, i) => {
+                if (q && Array.isArray(q.opcoes)) {
+                    todasQuestoes.push(q);
+                } else {
+                    // DENÚNCIA NO CONSOLE: Te diz onde está o erro
+                    console.error(`ERRO NO JSON: Arquivo "${arquivo}", questão próxima à posição ${i}. O campo 'opcoes' não é uma lista válida.`);
+                }
+            });
         }
         
-        // Embaralha
-        todasQuestoes.sort(() => Math.random() - 0.5);
+        // Mantemos a ordem original por enquanto para você achar os erros mais fácil
+        // Se quiser embaralhar depois, descomente a linha abaixo:
+        // todasQuestoes.sort(() => Math.random() - 0.5);
+        
         mostrarQuestao();
     } catch (e) {
-        console.error(e);
-        document.getElementById('pergunta-texto').innerText = "Erro ao carregar as 560 questões. Verifique se os arquivos JSON estão na raiz.";
+        console.error("Erro crítico:", e);
     }
 }
 
@@ -45,6 +54,7 @@ function mostrarQuestao() {
     const container = document.getElementById('opcoes-container');
     container.innerHTML = ""; 
 
+    // Aqui o código aceita 4, 5 ou quantas opções existirem
     q.opcoes.forEach(opcao => {
         const btn = document.createElement('button');
         btn.className = 'opcao';
@@ -58,16 +68,17 @@ function verificarResposta(escolhida, correta, botao) {
     const botoes = document.querySelectorAll('.opcao');
     botoes.forEach(b => b.disabled = true); 
 
-    if (escolhida.trim() === correta.trim()) {
+    // O trim() e replace resolvem o problema de espaços extras ou quebras de linha
+    const limpar = (t) => t.trim().replace(/\s+/g, ' ');
+
+    if (limpar(escolhida) === limpar(correta)) {
         acertos++;
         document.getElementById('acertos').innerText = `Acertos: ${acertos}`;
         document.getElementById('feedback').innerHTML = "<span style='color: #4caf50'>Correto! ✅</span>";
         botao.style.background = "#2e7d32";
-        botao.style.borderColor = "#4caf50";
     } else {
         document.getElementById('feedback').innerHTML = `<span style='color: #ff5252'>Incorreto! ❌<br><small style="color: #aaa">Correta: ${correta}</small></span>`;
         botao.style.background = "#c62828";
-        botao.style.borderColor = "#ff5252";
     }
 
     setTimeout(() => {
@@ -80,7 +91,7 @@ function finalizarQuiz() {
     document.getElementById('quiz-container').innerHTML = `
         <h2 style="text-align: center">Simulado Concluído!</h2>
         <p style="text-align: center; font-size: 20px;">Você acertou ${acertos} de ${todasQuestoes.length} questões.</p>
-        <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444">Reiniciar Simulado</button>
+        <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444">Reiniciar</button>
     `;
 }
 

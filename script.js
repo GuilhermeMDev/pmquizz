@@ -19,24 +19,42 @@ async function iniciarApp() {
             if (!res.ok) continue;
             const dados = await res.json();
             
-            // Analisa cada questão do arquivo antes de adicionar
-            dados.forEach((q, i) => {
-                if (q && Array.isArray(q.opcoes)) {
-                    todasQuestoes.push(q);
-                } else {
-                    // DENÚNCIA NO CONSOLE: Te diz onde está o erro
-                    console.error(`ERRO NO JSON: Arquivo "${arquivo}", questão próxima à posição ${i}. O campo 'opcoes' não é uma lista válida.`);
+            dados.forEach(q => {
+                let opcoesFormatadas = [];
+
+                // Caso 1: Opções são um objeto {A: "", B: ""}
+                if (q.opcoes && !Array.isArray(q.opcoes) && Object.keys(q.opcoes).length > 0) {
+                    opcoesFormatadas = Object.entries(q.opcoes).map(([letra, texto]) => `${letra}) ${texto}`);
+                } 
+                // Caso 2: Opções já são uma lista (Array)
+                else if (Array.isArray(q.opcoes) && q.opcoes.length > 0) {
+                    opcoesFormatadas = q.opcoes;
+                }
+                // Caso 3: Opções vazias (estão no texto da pergunta)
+                else {
+                    const regex = /([a-eA-E]\)|[a-eA-E]\s*-)\s*([^a-eA-E\)]+)/g;
+                    let matches;
+                    while ((matches = regex.exec(q.pergunta)) !== null) {
+                        opcoesFormatadas.push(matches[0].trim());
+                    }
+                    // Limpa o texto da pergunta para não repetir as opções
+                    q.pergunta = q.pergunta.split(/[a-eA-E]\)|[a-eA-E]\s*-/)[0].trim();
+                }
+
+                if (opcoesFormatadas.length > 0) {
+                    todasQuestoes.push({
+                        pergunta: q.pergunta.replace(/\n/g, ' ').replace(/\s+/g, ' '),
+                        opcoes: opcoesFormatadas.map(o => o.replace(/\n/g, ' ').replace(/\s+/g, ' ')),
+                        resposta: q.resposta.trim()
+                    });
                 }
             });
         }
         
-        // Mantemos a ordem original por enquanto para você achar os erros mais fácil
-        // Se quiser embaralhar depois, descomente a linha abaixo:
-        // todasQuestoes.sort(() => Math.random() - 0.5);
-        
+        todasQuestoes.sort(() => Math.random() - 0.5);
         mostrarQuestao();
     } catch (e) {
-        console.error("Erro crítico:", e);
+        console.error("Erro no carregamento:", e);
     }
 }
 
@@ -54,7 +72,6 @@ function mostrarQuestao() {
     const container = document.getElementById('opcoes-container');
     container.innerHTML = ""; 
 
-    // Aqui o código aceita 4, 5 ou quantas opções existirem
     q.opcoes.forEach(opcao => {
         const btn = document.createElement('button');
         btn.className = 'opcao';
@@ -68,16 +85,17 @@ function verificarResposta(escolhida, correta, botao) {
     const botoes = document.querySelectorAll('.opcao');
     botoes.forEach(b => b.disabled = true); 
 
-    // O trim() e replace resolvem o problema de espaços extras ou quebras de linha
-    const limpar = (t) => t.trim().replace(/\s+/g, ' ');
+    // Pega apenas a letra inicial da opção (ex: "A" de "A) texto")
+    const letraEscolhida = escolhida.charAt(0).toUpperCase();
+    const letraCorreta = correta.charAt(0).toUpperCase();
 
-    if (limpar(escolhida) === limpar(correta)) {
+    if (letraEscolhida === letraCorreta) {
         acertos++;
         document.getElementById('acertos').innerText = `Acertos: ${acertos}`;
         document.getElementById('feedback').innerHTML = "<span style='color: #4caf50'>Correto! ✅</span>";
         botao.style.background = "#2e7d32";
     } else {
-        document.getElementById('feedback').innerHTML = `<span style='color: #ff5252'>Incorreto! ❌<br><small style="color: #aaa">Correta: ${correta}</small></span>`;
+        document.getElementById('feedback').innerHTML = `<span style='color: #ff5252'>Incorreto! ❌<br><small style="color: #aaa">A resposta certa era a letra ${letraCorreta}</small></span>`;
         botao.style.background = "#c62828";
     }
 

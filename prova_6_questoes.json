@@ -1,0 +1,430 @@
+[
+  {
+    "id": 376,
+    "pergunta": "A proteção catódica é um método de controle de corrosão que consiste em tornar a estrutura a proteger:",
+    "opcoes": [
+      "A) num anodo da pilha de corrosão",
+      "B) num eletrólito",
+      "C) num íon metálico",
+      "D) num catodo de uma pilha de corrosão"
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 377,
+    "pergunta": "No processo corros ivo, o material metálico passa da forma metálica, energeticamente instável, à forma combinada (forma iônica), energeticamente mais estável, resultando em desgaste, perda de propriedades e alterações estruturais",
+    "opcoes": [
+      "A) falso",
+      "B) verdadeiro"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 378,
+    "pergunta": "-A polarização por concentração é característica de eletrólitos:",
+    "opcoes": [
+      "A) com fortíssimo movimento",
+      "B) bastante diluídos",
+      "C) com pouco ou sem movimento",
+      "D) muito concentrados"
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 379,
+    "pergunta": "-Na medição do potencial eletroquímico de uma estrutura, o eletrodo de referência deve ficar no eletrólito posicionado:",
+    "opcoes": [
+      "A) o mais próximo possível da estrutura sem contato elétrico",
+      "B) distante da estrutura",
+      "C) em contato elétrico com a estrutura",
+      "D) muito distante da estrutura"
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 380,
+    "pergunta": "-As regiões mais tencionadas e um material metálico devido à tensõe s oriundas de soldagem, concentrações de tensões, deformações mecânicas são áreas predominantemente:",
+    "opcoes": [
+      "A) passivadas",
+      "B) anódicas",
+      "C) imunes",
+      "D) catódicas"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 381,
+    "pergunta": "-A proteção catódica galvânica só é aplicável com bons resultados para estruturas instaladas em eletrólitos de:",
+    "opcoes": [
+      "A) baixa resistividade",
+      "B) muito alta resistividade",
+      "C) elevadíssima resistividade",
+      "D) media para alta resistividade"
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 382,
+    "pergunta": "A corrosão química se caracteriza, basicamente, por ocorrer:",
+    "opcoes": [
+      "A) sempre na ausência de água líquida.",
+      "B) em geral, em temperaturas elevadas.",
+      "C) pela ação direta entre o metal e o meio corrosivo.",
+      "D) todas as respostas estão corretas."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 383,
+    "pergunta": "-Para estruturas de aço carbono uma ligeira elevação de pH do eletrólito provocaria:",
+    "opcoes": [
+      "A) corrosão e passivação",
+      "B) corrosão intensa e passivação leve",
+      "C) passivação",
+      "D) corrosão"
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 384,
+    "pergunta": "-Na pilha de aeração diferencial a área anódica se diferencia da catódica por ser uma região do metal com:",
+    "opcoes": [
+      "A) mais íons positivos",
+      "B) com menos pressão parcial de oxigênio",
+      "C) mais íons negativos",
+      "D) com maior pressão parcial de oxigênio"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 386,
+    "pergunta": "- A proteção catódica por corrente impressa é aplicável a eletrólitos:",
+    "opcoes": [
+      "A) de baixa e alta resistividade, não se aplicando aos de média",
+      "B) de baixa, média e alta resistividade",
+      "C) somente de alta resistividade",
+      "D) somente de baixa resistividade"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 387,
+    "pergunta": "- A faixa ideal de proteção de uma instalação maríti ma se situa entr e os valores de:",
+    "opcoes": [
+      "A) (-1,000 e -0,800 V)",
+      "B) (- 0,600 e -0,800 V)",
+      "C) (- 0,600 e -0,800 V)",
+      "D) (- 1,00 e -1,050 V)"
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 388,
+    "pergunta": "Vários critérios podem ser adotados para determinar se uma estrutura se encontra isenta de riscos de corrosão, no entan to, o critério mais utilizado e aceito é do potencial entre a estrutura e o eletrólito vizinho, medido com um eletrodo de referência.",
+    "opcoes": [
+      "A) falso",
+      "B) verdadeiro"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 389,
+    "pergunta": "Água do mar é um dos meios mais corrosivos devido às concentrações elevadas de sais que funcionam como um eletrólito forte, provocando um rápido processo eletroquímico de corrosão.",
+    "opcoes": [
+      "A) falso",
+      "B) verdadeiro"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 390,
+    "pergunta": "Que tipos de anodos podem ser utilizados na proteção catódica no sistema por corrente impressa, na água do mar:",
+    "opcoes": [
+      "A) Pb-Sb-Ag, Ti - óxido de metais nobres, Fe-Si-Cr",
+      "B) Al, Mg, Zn",
+      "C) Fe-Si, Zn, Al",
+      "D) Zn, Mg, Grafite"
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 391,
+    "pergunta": "Ocorre devido à precipitação de compostos (CaC03 e MgOH2) que se tomam insolúveis com a elevação do pH no entorno das áreas catódicas:",
+    "opcoes": [
+      "A) Polarização por ativação",
+      "B) Polarização ôhmica",
+      "C) Polarização por concentração",
+      "D) Polarização por passivação"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 392,
+    "pergunta": "A corrosão por pites é frequente em aço inox quando a película passivante é danificada em pontos localizados, sob a ação de certos agentes agressivos ou por danos m ecânicos, possibilitando o desenvolvimento de processos corrosivos intensos devido a formação da pilha:",
+    "opcoes": [
+      "A) galvânica",
+      "B) de ação local",
+      "C) iônica",
+      "D) todas as alternativas são falsas"
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 393,
+    "pergunta": "Resulta do aumento de concentração de íons do metal em torno da ár ea anódica, e a rarefação de íons H+ em tomo da área catódica:",
+    "opcoes": [
+      "A) Polarização por ativação",
+      "B) Polarização por concentração",
+      "C) Polarização ôhmica",
+      "D) Polarização por resistência"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 394,
+    "pergunta": "Da célula eletroquímica ou eletrolítica artificial criada na proteção catódica, surgem as seguintes consequências que conduzem o metal à proteção.",
+    "opcoes": [
+      "A) o potencial do metal é diminuído de tal forma que todas as áreas se tornam catódicas",
+      "B) há uma elevação do pH em torno do catodo que favorece a imunidade do metal",
+      "C) a superfície metálica é polarizada por ativação e por polarização ôhmica",
+      "D) todas as alternativas estão corretas"
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 395,
+    "pergunta": "A corrosão associada ao atrito é ocasionada pela exposição de metal brilhante devido à fricção entre duas superfícies metálicas permitindo uma boa continuidade elétrica entre o metal e o eletrólito. A abrasão provoca o desgaste superficial do material removendo a película protetora constituída de produtos de corrosão, expondo essa superfície a um novo ataque.",
+    "opcoes": [
+      "A) falso",
+      "B) verdadeiro"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 396,
+    "pergunta": "Um ponto crítico de uma jaqueta é a distribuição de corrente elétrica ao longo de toda a estrutura e, se a corrente elétrica liberada para proteção catódica for muito alta, há risco de ocorrer superproteção em algumas áreas, o que pode ser prejudicial à estrutura. Este é o sistema:",
+    "opcoes": [
+      "A) De proteção catódica galvânica",
+      "B) De proteção catódica galvânica, associada com revestimento",
+      "C) De monitoração da corrosão para o acompanhamento do potencial eletroquímico da estrutura",
+      "D) De proteção catódica por corrente impressa"
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 397,
+    "pergunta": "Na tabela de potenciais de oxidação, temos os metais mais ativos e os menos ativos. O que ocorre se em relação a esta tabela, aumentarmos a concentração dos íons de um respectivo metal:",
+    "opcoes": [
+      "A) Seu potencial ficará mais ativo",
+      "B) Seu potencial não mudará",
+      "C) Seu potencial ficará menos ativo",
+      "D) Dependerá da reação de seus íons"
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 398,
+    "pergunta": "A inversão da polaridade no sistema de proteção catódica por corrente forçada pode acarretar:",
+    "opcoes": [
+      "A) Uma corrosão acelerada da estrutura",
+      "B) A superproteção da instalação causan do o empolamento do revestimento se a estrutura estivar revestida",
+      "C) Um maior consumo dos anodos instalados",
+      "D) O aparecimento de trincas na área catódica"
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 399,
+    "pergunta": "Em mais ou menos quanto tempo uma plataforma fixa de aço (ja queta) leva para polarizar?",
+    "opcoes": [
+      "A) duas semanas",
+      "B) em torno de 06 meses",
+      "C) um ano",
+      "D) alguns minutos"
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 400,
+    "pergunta": "O eletrólito é uma solução condutora que envolve as áreas anódicas e catódicas, e por onde fluem os elétrons resultantes de ambas as reações.",
+    "opcoes": [
+      "A) verdadeiro",
+      "B) falso"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 401,
+    "pergunta": "Quando se m ede o potencial de uma estrutura catodicamente protegida, procura-se se verificar o potencial:",
+    "opcoes": [
+      "A) De proteção anódica",
+      "B) De corrosão",
+      "C) De proteção catódica da estrutura",
+      "D) Natural da estrutura"
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 402,
+    "pergunta": "Na corrosão eletroquímica, o oxigênio funciona como fator de ....",
+    "opcoes": [
+      "A) controle de pH. -B-imunidade do metal.",
+      "C) elevação da taxa de polarização.",
+      "D) controle dos processos corrosivos."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 403,
+    "pergunta": "A corrosão eletroquímica ocorre:",
+    "opcoes": [
+      "A) Na presença de água no estado de vapor",
+      "B) Na presença de eletrólitos líquidos",
+      "C) Na presença de eletrólitos gasosos",
+      "D) Na ausência de eletrólitos líquidos"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 404,
+    "pergunta": "O potencial eletroquímico natural de um material metálico indica a tendência que o material apresenta para:",
+    "opcoes": [
+      "A) se reduzir.",
+      "B) se fraturar.",
+      "C) se passivar.",
+      "D) se corroer."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 405,
+    "pergunta": "O potencial natural normalmente encontrado para um eletrodo de zinco imerso na água do mar utilizando -se a referência de Prata/Cloreto de prata situado em torno de:",
+    "opcoes": [
+      "A) -1,05 V.",
+      "B) -0,80 V.",
+      "C) -1,55 V.",
+      "D) -1,50 V."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 406,
+    "pergunta": "O potencial eletroquímico natural de um material metálico indica a tendência que o material apresenta para:",
+    "opcoes": [
+      "A) Se fraturar",
+      "B) Se passivar",
+      "C) Se corroer",
+      "D) Se reduzir"
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 407,
+    "pergunta": "A corrosão eletroquímica promove a passagem do material metálico da forma reduzida para a forma de íons:",
+    "opcoes": [
+      "A) positivos.",
+      "B) eletricamente descarregados.",
+      "C) do tipo anions.",
+      "D) negativos."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 408,
+    "pergunta": "O potencial de uma estrutura com proteção catódica medido em relação a um eletrodo de referência fornece indicações sobre as condições:",
+    "opcoes": [
+      "A) de resistência elétrica de estrutura",
+      "B) de proteção catódica ou de corrosão da estrutura.",
+      "C) de proteção catódica e de resistência elétrica da estrutura.",
+      "D) de proteção anódica da estrutura."
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 409,
+    "pergunta": "O potencial n atural normalmente encontrado para um eletrodo de zinco imerso na água do mar uti lizando-se a referência de prata/cloreto de prata fica situado em torno de: A)-1,55 V",
+    "opcoes": [
+      "B) -1,05 V",
+      "C) -0,85 V",
+      "D) -1,50 V"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 410,
+    "pergunta": "Potencial eletroquímico de oxidação é a diferença de potencial natural que ocorre entre um material metálico e um eletrólito devido:",
+    "opcoes": [
+      "A) a passagem de íons do eletrólito para o metal.",
+      "B) a passagem de íons do metal para o eletrólito.",
+      "C) a oxidação de íons do metal em solução.",
+      "D) a redução de íons do metal em solução."
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 411,
+    "pergunta": "As principais limitações da tabela de potenciais eletroquímicos padrão são:",
+    "opcoes": [
+      "A) indicar a tendência a oxidação e corrosão, utilizar eletrólito de concentração padrão e contemplar apenas metais puros.",
+      "B) indicar apenas a tendência a corrosão, utilizar eletrólito com qualquer concentração e contemplar apenas metais puros.",
+      "C) indicar a tendência a oxidação e corrosão, utilizar eletrólito de concentração padrão e contemplar todas as ligas metálicas.",
+      "D) indicar a tendência apenas a oxi dação, utilizar eletrólito de concentração padrão e contemplar apenas metais puros."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 412,
+    "pergunta": "A utilização de um revestimento associado com a utilização de proteção catódica:",
+    "opcoes": [
+      "A) Aumenta o número de anodos",
+      "B) Diminui o número de anodos",
+      "C) Pode aumentar ou diminuir o número de anodos",
+      "D) Não influencia na quantidade de anodos"
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 413,
+    "pergunta": "Nas tabelas práticas de nobreza na água do mar, os metais e ligas metálicas tem um posicionamento em relação a tabela de potenciais padrão:",
+    "opcoes": [
+      "A) totalmente invertido para os metais não apassiváveis.",
+      "B) similar para os metais não apassiváveis e diferente para aqueles apassiváveis.",
+      "C) completamente diferente para todos os materiais metálicos.",
+      "D) exatamente igual para todos os metais passiváveis e não passiváveis."
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 414,
+    "pergunta": "A polarização ôhmica ou por resistência é responsável pela formação de um depósito devido:",
+    "opcoes": [
+      "A) ao pH baixo na área catódica",
+      "B) ao abaixamento do pH na área catódica",
+      "C) A neutralização do eletrólito na área catódica",
+      "D) A elevação do pH na área catódica"
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 415,
+    "pergunta": "Na pilha de concentração diferencial a área catódica relativamente a anódica é constituída pela região com concentração dos íons do metal:",
+    "opcoes": [
+      "A) idêntica a anódica.",
+      "B) desprezível.",
+      "C) maior que a anódica.",
+      "D) menor que a anódica."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 416,
+    "pergunta": "A polarização ôhmica ou por resistência é responsável pela formação de um depósito calco-magnesiano devido:",
+    "opcoes": [
+      "A) a neutralização do eletrólito na área catódica.",
+      "B) a elevação do pH na área catódica.",
+      "C) ao abaixamento do pH na área catódica.",
+      "D) ao pH muito baixo na área catódica."
+    ],
+    "resposta": "B"
+  }
+]

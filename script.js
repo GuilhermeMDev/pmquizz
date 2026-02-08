@@ -1,11 +1,9 @@
 const arquivos = [
-    "prova_1_questoes_1_a_40.json", "prova_2_questoes_41_a_80.json",
-    "prova_3_questoes_81_a_120.json", "prova_4_questoes_121_a_160.json",
-    "prova_5_questoes_161_a_200.json", "prova_6_questoes_201_a_240.json",
-    "prova_7_questoes_241_a_280.json", "prova_8_questoes_281_a_320.json",
-    "prova_9_questoes_321_a_360.json", "prova_10_questoes_361_a_400.json",
-    "prova_11_questoes_401_a_440.json", "prova_12_questoes_441_a_480.json",
-    "prova_13_questoes_481_a_520.json", "prova_14_questoes_521_a_560.json"
+    "prova_1_questoes.json", "prova_2_questoes.json", "prova_3_questoes.json",
+    "prova_4_questoes.json", "prova_5_questoes.json", "prova_6_questoes.json",
+    "prova_7_questoes.json", "prova_8_questoes.json", "prova_9_questoes.json",
+    "prova_10_questoes.json", "prova_11_questoes.json", "prova_12_questoes.json",
+    "prova_13_questoes.json", "prova_14_questoes.json"
 ];
 
 let todasQuestoes = [];
@@ -14,91 +12,89 @@ let acertos = 0;
 
 async function iniciarApp() {
     try {
-        for (const arquivo of arquivos) {
-            const res = await fetch("./" + arquivo);
-            if (!res.ok) continue;
+        // Carrega arquivo por arquivo
+        for (const nome of arquivos) {
+            const res = await fetch("./" + nome);
+            if (!res.ok) {
+                console.error(`Falha ao ler: ${nome}`);
+                continue;
+            }
             const dados = await res.json();
-            
-            dados.forEach(q => {
-                let opcoesFormatadas = [];
-
-                // Caso 1: Opções são um objeto {A: "", B: ""}
-                if (q.opcoes && !Array.isArray(q.opcoes) && Object.keys(q.opcoes).length > 0) {
-                    opcoesFormatadas = Object.entries(q.opcoes).map(([letra, texto]) => `${letra}) ${texto}`);
-                } 
-                // Caso 2: Opções já são uma lista (Array)
-                else if (Array.isArray(q.opcoes) && q.opcoes.length > 0) {
-                    opcoesFormatadas = q.opcoes;
-                }
-                // Caso 3: Opções vazias (estão no texto da pergunta)
-                else {
-                    const regex = /([a-eA-E]\)|[a-eA-E]\s*-)\s*([^a-eA-E\)]+)/g;
-                    let matches;
-                    while ((matches = regex.exec(q.pergunta)) !== null) {
-                        opcoesFormatadas.push(matches[0].trim());
-                    }
-                    // Limpa o texto da pergunta para não repetir as opções
-                    q.pergunta = q.pergunta.split(/[a-eA-E]\)|[a-eA-E]\s*-/)[0].trim();
-                }
-
-                if (opcoesFormatadas.length > 0) {
-                    todasQuestoes.push({
-                        pergunta: q.pergunta.replace(/\n/g, ' ').replace(/\s+/g, ' '),
-                        opcoes: opcoesFormatadas.map(o => o.replace(/\n/g, ' ').replace(/\s+/g, ' ')),
-                        resposta: q.resposta.trim()
-                    });
-                }
-            });
+            todasQuestoes = [...todasQuestoes, ...dados];
         }
+
+        // SEGURANÇA TOTAL DE ORDEM:
+        // Garante que a Questão 1 seja a 1, a 2 seja a 2, etc.
+        // Isso corrige qualquer falha se os arquivos carregarem fora de ordem.
+        todasQuestoes.sort((a, b) => a.id - b.id);
+
+        console.log(`Total carregado: ${todasQuestoes.length} questões.`);
         
-        todasQuestoes.sort(() => Math.random() - 0.5);
         mostrarQuestao();
     } catch (e) {
-        console.error("Erro no carregamento:", e);
+        console.error("Erro crítico:", e);
+        document.getElementById('pergunta-texto').innerText = "Erro ao carregar. Verifique se os arquivos JSON estão na mesma pasta (raiz).";
     }
 }
 
 function mostrarQuestao() {
+    // Verifica se acabou
     if (indiceAtual >= todasQuestoes.length) {
         finalizarQuiz();
         return;
     }
 
     const q = todasQuestoes[indiceAtual];
-    document.getElementById('progresso').innerText = `Questão ${indiceAtual + 1} de ${todasQuestoes.length}`;
+    
+    // Mostra o número REAL do PDF
+    document.getElementById('progresso').innerText = `Questão PDF #${q.id} (Sequência: ${indiceAtual + 1}/${todasQuestoes.length})`;
+    
+    // Exibe o texto exatamente como veio do JSON (sem regex de limpeza para não cortar palavras)
     document.getElementById('pergunta-texto').innerText = q.pergunta;
     document.getElementById('feedback').innerText = "";
     
     const container = document.getElementById('opcoes-container');
     container.innerHTML = ""; 
 
-    q.opcoes.forEach(opcao => {
-        const btn = document.createElement('button');
-        btn.className = 'opcao';
-        btn.innerText = opcao;
-        btn.onclick = () => verificarResposta(opcao, q.resposta, btn);
-        container.appendChild(btn);
-    });
+    // Cria os botões
+    if (q.opcoes && q.opcoes.length > 0) {
+        q.opcoes.forEach(opcao => {
+            const btn = document.createElement('button');
+            btn.className = 'opcao';
+            // Exibe a opção completa "A) Texto..."
+            btn.innerText = opcao; 
+            btn.onclick = () => verificarResposta(opcao, q.resposta, btn);
+            container.appendChild(btn);
+        });
+    } else {
+        container.innerHTML = "<p style='color:orange'>Questão sem opções cadastradas.</p>";
+    }
 }
 
-function verificarResposta(escolhida, correta, botao) {
+function verificarResposta(escolhida, gabarito, botao) {
+    // Trava todos os botões para não clicar duas vezes
     const botoes = document.querySelectorAll('.opcao');
     botoes.forEach(b => b.disabled = true); 
 
-    // Pega apenas a letra inicial da opção (ex: "A" de "A) texto")
-    const letraEscolhida = escolhida.charAt(0).toUpperCase();
-    const letraCorreta = correta.charAt(0).toUpperCase();
+    // Lógica de comparação simples e robusta
+    // Pega a primeira letra da opção escolhida (ex: "A) Texto" -> "A")
+    const letraEscolhida = escolhida.trim().charAt(0).toUpperCase();
+    // Limpa o gabarito (ex: "A " -> "A")
+    const letraCorreta = gabarito ? gabarito.trim().toUpperCase() : "?";
 
     if (letraEscolhida === letraCorreta) {
         acertos++;
         document.getElementById('acertos').innerText = `Acertos: ${acertos}`;
         document.getElementById('feedback').innerHTML = "<span style='color: #4caf50'>Correto! ✅</span>";
         botao.style.background = "#2e7d32";
+        botao.style.borderColor = "#4caf50";
     } else {
-        document.getElementById('feedback').innerHTML = `<span style='color: #ff5252'>Incorreto! ❌<br><small style="color: #aaa">A resposta certa era a letra ${letraCorreta}</small></span>`;
+        document.getElementById('feedback').innerHTML = `<span style='color: #ff5252'>Incorreto! ❌<br><small style="color: #aaa">Gabarito Oficial: ${letraCorreta}</small></span>`;
         botao.style.background = "#c62828";
+        botao.style.borderColor = "#ff5252";
     }
 
+    // Aguarda 2.5 segundos e vai para a próxima
     setTimeout(() => {
         indiceAtual++;
         mostrarQuestao();
@@ -107,10 +103,11 @@ function verificarResposta(escolhida, correta, botao) {
 
 function finalizarQuiz() {
     document.getElementById('quiz-container').innerHTML = `
-        <h2 style="text-align: center">Simulado Concluído!</h2>
+        <h2 style="text-align: center">Simulado Finalizado!</h2>
         <p style="text-align: center; font-size: 20px;">Você acertou ${acertos} de ${todasQuestoes.length} questões.</p>
-        <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444">Reiniciar</button>
+        <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444; margin-top: 20px;">Reiniciar Simulado</button>
     `;
 }
 
+// Inicia tudo
 iniciarApp();

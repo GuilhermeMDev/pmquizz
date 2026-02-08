@@ -1,0 +1,442 @@
+[
+  {
+    "id": 1,
+    "pergunta": "- Para o caso de plataformas marítimas, a técnica de medição de potencial para se verificar o nível de proteção catódica é aplicável:",
+    "opcoes": [
+      "A) as regiões submersas ou aéreas.",
+      "B) aos locais acima do nível máximo de variação do nível de maré.",
+      "C) as regiões permanentemente submersas.",
+      "D) somente as regiões enterradas."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 2,
+    "pergunta": "- A corrosão eletroquímica promove a passagem do material metálico da forma reduzida para a forma de íons:",
+    "opcoes": [
+      "A) positivos.",
+      "B) eletricamente carregados.",
+      "C) negativos.",
+      "D) do tipo ânions."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 3,
+    "pergunta": "A medição de potencial com uso do RCV em ângulos agudos é realizada usando-se:",
+    "opcoes": [
+      "A) extensores apropriados que garantem uma aproximação nunca inferior a 300 mm.",
+      "B) eletrodos de referência que perm itam com u ma distância de 800 mm, boa medição.",
+      "C) extensores apropriados que permitam medição a uma distância inferior a 50 mm.",
+      "D) eletrodos de referência apropriados que permitam uma aproximação nunca inferior a 800mm."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 4,
+    "pergunta": "- Uma estrutura protegida catodicamente encontra-se polarizada:",
+    "opcoes": [
+      "A) catodicamente e anodicamente.",
+      "B) anodicamente.",
+      "C) pela geração e adsorção de oxigênio.",
+      "D) catodicamente."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 5,
+    "pergunta": "- Das alternativas abaixo qual delas corresponde ao item “método e ferramentas para preparação da superfície para medição” de um procedimento de medição de potencial eletroquímico por mergulhador:",
+    "opcoes": [
+      "A) a limpeza será executada com raspa e escova metálica manual e a área máxima da superfície a ser limpa deverá ser 3 centímetros quadrados.",
+      "B) em materiais a base de ligas de níquel e aços inoxidáveis austeníticos os discos de desbaste deverão ter alma de nylon e as escovas deverão ser de aço inoxidável ou revestidas com aço inoxidável.",
+      "C) no ponto a ser medido, a limpeza deve ser apenas a ne cessária para o perfeito acoplamento da probe do equipamento com a superfície metálica.",
+      "D) a superfície deverá ser preparada com jato abrasivo de areia e deve atingir o estado definido como jato comercial SAE 2."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 6,
+    "pergunta": "- Os voltímetros usados na medição de p otencial pelos inspetores submar inos possuem acoplados um eletrodo de referência de:",
+    "opcoes": [
+      "A) prata/cloreto de prata água do mar.",
+      "B) zinco.",
+      "C) cobre/sulfato de cobre.",
+      "D) calomelano."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 7,
+    "pergunta": "- Na medição do potencial eletroquímico de uma estrutura, o eletrodo de referência deve ficar no eletrólito posicionado:",
+    "opcoes": [
+      "A) o mais próximo possível da estrutura sem contato elétrico",
+      "B) distante da estrutura.",
+      "C) em contato elétrico com a estrutura.",
+      "D) muito distante da estrutura."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 8,
+    "pergunta": "- O potencial de proteção ca tódica do aço-carbono na água do mar em rela ção ao eletrodo de referência prata/cloreto de prata:",
+    "opcoes": [
+      "A) -0,800 V.",
+      "B) -0,650 V.",
+      "C) -0,850 V.",
+      "D) -1,050 V."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 9,
+    "pergunta": "- A capacidade de corrente de um anodo galvânico representa na unidade de massa:",
+    "opcoes": [
+      "A) a diferença de potencial disponível.",
+      "B) a quantidade de eletricidade disponível.",
+      "C) a quantidade utilizável do anodo.",
+      "D) a diferença de desgaste para a corrente disponível."
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 10,
+    "pergunta": "- A polarização ôhmica ou por resistência é responsável pela formação de um depósito calco-magnésico devido:",
+    "opcoes": [
+      "A) ao abaixamento de pH na área catódica.",
+      "B) ao pH muito baixo na área catódica.",
+      "C) a elevação do pH na área catódica.",
+      "D) a neutralização do eletrólito na área catódica."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 11,
+    "pergunta": "- Nas plataformas marítimas os anodos galvânicos mais usados são os de:",
+    "opcoes": [
+      "A) liga de ferro e liga de zinco.",
+      "B) liga de alumínio e liga de zinco.",
+      "C) liga de cobre e liga de zinco.",
+      "D) liga de chumbo e liga de alumínio."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 12,
+    "pergunta": "- A polarização por concentração é caracteristicamente de eletrólitos:",
+    "opcoes": [
+      "A) muito concentrados.",
+      "B) com fortíssimo movimento.",
+      "C) bastante diluído.",
+      "D) com pouco ou sem movimento."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 13,
+    "pergunta": "- Uma estrutura é dita protegida catodicamente quando seu potencial eletroquímico for:",
+    "opcoes": [
+      "A) menos negativo que –0,80V em relação a semicélula de prata/cloreto de prata.",
+      "B) muto menos negativo que –0,80V em re lação a semicélula de prata/cloreto de prata.",
+      "C) nulo em relação a semicélula de prata/cloreto de prata.",
+      "D) mais negativo que –0,80V em relação a semicélula de prata/cloreto de prata."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 14,
+    "pergunta": "- A superproteção em uma plataforma tem como inconveniente a possi bilidade de gerar trincas:",
+    "opcoes": [
+      "A) na alma dos anodos que possibilitem a sua queda.",
+      "B) na estrutura que poderão acelerar falhas por fadiga.",
+      "C) nos anodos que poderão acelerar falhas por fadiga.",
+      "D) nos anodos e nas almas dos anodos que poderão acelerar falhas por fadiga."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 15,
+    "pergunta": "- A corrosividade de um eletrólito depende entre o utros fatores de sua resistividade. No caso da água do mar, em mar aberto, o valor da resistividade situa-se de modo geral, na seguinte faixa:",
+    "opcoes": [
+      "A) 0,20 a 0,35 ohm.cm.",
+      "B) 2.000 a 4.000 ohm.cm.",
+      "C) nenhuma das respostas.",
+      "D) 3.000 a 5.000 ohm.cm."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 16,
+    "pergunta": "- Uma estrutura protegida catodicamente fica polarizada por ativação devido ao:",
+    "opcoes": [
+      "A) cloro e ao oxigênio liberados.",
+      "B) cloro liberado.",
+      "C) hidrogênio liberado.",
+      "D) oxigênio liberado."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 17,
+    "pergunta": "- A medição de potencial eletroquímico é sempre realizada entre uma estrutura e:",
+    "opcoes": [
+      "A) uma outra estrutura.",
+      "B) um anodo galvânico de estrutura.",
+      "C) uma referência qualquer.",
+      "D) uma semicélula de referência."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 18,
+    "pergunta": "- Em uma estrutura revestida a distribuição dos anodo s galvânicos permite que se tenha maior espaçamento entre eles porque é:",
+    "opcoes": [
+      "A) mais fácil polarizar uma estrutura revestida.",
+      "B) impossível polarizar uma estrutura revestida.",
+      "C) indiferente polarizar uma estrutura revestida ou não revestida.",
+      "D) mais difícil polarizar uma estrutura revestida."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 19,
+    "pergunta": "- A proteção catódica galvânica quando bem projetada tende a apresentar no que concerne a distribuição da corrente:",
+    "opcoes": [
+      "A) uma distribuição muito pouco uniforme.",
+      "B) uma distribuição muito pior do que na corrente impressa.",
+      "C) uma distribuição que enseja com facilidade a superproteção.",
+      "D) uma distribuição muito boa se comparada a corrente impressa."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 20,
+    "pergunta": "- Na superfície de uma estrutura protegida catodicamente há uma:",
+    "opcoes": [
+      "A) elevação do pH.",
+      "B) diminuição do pH.",
+      "C) anulação do pH.",
+      "D) neutralização do pH."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 21,
+    "pergunta": "- os voltímetros para medição de potencial em proteção catódica devem apresentar:",
+    "opcoes": [
+      "A) resistência interna baixíssima e fixa.",
+      "B) elevada resistência interna.",
+      "C) baixa resistência interna.",
+      "D) resistência interna variável."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 22,
+    "pergunta": "- Nos processos de corrosão eletroquímica o material metálico se transforma em um:",
+    "opcoes": [
+      "A) metal puríssimo.",
+      "B) sal neutro.",
+      "C) composto.",
+      "D) composto intermetálico."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 23,
+    "pergunta": "- O potencial eletroquímico de um anodo de liga de alumínio de boa qualidade imerso no mar, medido em relação a uma semicélula de prata/cloreto de prata situa-se em torno de:",
+    "opcoes": [
+      "A) -1,050V.",
+      "B) -1,000V.",
+      "C) -1,550V.",
+      "D) -0,850V."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 24,
+    "pergunta": "-Na medição de potencial de uma estrutura marítima o voltímetro deverá ficar:",
+    "opcoes": [
+      "A) imerso ou emerso em relação ao eletrólito dependendo da técnica de medição.",
+      "B) alguns instantes apenas fora do eletrólito.",
+      "C) pelo menos algum tempo imerso no eletrólito.",
+      "D) sempre imerso no eletrólito."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 25,
+    "pergunta": "-Em uma plataforma fixa de produção as regiões que podem ser protegi das catodicamente são as superfícies:",
+    "opcoes": [
+      "A) enterradas ou submersas.",
+      "B) enterradas, submersas ou aéreas.",
+      "C) aéreas ou enterradas.",
+      "D) aéreas ou submersas."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 26,
+    "pergunta": "- A pilha ativa-passiva é característica dos materiais formadores de:",
+    "opcoes": [
+      "A) películas muito porosas.",
+      "B) películas passivantes.",
+      "C) película solúvel.",
+      "D) película sem aderência."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 27,
+    "pergunta": "- O contato elétrico entre o instrumento de medição de potencial e a estrutura tem:",
+    "opcoes": [
+      "A) a tendência a evitar a despolarização.",
+      "B) a tendência de causar a despolarização.",
+      "C) grande influência no resultado da medição.",
+      "D) insuficiência insignificante na medição."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 28,
+    "pergunta": "- Em uma estrutura revestida a distribuição dos anodos galvânicos permite que se tenha um maior espaçamento entre eles porque é:",
+    "opcoes": [
+      "A) mais difícil polarizar uma estrutura revestida.",
+      "B) mais fácil polarizar uma estrutura revestida.",
+      "C) impossível polarizar uma estrutura revestida.",
+      "D) indiferente polarizar uma estrutura revestida ou não revestida."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 29,
+    "pergunta": "- A medida do potencial de proteção catódica consiste na determ inação de uma diferença de potencial entre:",
+    "opcoes": [
+      "A) um ponto da estrutura e eletrólito sem eletrodo de referência.",
+      "B) um ponto da estrutura e o anodo mais próximo.",
+      "C) dois pontos da estrutura.",
+      "D) um ponto da estrutura e um eletrodo de referência."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 30,
+    "pergunta": "A medição de potencial eletroquímico é sempre realizada entre uma estrutura e:",
+    "opcoes": [
+      "A) uma semicélula de referência.",
+      "B) uma outra estrutura.",
+      "C) uma referência qualquer.",
+      "D) um anodo galvânico da estrutura."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 31,
+    "pergunta": "- A corrosividade de um eletrólito depende entre o utros fatores de sua resistividade. No caso da água do mar, em mar aberto, o valor da resistividade situa-se de modo geral, na seguinte faixa:",
+    "opcoes": [
+      "A) 0,20 a 0,35 ohm.cm.",
+      "B) 2.000 a 4.000 ohm.cm.",
+      "C) 20 a 35 ohm.cm.",
+      "D) 3.000 a 5.000 ohm.cm."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 32,
+    "pergunta": "- Uma estrutura protegida catodicamente encontra-se polarizada:",
+    "opcoes": [
+      "A) catodicamente e anodicamente.",
+      "B) anodicamente.",
+      "C) pela geração e adsorção de oxigênio.",
+      "D) catodicamente."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 33,
+    "pergunta": "- A polarização por ativação na área catódica se dá pela sobretensão ou sobrevoltagem do:",
+    "opcoes": [
+      "A) oxigênio do meio.",
+      "B) oxigênio e do cloro.",
+      "C) hidrogênio liberado.",
+      "D) cloro liberado."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 34,
+    "pergunta": "- A capacidade de corrente de um anodo galvânico representa na sua massa:",
+    "opcoes": [
+      "A) a quantidade utilizável do anodo.",
+      "B) a diferença de potencial disponível.",
+      "C) a diferença de desgaste para a corrente disponível.",
+      "D) a quantidade de eletricidade disponível."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 35,
+    "pergunta": "- O aumento da velocidade relativa metal/eletrólito na água do mar, aumenta a taxa de corrosão porque aumenta:",
+    "opcoes": [
+      "A) a despolarização catódica.",
+      "B) a polarização catódica.",
+      "C) a passivação catódica.",
+      "D) a imunização."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 36,
+    "pergunta": "- Potencial eletroquímico de redução é a diferença de potencial natural que ocorre entre um material metálico e um eletrodo devido à tendência:",
+    "opcoes": [
+      "A) a redução do metal sob a forma não iônica.",
+      "B) a passagem de íons do eletrólito para o metal.",
+      "C) a oxidação de íons do metal solução.",
+      "D) a passagem de íons do metal para o eletrólito."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 37,
+    "pergunta": "- Os voltímetros usados na medição de potencial pelos inspetores submarinos possuem acoplados um eletrodo de referência de:",
+    "opcoes": [
+      "A) zinco.",
+      "B) calomelano.",
+      "C) prata/cloreto de prata água do mar.",
+      "D) cobre/sulfato de cobre."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 38,
+    "pergunta": "- O produto de corrosão nos processos de natureza eletroquímica forma -se, em geral, pela precipitação de um composto insolúvel originado entre:",
+    "opcoes": [
+      "A) íons do metal e íons do eletrólito, principalmente OH-.",
+      "B) íons do metal e íons H+ do eletrólito.",
+      "C) íons contidos no eletrólito, excetos os do metal.",
+      "D) íons H+ e outros íons do eletrólito, exceto os do metal."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 39,
+    "pergunta": "- O aumento da aeração de um eletrólito na pressão atmosférica",
+    "opcoes": [
+      "A) aumenta a taxa de corrosão.",
+      "B) diminui de início e depois aumenta as taxas de corrosão.",
+      "C) diminui as taxas de corrosão.",
+      "D) não tem influência nas taxas de corrosão."
+    ],
+    "resposta": "?"
+  },
+  {
+    "id": 40,
+    "pergunta": "- As regiões enterradas de uma plataforma marítima, que são constituídas pelas estacas têm seus anodos para proteção catódica instalados:",
+    "opcoes": [
+      "A) na parte inferior da jaqueta.",
+      "B) fora da jaqueta.",
+      "C) na parte superior da jaqueta.",
+      "D) enterrados no fundo do mar."
+    ],
+    "resposta": "?"
+  }
+]

@@ -21,7 +21,7 @@ function QuizApp() {
     async function carregar() {
       let todas = [];
       for (const nome of arquivosJson) {
-        const res = await fetch(`/source/${nome}`);
+        const res = await fetch(`public/source/${nome}`);
         const data = await res.json();
         todas = [...todas, ...data];
       }

@@ -1,3 +1,4 @@
+// LISTA DE ARQUIVOS JSON
 const arquivos = [
     "prova_1_questoes.json", "prova_2_questoes.json", "prova_3_questoes.json",
     "prova_4_questoes.json", "prova_5_questoes.json", "prova_6_questoes.json",
@@ -56,9 +57,7 @@ function gerarBotoesProvas() {
     for (let i = 1; i <= 14; i++) {
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
-        const inicio = (i - 1) * 40 + 1;
-        const fim = i * 40;
-        btn.innerHTML = `<strong>Prova ${i}</strong><br><small>Q. ${inicio} a ${fim}</small>`;
+        btn.innerHTML = `<strong>Prova ${i}</strong><br><small>40 Questões</small>`;
         btn.onclick = () => iniciarProva('prova_' + i);
         grid.appendChild(btn);
     }
@@ -70,7 +69,6 @@ function verificarSaveGame() {
     if (save) {
         const dados = JSON.parse(save);
         btn.style.display = 'flex';
-        // Nome inteligente no botão
         let label = "Simulado";
         if (dados.tipo.startsWith('prova_')) {
             const n = dados.tipo.split('_')[1];
@@ -83,13 +81,11 @@ function verificarSaveGame() {
             if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
             else proximoIndice = dados.idsQuestao.length - 1;
         }
-        // Mostra o ID real da próxima questão (pegando do array salvo)
         let idReal = "?";
         if(dados.idsQuestao && dados.idsQuestao[proximoIndice]) {
-            idReal = dados.idsQuestao[proximoIndice];
+            idReal = dados.idsQuestao[proximoIndice].id || dados.idsQuestao[proximoIndice];
         }
-        
-        document.getElementById('info-save').innerText = `${label} • Retomar na Q. ${idReal}`;
+        document.getElementById('info-save').innerText = `${label} • Retomar no PDF #${idReal}`;
     } else {
         btn.style.display = 'none';
     }
@@ -146,6 +142,12 @@ function abrirTelaQuiz() {
     document.getElementById('tela-quiz').style.display = 'flex';
     document.getElementById('acertos').innerText = acertos;
     document.getElementById('erros').innerText = erros;
+    // Limpa relatório se houver
+    document.getElementById('relatorio-final').innerHTML = "";
+    document.getElementById('pergunta-texto').style.display = 'block';
+    document.getElementById('opcoes-container').style.display = 'block';
+    document.getElementById('feedback').style.display = 'none';
+    document.querySelector('.nav-bar').style.display = 'flex';
 }
 
 function voltarAoMenu() {
@@ -166,7 +168,7 @@ function mostrarQuestao() {
     const q = questoesDaProva[indiceAtual];
     const estado = historicoRespostas[q.id];
 
-    // --- MONTAGEM DOS TÍTULOS DESCRITIVOS ---
+    // --- CABEÇALHO ---
     let tituloPrincipal = "";
     if (tipoProvaAtual.startsWith('prova_')) {
         const num = parseInt(tipoProvaAtual.split('_')[1]);
@@ -179,11 +181,10 @@ function mostrarQuestao() {
         tituloPrincipal = "Simulado Completo";
     }
 
-    // Linha 1: Nome do Bloco (Ex: Prova 1 (1 a 40))
+    // Linha 1 (Contexto Global)
     document.getElementById('txt-prova').innerText = tituloPrincipal;
-    
-    // Linha 2: Questão Real (Ex: Questão PDF #5)
-    document.getElementById('txt-seq').innerText = `Questão PDF #${q.id}`;
+    // Linha 2 (Localização Exata)
+    document.getElementById('txt-seq').innerText = `Questão PDF #${q.id} • Progresso: ${indiceAtual + 1}/${questoesDaProva.length}`;
 
     document.getElementById('pergunta-texto').innerText = q.pergunta;
     
@@ -255,13 +256,10 @@ function verificarResposta(escolhida, gabarito, botao, idQuestao) {
 function iniciarContagemRegressiva() {
     tempoRestante = 3; 
     atualizarTextoTimer(tempoRestante);
-    
     if (intervaloContagem) clearInterval(intervaloContagem);
-
     intervaloContagem = setInterval(() => {
         tempoRestante--;
         atualizarTextoTimer(tempoRestante);
-        
         if (tempoRestante <= 0) {
             clearInterval(intervaloContagem);
             navegar(1);
@@ -329,21 +327,55 @@ function salvarProgresso() {
     localStorage.setItem('quiz_offshore_save', JSON.stringify(dados));
 }
 
+// --- RELATÓRIO FINAL (O "BOLETIM") ---
 function finalizarQuiz() {
-    document.getElementById('quiz-container').innerHTML = `
-        <h2 style="text-align: center; margin-bottom: 30px;">Fim do Simulado!</h2>
-        <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px;">
-            <div style="text-align: center;">
-                <div style="font-size: 50px; color: #81c784;">${acertos}</div>
-                <div style="color: #aaa;">ACERTOS</div>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 50px; color: #e57373;">${erros}</div>
-                <div style="color: #aaa;">ERROS</div>
-            </div>
-        </div>
-        <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444;">Voltar ao Início</button>
-    `;
+    // Esconde elementos do quiz
+    document.getElementById('pergunta-texto').style.display = 'none';
+    document.getElementById('opcoes-container').style.display = 'none';
+    document.getElementById('feedback').style.display = 'none';
     document.querySelector('.nav-bar').style.display = 'none';
+    
+    // Gera o Grid
+    let relatorioHTML = `
+        <h2 style="text-align: center; margin-bottom: 20px;">Relatório de Desempenho</h2>
+        <div class="grid-relatorio">
+    `;
+
+    questoesDaProva.forEach(q => {
+        const hist = historicoRespostas[q.id];
+        let classe = "resumo-neutro";
+        let texto = `${q.id} - ?`;
+        let gabaritoInfo = "";
+
+        if (hist) {
+            if (hist.acertou) {
+                classe = "resumo-certo";
+                texto = `${q.id} - ${hist.escolha}`;
+            } else {
+                classe = "resumo-errado";
+                texto = `${q.id} - ${hist.escolha}`;
+                // Mostra o gabarito oficial se errou (Poupando tempo!)
+                gabaritoInfo = `<div class="txt-gabarito">Gab: ${q.resposta}</div>`;
+            }
+        }
+
+        relatorioHTML += `
+            <div class="card-resumo ${classe}">
+                <div style="font-size: 16px;">${texto}</div>
+                ${gabaritoInfo}
+            </div>
+        `;
+    });
+
+    relatorioHTML += `</div>`;
+    
+    // Botão de reiniciar
+    relatorioHTML += `
+        <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444; margin-top: 20px;">
+            Voltar ao Menu
+        </button>
+    `;
+
+    document.getElementById('relatorio-final').innerHTML = relatorioHTML;
     localStorage.removeItem('quiz_offshore_save');
 }

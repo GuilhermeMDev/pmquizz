@@ -71,7 +71,7 @@
             .grid-provas { grid-template-columns: 1fr 1fr 1fr 1fr; }
         }
 
-        /* HEADER E PLACAR (CORREÇÃO DOS BALÕES) */
+        /* HEADER E PLACAR */
         .header-stats { 
             display: flex; 
             justify-content: space-between; 
@@ -84,26 +84,21 @@
         }
 
         .info-texto { display: flex; flex-direction: column; }
-        .info-principal { font-weight: bold; color: white; font-size: 15px; }
-        .info-secundaria { font-size: 14px; color: #4caf50; margin-top: 3px; font-weight: 500; }
+        /* Título Principal (Linha 1) */
+        .info-principal { font-weight: bold; color: white; font-size: 16px; margin-bottom: 4px; }
+        /* Info Secundária (Linha 2) - Destaque para Progresso */
+        .info-secundaria { font-size: 14px; color: #aaa; font-weight: 500; letter-spacing: 0.3px; }
 
-        /* FORÇA OS BALÕES A FICAREM LADO A LADO */
         .score-box { 
             display: flex; 
-            flex-direction: row !important; /* Força linha */
+            flex-direction: row !important; 
             gap: 10px; 
             align-items: center;
         }
 
         .badge { 
-            padding: 6px 12px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            font-size: 15px; 
-            display: flex; 
-            align-items: center; 
-            gap: 6px; 
-            white-space: nowrap; /* Não deixa quebrar linha */
+            padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 15px; 
+            display: flex; align-items: center; gap: 6px; white-space: nowrap; 
         }
         .badge-green { color: #81c784; background: rgba(46, 125, 50, 0.2); border: 1px solid #1b5e20; }
         .badge-red { color: #e57373; background: rgba(198, 40, 40, 0.2); border: 1px solid #b71c1c; }
@@ -123,6 +118,44 @@
         
         #feedback { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; background: #252525; display: none; }
 
+        /* ESTILOS DO RELATÓRIO FINAL (NOVO) */
+        .grid-relatorio {
+            display: grid;
+            /* Cria colunas automáticas de no mínimo 130px */
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 30px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .card-resumo {
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .resumo-certo { background-color: #1b5e20; border: 1px solid #2e7d32; color: #a5d6a7; }
+        .resumo-errado { background-color: #b71c1c; border: 1px solid #c62828; color: #ef9a9a; }
+        .resumo-neutro { background-color: #444; border: 1px solid #555; color: #aaa; }
+
+        .txt-gabarito {
+            font-size: 11px;
+            color: #fff;
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
         /* BARRA DE NAVEGAÇÃO */
         .nav-bar {
             position: fixed; bottom: 0; left: 0; width: 100%; background-color: #181818;
@@ -138,7 +171,6 @@
         .timer-on { background-color: #1b5e20; border-color: #2e7d32; color: #a5d6a7; }
         .btn-next { background-color: #0d47a1; border-color: #1565c0; }
 
-        /* BALÃO DE DICA (TOOLTIP) */
         .tooltip-timer {
             position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
             background-color: #ff9800; color: #000; padding: 8px 12px; border-radius: 6px;
@@ -181,7 +213,7 @@
         <div class="grid-provas" id="grid-provas">
             <p style="color: #666; font-size: 14px;">Carregando...</p>
         </div>
-        <p style="text-align: center; color: #555; margin-top: 30px; font-size: 12px;">v3.2 - Offline Ready</p>
+        <p style="text-align: center; color: #555; margin-top: 30px; font-size: 12px;">v3.3 - Relatório de Gabarito</p>
     </div>
 
     <div id="tela-quiz" class="hidden">
@@ -205,6 +237,8 @@
             <div id="pergunta-texto" class="pergunta">...</div>
             <div id="opcoes-container"></div>
             <div id="feedback"></div>
+            
+            <div id="relatorio-final"></div> 
         </div>
 
         <div class="nav-bar">

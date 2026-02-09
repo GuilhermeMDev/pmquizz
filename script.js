@@ -7,8 +7,6 @@ const arquivos = [
     "prova_13_questoes.json", "prova_14_questoes.json"
 ];
 
-// Nota: Atualizei os nomes da prova 4 e 6 para as versões corrigidas v3 que geramos
-
 let bancoCompleto = [];
 let appCarregado = false;
 let questoesDaProva = []; 

@@ -1,7 +1,7 @@
 [
   {
     "id": 401,
-    "pergunta": "Quando se m ede o potencial de uma estrutura catodicamente protegida, procura-se se verificar o potencial:",
+    "pergunta": "401) Quando se mede o potencial de uma estrutura catodicamente protegida, procura-se se verificar o potencial:",
     "opcoes": [
       "A) De proteção anódica",
       "B) De corrosão",
@@ -12,7 +12,7 @@
   },
   {
     "id": 402,
-    "pergunta": "Na corrosão eletroquímica, o oxigênio funciona como fator de ....",
+    "pergunta": "402) Na corrosão eletroquímica, o oxigênio funciona como fator de ....",
     "opcoes": [
       "A) controle de pH.",
       "B) imunidade do metal.",
@@ -23,7 +23,7 @@
   },
   {
     "id": 403,
-    "pergunta": "A corrosão eletroquímica ocorre:",
+    "pergunta": "403) A corrosão eletroquímica ocorre:",
     "opcoes": [
       "A) Na presença de água no estado de vapor",
       "B) Na presença de eletrólitos líquidos",
@@ -34,7 +34,7 @@
   },
   {
     "id": 404,
-    "pergunta": "O potencial eletroquímico natural de um material metálico indica a tendência que o material apresenta para:",
+    "pergunta": "404) O potencial eletroquímico natural de um material metálico indica a tendência que o material apresenta para:",
     "opcoes": [
       "A) se reduzir.",
       "B) se fraturar.",
@@ -45,7 +45,7 @@
   },
   {
     "id": 405,
-    "pergunta": "O potencial natural normalmente encontrado para um eletrodo de zinco imerso na água do mar utilizando -se a referência de Prata/Cloreto de prata situado em torno de:",
+    "pergunta": "405) O potencial natural normalmente encontrado para um eletrodo de zinco imerso na água do mar utilizando-se a referência de Prata/Cloreto de prata situado em torno de:",
     "opcoes": [
       "A) -1,05 V.",
       "B) -0,80 V.",
@@ -56,7 +56,7 @@
   },
   {
     "id": 406,
-    "pergunta": "O potencial eletroquímico natural de um material metálico indica a tendência que o material apresenta para:",
+    "pergunta": "406) O potencial eletroquímico natural de um material metálico indica a tendência que o material apresenta para:",
     "opcoes": [
       "A) Se fraturar",
       "B) Se passivar",
@@ -67,7 +67,7 @@
   },
   {
     "id": 407,
-    "pergunta": "A corrosão eletroquímica promove a passagem do material metálico da forma reduzida para a forma de íons:",
+    "pergunta": "407) A corrosão eletroquímica promove a passagem do material metálico da forma reduzida para a forma de íons:",
     "opcoes": [
       "A) positivos.",
       "B) eletricamente descarregados.",
@@ -78,7 +78,7 @@
   },
   {
     "id": 408,
-    "pergunta": "O potencial de uma estrutura com proteção catódica medido em relação a um eletrodo de referência fornece indicações sobre as condições:",
+    "pergunta": "408) O potencial de uma estrutura com proteção catódica medido em relação a um eletrodo de referência fornece indicações sobre as condições:",
     "opcoes": [
       "A) de resistência elétrica de estrutura",
       "B) de proteção catódica ou de corrosão da estrutura.",
@@ -89,7 +89,7 @@
   },
   {
     "id": 409,
-    "pergunta": "O potencial n atural normalmente encontrado para um eletrodo de zinco imerso na água do mar uti lizando-se a referência de prata/cloreto de prata fica situado em torno de:",
+    "pergunta": "409) O potencial natural normalmente encontrado para um eletrodo de zinco imerso na água do mar utilizando-se a referência de prata/cloreto de prata fica situado em torno de:",
     "opcoes": [
       "A) -1,55 V",
       "B) -1,05 V",
@@ -100,7 +100,7 @@
   },
   {
     "id": 410,
-    "pergunta": "Potencial eletroquímico de oxidação é a diferença de potencial natural que ocorre entre um material metálico e um eletrólito devido:",
+    "pergunta": "410) Potencial eletroquímico de oxidação é a diferença de potencial natural que ocorre entre um material metálico e um eletrólito devido:",
     "opcoes": [
       "A) a passagem de íons do eletrólito para o metal.",
       "B) a passagem de íons do metal para o eletrólito.",
@@ -111,18 +111,18 @@
   },
   {
     "id": 411,
-    "pergunta": "As principais limitações da tabela de potenciais eletroquímicos padrão são:",
+    "pergunta": "411) As principais limitações da tabela de potenciais eletroquímicos padrão são:",
     "opcoes": [
       "A) indicar a tendência a oxidação e corrosão, utilizar eletrólito de concentração padrão e contemplar apenas metais puros.",
       "B) indicar apenas a tendência a corrosão, utilizar eletrólito com qualquer concentração e contemplar apenas metais puros.",
       "C) indicar a tendência a oxidação e corrosão, utilizar eletrólito de concentração padrão e contemplar todas as ligas metálicas.",
-      "D) indicar a tendência apenas a oxi dação, utilizar eletrólito de concentração padrão e contemplar apenas metais puros."
+      "D) indicar a tendência apenas a oxidação, utilizar eletrólito de concentração padrão e contemplar apenas metais puros."
     ],
     "resposta": "A"
   },
   {
     "id": 412,
-    "pergunta": "A utilização de um revestimento associado com a utilização de proteção catódica:",
+    "pergunta": "412) A utilização de um revestimento associado com a utilização de proteção catódica:",
     "opcoes": [
       "A) Aumenta o número de anodos",
       "B) Diminui o número de anodos",
@@ -133,7 +133,7 @@
   },
   {
     "id": 413,
-    "pergunta": "Nas tabelas práticas de nobreza na água do mar, os metais e ligas metálicas tem um posicionamento em relação a tabela de potenciais padrão:",
+    "pergunta": "413) Nas tabelas práticas de nobreza na água do mar, os metais e ligas metálicas tem um posicionamento em relação a tabela de potenciais padrão:",
     "opcoes": [
       "A) totalmente invertido para os metais não apassiváveis.",
       "B) similar para os metais não apassiváveis e diferente para aqueles apassiváveis.",
@@ -144,7 +144,7 @@
   },
   {
     "id": 414,
-    "pergunta": "A polarização ôhmica ou por resistência é responsável pela formação de um depósito devido:",
+    "pergunta": "414) A polarização ôhmica ou por resistência é responsável pela formação de um depósito devido:",
     "opcoes": [
       "A) ao pH baixo na área catódica",
       "B) ao abaixamento do pH na área catódica",
@@ -155,7 +155,7 @@
   },
   {
     "id": 415,
-    "pergunta": "Na pilha de concentração diferencial a área catódica relativamente a anódica é constituída pela região com concentração dos íons do metal:",
+    "pergunta": "415) Na pilha de concentração diferencial a área catódica relativamente a anódica é constituída pela região com concentração dos íons do metal:",
     "opcoes": [
       "A) idêntica a anódica.",
       "B) desprezível.",
@@ -166,7 +166,7 @@
   },
   {
     "id": 416,
-    "pergunta": "A polarização ôhmica ou por resistência é responsável pela formação de um depósito calco-magnesiano devido:",
+    "pergunta": "416) A polarização ôhmica ou por resistência é responsável pela formação de um depósito calco-magnesiano devido:",
     "opcoes": [
       "A) a neutralização do eletrólito na área catódica.",
       "B) a elevação do pH na área catódica.",
@@ -177,7 +177,7 @@
   },
   {
     "id": 417,
-    "pergunta": "Os sistemas de proteção catódica por corrente impressa são ainda pouco usados para estru turas marítimas em mar aberto, como as plataformas de produção, devido as seguintes limitações:",
+    "pergunta": "417) Os sistemas de proteção catódica por corrente impressa são ainda pouco usados para estruturas marítimas em mar aberto, como as plataformas de produção, devido as seguintes limitações:",
     "opcoes": [
       "A) perigo de superproteção e dificuldade de arranjo dos anodos que permita uma boa distribuição de corrente.",
       "B) dificuldade de arranjo dos anodos que permita uma boa distribuição de corrente e ser indicado só para eletrólito de alta resistividade.",
@@ -188,7 +188,7 @@
   },
   {
     "id": 418,
-    "pergunta": "Os anodos galvânicos utilizados em proteção catódica são fabricados com:",
+    "pergunta": "418) Os anodos galvânicos utilizados em proteção catódica são fabricados com:",
     "opcoes": [
       "A) Metal puro",
       "B) Liga de metal com teor de impurezas controlada",
@@ -199,7 +199,7 @@
   },
   {
     "id": 419,
-    "pergunta": "Através da aplicação de proteção catódica elimina-se as correntes de corrosão porque:",
+    "pergunta": "419) Através da aplicação de proteção catódica elimina-se as correntes de corrosão porque:",
     "opcoes": [
       "A) incrementam-se as diferenças de potencial das pilhas de corrosão.",
       "B) anula-se o potencial da estrutura.",
@@ -210,7 +210,7 @@
   },
   {
     "id": 420,
-    "pergunta": "A superproteção em uma instalação marítima é ocasionada por uma densidade de corrente :",
+    "pergunta": "420) A superproteção em uma instalação marítima é ocasionada por uma densidade de corrente :",
     "opcoes": [
       "A) Adequada e bem distribuída",
       "B) Muito maior que a necessária para proteção",
@@ -221,7 +221,7 @@
   },
   {
     "id": 421,
-    "pergunta": "No entorno de uma estrutura protegida catodicamente as reações que se processam são de:",
+    "pergunta": "421) No entorno de uma estrutura protegida catodicamente as reações que se processam são de:",
     "opcoes": [
       "A) oxidação.",
       "B) oxidação durante o maior período de tempo.",
@@ -232,7 +232,7 @@
   },
   {
     "id": 422,
-    "pergunta": "Na técnica de medição de potencial eletroqu ímico com veículos de controle remoto o esquema mais comum e de melhor resultado consiste em o veículo conduzir:",
+    "pergunta": "422) Na técnica de medição de potencial eletroquímico com veículos de controle remoto o esquema mais comum e de melhor resultado consiste em o veículo conduzir:",
     "opcoes": [
       "A) O voltímetro",
       "B) O voltímetro, a semicélula e o contato com a estrutura",
@@ -243,7 +243,7 @@
   },
   {
     "id": 423,
-    "pergunta": "Os potenciais eletroquímicos em plataformas devem ser medidos sempre em pontos característicos como:",
+    "pergunta": "423) Os potenciais eletroquímicos em plataformas devem ser medidos sempre em pontos característicos como:",
     "opcoes": [
       "A) nos anodos e na zona de variação de maré.",
       "B) nos anodos, nos membros, perto e longe dos anodos e nos pontos críticos .",
@@ -254,7 +254,7 @@
   },
   {
     "id": 424,
-    "pergunta": "– Na água do mar o monel em relação ao aço carbono é:",
+    "pergunta": "424) – Na água do mar o monel em relação ao aço carbono é:",
     "opcoes": [
       "A) Mais anódico",
       "B) Menos catódico",
@@ -265,7 +265,7 @@
   },
   {
     "id": 425,
-    "pergunta": "A corrosão por pites traz como inconvenientes em uma plataforma:",
+    "pergunta": "425) A corrosão por pites traz como inconvenientes em uma plataforma:",
     "opcoes": [
       "A) prejudicar a polarização da estrutura.",
       "B) criar áreas de concentração de tensões.",
@@ -276,7 +276,7 @@
   },
   {
     "id": 426,
-    "pergunta": "As plataformas fixas de aço não são totalmente revestidas na parte submersa, se no entanto se fosse usado um bom revestimento a quantidade de anodos de um sistema galvânico para uma dada plataforma iria:",
+    "pergunta": "426) As plataformas fixas de aço não são totalmente revestidas na parte submersa, se no entanto se fosse usado um bom revestimento a quantidade de anodos de um sistema galvânico para uma dada plataforma iria:",
     "opcoes": [
       "A) Diminuir significativamente",
       "B) Manter-se na mesma quantidade",
@@ -287,7 +287,7 @@
   },
   {
     "id": 427,
-    "pergunta": "Anodos de chumbo-estanho-prata, titânio platinizado são de utilizados em que tipo de ambiente:",
+    "pergunta": "427) Anodos de chumbo-estanho-prata, titânio platinizado são de utilizados em que tipo de ambiente:",
     "opcoes": [
       "A) enterrado no fundo do mar.",
       "B) submerso.",
@@ -298,7 +298,7 @@
   },
   {
     "id": 428,
-    "pergunta": "Qual a tolerância aceitável nos resultados obtidos em corpos de prova durante a qualificação do procedimento entre um aparelho definido em um procedimento e um sistema padrão de medição:",
+    "pergunta": "428) Qual a tolerância aceitável nos resultados obtidos em corpos de prova durante a qualificação do procedimento entre um aparelho definido em um procedimento e um sistema padrão de medição:",
     "opcoes": [
       "A) mais ou menos 50 mV",
       "B) mais ou menos 5 mV",
@@ -309,7 +309,7 @@
   },
   {
     "id": 429,
-    "pergunta": "Dentre as impurezas que podem prejudicar o fun cionamento de anodos galvânicos destacam-se os elevados teores de....:",
+    "pergunta": "429) Dentre as impurezas que podem prejudicar o funcionamento de anodos galvânicos destacam-se os elevados teores de....:",
     "opcoes": [
       "A) índio e cobre.",
       "B) titânio e ferro.",
@@ -320,7 +320,7 @@
   },
   {
     "id": 430,
-    "pergunta": "Na medição de potencial eletroquímico de uma estrutura, o eletrodo de referência necessita ser:",
+    "pergunta": "430) Na medição de potencial eletroquímico de uma estrutura, o eletrodo de referência necessita ser:",
     "opcoes": [
       "A) Bastante instável",
       "B) Pouco passível",
@@ -331,7 +331,7 @@
   },
   {
     "id": 431,
-    "pergunta": "Na corrosão eletroquímica, a formação do eletrólito necessita da presença de água no(s) estado(s):",
+    "pergunta": "431) Na corrosão eletroquímica, a formação do eletrólito necessita da presença de água no(s) estado(s):",
     "opcoes": [
       "A) Líquido/vapor/congelado",
       "B) Líquido",
@@ -342,7 +342,7 @@
   },
   {
     "id": 432,
-    "pergunta": "O processo corrosivo que ocorre comumente no aço pode ser definido como:",
+    "pergunta": "432) O processo corrosivo que ocorre comumente no aço pode ser definido como:",
     "opcoes": [
       "A) reações atômicas de oxidação e redução.",
       "B) tendência que os materiais metálicos possuem de retornar à sua forma original na natureza que são os óxidos metálicos.",
@@ -353,7 +353,7 @@
   },
   {
     "id": 433,
-    "pergunta": "A proteção catódica por corrente impressa utiliza para injeção de corrente na estrutura a proteger uma fonte de corrente:",
+    "pergunta": "433) A proteção catódica por corrente impressa utiliza para injeção de corrente na estrutura a proteger uma fonte de corrente:",
     "opcoes": [
       "A) Contínua",
       "B) Alternada de alta frequência",
@@ -364,7 +364,7 @@
   },
   {
     "id": 434,
-    "pergunta": "Em um sistema de proteção catódica de uma estrutura marítima, procura -se criar:",
+    "pergunta": "434) Em um sistema de proteção catódica de uma estrutura marítima, procura-se criar:",
     "opcoes": [
       "A) condições para formação de uma pilha de corrosão.",
       "B) uma área catódica na estrutura.",
@@ -375,7 +375,7 @@
   },
   {
     "id": 435,
-    "pergunta": "A corrosão eletroquímica se caracteriza por:",
+    "pergunta": "435) A corrosão eletroquímica se caracteriza por:",
     "opcoes": [
       "A) Interação direta metal/meio",
       "B) Temperaturas elevadas (acima do ponto de orvalho da água)",
@@ -386,7 +386,7 @@
   },
   {
     "id": 436,
-    "pergunta": "O potencial eletroquímico de uma estrutura depende, entre outras variáveis:",
+    "pergunta": "436) O potencial eletroquímico de uma estrutura depende, entre outras variáveis:",
     "opcoes": [
       "A) do material metálico e eletrólito.",
       "B) do material metálico e da configuração da estrutura.",
@@ -397,7 +397,7 @@
   },
   {
     "id": 437,
-    "pergunta": "Os anodos empregados em um sistema de proteção catódica por corrente impressa são:",
+    "pergunta": "437) Os anodos empregados em um sistema de proteção catódica por corrente impressa são:",
     "opcoes": [
       "A) Neutros",
       "B) Inertes",
@@ -408,7 +408,7 @@
   },
   {
     "id": 438,
-    "pergunta": "Na medição de potencial eletroquímico de uma estrutura, o eletrodo de referência necessita ser:",
+    "pergunta": "438) Na medição de potencial eletroquímico de uma estrutura, o eletrodo de referência necessita ser:",
     "opcoes": [
       "A) muito polarizável.",
       "B) pouco passível.",
@@ -419,7 +419,7 @@
   },
   {
     "id": 439,
-    "pergunta": "Na corrosão eletroquímica, o oxigênio funciona como fator de ....",
+    "pergunta": "439) Na corrosão eletroquímica, o oxigênio funciona como fator de ....",
     "opcoes": [
       "A) controle de pH.",
       "B) imunidade do metal.",
@@ -430,7 +430,7 @@
   },
   {
     "id": 440,
-    "pergunta": "A superproteção de uma estrutura protegida catodicamente decorre de uma densidade de corrente...",
+    "pergunta": "440) A superproteção de uma estrutura protegida catodicamente decorre de uma densidade de corrente...",
     "opcoes": [
       "A) adequada e bem distribuída.",
       "B) muito menor que a necessária.",

@@ -1,435 +1,425 @@
 [
   {
-    "id": 262,
-    "pergunta": "Sempre que dois metais ou ligas metálicas diferentes são colocados em contato elétrico na presença de um eletrólito, ocorre uma dif erença de potencial que será tão mais intensa quanto mais distantes forem os materiais na tabela de potenciais eletroquímicos no eletrólito considerado. Essa é a característica da pilha:",
+    "id": 121,
+    "pergunta": "121) No processo corrosivo, o material metálico passa da forma metálica, energeticamente instável, à forma combinada (forma iônica), energeticamente mais estável, resultando em desgaste, perda de propriedades e alterações estruturais",
     "opcoes": [
-      "A) Iônica",
-      "B) Ativa-passiva",
-      "C) Galvânica",
-      "C) De ação local"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 263,
-    "pergunta": "A inve rsão da polaridade no sistema de proteção catódica por corrente forçada pode acarretar:",
-    "opcoes": [
-      "A) Uma corrosão acelerada da estrutura",
-      "B) A superproteção da instalação",
-      "C) O desgaste dos anodos inertes",
-      "D) Trincas nos anodos inertes"
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 264,
-    "pergunta": "Qual o período de tempo mínimo que o eletrodo de prata/cloreto de prata deve ficar imerso na água salgada para sua correta ativação e estabilização:",
-    "opcoes": [
-      "A) 40 minutos",
-      "B) 30 minutos",
-      "C) 60 minutos",
-      "D) 50 minutos"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 265,
-    "pergunta": "Quanto tempo leva para uma estrutura marítima se polarizar n a proteção catódica por anodo de sacrifício:",
-    "opcoes": [
-      "A) Meses",
-      "B) Horas",
-      "C) Minutos",
-      "D) Semanas"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 266,
-    "pergunta": "Fina película de um composto, geralmente óxido do metal, com es pessura na ordem de 4 nm. É uma película contínua e aderente, que protege o metal contra a corrosão. Estamos nos referindo a:",
-    "opcoes": [
-      "A) Camada passivante",
-      "B) Blindagem dielétrica",
-      "C) Camada dielétrica",
-      "D) Camada eletrolítica"
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 267,
-    "pergunta": "A velocidade com que a corrosão de teriora um determinado material é dada pela massa do material desgastado. A taxa de corrosão pode ser representada pela massa desgastada por unidade de área na unidade de tempo. A massa desg astada pode ser calculada pela Equação de:",
-    "opcoes": [
-      "A) Snell",
-      "B) Nernst",
-      "C) Tafel",
-      "D) Faraday"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 268,
-    "pergunta": "Ao encostar a probe do bathycorrometer na estrutura, esse contato elétrico tem:",
-    "opcoes": [
-      "A) Tendência a evitar a despolarização do ponto medido",
-      "B) Tendência a causar a despolarização do ponto medido",
-      "C) Influência na aderência do revestimento protetor",
-      "D) Grande importância na passivação do ponto"
+      "A) falso.",
+      "B) verdadeiro."
     ],
     "resposta": "B"
   },
   {
-    "id": 269,
-    "pergunta": "As taxas de corrosão aumentam com:",
+    "id": 122,
+    "pergunta": "122) Corrosão se processa em toda a extensão da superfície metálica, ocorrendo perda uniforme de espessura.",
     "opcoes": [
-      "A) A diminuição do pH",
-      "B) O aumento do pH",
-      "C) Com o aumento da concentração dos íons hidroxila",
-      "D) Com a diminuição da concentração dos íons H+"
+      "A) corrosão alveolar.",
+      "B) corrosão puntiforme.",
+      "C) corrosão uniforme.",
+      "D) Corrosão eletrolítica."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 123,
+    "pergunta": "123) No trabalho de campo utilizando o bathycorrometer, ao se fazer as duas medidas na peça, a diferença aceitável entre as duas medidas é de:",
+    "opcoes": [
+      "A) ± 20mV.",
+      "B) ± 5mV.",
+      "C) ± 10mV.",
+      "D) ± 8mV."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 124,
+    "pergunta": "124) Na preparação do bathycorrometer para o ensaio, o mesmo deverá ser imerso em água salgada por um período mínimo de 01 hora. Isso é necessário para:",
+    "opcoes": [
+      "A) garantir a concentração adequada de íons de cloro na semicélula.",
+      "B) garantir a concentração adequada de íons de cobre na semicélula.",
+      "C) garantir a concentração adequada de íons de zinco na semicélula.",
+      "D) garantir a concentração adequada de íons de prata na semicélula."
     ],
     "resposta": "A"
   },
   {
-    "id": 270,
-    "pergunta": "A variação d o potencial de um eletrodo causada pela passagem de uma corrente elétrica caracteriza um fenômeno que ocorre nas instalações enterradas ou submersas que são protegidas por proteção catódica:",
+    "id": 125,
+    "pergunta": "125) A calibração do equipamento de medição de potencial eletroquímico deve ser feita:",
     "opcoes": [
-      "A) Passivação",
-      "B) Polarização",
-      "C) Blindagem dielétrica",
-      "D) Oxirredução catódica"
+      "A) somente antes do ensaio.",
+      "B) somente após o ensaio.",
+      "C) precisa ser feita uma vez só durante o dia de trabalho.",
+      "D) antes e após as medidas na peça."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 126,
+    "pergunta": "126) A corrosão química se caracteriza, basicamente, por ocorrer:",
+    "opcoes": [
+      "A) sempre na ausência de água líquida.",
+      "B) em geral, em temperaturas elevadas.",
+      "C) pela ação direta entre o metal e o meio corrosivo.",
+      "D) todas as respostas estão corretas."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 127,
+    "pergunta": "127) Na pilha de corrosão, a ligação metálica (ou ligação elétrica) é responsável:",
+    "opcoes": [
+      "A) pela ligação da área anódica e catódica, por onde fluem os íons positivos resultantes da reação anódica.",
+      "B) pela ligação da área anódica e catódica, por onde fluem os íons hidroxila resultantes da reação anódica.",
+      "C) pela ligação da área anódica e catódica, por onde fluem os elétrons resultantes da reação anódica.",
+      "D) todas as respostas estão erradas."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 128,
+    "pergunta": "128) Em uma pilha de corrosão, na área anódica ocorre:",
+    "opcoes": [
+      "A) reações de redução.",
+      "B) reações de oxirredução.",
+      "C) reações de oxidação.",
+      "D) todas as respostas estão erradas."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 129,
+    "pergunta": "129) Na medição de potencial eletroquímico, para que uma leitura seja registrada, esta deve estar estabilizada. Para considerar a leitura estabilizada, de acordo com a Norma, recomenda-se um tempo de:",
+    "opcoes": [
+      "A) 05 segundos.",
+      "B) 10 segundos.",
+      "C) 15 segundos.",
+      "D) 20 segundos."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 130,
+    "pergunta": "130) Na medição de potencial eletroquímico em uma estrutura marítima, a área a ser limpa para a medição deve:",
+    "opcoes": [
+      "A) ser em torno de 50mm de diâmetro.",
+      "B) ser apenas o suficiente para que haja o perfeito contato elétrico da probe do equipamento com a peça.",
+      "C) ser em torno de 10mm de diâmetro.",
+      "D) ser em torno de 5mm de diâmetro."
     ],
     "resposta": "B"
   },
   {
-    "id": 271,
-    "pergunta": "Em locais onde a movimentação do eletrólito é nula ou restrita ocorre o aumento da concentração de íons do metal ao redor da área anódica, o potencial do metal ab aixa na tabela de potenciais e, além disso, ocorre também a rarefação de íons H+ na área catódica. Estamos nos referindo a que tipo de polarização?",
+    "id": 131,
+    "pergunta": "131) No teste para aferição do bathycorrometer, ao se fazer a medição de potencial do eletrodo de calomelano saturado com o bloco de zinco, como é a conexão de ambos nos polos do multímetro:",
     "opcoes": [
-      "A) Por ativação",
-      "B) Por passivação",
-      "C) Ôhmica",
-      "D) Por concentração"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 272,
-    "pergunta": "Para estruturas de aço carbono uma elevação do pH do eletrólito provocará:",
-    "opcoes": [
-      "A) Corrosão acelerada na estrutura",
-      "B) Corrosão devido ao aumento da acidez do eletrólito",
-      "C) Passivação",
-      "D) Corrosão por aeração diferencial"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 273,
-    "pergunta": "Nessa forma de polarização ocorre a sobrevoltagem de gases no entorno dos eletrodos. O caso mais importante é aquele em que há liberação do H2 no ento rno do catodo. Estamos nos referindo a polarização:",
-    "opcoes": [
-      "A) Por concentração",
-      "B) Por ativação",
-      "C) Ôhmica",
-      "D) Por passivação"
+      "A) ECS positivo e Zn negativo.",
+      "B) ECS negativo Zn positivo.",
+      "C) Tanto faz, o que vale é o valor encontrado.",
+      "D) Todas as respostas estão erradas."
     ],
     "resposta": "B"
   },
   {
-    "id": 274,
-    "pergunta": "Em eletrólitos poucos aerados, o H2 liberado e adsorvido na área catódica provoca uma sobretensão ou sobrevoltagem do hidrogênio capaz de reduzir sensivelmente a agressividade do meio. A equação utilizada para calcular a sobrevoltagem do hidrogênio foi desenvolvida por:",
+    "id": 132,
+    "pergunta": "132) Na polarização por concentração, a concentração de íons do metal, devido a movimentação do eletrólito ser nula ou restrita, ocorre na:",
     "opcoes": [
-      "A) Snell",
-      "B) Nernst",
-      "C) Tafel",
-      "D) Coulomb"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 275,
-    "pergunta": "A proteção catódica galvânica só é aplicável com bons resultados para estruturas instaladas em eletrólitos de:",
-    "opcoes": [
-      "A) Muito alta resistividade",
-      "B) Média resistividade",
-      "C) Alta resistividade",
-      "D) Baixa resistividade"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 276,
-    "pergunta": "Na tabela de potenciais padrões os potenciais dos metais foram medidos em relação ao eletrodo padrão de:",
-    "opcoes": [
-      "A) Calomelano",
-      "B) Prata/Cloreto de prata",
-      "C) Hidrogênio",
-      "D) Zinco"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 277,
-    "pergunta": "Em uma plataforma fixa de aço, as estruturas metálicas que podem ser protegidas catodicamente são:",
-    "opcoes": [
-      "A) As regiões enterradas e submersas",
-      "B) Só as áreas submersas",
-      "C) Partes aéreas e submersas",
-      "D) Partes aéreas e enterradas"
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 278,
-    "pergunta": "A corrente elétrica origina -se da força eletromotriz (f.e.m) existente entre o metal a proteger e um outro escolhido para anodo, e que ocupa uma posição mais elevada na tabela de potenciais eletroquímicos. Estamos nos refer indo a que tipo de proteção catódica:",
-    "opcoes": [
-      "A) Corrente impressa",
-      "B) Corrente forçada",
-      "C) Por anodos inertes",
-      "D) Por anodos de sacrifício"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 279,
-    "pergunta": "As ligas mais utilizadas como anodos de sacrifício para proteção de estruturas metálicas enterradas ou submersas são:",
-    "opcoes": [
-      "A) Alumínio, chumbo e zinco",
-      "B) Titânio, Cobre e platina",
-      "C) Alumínio, zinco e magnésio",
-      "D) Alumínio, zinco e Titânio platinizado"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 280,
-    "pergunta": "O aumento da velocidade da correnteza em instalações marítimas, aumenta a velocidade da taxa de corrosão porque aumenta:",
-    "opcoes": [
-      "A) A imunização",
-      "B) A polarização catódica",
-      "C) A passivação catódica",
-      "D) A despolarização catódica"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 296,
-    "pergunta": "As regiões de uma plataforma marítima que apresentam danos mecânicos, tensões ou esforços cíclicos são predominantemente áreas:",
-    "opcoes": [
-      "A) passivadas",
-      "B) anódicas",
-      "C) com descontinuidades",
-      "D) catódicas"
+      "A) área catódica.",
+      "B) área anódica.",
+      "C) área de oxigenação diferencial.",
+      "D) área onde o metal está revestido."
     ],
     "resposta": "B"
   },
   {
-    "id": 297,
-    "pergunta": "A corrosão eletroquímica promove a passagem do material metálico da forme reduzida para a forma de íons:",
+    "id": 133,
+    "pergunta": "133) O potencial de um eletrodo para uma concentração qualquer pode ser calculado pela equação de:",
     "opcoes": [
-      "A) positivos",
-      "B) do tipo ânions",
-      "C) negativos",
-      "D) eletricamente descarregados"
+      "A) Faraday.",
+      "B) Snell.",
+      "C) Nernst.",
+      "D) Tafel."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 134,
+    "pergunta": "134) Para estruturas de aço revestidas a superproteção pode ser prejudicial pelo fato de haver geração de hidrogênio molecular na área catódica, podendo causar empolamento no revestimento e até mesmo a fragilização do metal nessa área. Ela é caracterizada: a)pelo excesso de proteção ocasionado pelo potencial demasiadamente negativo adquirido pela instalação . b)pelo excesso de proteção ocasionado pelo potencial demasiadamente positivo adquirido pela instalação .. c)pelo excesso de proteção ocasionado pelo potencial demasiadamente neutro adquirido pela instalação .",
+    "opcoes": [
+      "D) Todas as alternativas são falsas."
     ],
     "resposta": "A"
   },
   {
-    "id": 301,
-    "pergunta": "Os voltímetros usados na medição de potencial pelos inspetores subaquáticos possuem acoplados um eletrodo de referência de:",
+    "id": 135,
+    "pergunta": "135) Quando um mesmo metal é exposto a concentrações diferentes de oxigênio, como o caso da interface ar/água salgada, a pilha de corrosão formada nesse processo é:",
     "opcoes": [
-      "A) zinco",
-      "B) calomelano",
-      "C) prata/cloreto de prata",
-      "D) cobre/sulfato de cobre"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 302,
-    "pergunta": "A polarização por ativação na área catódica se dá pela sobret ensão ou sobrevoltagem do:",
-    "opcoes": [
-      "A) oxigênio do meio",
-      "B) oxigênio e do cloro",
-      "C) hidrogênio liberado",
-      "D) cloro liberado"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 313,
-    "pergunta": "A capacidade de corrente de um anodo é expressa em:",
-    "opcoes": [
-      "A) voltagem.h / quilograma",
-      "B) resistência.hora / quilograma",
-      "C) mA/m2",
-      "D) ampère.hora / quilograma"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 316,
-    "pergunta": "Conforme a norma ABNT NBR 16482, o ECS a ser utilizado no teste do aparelho no campo, deve ser sel ecionado segundo um critério predefinido. Para que os três ECS's apresentem leituras aceitáveis é necessário que a diferença entre eles esteja na faixa de: a) 0±5 mV. b) -2 ±2 mV.",
-    "opcoes": [
-      "C) 0±2 mV. d) 0±3 mV"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 317,
-    "pergunta": "No caso de se utilizar uma semicélula afastada d o multímetro, para medição do potencial eletroq uímico, qual a distância máxima que deve existir entre ela e a superfície a ser medida:",
-    "opcoes": [
-      "A) 20 mm",
-      "B) 40 mm",
-      "C) 30 mm",
-      "D) 50 mm"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 319,
-    "pergunta": "O multímetro utilizado na medição de potencial eletroquímico deve ter uma característica que é muito importante para que não haja interferência nos valores medidos. Esse multímetro tem que ter:",
-    "opcoes": [
-      "A) Alta impedância",
-      "B) Baixa impedância",
-      "C) Média impedância D)Alta amperagem"
+      "A) de aeração diferenciada.",
+      "B) de concentração iônica.",
+      "C) de ação local.",
+      "D) Não existe processo corrosivo."
     ],
     "resposta": "A"
   },
   {
-    "id": 321,
-    "pergunta": "Quando o potencial de um eletrodo é abaixado, ou seja, desce na tabela de potenciais, se tornando mais catódico ou mais nobre, devido à formação de uma película de produto de corrosão esse fenômeno é chamado de:",
+    "id": 136,
+    "pergunta": "136) A área catódica é caracterizada pelos seguintes fatos:",
     "opcoes": [
-      "A) barreira anódica",
-      "B) reversão ôhmica",
-      "C) corrosão",
-      "D) passivação"
+      "A) só ocorrem reações de redução.",
+      "B) a superfície fica protegida (não há desgaste).",
+      "C) as reações são de redução dos íons do meio corrosivo.",
+      "D) todas as alternativas estão corretas."
     ],
     "resposta": "D"
   },
   {
-    "id": 322,
-    "pergunta": "São processos corrosivos encontrados durante a inspeção de partes submersas de uma instalação marítima:",
+    "id": 137,
+    "pergunta": "137) A área anódica é caracterizada pelos seguintes fatos:",
     "opcoes": [
-      "A) uniforme, placas e alveolar",
-      "B) puntiforme, uniforme e filiforme",
-      "C) alveolar, uniforme e pitiforme",
-      "D) uniforme, por pites e intergranular"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 323,
-    "pergunta": "A proteção catódica para pr oteger um componente es trutural que está próximo do leito marinho em uma plataforma fixa de aço, deve ter seus anodos de sacrifício instalados:",
-    "opcoes": [
-      "A) na zona de variação de maré",
-      "B) na parte superior da jaqueta",
-      "C) próximos do componente a proteger",
-      "D) no meio da jaqueta"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 324,
-    "pergunta": "Os medidores de potencial eletroquímico usados pelos inspetores subaquáticos possuem acoplados um eletrodo de referência de:",
-    "opcoes": [
-      "A) zinco",
-      "B) calomelano",
-      "C) prata/cloreto de prata água do mar",
-      "D) cobre/sulfato de cobre"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 325,
-    "pergunta": "O aumento da correnteza na água do ma r, aumenta a taxa de corrosão porque aumenta:",
-    "opcoes": [
-      "A) a despolarização catódica",
-      "B) a polarização catódica",
-      "C) a passivação",
-      "D) a imunização"
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 326,
-    "pergunta": "São exemplos de instalações nas quais se pode aplicar proteção catódica:",
-    "opcoes": [
-      "A) casco de embarcações -B-monoboias -C-jaqueta de plataformas fixas -D-manifolds submarinos -E-todas estão corretas"
-    ],
-    "resposta": "E"
-  },
-  {
-    "id": 327,
-    "pergunta": "-A polarização por ativação que ocorre nas áreas catódica se dá pela sobretensão ou sobrevoltagem do:",
-    "opcoes": [
-      "A) oxigênio do meio",
-      "B) oxigênio e do cloro",
-      "C) hidrogênio liberado",
-      "D) cloro liberado"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 328,
-    "pergunta": "-A capacidade de corrente de um anodo galvânico de sacrifício é expressa normalmente em:",
-    "opcoes": [
-      "A) V.h / kg",
-      "B) .h / kg",
-      "C) .cm",
-      "D) A.h / kg"
+      "A) só ocorrem reações de oxidação.",
+      "B) a superfície fica protegida (não há desgaste).",
+      "C) O metal passa da forma reduzida para a forma iônica.",
+      "D) existem duas respostas corretas."
     ],
     "resposta": "D"
   },
   {
-    "id": 329,
-    "pergunta": "A corrosividade de um eletrólito depende entre outros fatores de sua resistividade. No caso da água do mar, em mar aberto, onde essa água não tem interferências de poluentes ou água doce dos rios, o valor da resistividade situa -se de modo geral, na seguinte faixa:",
+    "id": 138,
+    "pergunta": "138) Água do mar é um dos meios mais corrosivos devido às concentrações elevadas de sais que funcionam como um eletrólito forte, provocando um rápido processo eletroquímico de corrosão.",
     "opcoes": [
-      "A) 0,20 a 0,35 ohm.cm",
-      "B) 2.000 a 4.000 ohm.cm",
-      "C) 20 a 35 ohm.cm",
-      "D) 3.000 a 5.000 ohm.cm"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 330,
-    "pergunta": "A medição de potencial eletroquímico é sempre realizada:",
-    "opcoes": [
-      "A) entre a estrutura e uma semicélula de referência",
-      "B) entre a estrutura e outra instalação",
-      "C) entre a estrutura e um leito de anodos",
-      "D) por um anodo galvânico da estrutura"
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 331,
-    "pergunta": "Se na tabela padrão de potenciais eletroquímicos forem considerados dois metais, o que está acima na tabela será:",
-    "opcoes": [
-      "A) mais nobre que o que está abaixo",
-      "B) menos reativo do que está abaixo",
-      "C) menos eletronegativo do que está abaixo",
-      "D) mais anódico que o que está abaixo"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 332,
-    "pergunta": "Nas estruturas que possuem revestimentos de boa qualidade, bem especificados e aplicados com o máximo rigor, os anodos galvânicos podem ser instalados com um maior espaçamento porque é:",
-    "opcoes": [
-      "A) mais difícil polarizar uma estrutura revestida",
-      "B) mais fácil polarizar uma estrutura revestida",
-      "C) tecnicamente impossível polarizar uma estrutura revestida",
-      "D) desnecessário polarizar uma estrutura"
+      "A) falso.",
+      "B) verdadeiro."
     ],
     "resposta": "B"
   },
   {
-    "id": 333,
-    "pergunta": "Pilha que surge sempre que um material metálico de mesm a natureza é exposto a concentrações iônicas diferentes, especialmente de seus próprios íons:",
+    "id": 139,
+    "pergunta": "139) A corrosão por pites é frequente em aço inox quando a película passivante é danificada em pontos localizados, sob a ação de certos agentes agressivos ou por danos mecânicos, possibilitando o desenvolvimento de processos corrosivos intensos devido a formação da pilha:",
     "opcoes": [
-      "A) Pilha de aeração diferencial",
-      "B) Pilha de concentração diferencial",
-      "C) Pilha de ação local",
-      "D) Pilha ativa-passiva"
+      "A) galvânica.",
+      "B) de ação local.",
+      "C) iônica.",
+      "D) todas as alternativas são falsas."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 140,
+    "pergunta": "140) A fórmula M=e.I.t é utilizada para calcular a massa do material desgastado. Essa equação é chamada de:",
+    "opcoes": [
+      "A) equação de Tafel.",
+      "B) equação da energia livre.",
+      "C) equação Curier.",
+      "D) equação de Faraday."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 141,
+    "pergunta": "141) Os eletrodos de referência usados comumente na monitoração do sistema de proteção catódica são os de:",
+    "opcoes": [
+      "A) prata/cloreto de prata.",
+      "B) hidrogênio.",
+      "C) zinco.",
+      "D) existem duas respostas corretas."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 142,
+    "pergunta": "142) Vários critérios podem ser adotados para determinar se uma estrutura se encontra isenta de riscos de corrosão, no entanto, o critério mais utilizado e aceito é do potencial entre a estrutura e o eletrólito vizinho, medido com um eletrodo de referência.",
+    "opcoes": [
+      "A) falso.",
+      "B) verdadeiro."
     ],
     "resposta": "B"
+  },
+  {
+    "id": 143,
+    "pergunta": "143) Da célula eletroquímica ou eletrolítica artificial criada na proteção catódica, surgem as seguintes consequências que conduzem o metal à proteção:",
+    "opcoes": [
+      "A) o potencial do metal é diminuído de tal forma que todas as áreas tornam-se catódicas.",
+      "B) há uma elevação do pH em torno do catodo que favorece a imunidade do metal.",
+      "C) a superfície metálica é polarizada por ativação e por polarização ôhmica.",
+      "D) todas as alternativas estão corretas."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 144,
+    "pergunta": "144) Esta pilha surge sempre que um material metálico de mesma natureza é exposto a concentrações iônicas diferentes, especialmente de seus próprios íons.",
+    "opcoes": [
+      "A) galvânica.",
+      "B) ôhmica.",
+      "C) Ação local.",
+      "D) de concentração diferencial."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 145,
+    "pergunta": "145) A fórmula n = ß Log i / i0 desenvolvida por Tafel, é utilizada para:",
+    "opcoes": [
+      "A) calcular a elevação do pH.",
+      "B) calcular a sobrevoltagem do hidrogênio (H2).",
+      "C) calcular a massa do material desgastado.",
+      "D) calcular o potencial de um eletrodo."
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 146,
+    "pergunta": "146) A passivação ocorre quando o potencial de um eletrodo é abaixado, ou seja, se torna mais catódico ou mais nobre, devido à formação de uma película de produto de corrosão. Esta camada de proteção é denominada:",
+    "opcoes": [
+      "A) película adsorvida.",
+      "B) película eletrostática.",
+      "C) película passivante.",
+      "D) película dielétrica."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 147,
+    "pergunta": "147) A corrosão associada ao atrito é ocasionada pela exposição de metal brilhante devido à fricção entre duas superfícies metálicas permitindo uma boa continuidade elétrica entre o metal e o eletrólito. A abrasão provoca o desgaste superficial do material removendo a película protetora constituída de produtos de corrosão, expondo essa superfície a um novo ataque.",
+    "opcoes": [
+      "A) falso.",
+      "B) verdadeiro."
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 148,
+    "pergunta": "148) A ............ é a pilha de corrosão mais frequente na natureza e aparece no metal devido a heterogeneidades diversas inerentes ao próprio material como descontinuidades, estados diferentes de tensões, tratamentos térmicos diferentes, materiais de diferentes épocas de fabricação, etc.",
+    "opcoes": [
+      "A) pilha ativa-passiva.",
+      "B) pilha galvânica.",
+      "C) pilha de ação local.",
+      "D) pilha de oxigenação diferencial."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 149,
+    "pergunta": "149) Se na fórmula de variação de energia livre (ΔG = -nF. ΔV), o resultado for negativo, a reação será:",
+    "opcoes": [
+      "A) espontânea.",
+      "B) não espontânea."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 150,
+    "pergunta": "150) Se um metal localizado mais acima na tabela de potenciais padrões for ligado a um outro metal mais abaixo na mesma tabela, o segundo metal será:",
+    "opcoes": [
+      "A) menos reativo.",
+      "B) com menor tendência a oxidação.",
+      "C) mais nobre.",
+      "D) todas as alternativas são corretas."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 151,
+    "pergunta": "151) A reação anódica tem como consequência a dissolução do metal e, portanto, a corrosão. Já a reação catódica, conduz à redução de espécies presentes no meio, sem a participação do metal sobre o qual ela tem lugar.",
+    "opcoes": [
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 152,
+    "pergunta": "152) O eletrólito é uma solução condutora que envolve as áreas anódicas e catódicas, e por onde fluem os elétrons resultantes de ambas as reações.",
+    "opcoes": [
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 153,
+    "pergunta": "153) Na aferição do bathycorrometer com o eletrodo de calomelano saturado existe uma diferença aceitável entre os dois valores medidos. Essa diferença é dada pela fórmula:",
+    "opcoes": [
+      "A) (8±5)mV.",
+      "B) (3±5)mV.",
+      "C) (-8±5)mV.",
+      "D) (0±2) mV."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 154,
+    "pergunta": "154) Na calibração do bathycorrometer com o ECS, a leitura “A” (ECS/Zn) deu - 1,032V e a leitura “B” (BCM/Zn) deu -1,037V. Pela fórmula (B)–(A), qual foi a diferença encontrada entre as duas leituras?",
+    "opcoes": [
+      "A) 0,005 mV.",
+      "B) -0,005 V.",
+      "C) -5 mV.",
+      "D) existem duas respostas corretas."
+    ],
+    "resposta": "D"
+  },
+  {
+    "id": 155,
+    "pergunta": "155) Pela diferença encontrada na pergunta acima, o equipamento:",
+    "opcoes": [
+      "A) pode ser utilizado pois a diferença se encontra dentro da faixa aceitável (13 a 3mV).",
+      "B) não pode ser utilizado pois a diferença se encontra fora da faixa aceitável (-3 a +10mV).",
+      "C) pode ser utilizado pois a diferença se encontra dentro da faixa aceitável (-13 a - 3mV).",
+      "D) não pode ser utilizado pois a diferença se encontra fora da faixa aceitável (-13 a -3mV)."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 156,
+    "pergunta": "156) Na sequência de testes para escolha do ECS, de acordo com a Norma, o ECS 1 sempre é colocado no polo:",
+    "opcoes": [
+      "A) negativo do multímetro, estando o mesmo na escala de mV, CC.",
+      "B) positivo do multímetro, estando o mesmo na escala de mV, CA.",
+      "C) positivo do multímetro, estando o mesmo na escala de mV, CC.",
+      "D) negativo do multímetro, estando o mesmo na escala de mV, CA."
+    ],
+    "resposta": "C"
+  },
+  {
+    "id": 157,
+    "pergunta": "157) Na medição de potencial eletroquímico através de ROV, após a calibração do BCM, ele é afixado ao braço do ROV sendo retirado da água para isso. Quando o ROV é colocado na água, quanto tempo tem que se esperar para poder realizar as medições na peça em teste:",
+    "opcoes": [
+      "A) 30 minutos.",
+      "B) 60 minutos.",
+      "C) 15 minutos.",
+      "D) Não precisa esperar, pois o equipamento já foi calibrado."
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 158,
+    "pergunta": "158) Na medição de potencial de um ponto de uma jaqueta, na primeira medida o inspetor registrou o valor de -0,940V e na segunda, -0,970V. De acordo com a Norma, o que tem que ser feito?",
+    "opcoes": [
+      "A) Parar o ensaio e fazer novamente a verificação da calibração do equipamento na superfície. Refazer as medidas, se os valores persistirem, anotar os dois valores (diferença aceitável é de ±10mV).",
+      "B) Anotar a medida de menor valor absoluto.",
+      "C) Anotar as duas medidas.",
+      "D) Para o ensaio e recalibrar o equipamento."
+    ],
+    "resposta": "A"
+  },
+  {
+    "id": 159,
+    "pergunta": "159) Ao fazer várias medidas de potencial eletroquímico em uma plataforma fixa de aço, o inspetor verificou que todos os valores encontrados eram bem próximos. Esse fenômeno é chamado de:",
+    "opcoes": [
+      "A) curva de estabilidade.",
+      "B) polarização.",
+      "C) pilha eletroquímica.",
+      "D) metalização."
+    ],
+    "resposta": "B"
+  },
+  {
+    "id": 160,
+    "pergunta": "160) Em mais ou menos quanto tempo uma plataforma fixa de aço (jaqueta) leva para polarizar?",
+    "opcoes": [
+      "A) em torno de duas semanas.",
+      "B) em torno de 06 meses.",
+      "C) um ano.",
+      "D) alguns minuto"
+    ],
+    "resposta": "A"
   }
 ]

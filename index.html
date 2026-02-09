@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizz Potencial Eletroquímico</title>
+    <title>Quiz Offshore Profissional</title>
     <style>
         :root {
             --bg-color: #121212;
@@ -71,35 +71,29 @@
             .grid-provas { grid-template-columns: 1fr 1fr 1fr 1fr; }
         }
 
+        /* BARRA SUPERIOR (VOLTAR E ENTREGAR) */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .btn-text { background: none; border: none; color: #888; cursor: pointer; font-size: 14px; padding: 5px; }
+        .btn-entregar { background: none; border: 1px solid #c62828; color: #e57373; border-radius: 6px; padding: 5px 10px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .btn-entregar:hover { background: #c62828; color: white; }
+
         /* HEADER E PLACAR */
         .header-stats { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 25px; 
-            background: #252525; 
-            padding: 12px 20px; 
-            border-radius: 12px; 
-            border: 1px solid #333; 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 25px; background: #252525; padding: 12px 20px; 
+            border-radius: 12px; border: 1px solid #333; 
         }
-
         .info-texto { display: flex; flex-direction: column; }
-        /* Título Principal (Linha 1) */
         .info-principal { font-weight: bold; color: white; font-size: 16px; margin-bottom: 4px; }
-        /* Info Secundária (Linha 2) - Destaque para Progresso */
         .info-secundaria { font-size: 14px; color: #aaa; font-weight: 500; letter-spacing: 0.3px; }
-
-        .score-box { 
-            display: flex; 
-            flex-direction: row !important; 
-            gap: 10px; 
-            align-items: center;
-        }
-
-        .badge { 
-            padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 15px; 
-            display: flex; align-items: center; gap: 6px; white-space: nowrap; 
-        }
+        
+        .score-box { display: flex; flex-direction: row !important; gap: 10px; align-items: center; }
+        .badge { padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 15px; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
         .badge-green { color: #81c784; background: rgba(46, 125, 50, 0.2); border: 1px solid #1b5e20; }
         .badge-red { color: #e57373; background: rgba(198, 40, 40, 0.2); border: 1px solid #b71c1c; }
         
@@ -118,42 +112,23 @@
         
         #feedback { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; background: #252525; display: none; }
 
-        /* ESTILOS DO RELATÓRIO FINAL (NOVO) */
+        /* RELATÓRIO FINAL */
         .grid-relatorio {
-            display: grid;
-            /* Cria colunas automáticas de no mínimo 130px */
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 10px;
-            margin-bottom: 30px;
-            margin-top: 20px;
-            width: 100%;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px; margin-bottom: 30px; margin-top: 20px; width: 100%;
         }
-
         .card-resumo {
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: bold;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            padding: 10px; border-radius: 8px; text-align: center; font-size: 14px;
+            font-weight: bold; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
-
         .resumo-certo { background-color: #1b5e20; border: 1px solid #2e7d32; color: #a5d6a7; }
         .resumo-errado { background-color: #b71c1c; border: 1px solid #c62828; color: #ef9a9a; }
-        .resumo-neutro { background-color: #444; border: 1px solid #555; color: #aaa; }
+        .resumo-neutro { background-color: #333; border: 1px solid #444; color: #777; } /* Cor para Puladas */
 
         .txt-gabarito {
-            font-size: 11px;
-            color: #fff;
-            background: rgba(0,0,0,0.3);
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-top: 4px;
-            display: inline-block;
+            font-size: 11px; color: #fff; background: rgba(0,0,0,0.3);
+            padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block;
         }
 
         /* BARRA DE NAVEGAÇÃO */
@@ -162,7 +137,6 @@
             padding: 15px 20px; box-sizing: border-box; display: flex; justify-content: center; gap: 15px;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.8); z-index: 100; border-top: 1px solid #333;
         }
-
         .nav-btn {
             background: #333; color: white; border: 1px solid #444; padding: 12px 0;
             border-radius: 8px; font-size: 18px; cursor: pointer; flex: 1; max-width: 160px;
@@ -192,8 +166,8 @@
 
     <div id="menu-inicial">
         <div class="logo-area">
-            <h1>⚓ Quiz Potencial Eletroquímico</h1>
-            <p>Simulador Offshore</p>
+            <h1>⚓ Quiz Offshore</h1>
+            <p>Simulador de Potencial Eletroquímico</p>
         </div>
         
         <button id="btn-continuar" class="btn-menu btn-continuar" onclick="retomarJogo()">
@@ -213,13 +187,14 @@
         <div class="grid-provas" id="grid-provas">
             <p style="color: #666; font-size: 14px;">Carregando...</p>
         </div>
-        <p style="text-align: center; color: #555; margin-top: 30px; font-size: 12px;">v3.3 - Relatório de Gabarito</p>
+        <p style="text-align: center; color: #555; margin-top: 30px; font-size: 12px;">v3.4 - Botão Entregar</p>
     </div>
 
     <div id="tela-quiz" class="hidden">
         <div id="quiz-container">
-            <div style="margin-bottom: 15px;">
-                <button onclick="voltarAoMenu()" style="background: none; border: none; color: #888; cursor: pointer; font-size: 14px; padding: 0;">⬅ Voltar ao Menu</button>
+            <div class="top-bar">
+                <button onclick="voltarAoMenu()" class="btn-text">⬅ Voltar ao Menu</button>
+                <button onclick="finalizarQuiz()" class="btn-entregar">🏁 Entregar</button>
             </div>
             
             <div class="header-stats">

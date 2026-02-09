@@ -54,19 +54,12 @@ async function carregarBancoDeDados() {
 function gerarBotoesProvas() {
     const grid = document.getElementById('grid-provas');
     grid.innerHTML = "";
-    
-    // GERAÇÃO DOS BOTÕES COM INTERVALO (Ajuste solicitado)
     for (let i = 1; i <= 14; i++) {
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
-        
-        // Cálculo matemático do intervalo
         const inicio = (i - 1) * 40 + 1;
         const fim = i * 40;
-        
-        // Exibe: Prova 4 (Q. 121 - 160)
         btn.innerHTML = `<strong>Prova ${i}</strong><br><small>Q. ${inicio} - ${fim}</small>`;
-        
         btn.onclick = () => iniciarProva('prova_' + i);
         grid.appendChild(btn);
     }
@@ -156,6 +149,8 @@ function abrirTelaQuiz() {
     document.getElementById('opcoes-container').style.display = 'block';
     document.getElementById('feedback').style.display = 'none';
     document.querySelector('.nav-bar').style.display = 'flex';
+    document.querySelector('.header-stats').style.display = 'flex';
+    document.querySelector('.top-bar').style.display = 'flex'; // Garante que a barra de entregar aparece
 }
 
 function voltarAoMenu() {
@@ -168,6 +163,7 @@ function voltarAoMenu() {
 function mostrarQuestao() {
     pararContagem(); 
 
+    // Verifica se acabou (índice fora do array)
     if (indiceAtual >= questoesDaProva.length) {
         finalizarQuiz();
         return;
@@ -179,7 +175,6 @@ function mostrarQuestao() {
     let tituloPrincipal = "Simulado";
     if (tipoProvaAtual.startsWith('prova_')) {
         const num = parseInt(tipoProvaAtual.split('_')[1]);
-        // Títulos mantidos conforme sua customização
         tituloPrincipal = `Prova ${num}`; 
     } else if (tipoProvaAtual === 'aleatoria') {
         tituloPrincipal = "Modo Aleatório";
@@ -266,7 +261,7 @@ function iniciarContagemRegressiva() {
         atualizarTextoTimer(tempoRestante);
         if (tempoRestante <= 0) {
             clearInterval(intervaloContagem);
-            navegar(1);
+            navegar(1); // Chama navegar, que agora sabe finalizar
         }
     }, 1000); 
 }
@@ -282,10 +277,19 @@ function atualizarTextoTimer(segundos) {
     txt.innerText = `⏰ ${segundos}...`;
 }
 
+// --- FUNÇÃO NAVEGAR CORRIGIDA ---
 function navegar(direcao) {
     pararContagem(); 
     const novoIndice = indiceAtual + direcao;
-    if (novoIndice >= 0 && novoIndice < questoesDaProva.length) {
+
+    // Se o usuário está na última questão e avança, FINALIZA O QUIZ
+    if (novoIndice >= questoesDaProva.length) {
+        finalizarQuiz();
+        return;
+    }
+
+    // Navegação normal (dentro dos limites)
+    if (novoIndice >= 0) {
         indiceAtual = novoIndice;
         mostrarQuestao();
     }
@@ -332,13 +336,15 @@ function salvarProgresso() {
 }
 
 function finalizarQuiz() {
+    // Esconde elementos
     document.getElementById('pergunta-texto').style.display = 'none';
     document.getElementById('opcoes-container').style.display = 'none';
     document.getElementById('feedback').style.display = 'none';
     document.querySelector('.nav-bar').style.display = 'none';
-    
+    document.querySelector('.top-bar').style.display = 'none'; // Esconde barra de entregar
+
     let relatorioHTML = `
-        <h2 style="text-align: center; margin-bottom: 20px;">Relatório de Desempenho</h2>
+        <h2 style="text-align: center; margin-bottom: 20px; color:white;">Relatório de Desempenho</h2>
         <div class="grid-relatorio">
     `;
 
@@ -357,6 +363,8 @@ function finalizarQuiz() {
                 texto = `${q.id} - ${hist.escolha}`;
                 gabaritoInfo = `<div class="txt-gabarito">Gab: ${q.resposta}</div>`;
             }
+        } else {
+             texto = `${q.id} - Pular`;
         }
 
         relatorioHTML += `

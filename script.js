@@ -76,7 +76,6 @@ function verificarSaveGame() {
             const n = dados.tipo.split('_')[1];
             label = `Prova ${n}`;
         }
-        
         let proximoIndice = dados.indice;
         if (dados.idsQuestao && dados.historico) {
             const idxNaoRespondido = dados.idsQuestao.findIndex(id => !dados.historico[id]);
@@ -95,14 +94,22 @@ function verificarSaveGame() {
 
 function iniciarProva(tipo) {
     if (!appCarregado) return;
+
+    // LIMPEZA FORÇADA AO INICIAR NOVA PROVA
+    localStorage.removeItem('quiz_offshore_save'); 
+    
     indiceAtual = 0;
     acertos = 0;
     erros = 0;
     historicoRespostas = {};
     tipoProvaAtual = tipo;
 
-    if (tipo === 'completa') questoesDaProva = [...bancoCompleto];
-    else if (tipo === 'aleatoria') questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
+    if (tipo === 'completa') {
+        questoesDaProva = [...bancoCompleto];
+    } 
+    else if (tipo === 'aleatoria') {
+        questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
+    }
     else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
         const inicio = (numProva - 1) * 40;
@@ -149,8 +156,8 @@ function abrirTelaQuiz() {
     document.getElementById('opcoes-container').style.display = 'block';
     document.getElementById('feedback').style.display = 'none';
     document.querySelector('.nav-bar').style.display = 'flex';
+    document.querySelector('.top-bar').style.display = 'flex';
     document.querySelector('.header-stats').style.display = 'flex';
-    document.querySelector('.top-bar').style.display = 'flex'; // Garante que a barra de entregar aparece
 }
 
 function voltarAoMenu() {
@@ -163,7 +170,6 @@ function voltarAoMenu() {
 function mostrarQuestao() {
     pararContagem(); 
 
-    // Verifica se acabou (índice fora do array)
     if (indiceAtual >= questoesDaProva.length) {
         finalizarQuiz();
         return;
@@ -261,7 +267,7 @@ function iniciarContagemRegressiva() {
         atualizarTextoTimer(tempoRestante);
         if (tempoRestante <= 0) {
             clearInterval(intervaloContagem);
-            navegar(1); // Chama navegar, que agora sabe finalizar
+            navegar(1);
         }
     }, 1000); 
 }
@@ -277,18 +283,16 @@ function atualizarTextoTimer(segundos) {
     txt.innerText = `⏰ ${segundos}...`;
 }
 
-// --- FUNÇÃO NAVEGAR CORRIGIDA ---
 function navegar(direcao) {
     pararContagem(); 
     const novoIndice = indiceAtual + direcao;
-
-    // Se o usuário está na última questão e avança, FINALIZA O QUIZ
+    
+    // Se acabou a prova, finaliza
     if (novoIndice >= questoesDaProva.length) {
         finalizarQuiz();
         return;
     }
 
-    // Navegação normal (dentro dos limites)
     if (novoIndice >= 0) {
         indiceAtual = novoIndice;
         mostrarQuestao();
@@ -336,35 +340,33 @@ function salvarProgresso() {
 }
 
 function finalizarQuiz() {
-    // Esconde elementos
     document.getElementById('pergunta-texto').style.display = 'none';
     document.getElementById('opcoes-container').style.display = 'none';
     document.getElementById('feedback').style.display = 'none';
     document.querySelector('.nav-bar').style.display = 'none';
-    document.querySelector('.top-bar').style.display = 'none'; // Esconde barra de entregar
+    document.querySelector('.top-bar').style.display = 'none';
 
     let relatorioHTML = `
         <h2 style="text-align: center; margin-bottom: 20px; color:white;">Relatório de Desempenho</h2>
         <div class="grid-relatorio">
     `;
 
+    // ATENÇÃO AQUI: Garante que estamos iterando sobre as questões DA PROVA ATUAL
     questoesDaProva.forEach(q => {
         const hist = historicoRespostas[q.id];
         let classe = "resumo-neutro";
-        let texto = `${q.id} - ?`;
+        let texto = `Q.${q.id} - Pular`; 
         let gabaritoInfo = "";
 
         if (hist) {
             if (hist.acertou) {
                 classe = "resumo-certo";
-                texto = `${q.id} - ${hist.escolha}`;
+                texto = `Q.${q.id} - ${hist.escolha}`;
             } else {
                 classe = "resumo-errado";
-                texto = `${q.id} - ${hist.escolha}`;
+                texto = `Q.${q.id} - ${hist.escolha}`;
                 gabaritoInfo = `<div class="txt-gabarito">Gab: ${q.resposta}</div>`;
             }
-        } else {
-             texto = `${q.id} - Pular`;
         }
 
         relatorioHTML += `

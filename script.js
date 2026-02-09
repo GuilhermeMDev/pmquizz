@@ -43,7 +43,9 @@ async function carregarBancoDeDados() {
             const dados = await res.json();
             bancoCompleto = [...bancoCompleto, ...dados];
         }
+        // ORDENAÇÃO FORÇADA: Garante que a Questão 1 venha antes da 560
         bancoCompleto.sort((a, b) => a.id - b.id);
+        
         appCarregado = true;
     } catch (e) {
         console.error(e);
@@ -54,11 +56,15 @@ async function carregarBancoDeDados() {
 function gerarBotoesProvas() {
     const grid = document.getElementById('grid-provas');
     grid.innerHTML = "";
+    
     for (let i = 1; i <= 14; i++) {
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
+        
+        // Texto Matemático Correto
         const inicio = (i - 1) * 40 + 1;
         const fim = i * 40;
+        
         btn.innerHTML = `<strong>Prova ${i}</strong><br><small>Q. ${inicio} - ${fim}</small>`;
         btn.onclick = () => iniciarProva('prova_' + i);
         grid.appendChild(btn);
@@ -76,6 +82,7 @@ function verificarSaveGame() {
             const n = dados.tipo.split('_')[1];
             label = `Prova ${n}`;
         }
+        
         let proximoIndice = dados.indice;
         if (dados.idsQuestao && dados.historico) {
             const idxNaoRespondido = dados.idsQuestao.findIndex(id => !dados.historico[id]);
@@ -94,10 +101,10 @@ function verificarSaveGame() {
 
 function iniciarProva(tipo) {
     if (!appCarregado) return;
-
-    // LIMPEZA FORÇADA AO INICIAR NOVA PROVA
-    localStorage.removeItem('quiz_offshore_save'); 
     
+    // LIMPEZA DE ESTADO: Garante que não misture dados antigos
+    localStorage.removeItem('quiz_offshore_save');
+
     indiceAtual = 0;
     acertos = 0;
     erros = 0;
@@ -114,8 +121,11 @@ function iniciarProva(tipo) {
         const numProva = parseInt(tipo.split('_')[1]);
         const inicio = (numProva - 1) * 40;
         const fim = inicio + 40;
+        
+        // FATIAMENTO CIRÚRGICO: Agora que o banco está ordenado, isso funcionará perfeitamente
         questoesDaProva = bancoCompleto.slice(inicio, fim);
     }
+
     abrirTelaQuiz();
     mostrarQuestao();
 }
@@ -287,7 +297,6 @@ function navegar(direcao) {
     pararContagem(); 
     const novoIndice = indiceAtual + direcao;
     
-    // Se acabou a prova, finaliza
     if (novoIndice >= questoesDaProva.length) {
         finalizarQuiz();
         return;
@@ -351,11 +360,10 @@ function finalizarQuiz() {
         <div class="grid-relatorio">
     `;
 
-    // ATENÇÃO AQUI: Garante que estamos iterando sobre as questões DA PROVA ATUAL
     questoesDaProva.forEach(q => {
         const hist = historicoRespostas[q.id];
         let classe = "resumo-neutro";
-        let texto = `Q.${q.id} - Pular`; 
+        let texto = `Q.${q.id} - Pular`;
         let gabaritoInfo = "";
 
         if (hist) {

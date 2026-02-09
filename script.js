@@ -1,7 +1,8 @@
 // LISTA DE ARQUIVOS JSON
+// Certifique-se que os nomes aqui são IDÊNTICOS aos arquivos na sua pasta
 const arquivos = [
     "prova_1_questoes.json", "prova_2_questoes.json", "prova_3_questoes.json",
-    "prova_4_questoes_v3.json", "prova_5_questoes.json", "prova_6_questoes_v3.json",
+    "prova_4_questoes.json", "prova_5_questoes.json", "prova_6_questoes.json",
     "prova_7_questoes.json", "prova_8_questoes.json", "prova_9_questoes.json",
     "prova_10_questoes.json", "prova_11_questoes.json", "prova_12_questoes.json",
     "prova_13_questoes.json", "prova_14_questoes.json"
@@ -21,9 +22,8 @@ let tempoRestante = 3;
 
 // --- SUPORTE A TECLADO (SETAS) ---
 document.addEventListener('keydown', (e) => {
-    // Só funciona se o quiz estiver visível
-    const quizHidden = document.getElementById('tela-quiz').classList.contains('hidden');
-    if (!quizHidden) {
+    const quizDiv = document.getElementById('tela-quiz');
+    if (quizDiv && !quizDiv.classList.contains('hidden')) {
         if (e.key === 'ArrowRight') navegar(1);
         if (e.key === 'ArrowLeft') navegar(-1);
     }
@@ -36,23 +36,25 @@ function initTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
-        themeToggleBtn.textContent = '☀️';
+        if(themeToggleBtn) themeToggleBtn.textContent = '☀️';
     } else {
         document.body.classList.remove('light-theme');
-        themeToggleBtn.textContent = '🌙';
+        if(themeToggleBtn) themeToggleBtn.textContent = '🌙';
     }
 }
 
-themeToggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light-theme');
-    if (document.body.classList.contains('light-theme')) {
-        localStorage.setItem('theme', 'light');
-        themeToggleBtn.textContent = '☀️';
-    } else {
-        localStorage.setItem('theme', 'dark');
-        themeToggleBtn.textContent = '🌙';
-    }
-});
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        if (document.body.classList.contains('light-theme')) {
+            localStorage.setItem('theme', 'light');
+            themeToggleBtn.textContent = '☀️';
+        } else {
+            localStorage.setItem('theme', 'dark');
+            themeToggleBtn.textContent = '🌙';
+        }
+    });
+}
 
 // --- ACORDEÃO (Toggle Provas) ---
 function toggleProvas() {
@@ -91,21 +93,26 @@ async function carregarBancoDeDados() {
     try {
         for (const nome of arquivos) {
             const res = await fetch("./" + nome);
-            if (!res.ok) continue;
+            if (!res.ok) {
+                console.error(`Falha ao carregar ${nome}`);
+                continue;
+            }
             const dados = await res.json();
             bancoCompleto = [...bancoCompleto, ...dados];
         }
+        // Ordena por ID para garantir a sequência correta
         bancoCompleto.sort((a, b) => a.id - b.id);
-        
         appCarregado = true;
     } catch (e) {
         console.error(e);
-        document.getElementById('grid-provas').innerHTML = "<p style='color:red'>Erro ao carregar dados.</p>";
+        const grid = document.getElementById('grid-provas');
+        if(grid) grid.innerHTML = "<p style='color:red'>Erro ao carregar dados. Verifique o console.</p>";
     }
 }
 
 function gerarBotoesProvas() {
     const grid = document.getElementById('grid-provas');
+    if (!grid) return;
     grid.innerHTML = "";
     
     for (let i = 1; i <= 14; i++) {
@@ -141,6 +148,7 @@ function verificarSaveGame() {
         }
         let idReal = "?";
         if(dados.idsQuestao && dados.idsQuestao[proximoIndice]) {
+            // Tenta pegar o ID do objeto, ou usa o próprio valor se for array de IDs
             idReal = dados.idsQuestao[proximoIndice].id || dados.idsQuestao[proximoIndice];
         }
         document.getElementById('info-save').innerText = `${label} • Retomar no PDF #${idReal}`;
@@ -168,9 +176,19 @@ function iniciarProva(tipo) {
     }
     else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
-        const inicio = (numProva - 1) * 40;
-        const fim = inicio + 40;
-        questoesDaProva = bancoCompleto.slice(inicio, fim);
+        
+        // --- CORREÇÃO IMPORTANTE AQUI ---
+        // Em vez de cortar por posição (slice), filtramos pelo ID da questão.
+        // Isso impede que erros de carregamento desloquem as provas.
+        const inicioId = (numProva - 1) * 40 + 1;
+        const fimId = numProva * 40;
+        
+        questoesDaProva = bancoCompleto.filter(q => q.id >= inicioId && q.id <= fimId);
+        
+        if (questoesDaProva.length === 0) {
+            alert(`Atenção: Não foram encontradas questões para a Prova ${numProva} (IDs ${inicioId} a ${fimId}). Verifique se o arquivo json correspondente foi carregado.`);
+            return; // Impede abrir o quiz vazio
+        }
     }
 
     abrirTelaQuiz();
@@ -187,6 +205,7 @@ function retomarJogo() {
     tipoProvaAtual = dados.tipo;
     
     if (dados.idsQuestao && dados.idsQuestao.length > 0) {
+        // Reconstrói as questões baseadas nos IDs salvos
         questoesDaProva = dados.idsQuestao.map(id => bancoCompleto.find(q => q.id === id)).filter(q => q);
     } else {
         questoesDaProva = [...bancoCompleto];
@@ -204,7 +223,9 @@ function retomarJogo() {
 
 function abrirTelaQuiz() {
     document.getElementById('menu-inicial').classList.add('hidden');
-    document.querySelector('footer').style.display = 'none'; // Esconde footer no quiz
+    const footer = document.querySelector('footer');
+    if (footer) footer.style.display = 'none'; // Esconde footer no quiz
+    
     document.getElementById('tela-quiz').classList.remove('hidden'); 
     document.getElementById('tela-quiz').style.display = 'flex';
     document.getElementById('acertos').innerText = acertos;
@@ -222,7 +243,8 @@ function voltarAoMenu() {
     salvarProgresso(); 
     document.getElementById('tela-quiz').classList.add('hidden');
     document.getElementById('menu-inicial').classList.remove('hidden');
-    document.querySelector('footer').style.display = 'block'; // Mostra footer no menu
+    const footer = document.querySelector('footer');
+    if (footer) footer.style.display = 'block'; // Mostra footer no menu
     verificarSaveGame(); 
 }
 
@@ -334,12 +356,12 @@ function iniciarContagemRegressiva() {
 function pararContagem() {
     if (intervaloContagem) clearInterval(intervaloContagem);
     const txt = document.getElementById('txt-timer');
-    txt.innerText = modoAutomaticoAtivo ? "⏰ 3s" : "⏰ Off";
+    if (txt) txt.innerText = modoAutomaticoAtivo ? "⏰ 3s" : "⏰ Off";
 }
 
 function atualizarTextoTimer(segundos) {
     const txt = document.getElementById('txt-timer');
-    txt.innerText = `⏰ ${segundos}...`;
+    if (txt) txt.innerText = `⏰ ${segundos}...`;
 }
 
 function navegar(direcao) {

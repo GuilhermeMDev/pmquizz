@@ -19,6 +19,16 @@ let tipoProvaAtual = "";
 let intervaloContagem = null; 
 let tempoRestante = 3;
 
+// --- SUPORTE A TECLADO (SETAS) ---
+document.addEventListener('keydown', (e) => {
+    // Só funciona se o quiz estiver visível
+    const quizHidden = document.getElementById('tela-quiz').classList.contains('hidden');
+    if (!quizHidden) {
+        if (e.key === 'ArrowRight') navegar(1);
+        if (e.key === 'ArrowLeft') navegar(-1);
+    }
+});
+
 // --- TEMA ---
 const themeToggleBtn = document.getElementById('theme-toggle');
 

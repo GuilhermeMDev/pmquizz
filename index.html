@@ -39,6 +39,10 @@
             --shadow: rgba(0,0,0,0.1);
         }
 
+        * {
+            box-sizing: border-box; /* Garante que padding não estoure a largura */
+        }
+
         body { 
             background-color: var(--bg-color); 
             color: var(--text-main); 
@@ -49,6 +53,7 @@
             flex-direction: column; 
             align-items: center; 
             min-height: 100vh;
+            overflow-x: hidden; /* MATA O SCROLL LATERAL */
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -56,31 +61,36 @@
 
         /* MENU INICIAL */
         #menu-inicial {
-            width: 100%; max-width: 800px; padding: 20px; box-sizing: border-box;
-            display: flex; flex-direction: column; gap: 15px; animation: fadeIn 0.5s;
+            width: 100%; 
+            max-width: 800px; 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            animation: fadeIn 0.5s;
             flex: 1; 
-            justify-content: flex-start; /* FIX: Joga o conteúdo para o TOPO */
-            padding-top: 30px; /* Pequeno respiro superior */
+            /* No celular, alinha no topo */
+            justify-content: flex-start; 
         }
 
-        /* Cabeçalho do Menu - Tamanho Original (Menor) */
+        /* Header do Menu */
         .menu-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 0 0 25px 0; /* Remove margem superior */
+            margin: 10px 0 20px 0;
             position: relative;
+            width: 100%;
         }
         
         .logo-area { text-align: center; width: 100%; }
-        /* Revertido para 24px conforme solicitado */
-        .logo-area h1 { margin: 0; font-size: 24px; color: var(--text-main); letter-spacing: 0.5px; } 
-        .logo-area p { color: var(--text-sec); margin-top: 5px; font-size: 14px; }
+        .logo-area h1 { margin: 0; font-size: 28px; color: var(--text-main); letter-spacing: 0.5px; }
+        .logo-area p { color: var(--text-sec); margin-top: 5px; font-size: 16px; }
 
         .theme-toggle {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 26px;
             cursor: pointer;
             padding: 5px;
             border-radius: 50%;
@@ -98,6 +108,7 @@
             font-size: 16px; border-radius: 12px; cursor: pointer;
             display: flex; justify-content: space-between; align-items: center;
             transition: transform 0.2s, background 0.2s;
+            width: 100%;
         }
         .btn-menu:active { transform: scale(0.98); }
         .btn-menu:hover { background: var(--btn-hover); border-color: #666; }
@@ -124,6 +135,7 @@
         #container-provas {
             overflow: hidden;
             transition: max-height 0.3s ease-out;
+            width: 100%;
         }
         
         .grid-provas { 
@@ -140,7 +152,27 @@
         }
         .btn-prova:hover { background: var(--btn-hover); border-color: #555; }
         
+        /* --- AJUSTES ESPECÍFICOS PARA PC/TABLET (ZERO SCROLL) --- */
         @media (min-width: 768px) {
+            #menu-inicial {
+                max-width: 800px;
+                padding-top: 10px;
+                justify-content: center; /* Centraliza verticalmente */
+                gap: 10px; /* Reduz espaço entre botões */
+            }
+            
+            .menu-header { margin: 0 0 15px 0; } /* Reduz margem do logo */
+            
+            .btn-menu {
+                padding: 14px; /* Botões mais finos no PC */
+                margin: 0 auto; /* Garante centralização */
+            }
+            
+            .accordion-btn {
+                padding: 12px;
+                margin-top: 5px;
+            }
+
             .grid-provas { grid-template-columns: repeat(4, 1fr); }
         }
 
@@ -149,12 +181,11 @@
         #quiz-container { 
             width: 100%; max-width: 700px; background: var(--card-color); 
             padding: 20px; margin-top: 10px; margin-bottom: 110px;
-            border-radius: 0 0 16px 16px; box-shadow: 0 4px 20px var(--shadow); box-sizing: border-box; 
+            border-radius: 0 0 16px 16px; box-shadow: 0 4px 20px var(--shadow); 
             border: 1px solid var(--border-color);
         }
 
         @media (min-width: 768px) {
-            body { padding: 0; }
             #quiz-container { border-radius: 16px; margin-top: 20px; padding: 40px; margin-bottom: 80px; }
         }
 
@@ -241,28 +272,27 @@
             border-width: 6px; border-style: solid; border-color: #ff9800 transparent transparent transparent;
         }
 
-        /* --- FOOTER HÍBRIDO (Com fonte aumentada) --- */
+        /* --- FOOTER --- */
         footer {
             width: 100%;
             background-color: var(--card-color);
             padding: 25px 20px; 
             text-align: center;
-            font-size: 15px; /* Fonte Aumentada (Celular) */
+            font-size: 15px;
             border-top: 1px solid var(--border-color);
             margin-top: auto; 
             color: var(--text-sec);
         }
-        .footer-content strong { color: var(--text-main); display: block; margin-bottom: 3px; font-size: 16px; /* Aumentado */ }
+        .footer-content strong { color: var(--text-main); display: block; margin-bottom: 3px; font-size: 16px; }
         .footer-content p { margin: 3px 0 10px; line-height: 1.4; }
         .footer-divider-mobile { height: 1px; background-color: var(--border-color); margin: 15px auto; width: 60%; opacity: 0.5; }
-        .gratitude { font-style: italic; opacity: 0.8; margin-top: 5px; font-size: 14px; /* Aumentado */ }
-        .version { font-size: 13px; /* Aumentado */ opacity: 0.5; margin-top: 5px; }
+        .gratitude { font-style: italic; opacity: 0.8; margin-top: 5px; font-size: 14px; }
+        .version { font-size: 13px; opacity: 0.5; margin-top: 5px; }
 
-        /* Rodapé Lateralizado no PC (Side-by-Side) */
+        /* Rodapé no PC: Compacto e Horizontal */
         @media (min-width: 768px) {
             footer {
-                padding: 15px 40px; 
-                font-size: 16px; /* Fonte Maior no PC */
+                padding: 10px 40px; /* Padding reduzido verticalmente */
             }
             .footer-container {
                 display: flex;
@@ -274,11 +304,9 @@
             }
             .footer-left { flex: 1; }
             .footer-right { text-align: right; flex: 1; }
-            
             .footer-divider-mobile { display: none; }
-            
-            .footer-content p { margin: 2px 0; }
-            .gratitude { margin-top: 3px; }
+            .footer-content p { margin: 1px 0; } /* Margens mínimas */
+            .gratitude { margin-top: 2px; }
         }
 
         @keyframes bounce { from { transform: translateX(-50%) translateY(0); } to { transform: translateX(-50%) translateY(-5px); } }
@@ -361,7 +389,7 @@
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-content">
-                    <p><strong>📚 Conteúdo e Material:</strong></p>
+                    <p><strong>📚 Conteúdo e Material</strong></p>
                     <p>AGE Treinamentos | Prof. Andre Nicolau</p>
                     <p class="gratitude">"Agradecimento especial ao Prof. Nicolau pela excelência do material."</p>
                 </div>
@@ -371,7 +399,7 @@
             
             <div class="footer-right">
                 <div class="footer-content">
-                    <p><strong>💻 Desenvolvimento:</strong></p>
+                    <p><strong>💻 Desenvolvimento</strong></p>
                     <p>Guilherme Magioni | Mergulhador SNQC 34392</p>
                     <p class="version">Versão 1.0</p>
                 </div>

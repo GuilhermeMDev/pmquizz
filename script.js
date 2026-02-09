@@ -207,12 +207,9 @@ function retomarJogo() {
         questoesDaProva = [...bancoCompleto];
     }
 
-    let indiceInteligente = 0;
-    const primeiroNaoRespondido = questoesDaProva.findIndex(q => !historicoRespostas[q.id]);
-    if (primeiroNaoRespondido !== -1) indiceInteligente = primeiroNaoRespondido;
-    else indiceInteligente = questoesDaProva.length - 1;
+    // CORREÇÃO: Usa o índice salvo diretamente
+    indiceAtual = dados.indice || 0;
     
-    indiceAtual = indiceInteligente;
     abrirTelaQuiz();
     mostrarQuestao();
 }

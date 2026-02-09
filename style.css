@@ -49,7 +49,10 @@ body {
     align-items: center; 
     
     width: 100%;
-    height: 100%;
+    
+    /* MOBILE: min-height para permitir expansão */
+    min-height: 100vh;
+    min-height: 100dvh;
     
     overflow-x: hidden;
     transition: background-color 0.3s, color 0.3s;
@@ -145,6 +148,10 @@ body {
 
 /* --- AJUSTES TABLET E PC --- */
 @media (min-width: 768px) {
+    body {
+        height: 100%; /* Trava altura só em telas grandes */
+    }
+
     #menu-inicial { 
         max-width: 900px; 
         padding-top: 40px; 

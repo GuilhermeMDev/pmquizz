@@ -39,9 +39,7 @@
             --shadow: rgba(0,0,0,0.1);
         }
 
-        * {
-            box-sizing: border-box; /* Garante que padding não estoure a largura */
-        }
+        * { box-sizing: border-box; }
 
         body { 
             background-color: var(--bg-color); 
@@ -53,7 +51,7 @@
             flex-direction: column; 
             align-items: center; 
             min-height: 100vh;
-            overflow-x: hidden; /* MATA O SCROLL LATERAL */
+            overflow-x: hidden;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -63,13 +61,13 @@
         #menu-inicial {
             width: 100%; 
             max-width: 800px; 
-            padding: 20px; 
+            /* AQUI: Reduzi o primeiro valor (topo) para 5px */
+            padding: 5px 20px 20px 20px; 
             display: flex; 
             flex-direction: column; 
             gap: 15px; 
             animation: fadeIn 0.5s;
             flex: 1; 
-            /* No celular, alinha no topo */
             justify-content: flex-start; 
         }
 
@@ -78,14 +76,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 10px 0 20px 0;
+            /* AQUI: Margem superior zerada (0) e inferior 20px */
+            margin: 0 0 20px 0; 
             position: relative;
             width: 100%;
         }
         
         .logo-area { text-align: center; width: 100%; }
-        .logo-area h1 { margin: 0; font-size: 28px; color: var(--text-main); letter-spacing: 0.5px; }
-        .logo-area p { color: var(--text-sec); margin-top: 5px; font-size: 16px; }
+        /* Tamanho do título mantido original */
+        .logo-area h1 { margin: 0; font-size: 28px; color: var(--text-main); letter-spacing: 0.5px; } 
+        .logo-area p { color: var(--text-sec); margin-top: 5px; font-size: 16px; } 
 
         .theme-toggle {
             background: none;
@@ -152,27 +152,9 @@
         }
         .btn-prova:hover { background: var(--btn-hover); border-color: #555; }
         
-        /* --- AJUSTES ESPECÍFICOS PARA PC/TABLET (ZERO SCROLL) --- */
+        /* Ajustes PC */
         @media (min-width: 768px) {
-            #menu-inicial {
-                max-width: 800px;
-                padding-top: 10px;
-                justify-content: center; /* Centraliza verticalmente */
-                gap: 10px; /* Reduz espaço entre botões */
-            }
-            
-            .menu-header { margin: 0 0 15px 0; } /* Reduz margem do logo */
-            
-            .btn-menu {
-                padding: 14px; /* Botões mais finos no PC */
-                margin: 0 auto; /* Garante centralização */
-            }
-            
-            .accordion-btn {
-                padding: 12px;
-                margin-top: 5px;
-            }
-
+            #menu-inicial { max-width: 900px; padding-top: 5px; } /* Topo colado também no PC */
             .grid-provas { grid-template-columns: repeat(4, 1fr); }
         }
 
@@ -272,13 +254,13 @@
             border-width: 6px; border-style: solid; border-color: #ff9800 transparent transparent transparent;
         }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER (Ajustado) --- */
         footer {
             width: 100%;
             background-color: var(--card-color);
             padding: 25px 20px; 
             text-align: center;
-            font-size: 15px;
+            font-size: 15px; /* Fonte aumentada conforme solicitado */
             border-top: 1px solid var(--border-color);
             margin-top: auto; 
             color: var(--text-sec);
@@ -289,10 +271,11 @@
         .gratitude { font-style: italic; opacity: 0.8; margin-top: 5px; font-size: 14px; }
         .version { font-size: 13px; opacity: 0.5; margin-top: 5px; }
 
-        /* Rodapé no PC: Compacto e Horizontal */
+        /* Rodapé Lateralizado no PC (Side-by-Side) */
         @media (min-width: 768px) {
             footer {
-                padding: 10px 40px; /* Padding reduzido verticalmente */
+                padding: 15px 40px; 
+                font-size: 16px; 
             }
             .footer-container {
                 display: flex;
@@ -305,8 +288,8 @@
             .footer-left { flex: 1; }
             .footer-right { text-align: right; flex: 1; }
             .footer-divider-mobile { display: none; }
-            .footer-content p { margin: 1px 0; } /* Margens mínimas */
-            .gratitude { margin-top: 2px; }
+            .footer-content p { margin: 2px 0; }
+            .gratitude { margin-top: 3px; }
         }
 
         @keyframes bounce { from { transform: translateX(-50%) translateY(0); } to { transform: translateX(-50%) translateY(-5px); } }
@@ -389,7 +372,7 @@
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-content">
-                    <p><strong>📚 Conteúdo e Material</strong></p>
+                    <p><strong>📚 Conteúdo e Material:</strong></p>
                     <p>AGE Treinamentos | Prof. Andre Nicolau</p>
                     <p class="gratitude">"Agradecimento especial ao Prof. Nicolau pela excelência do material."</p>
                 </div>
@@ -399,7 +382,7 @@
             
             <div class="footer-right">
                 <div class="footer-content">
-                    <p><strong>💻 Desenvolvimento</strong></p>
+                    <p><strong>💻 Desenvolvimento:</strong></p>
                     <p>Guilherme Magioni | Mergulhador SNQC 34392</p>
                     <p class="version">Versão 1.0</p>
                 </div>

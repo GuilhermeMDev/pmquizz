@@ -28,6 +28,7 @@ body.light-theme {
     --shadow: rgba(0,0,0,0.1);
 }
 
+/* RESET TOTAL */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { width: 100%; height: 100%; }
@@ -36,18 +37,19 @@ body {
     background-color: var(--bg-color); 
     color: var(--text-main); 
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    /* Configuração Flex para Sticky Footer */
     display: flex; 
     flex-direction: column; 
     align-items: center; 
     width: 100%;
-    min-height: 100vh;
+    min-height: 100vh; /* Garante que o corpo tenha no mínimo a altura da tela */
+    overflow-x: hidden; /* Mata scroll lateral */
     transition: background-color 0.3s, color 0.3s;
-    overflow-x: hidden;
 }
 
 .hidden { display: none !important; }
 
-/* --- BOTÃO TEMA (POSIÇÃO FIXA NO CANTO) --- */
+/* --- BOTÃO TEMA (FIXO) --- */
 .theme-toggle {
     background: none; 
     border: none; 
@@ -56,10 +58,10 @@ body {
     padding: 10px; 
     border-radius: 50%;
     transition: transform 0.2s; 
-    position: fixed; /* Fixado na tela, não importa o scroll */
+    position: fixed; 
     top: 15px; 
     right: 20px;
-    z-index: 2000; /* Fica acima de tudo */
+    z-index: 2000;
 }
 .theme-toggle:active { transform: scale(0.9); }
 
@@ -67,19 +69,25 @@ body {
 #menu-inicial {
     width: 100%; 
     max-width: 800px; 
-    padding: 40px 20px 20px 20px; /* Mais espaço no topo para não bater no botão */
+    padding: 30px 20px 10px 20px; 
+    
     display: flex; 
     flex-direction: column; 
     gap: 12px; 
     animation: fadeIn 0.5s;
+    
+    /* O SEGREDO DO STICKY FOOTER: */
+    /* Faz o menu ocupar todo o espaço vertical disponível, empurrando o footer para baixo */
     flex: 1; 
+    
+    /* Garante que o conteúdo comece do TOPO */
     justify-content: flex-start; 
 }
 
 /* Header */
 .menu-header {
     display: flex;
-    justify-content: center; /* Centraliza o texto do logo */
+    justify-content: center; 
     align-items: center;
     margin-bottom: 10px; 
     width: 100%;
@@ -116,55 +124,38 @@ body {
 .btn-prova { background: var(--btn-bg); border: 1px solid var(--border-color); padding: 10px; border-radius: 8px; color: var(--text-main); cursor: pointer; text-align: center; transition: background 0.2s; font-size: 0.9rem; }
 .btn-prova:hover { background: var(--btn-hover); border-color: #555; }
 
-/* ==========================================================================
-   REGRAS TABLET E PC (CORREÇÃO DO ALINHAMENTO E RODAPÉ)
-   ========================================================================== */
+/* --- AJUSTES TABLET E PC --- */
 @media (min-width: 768px) {
-    body {
-        height: 100vh; 
-        overflow: hidden; 
-        /* AQUI ESTAVA O ERRO: Mudei de 'center' para 'flex-start' */
-        justify-content: flex-start; 
-        padding-top: 40px; /* Empurra o conteúdo para baixo na medida certa */
-    }
-
+    /* Mantém layout fluido, mas limita largura e organiza grid */
     #menu-inicial { 
         max-width: 900px; 
-        padding-top: 0; /* O padding já está no body */
-        gap: 8px; 
-        height: auto;
-        justify-content: flex-start; /* Garante topo */
-        flex: 0 1 auto;
+        padding-top: 30px; /* Mantém o topo confortável, sem descer demais */
+        gap: 10px; /* Mantém o espaçamento bom que você gostou */
     } 
 
-    .menu-header { margin-bottom: 5px; }
+    .menu-header { margin-bottom: 15px; }
     
-    .btn-menu { padding: 12px 18px; }
-    .accordion-btn { padding: 10px; }
     .grid-provas { grid-template-columns: repeat(4, 1fr); }
     
-    /* Footer Fixo no Fundo */
+    /* Footer no PC/Tablet */
     footer { 
-        padding: 10px 40px !important; 
-        position: fixed; 
-        bottom: 0;
-        left: 0;
+        padding: 15px 40px !important; 
+        /* Sem position fixed - deixa o flex empurrar ele pro fundo */
         width: 100%;
-        z-index: 10;
-        height: auto;
-        background-color: var(--card-color); /* Garante fundo opaco */
-    }
-
-    /* Tela Quiz com rolagem interna se necessário */
-    #tela-quiz {
-        overflow-y: auto;
-        height: 100%;
-        padding-bottom: 80px;
+        margin-top: auto; /* Segurança extra para colar no fundo */
     }
 }
 
 /* --- TELA QUIZ --- */
-#tela-quiz { display: none; width: 100%; flex-direction: column; align-items: center; flex: 1; }
+#tela-quiz { 
+    display: none; 
+    width: 100%; 
+    flex-direction: column; 
+    align-items: center; 
+    /* Também ocupa todo o espaço vertical quando visível */
+    flex: 1; 
+}
+
 #quiz-container { 
     width: 100%; max-width: 700px; background: var(--card-color); 
     padding: 20px; margin-top: 10px; margin-bottom: 110px;
@@ -212,7 +203,7 @@ body {
 .tooltip-timer { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background-color: #ff9800; color: #000; padding: 8px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.5); animation: bounce 1s infinite alternate; display: none; z-index: 101; }
 .tooltip-timer::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #ff9800 transparent transparent transparent; }
 
-/* --- FOOTER --- */
+/* --- FOOTER (Padrão) --- */
 footer {
     width: 100%;
     background-color: var(--card-color);
@@ -220,7 +211,7 @@ footer {
     text-align: center;
     font-size: 14px;
     border-top: 1px solid var(--border-color);
-    margin-top: auto; 
+    margin-top: auto; /* Empurra o footer pro final do container flex */
     color: var(--text-sec);
 }
 .footer-content strong { color: var(--text-main); display: block; margin-bottom: 3px; font-size: 15px; }
@@ -243,7 +234,8 @@ footer {
     .footer-right { text-align: right; flex: 1; }
     .footer-divider-mobile { display: none; }
     .footer-content p { margin: 1px 0; }
-    .gratitude { margin-top: 2px; }    
+    .gratitude { margin-top: 2px; }
+    
     footer { font-size: 15px; }
     .footer-content strong { font-size: 16px; }
 }

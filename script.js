@@ -1,11 +1,13 @@
 // LISTA DE ARQUIVOS JSON
 const arquivos = [
     "prova_1_questoes.json", "prova_2_questoes.json", "prova_3_questoes.json",
-    "prova_4_questoes.json", "prova_5_questoes.json", "prova_6_questoes.json",
+    "prova_4_questoes_v3.json", "prova_5_questoes.json", "prova_6_questoes_v3.json",
     "prova_7_questoes.json", "prova_8_questoes.json", "prova_9_questoes.json",
     "prova_10_questoes.json", "prova_11_questoes.json", "prova_12_questoes.json",
     "prova_13_questoes.json", "prova_14_questoes.json"
 ];
+
+// Nota: Atualizei os nomes da prova 4 e 6 para as versões corrigidas v3 que geramos
 
 let bancoCompleto = [];
 let appCarregado = false;
@@ -44,8 +46,24 @@ themeToggleBtn.addEventListener('click', () => {
     }
 });
 
+// --- ACORDEÃO (Toggle Provas) ---
+function toggleProvas() {
+    const container = document.getElementById('container-provas');
+    const btn = document.getElementById('accordion-btn');
+    
+    if (container.classList.contains('hidden')) {
+        container.classList.remove('hidden');
+        btn.classList.add('active');
+        btn.innerText = "📂 Selecionar Prova Específica (1 a 14) ▲";
+    } else {
+        container.classList.add('hidden');
+        btn.classList.remove('active');
+        btn.innerText = "📂 Selecionar Prova Específica (1 a 14) ▼";
+    }
+}
+
 window.onload = async () => {
-    initTheme(); // Inicia o tema
+    initTheme();
     await carregarBancoDeDados();
     gerarBotoesProvas();
     verificarSaveGame();
@@ -69,7 +87,6 @@ async function carregarBancoDeDados() {
             const dados = await res.json();
             bancoCompleto = [...bancoCompleto, ...dados];
         }
-        // ORDENAÇÃO FORÇADA: Garante que a Questão 1 venha antes da 560
         bancoCompleto.sort((a, b) => a.id - b.id);
         
         appCarregado = true;
@@ -87,7 +104,6 @@ function gerarBotoesProvas() {
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
         
-        // Texto Matemático Correto
         const inicio = (i - 1) * 40 + 1;
         const fim = i * 40;
         
@@ -128,7 +144,6 @@ function verificarSaveGame() {
 function iniciarProva(tipo) {
     if (!appCarregado) return;
     
-    // LIMPEZA DE ESTADO: Garante que não misture dados antigos
     localStorage.removeItem('quiz_offshore_save');
 
     indiceAtual = 0;
@@ -147,8 +162,6 @@ function iniciarProva(tipo) {
         const numProva = parseInt(tipo.split('_')[1]);
         const inicio = (numProva - 1) * 40;
         const fim = inicio + 40;
-        
-        // FATIAMENTO CIRÚRGICO: Agora que o banco está ordenado, isso funcionará perfeitamente
         questoesDaProva = bancoCompleto.slice(inicio, fim);
     }
 
@@ -391,7 +404,7 @@ function finalizarQuiz() {
     questoesDaProva.forEach(q => {
         const hist = historicoRespostas[q.id];
         let classe = "resumo-neutro";
-        let texto = `Q.${q.id} - Pulou`; // AQUI ESTÁ A CORREÇÃO: "Pulou"
+        let texto = `Q.${q.id} - Pulou`;
         let gabaritoInfo = "";
 
         if (hist) {

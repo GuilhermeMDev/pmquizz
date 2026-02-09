@@ -54,32 +54,41 @@
 
         .hidden { display: none !important; }
 
-        /* Botão de Tema no Topo Direito */
-        .theme-toggle {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 1000;
-            padding: 5px;
-            border-radius: 50%;
-            transition: transform 0.2s;
-        }
-        .theme-toggle:active { transform: scale(0.9); }
-
         /* MENU INICIAL */
         #menu-inicial {
             width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box;
             display: flex; flex-direction: column; gap: 15px; animation: fadeIn 0.5s;
-            flex: 1; /* Empurra o footer para baixo */
+            flex: 1; 
         }
-        .logo-area { text-align: center; margin: 20px 0 30px 0; }
+
+        /* Cabeçalho do Menu com Botão de Tema */
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0 30px 0;
+            position: relative;
+        }
+        
+        .logo-area { text-align: center; width: 100%; }
         .logo-area h1 { margin: 0; font-size: 28px; color: var(--text-main); }
         .logo-area p { color: var(--text-sec); margin-top: 5px; }
 
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: transform 0.2s;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .theme-toggle:active { transform: scale(0.9); }
+
+        /* Botões do Menu */
         .btn-menu {
             background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--text-main);
             padding: 18px; font-size: 16px; border-radius: 12px; cursor: pointer;
@@ -91,14 +100,48 @@
         .btn-destaque { background: linear-gradient(135deg, #1565c0, #0d47a1); border: none; font-weight: bold; color: white; box-shadow: 0 4px 15px rgba(21, 101, 192, 0.4); }
         .btn-continuar { background: linear-gradient(135deg, #2e7d32, #1b5e20); border: none; font-weight: bold; color: white; display: none; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4); }
 
-        .grid-provas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+        /* ACORDEÃO (Menu Expansível) */
+        .accordion-btn {
+            background: var(--card-color);
+            border: 1px dashed var(--border-color);
+            color: var(--text-sec);
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        .accordion-btn:hover { background: var(--btn-hover); color: var(--text-main); }
+        .accordion-btn.active { border-style: solid; border-color: var(--primary); color: var(--primary); }
+
+        /* Grid de Provas (inicialmente escondido) */
+        #container-provas {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .grid-provas { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px; 
+            padding: 10px 5px;
+        }
+        
         .btn-prova { 
-            background: var(--btn-bg); border: 1px solid var(--border-color); padding: 15px; 
-            border-radius: 10px; color: var(--text-main); cursor: pointer; text-align: center;
-            transition: background 0.2s;
+            background: var(--btn-bg); border: 1px solid var(--border-color); padding: 12px; 
+            border-radius: 8px; color: var(--text-main); cursor: pointer; text-align: center;
+            transition: background 0.2s; font-size: 0.9rem;
         }
         .btn-prova:hover { background: var(--btn-hover); border-color: #555; }
         
+        /* Layout Desktop para o Grid */
+        @media (min-width: 768px) {
+            #menu-inicial { max-width: 800px; }
+            .grid-provas { grid-template-columns: repeat(4, 1fr); }
+        }
+
         /* TELA QUIZ */
         #tela-quiz { display: none; width: 100%; flex-direction: column; align-items: center; flex: 1; }
         #quiz-container { 
@@ -111,8 +154,6 @@
         @media (min-width: 768px) {
             body { padding: 20px; }
             #quiz-container { border-radius: 16px; margin-top: 20px; padding: 40px; }
-            #menu-inicial { max-width: 800px; }
-            .grid-provas { grid-template-columns: 1fr 1fr 1fr 1fr; }
         }
 
         /* BARRA SUPERIOR */
@@ -210,7 +251,7 @@
             text-align: center;
             font-size: 14px;
             border-top: 1px solid var(--border-color);
-            margin-top: auto; /* Garante que fique no fundo */
+            margin-top: auto; 
             color: var(--text-sec);
         }
         .footer-content strong { color: var(--text-main); display: block; margin-bottom: 5px; }
@@ -226,12 +267,13 @@
 </head>
 <body>
 
-    <button id="theme-toggle" class="theme-toggle" title="Alternar Tema">🌙</button>
-
     <div id="menu-inicial">
-        <div class="logo-area">
-            <h1>⚓ Quiz Offshore</h1>
-            <p>Simulador de Potencial Eletroquímico</p>
+        <div class="menu-header">
+            <div class="logo-area">
+                <h1>⚓ Quiz Offshore</h1>
+                <p>Simulador de Potencial Eletroquímico</p>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" title="Alternar Tema">🌙</button>
         </div>
         
         <button id="btn-continuar" class="btn-menu btn-continuar" onclick="retomarJogo()">
@@ -247,9 +289,14 @@
             <span>🎲 Modo Aleatório (40 questões)</span><span>➤</span>
         </button>
 
-        <h3 style="margin-top: 20px; color: var(--text-sec); font-size: 14px; text-transform: uppercase;">Provas Individuais</h3>
-        <div class="grid-provas" id="grid-provas">
-            <p style="color: var(--text-sec); font-size: 14px;">Carregando...</p>
+        <button id="accordion-btn" class="accordion-btn" onclick="toggleProvas()">
+            📂 Selecionar Prova Específica (1 a 14) ▼
+        </button>
+
+        <div id="container-provas" class="hidden">
+            <div class="grid-provas" id="grid-provas">
+                <p style="color: var(--text-sec); font-size: 14px;">Carregando...</p>
+            </div>
         </div>
         
     </div>

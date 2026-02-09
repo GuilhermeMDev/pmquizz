@@ -19,7 +19,33 @@ let tipoProvaAtual = "";
 let intervaloContagem = null; 
 let tempoRestante = 3;
 
+// --- TEMA ---
+const themeToggleBtn = document.getElementById('theme-toggle');
+
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        themeToggleBtn.textContent = '☀️';
+    } else {
+        document.body.classList.remove('light-theme');
+        themeToggleBtn.textContent = '🌙';
+    }
+}
+
+themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    if (document.body.classList.contains('light-theme')) {
+        localStorage.setItem('theme', 'light');
+        themeToggleBtn.textContent = '☀️';
+    } else {
+        localStorage.setItem('theme', 'dark');
+        themeToggleBtn.textContent = '🌙';
+    }
+});
+
 window.onload = async () => {
+    initTheme(); // Inicia o tema
     await carregarBancoDeDados();
     gerarBotoesProvas();
     verificarSaveGame();
@@ -157,6 +183,7 @@ function retomarJogo() {
 
 function abrirTelaQuiz() {
     document.getElementById('menu-inicial').classList.add('hidden');
+    document.querySelector('footer').style.display = 'none'; // Esconde footer no quiz
     document.getElementById('tela-quiz').classList.remove('hidden'); 
     document.getElementById('tela-quiz').style.display = 'flex';
     document.getElementById('acertos').innerText = acertos;
@@ -174,6 +201,7 @@ function voltarAoMenu() {
     salvarProgresso(); 
     document.getElementById('tela-quiz').classList.add('hidden');
     document.getElementById('menu-inicial').classList.remove('hidden');
+    document.querySelector('footer').style.display = 'block'; // Mostra footer no menu
     verificarSaveGame(); 
 }
 
@@ -356,14 +384,14 @@ function finalizarQuiz() {
     document.querySelector('.top-bar').style.display = 'none';
 
     let relatorioHTML = `
-        <h2 style="text-align: center; margin-bottom: 20px; color:white;">Relatório de Desempenho</h2>
+        <h2 style="text-align: center; margin-bottom: 20px; color: var(--text-main);">Relatório de Desempenho</h2>
         <div class="grid-relatorio">
     `;
 
     questoesDaProva.forEach(q => {
         const hist = historicoRespostas[q.id];
         let classe = "resumo-neutro";
-        let texto = `Q.${q.id} - Pular`;
+        let texto = `Q.${q.id} - Pulou`; // AQUI ESTÁ A CORREÇÃO: "Pulou"
         let gabaritoInfo = "";
 
         if (hist) {

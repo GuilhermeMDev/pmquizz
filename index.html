@@ -4,14 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Offshore Profissional</title>
+    <link rel="icon" type="image/png" href="bath_icon.png">
+    
     <style>
         :root {
+            /* Variáveis Padrão (Escuro) */
             --bg-color: #121212;
             --card-color: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-sec: #aaa;
             --primary: #1565c0;
             --success: #2e7d32;
             --error: #c62828;
-            --text-main: #e0e0e0;
+            --border-color: #444;
+            --btn-bg: #2c2c2c;
+            --btn-hover: #383838;
+            --header-bg: #252525;
+            --shadow: rgba(0,0,0,0.6);
+        }
+
+        /* Classe para Tema Claro */
+        body.light-theme {
+            --bg-color: #f0f2f5;
+            --card-color: #ffffff;
+            --text-main: #1c1e21;
+            --text-sec: #606770;
+            --primary: #0069d9;
+            --success: #28a745;
+            --error: #dc3545;
+            --border-color: #ccc;
+            --btn-bg: #ffffff;
+            --btn-hover: #e4e6eb;
+            --header-bg: #ffffff;
+            --shadow: rgba(0,0,0,0.1);
         }
 
         body { 
@@ -24,44 +49,63 @@
             flex-direction: column; 
             align-items: center; 
             min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .hidden { display: none !important; }
+
+        /* Botão de Tema no Topo Direito */
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            padding: 5px;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+        .theme-toggle:active { transform: scale(0.9); }
 
         /* MENU INICIAL */
         #menu-inicial {
             width: 100%; max-width: 600px; padding: 20px; box-sizing: border-box;
             display: flex; flex-direction: column; gap: 15px; animation: fadeIn 0.5s;
+            flex: 1; /* Empurra o footer para baixo */
         }
         .logo-area { text-align: center; margin: 20px 0 30px 0; }
-        .logo-area h1 { margin: 0; font-size: 28px; color: white; }
-        .logo-area p { color: #aaa; margin-top: 5px; }
+        .logo-area h1 { margin: 0; font-size: 28px; color: var(--text-main); }
+        .logo-area p { color: var(--text-sec); margin-top: 5px; }
 
         .btn-menu {
-            background: #2c2c2c; border: 1px solid #444; color: white;
+            background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--text-main);
             padding: 18px; font-size: 16px; border-radius: 12px; cursor: pointer;
             display: flex; justify-content: space-between; align-items: center;
             transition: transform 0.2s, background 0.2s;
         }
         .btn-menu:active { transform: scale(0.98); }
-        .btn-menu:hover { background: #383838; border-color: #666; }
-        .btn-destaque { background: linear-gradient(135deg, #1565c0, #0d47a1); border: none; font-weight: bold; box-shadow: 0 4px 15px rgba(21, 101, 192, 0.4); }
-        .btn-continuar { background: linear-gradient(135deg, #2e7d32, #1b5e20); border: none; font-weight: bold; display: none; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4); }
+        .btn-menu:hover { background: var(--btn-hover); border-color: #666; }
+        .btn-destaque { background: linear-gradient(135deg, #1565c0, #0d47a1); border: none; font-weight: bold; color: white; box-shadow: 0 4px 15px rgba(21, 101, 192, 0.4); }
+        .btn-continuar { background: linear-gradient(135deg, #2e7d32, #1b5e20); border: none; font-weight: bold; color: white; display: none; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4); }
 
         .grid-provas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
         .btn-prova { 
-            background: #1e1e1e; border: 1px solid #333; padding: 15px; 
-            border-radius: 10px; color: #ddd; cursor: pointer; text-align: center;
+            background: var(--btn-bg); border: 1px solid var(--border-color); padding: 15px; 
+            border-radius: 10px; color: var(--text-main); cursor: pointer; text-align: center;
             transition: background 0.2s;
         }
-        .btn-prova:hover { background: #333; border-color: #555; }
+        .btn-prova:hover { background: var(--btn-hover); border-color: #555; }
         
         /* TELA QUIZ */
-        #tela-quiz { display: none; width: 100%; flex-direction: column; align-items: center; }
+        #tela-quiz { display: none; width: 100%; flex-direction: column; align-items: center; flex: 1; }
         #quiz-container { 
             width: 100%; max-width: 700px; background: var(--card-color); 
             padding: 20px; margin-top: 10px; margin-bottom: 110px;
-            border-radius: 0 0 16px 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); box-sizing: border-box; 
+            border-radius: 0 0 16px 16px; box-shadow: 0 4px 20px var(--shadow); box-sizing: border-box; 
+            border: 1px solid var(--border-color);
         }
 
         @media (min-width: 768px) {
@@ -71,46 +115,47 @@
             .grid-provas { grid-template-columns: 1fr 1fr 1fr 1fr; }
         }
 
-        /* BARRA SUPERIOR (VOLTAR E ENTREGAR) */
+        /* BARRA SUPERIOR */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
-        .btn-text { background: none; border: none; color: #888; cursor: pointer; font-size: 14px; padding: 5px; }
-        .btn-entregar { background: none; border: 1px solid #c62828; color: #e57373; border-radius: 6px; padding: 5px 10px; cursor: pointer; font-size: 13px; font-weight: bold; }
-        .btn-entregar:hover { background: #c62828; color: white; }
+        .btn-text { background: none; border: none; color: var(--text-sec); cursor: pointer; font-size: 14px; padding: 5px; }
+        .btn-entregar { background: none; border: 1px solid var(--error); color: #e57373; border-radius: 6px; padding: 5px 10px; cursor: pointer; font-size: 13px; font-weight: bold; }
+        .btn-entregar:hover { background: var(--error); color: white; }
 
         /* HEADER E PLACAR */
         .header-stats { 
             display: flex; justify-content: space-between; align-items: center; 
-            margin-bottom: 25px; background: #252525; padding: 12px 20px; 
-            border-radius: 12px; border: 1px solid #333; 
+            margin-bottom: 25px; background: var(--header-bg); padding: 12px 20px; 
+            border-radius: 12px; border: 1px solid var(--border-color); 
         }
         .info-texto { display: flex; flex-direction: column; }
-        .info-principal { font-weight: bold; color: white; font-size: 16px; margin-bottom: 4px; }
-        .info-secundaria { font-size: 14px; color: #aaa; font-weight: 500; letter-spacing: 0.3px; }
+        .info-principal { font-weight: bold; color: var(--text-main); font-size: 16px; margin-bottom: 4px; }
+        .info-secundaria { font-size: 14px; color: var(--text-sec); font-weight: 500; letter-spacing: 0.3px; }
         
         .score-box { display: flex; flex-direction: row !important; gap: 10px; align-items: center; }
         .badge { padding: 6px 12px; border-radius: 8px; font-weight: bold; font-size: 15px; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
         .badge-green { color: #81c784; background: rgba(46, 125, 50, 0.2); border: 1px solid #1b5e20; }
         .badge-red { color: #e57373; background: rgba(198, 40, 40, 0.2); border: 1px solid #b71c1c; }
         
-        .pergunta { font-size: 19px; line-height: 1.6; margin-bottom: 25px; color: #fff; font-weight: 500; }
+        .pergunta { font-size: 19px; line-height: 1.6; margin-bottom: 25px; color: var(--text-main); font-weight: 500; }
 
         .opcao { 
             display: block; width: 100%; padding: 16px 20px; margin: 12px 0;
-            background: #2c2c2c; border: 1px solid #444; color: #e0e0e0;
+            background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--text-main);
             border-radius: 10px; cursor: pointer; text-align: left; font-size: 17px;
             position: relative; transition: all 0.2s;
         }
+        .opcao:hover { background-color: var(--btn-hover); }
         .resposta-certa { background-color: #1b5e20 !important; border-color: #4caf50 !important; color: white !important; }
-        .resposta-errada { background-color: #b71c1c !important; border-color: #ef5350 !important; opacity: 0.8; }
+        .resposta-errada { background-color: #b71c1c !important; border-color: #ef5350 !important; color: white !important; opacity: 0.9; }
         .resposta-certa::after { content: "✅"; position: absolute; right: 15px; }
         .resposta-errada::after { content: "❌"; position: absolute; right: 15px; }
         
-        #feedback { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; background: #252525; display: none; }
+        #feedback { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; background: var(--header-bg); display: none; border: 1px solid var(--border-color); color: var(--text-main); }
 
         /* RELATÓRIO FINAL */
         .grid-relatorio {
@@ -120,11 +165,11 @@
         .card-resumo {
             padding: 10px; border-radius: 8px; text-align: center; font-size: 14px;
             font-weight: bold; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .resumo-certo { background-color: #1b5e20; border: 1px solid #2e7d32; color: #a5d6a7; }
-        .resumo-errado { background-color: #b71c1c; border: 1px solid #c62828; color: #ef9a9a; }
-        .resumo-neutro { background-color: #333; border: 1px solid #444; color: #777; } /* Cor para Puladas */
+        .resumo-certo { background-color: #1b5e20; border: 1px solid #2e7d32; color: #e8f5e9; }
+        .resumo-errado { background-color: #b71c1c; border: 1px solid #c62828; color: #ffebee; }
+        .resumo-neutro { background-color: var(--btn-bg); border: 1px solid var(--border-color); color: var(--text-sec); }
 
         .txt-gabarito {
             font-size: 11px; color: #fff; background: rgba(0,0,0,0.3);
@@ -133,17 +178,17 @@
 
         /* BARRA DE NAVEGAÇÃO */
         .nav-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%; background-color: #181818;
+            position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--card-color);
             padding: 15px 20px; box-sizing: border-box; display: flex; justify-content: center; gap: 15px;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.8); z-index: 100; border-top: 1px solid #333;
+            box-shadow: 0 -5px 20px var(--shadow); z-index: 100; border-top: 1px solid var(--border-color);
         }
         .nav-btn {
-            background: #333; color: white; border: 1px solid #444; padding: 12px 0;
+            background: var(--btn-bg); color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 0;
             border-radius: 8px; font-size: 18px; cursor: pointer; flex: 1; max-width: 160px;
             display: flex; justify-content: center; align-items: center; position: relative;
         }
-        .timer-on { background-color: #1b5e20; border-color: #2e7d32; color: #a5d6a7; }
-        .btn-next { background-color: #0d47a1; border-color: #1565c0; }
+        .timer-on { background-color: #1b5e20; border-color: #2e7d32; color: #fff; }
+        .btn-next { background-color: #0d47a1; border-color: #1565c0; color: white; }
 
         .tooltip-timer {
             position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
@@ -157,12 +202,31 @@
             border-width: 6px; border-style: solid; border-color: #ff9800 transparent transparent transparent;
         }
 
+        /* --- FOOTER --- */
+        footer {
+            width: 100%;
+            background-color: var(--card-color);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto; /* Garante que fique no fundo */
+            color: var(--text-sec);
+        }
+        .footer-content strong { color: var(--text-main); display: block; margin-bottom: 5px; }
+        .footer-content p { margin: 5px 0 15px; line-height: 1.5; }
+        .footer-divider { height: 1px; background-color: var(--border-color); margin: 20px auto; width: 60%; opacity: 0.5; }
+        .gratitude { font-style: italic; opacity: 0.8; margin-top: 10px; font-size: 13px; }
+        .version { font-size: 12px; opacity: 0.5; margin-top: 10px; }
+
         @keyframes bounce { from { transform: translateX(-50%) translateY(0); } to { transform: translateX(-50%) translateY(-5px); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     </style>
 </head>
 <body>
+
+    <button id="theme-toggle" class="theme-toggle" title="Alternar Tema">🌙</button>
 
     <div id="menu-inicial">
         <div class="logo-area">
@@ -183,11 +247,11 @@
             <span>🎲 Modo Aleatório (40 questões)</span><span>➤</span>
         </button>
 
-        <h3 style="margin-top: 20px; color: #888; font-size: 14px; text-transform: uppercase;">Provas Individuais</h3>
+        <h3 style="margin-top: 20px; color: var(--text-sec); font-size: 14px; text-transform: uppercase;">Provas Individuais</h3>
         <div class="grid-provas" id="grid-provas">
-            <p style="color: #666; font-size: 14px;">Carregando...</p>
+            <p style="color: var(--text-sec); font-size: 14px;">Carregando...</p>
         </div>
-        <p style="text-align: center; color: #555; margin-top: 30px; font-size: 12px;">v3.4 - Botão Entregar</p>
+        
     </div>
 
     <div id="tela-quiz" class="hidden">
@@ -225,6 +289,20 @@
             <button class="nav-btn btn-next" onclick="navegar(1)">➡️</button>
         </div>
     </div>
+
+    <footer>
+        <div class="footer-content">
+            <p><strong>📚 Conteúdo e Material:</strong></p>
+            <p>AGE Treinamentos | Prof. Andre Nicolau</p>
+            <p class="gratitude">"Agradecimento especial ao Prof. Nicolau pela excelência do material e pelo conhecimento compartilhado."</p>
+            
+            <div class="footer-divider"></div>
+            
+            <p><strong>💻 Desenvolvimento:</strong></p>
+            <p>Guilherme Magioni | Mergulhador SNQC 34392</p>
+            <p class="version">Versão 1.0</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

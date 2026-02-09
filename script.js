@@ -177,9 +177,6 @@ function iniciarProva(tipo) {
     else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
         
-        // --- CORREÇÃO IMPORTANTE AQUI ---
-        // Em vez de cortar por posição (slice), filtramos pelo ID da questão.
-        // Isso impede que erros de carregamento desloquem as provas.
         const inicioId = (numProva - 1) * 40 + 1;
         const fimId = numProva * 40;
         
@@ -205,7 +202,6 @@ function retomarJogo() {
     tipoProvaAtual = dados.tipo;
     
     if (dados.idsQuestao && dados.idsQuestao.length > 0) {
-        // Reconstrói as questões baseadas nos IDs salvos
         questoesDaProva = dados.idsQuestao.map(id => bancoCompleto.find(q => q.id === id)).filter(q => q);
     } else {
         questoesDaProva = [...bancoCompleto];
@@ -223,6 +219,10 @@ function retomarJogo() {
 
 function abrirTelaQuiz() {
     document.getElementById('menu-inicial').classList.add('hidden');
+    
+    // --- CORREÇÃO: Esconde o botão de tema ao entrar no quiz ---
+    if (themeToggleBtn) themeToggleBtn.style.display = 'none';
+
     const footer = document.querySelector('footer');
     if (footer) footer.style.display = 'none'; // Esconde footer no quiz
     
@@ -241,6 +241,10 @@ function abrirTelaQuiz() {
 
 function voltarAoMenu() {
     salvarProgresso(); 
+    
+    // --- CORREÇÃO: Mostra o botão de tema ao voltar para o menu ---
+    if (themeToggleBtn) themeToggleBtn.style.display = 'flex';
+
     document.getElementById('tela-quiz').classList.add('hidden');
     document.getElementById('menu-inicial').classList.remove('hidden');
     const footer = document.querySelector('footer');

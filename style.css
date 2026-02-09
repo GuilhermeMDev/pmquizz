@@ -42,7 +42,7 @@ body {
     flex-direction: column; 
     align-items: center; 
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Evita rolagem lateral */
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -52,10 +52,12 @@ body {
 #menu-inicial {
     width: 100%; 
     max-width: 800px; 
-    padding: 5px 20px 20px 20px; 
+    /* AQUI: Aumentei o topo para 30px (estava 5px) para descer o header */
+    padding: 30px 20px 10px 20px; 
     display: flex; 
     flex-direction: column; 
-    gap: 15px; 
+    /* AQUI: Reduzi o gap de 15px para 8px (compactar altura para caber no tablet) */
+    gap: 8px; 
     animation: fadeIn 0.5s;
     flex: 1; 
     justify-content: flex-start; 
@@ -66,7 +68,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 20px 0; 
+    /* Reduzi a margem inferior de 20px para 10px para aproximar os botões */
+    margin: 0 0 10px 0; 
     position: relative;
     width: 100%;
 }
@@ -92,7 +95,8 @@ body {
 /* Botões do Menu */
 .btn-menu {
     background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--text-main);
-    padding: 18px; 
+    /* Reduzi padding interno de 18px para 14px (botões mais finos) */
+    padding: 14px; 
     font-size: 16px; border-radius: 12px; cursor: pointer;
     display: flex; justify-content: space-between; align-items: center;
     transition: transform 0.2s, background 0.2s;
@@ -101,7 +105,7 @@ body {
 .btn-menu:active { transform: scale(0.98); }
 .btn-menu:hover { background: var(--btn-hover); border-color: #666; }
 .btn-destaque { background: linear-gradient(135deg, #1565c0, #0d47a1); border: none; font-weight: bold; color: white; box-shadow: 0 4px 15px rgba(21, 101, 192, 0.4); }
-.btn-continuar { background: linear-gradient(135deg, #2e7d32, #1b5e20); border: none; font-weight: bold; color: white; display: none; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4); }
+.btn-continuar { background: linear-gradient(135deg, #2e7d32, #1b5e20); border: none; font-weight: bold; color: white; display: none; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4); }
 
 /* ACORDEÃO */
 .accordion-btn {
@@ -109,11 +113,11 @@ body {
     border: 1px dashed var(--border-color);
     color: var(--text-sec);
     width: 100%;
-    padding: 15px;
+    padding: 14px;
     border-radius: 12px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 5px;
     transition: all 0.3s;
     font-size: 15px;
 }
@@ -129,21 +133,28 @@ body {
 .grid-provas { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    gap: 12px; 
-    padding: 10px 5px;
+    gap: 10px; 
+    padding: 5px;
 }
 
 .btn-prova { 
-    background: var(--btn-bg); border: 1px solid var(--border-color); padding: 12px; 
+    background: var(--btn-bg); border: 1px solid var(--border-color); padding: 10px; 
     border-radius: 8px; color: var(--text-main); cursor: pointer; text-align: center;
     transition: background 0.2s; font-size: 0.95rem;
 }
 .btn-prova:hover { background: var(--btn-hover); border-color: #555; }
 
-/* Ajustes PC (Zero Scroll) */
+/* AJUSTES PARA PC E TABLET */
 @media (min-width: 768px) {
-    #menu-inicial { max-width: 900px; padding-top: 5px; } 
+    #menu-inicial { 
+        max-width: 900px; 
+        padding-top: 30px; /* Mantém o topo confortável no PC */
+        gap: 8px; /* Mantém botões juntinhos */
+    } 
     .grid-provas { grid-template-columns: repeat(4, 1fr); }
+    
+    /* Footer no PC/Tablet: Compacto para não forçar scroll */
+    footer { padding: 10px 40px; }
 }
 
 /* TELA QUIZ */
@@ -262,7 +273,7 @@ footer {
 /* Rodapé no PC/Tablet: Compacto e Horizontal */
 @media (min-width: 768px) {
     footer {
-        padding: 12px 40px; 
+        padding: 10px 40px; 
         font-size: 16px; 
     }
     .footer-container {

@@ -31,11 +31,11 @@ body.light-theme {
 /* RESET TOTAL */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* --- CORREÇÃO DO SCROLL LATERAL NA RAIZ --- */
+/* CORREÇÃO DO SCROLL LATERAL DO TABLET */
 html {
+    width: 100%;
     height: 100%;
-    overflow-x: hidden; /* Corta qualquer excesso lateral causado por tablets */
-    width: 100vw;       /* Garante largura da viewport */
+    overflow-x: hidden; /* Isso mata o scroll lateral indesejado na raiz */
 }
 
 body { 
@@ -43,67 +43,68 @@ body {
     color: var(--text-main); 
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
     
-    /* --- ESTRUTURA GRID (A Solução Definitiva para Tablet) --- */
-    display: grid;
-    /* Linha 1: Ocupa tudo que der (1fr) | Linha 2: Ocupa só o necessário (auto) */
-    grid-template-rows: 1fr auto; 
+    /* CONFIGURAÇÃO FLEXBOX (A original que funciona bem) */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
     
-    min-height: 100vh; 
-    min-height: 100dvh; /* Altura dinâmica para Chrome Mobile/Tablet */
-    
-    margin: 0;
-    padding: 0;
     width: 100%;
     
+    /* AQUI ESTÁ O TRUQUE PRO TABLET: Altura mínima dinâmica */
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic Viewport Height para Android */
+    
+    overflow-x: hidden; /* Segurança extra */
     transition: background-color 0.3s, color 0.3s;
 }
 
 .hidden { display: none !important; }
 
-/* --- BOTÃO TEMA (FIXO) --- */
+/* --- BOTÃO TEMA --- */
 .theme-toggle {
     position: fixed; 
-    top: 25px; 
-    right: 25px;
-    
-    width: 50px; 
-    height: 50px;
+    top: 20px; 
+    right: 20px;
     
     background: var(--card-color); 
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    border-radius: 50%;
-    
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     color: var(--text-main);
     font-size: 24px; 
-    cursor: pointer; 
+    
+    /* Mantém o botão clicável e visível */
     z-index: 9999;
+    cursor: pointer; 
+    padding: 10px; 
+    border-radius: 50%;
+    
+    /* Fix para Android renderizar corretamente */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0); 
     
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* Hack de Performance para Android não "piscar" o botão */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0); 
+    width: 50px;
+    height: 50px;
 }
 .theme-toggle:active { transform: scale(0.9); }
 
-/* --- CONTEÚDO PRINCIPAL (OCUPA A LINHA 1 DO GRID) --- */
-#menu-inicial, 
-#tela-quiz {
+/* --- MENU INICIAL --- */
+#menu-inicial {
     width: 100%; 
     max-width: 800px; 
-    margin: 0 auto; 
-    
-    /* Garante que o item ocupe o topo da célula do Grid */
-    align-self: start;
+    padding: 30px 20px 20px 20px; 
     
     display: flex; 
     flex-direction: column; 
-    
-    padding: 40px 20px 20px 20px;
+    gap: 12px; /* Mantém o espaçamento original que você gosta */
     animation: fadeIn 0.5s;
+    
+    /* EMPURRA O RODAPÉ PRA BAIXO */
+    flex: 1 0 auto; 
+    
+    justify-content: flex-start; 
 }
 
 /* Header */
@@ -150,16 +151,30 @@ body {
 @media (min-width: 768px) {
     #menu-inicial { 
         max-width: 900px; 
-        padding-top: 50px; 
+        padding-top: 40px; 
+        gap: 15px; /* Ajuste leve para telas maiores */
     } 
+
     .menu-header { margin-bottom: 20px; }
+    
     .grid-provas { grid-template-columns: repeat(4, 1fr); }
+    
+    /* Posição do botão de tema */
+    .theme-toggle {
+        top: 25px;
+        right: 25px;
+    }
 }
 
 /* --- TELA QUIZ --- */
 #tela-quiz { 
-    display: none; /* Controlado pelo JS */
-    /* Grid properties herdam do seletor agrupado acima */
+    display: none; 
+    width: 100%; 
+    flex-direction: column; 
+    align-items: center; 
+    
+    /* EMPURRA O RODAPÉ TAMBÉM */
+    flex: 1 0 auto; 
 }
 
 #quiz-container { 
@@ -209,18 +224,17 @@ body {
 .tooltip-timer { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background-color: #ff9800; color: #000; padding: 8px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.5); animation: bounce 1s infinite alternate; display: none; z-index: 101; }
 .tooltip-timer::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #ff9800 transparent transparent transparent; }
 
-/* --- FOOTER (Padrão e Sticky) --- */
+/* --- FOOTER --- */
 footer {
-    /* Ocupa a Linha 2 do Grid (auto) */
     width: 100%;
     background-color: var(--card-color);
     padding: 20px 20px; 
     text-align: center;
     font-size: 14px;
     border-top: 1px solid var(--border-color);
+    margin-top: auto; /* Empurra pro fundo */
     color: var(--text-sec);
-    
-    z-index: 10;
+    flex-shrink: 0; /* Não deixa encolher */
 }
 .footer-content strong { color: var(--text-main); display: block; margin-bottom: 3px; font-size: 15px; }
 .footer-content p { margin: 3px 0 10px; line-height: 1.4; }

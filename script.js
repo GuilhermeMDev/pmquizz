@@ -54,10 +54,19 @@ async function carregarBancoDeDados() {
 function gerarBotoesProvas() {
     const grid = document.getElementById('grid-provas');
     grid.innerHTML = "";
+    
+    // GERAÇÃO DOS BOTÕES COM INTERVALO (Ajuste solicitado)
     for (let i = 1; i <= 14; i++) {
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
-        btn.innerHTML = `<strong>Prova ${i}</strong><br><small>40 Questões</small>`;
+        
+        // Cálculo matemático do intervalo
+        const inicio = (i - 1) * 40 + 1;
+        const fim = i * 40;
+        
+        // Exibe: Prova 4 (Q. 121 - 160)
+        btn.innerHTML = `<strong>Prova ${i}</strong><br><small>Q. ${inicio} - ${fim}</small>`;
+        
         btn.onclick = () => iniciarProva('prova_' + i);
         grid.appendChild(btn);
     }
@@ -142,7 +151,6 @@ function abrirTelaQuiz() {
     document.getElementById('tela-quiz').style.display = 'flex';
     document.getElementById('acertos').innerText = acertos;
     document.getElementById('erros').innerText = erros;
-    // Limpa relatório se houver
     document.getElementById('relatorio-final').innerHTML = "";
     document.getElementById('pergunta-texto').style.display = 'block';
     document.getElementById('opcoes-container').style.display = 'block';
@@ -168,23 +176,19 @@ function mostrarQuestao() {
     const q = questoesDaProva[indiceAtual];
     const estado = historicoRespostas[q.id];
 
-    // --- CABEÇALHO ---
-    let tituloPrincipal = "";
+    let tituloPrincipal = "Simulado";
     if (tipoProvaAtual.startsWith('prova_')) {
         const num = parseInt(tipoProvaAtual.split('_')[1]);
-        const inicio = (num - 1) * 40 + 1;
-        const fim = num * 40;
-        tituloPrincipal = `Prova ${num} (${inicio} a ${fim})`;
+        // Títulos mantidos conforme sua customização
+        tituloPrincipal = `Prova ${num}`; 
     } else if (tipoProvaAtual === 'aleatoria') {
         tituloPrincipal = "Modo Aleatório";
     } else {
         tituloPrincipal = "Simulado Completo";
     }
 
-    // Linha 1 (Contexto Global)
     document.getElementById('txt-prova').innerText = tituloPrincipal;
-    // Linha 2 (Localização Exata)
-    document.getElementById('txt-seq').innerText = `Questão PDF #${q.id} • Progresso: ${indiceAtual + 1}/${questoesDaProva.length}`;
+    document.getElementById('txt-seq').innerText = `Ref. PDF #${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
 
     document.getElementById('pergunta-texto').innerText = q.pergunta;
     
@@ -327,15 +331,12 @@ function salvarProgresso() {
     localStorage.setItem('quiz_offshore_save', JSON.stringify(dados));
 }
 
-// --- RELATÓRIO FINAL (O "BOLETIM") ---
 function finalizarQuiz() {
-    // Esconde elementos do quiz
     document.getElementById('pergunta-texto').style.display = 'none';
     document.getElementById('opcoes-container').style.display = 'none';
     document.getElementById('feedback').style.display = 'none';
     document.querySelector('.nav-bar').style.display = 'none';
     
-    // Gera o Grid
     let relatorioHTML = `
         <h2 style="text-align: center; margin-bottom: 20px;">Relatório de Desempenho</h2>
         <div class="grid-relatorio">
@@ -354,7 +355,6 @@ function finalizarQuiz() {
             } else {
                 classe = "resumo-errado";
                 texto = `${q.id} - ${hist.escolha}`;
-                // Mostra o gabarito oficial se errou (Poupando tempo!)
                 gabaritoInfo = `<div class="txt-gabarito">Gab: ${q.resposta}</div>`;
             }
         }
@@ -368,8 +368,6 @@ function finalizarQuiz() {
     });
 
     relatorioHTML += `</div>`;
-    
-    // Botão de reiniciar
     relatorioHTML += `
         <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444; margin-top: 20px;">
             Voltar ao Menu

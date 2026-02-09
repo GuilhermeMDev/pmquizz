@@ -31,8 +31,11 @@ body.light-theme {
 /* RESET TOTAL */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* --- CORREÇÃO DO SCROLL LATERAL NA RAIZ --- */
 html {
-    height: 100%; /* Mantido para compatibilidade base */
+    height: 100%;
+    overflow-x: hidden; /* Corta qualquer excesso lateral causado por tablets */
+    width: 100vw;       /* Garante largura da viewport */
 }
 
 body { 
@@ -40,68 +43,67 @@ body {
     color: var(--text-main); 
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
     
-    /* --- ESTRUTURA FLEX VERTICAL (CORREÇÃO TABLET) --- */
-    display: flex; 
-    flex-direction: column; 
+    /* --- ESTRUTURA GRID (A Solução Definitiva para Tablet) --- */
+    display: grid;
+    /* Linha 1: Ocupa tudo que der (1fr) | Linha 2: Ocupa só o necessário (auto) */
+    grid-template-rows: 1fr auto; 
     
-    /* USAR dvh (Dynamic Viewport Height) para ignorar a barra do Chrome Android */
-    min-height: 100dvh; 
+    min-height: 100vh; 
+    min-height: 100dvh; /* Altura dinâmica para Chrome Mobile/Tablet */
+    
+    margin: 0;
+    padding: 0;
     width: 100%;
     
-    /* Remove overflow-x aqui para evitar conflito */
-    position: relative; 
     transition: background-color 0.3s, color 0.3s;
 }
 
 .hidden { display: none !important; }
 
-/* --- BOTÃO TEMA (FIXO NA TELA) --- */
+/* --- BOTÃO TEMA (FIXO) --- */
 .theme-toggle {
     position: fixed; 
-    top: 20px; 
-    right: 20px;
+    top: 25px; 
+    right: 25px;
+    
+    width: 50px; 
+    height: 50px;
     
     background: var(--card-color); 
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4); /* Sombra reforçada */
-    color: var(--text-main);
-    font-size: 24px; 
-    
-    /* --- CORREÇÃO DE RENDERIZAÇÃO ANDROID --- */
-    z-index: 9999; /* Garante topo absoluto */
-    cursor: pointer; 
-    padding: 10px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     border-radius: 50%;
     
-    /* Força aceleração de hardware para não sumir no scroll */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0); 
+    color: var(--text-main);
+    font-size: 24px; 
+    cursor: pointer; 
+    z-index: 9999;
     
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px; /* Tamanho fixo para clique fácil */
-    height: 50px;
+    
+    /* Hack de Performance para Android não "piscar" o botão */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0); 
 }
-.theme-toggle:active { transform: scale(0.9) translateZ(0); }
+.theme-toggle:active { transform: scale(0.9); }
 
-/* --- MENU INICIAL --- */
-#menu-inicial {
+/* --- CONTEÚDO PRINCIPAL (OCUPA A LINHA 1 DO GRID) --- */
+#menu-inicial, 
+#tela-quiz {
     width: 100%; 
     max-width: 800px; 
-    padding: 30px 20px 20px 20px; 
     margin: 0 auto; 
+    
+    /* Garante que o item ocupe o topo da célula do Grid */
+    align-self: start;
     
     display: flex; 
     flex-direction: column; 
-    gap: 12px; 
+    
+    padding: 40px 20px 20px 20px;
     animation: fadeIn 0.5s;
-    
-    /* --- O SEGREDO DO STICKY FOOTER --- */
-    /* flex-grow: 1, flex-shrink: 0, flex-basis: auto */
-    flex: 1 0 auto; 
-    
-    justify-content: flex-start; 
 }
 
 /* Header */
@@ -148,27 +150,16 @@ body {
 @media (min-width: 768px) {
     #menu-inicial { 
         max-width: 900px; 
-        padding-top: 40px; 
+        padding-top: 50px; 
     } 
     .menu-header { margin-bottom: 20px; }
     .grid-provas { grid-template-columns: repeat(4, 1fr); }
-    
-    /* Ajuste fino para o botão de tema no PC/Tablet */
-    .theme-toggle {
-        top: 25px;
-        right: 25px;
-    }
 }
 
 /* --- TELA QUIZ --- */
 #tela-quiz { 
-    display: none; 
-    width: 100%; 
-    flex-direction: column; 
-    align-items: center; 
-    
-    /* EMPURRA O FOOTER NO QUIZ TAMBÉM */
-    flex: 1 0 auto; 
+    display: none; /* Controlado pelo JS */
+    /* Grid properties herdam do seletor agrupado acima */
 }
 
 #quiz-container { 
@@ -220,6 +211,7 @@ body {
 
 /* --- FOOTER (Padrão e Sticky) --- */
 footer {
+    /* Ocupa a Linha 2 do Grid (auto) */
     width: 100%;
     background-color: var(--card-color);
     padding: 20px 20px; 
@@ -228,10 +220,6 @@ footer {
     border-top: 1px solid var(--border-color);
     color: var(--text-sec);
     
-    /* SEGURANÇA FINAL PARA O FOOTER */
-    margin-top: auto; /* Empurra o footer pro fundo */
-    flex-shrink: 0;   /* Impede o footer de ser "esmagado" */
-    position: relative; 
     z-index: 10;
 }
 .footer-content strong { color: var(--text-main); display: block; margin-bottom: 3px; font-size: 15px; }

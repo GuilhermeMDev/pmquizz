@@ -134,24 +134,34 @@ function verificarSaveGame() {
     if (save) {
         const dados = JSON.parse(save);
         btn.style.display = 'flex';
-        let label = "Simulado";
+        
+        let label = "Simulado Completo";
         if (dados.tipo.startsWith('prova_')) {
             const n = dados.tipo.split('_')[1];
             label = `Prova ${n}`;
+        } else if (dados.tipo === 'aleatoria') {
+            label = "Modo Aleatório";
         }
         
+        // Encontra a primeira questão não respondida
         let proximoIndice = dados.indice;
         if (dados.idsQuestao && dados.historico) {
             const idxNaoRespondido = dados.idsQuestao.findIndex(id => !dados.historico[id]);
             if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
             else proximoIndice = dados.idsQuestao.length - 1;
         }
+        
+        // Pega o ID real da questão (referência do PDF)
         let idReal = "?";
         if(dados.idsQuestao && dados.idsQuestao[proximoIndice]) {
-            // Tenta pegar o ID do objeto, ou usa o próprio valor se for array de IDs
-            idReal = dados.idsQuestao[proximoIndice].id || dados.idsQuestao[proximoIndice];
+            idReal = dados.idsQuestao[proximoIndice];
         }
-        document.getElementById('info-save').innerText = `${label} • Retomar no PDF #${idReal}`;
+        
+        // Monta o texto: "Prova X • Q. Y • Ref. PDF #Z"
+        const posicaoNaProva = proximoIndice + 1;
+        const totalQuestoes = dados.idsQuestao ? dados.idsQuestao.length : "?";
+        
+        document.getElementById('info-save').innerText = `${label} • Q. ${posicaoNaProva}/${totalQuestoes} • Ref. PDF #${idReal}`;
     } else {
         btn.style.display = 'none';
     }
@@ -184,7 +194,7 @@ function iniciarProva(tipo) {
         
         if (questoesDaProva.length === 0) {
             alert(`Atenção: Não foram encontradas questões para a Prova ${numProva} (IDs ${inicioId} a ${fimId}). Verifique se o arquivo json correspondente foi carregado.`);
-            return; // Impede abrir o quiz vazio
+            return;
         }
     }
 
@@ -207,8 +217,13 @@ function retomarJogo() {
         questoesDaProva = [...bancoCompleto];
     }
 
-    // CORREÇÃO: Usa o índice salvo diretamente
-    indiceAtual = dados.indice || 0;
+    // Encontra a primeira questão não respondida
+    let indiceInteligente = 0;
+    const primeiroNaoRespondido = questoesDaProva.findIndex(q => !historicoRespostas[q.id]);
+    if (primeiroNaoRespondido !== -1) indiceInteligente = primeiroNaoRespondido;
+    else indiceInteligente = questoesDaProva.length - 1;
+    
+    indiceAtual = indiceInteligente;
     
     abrirTelaQuiz();
     mostrarQuestao();
@@ -217,11 +232,10 @@ function retomarJogo() {
 function abrirTelaQuiz() {
     document.getElementById('menu-inicial').classList.add('hidden');
     
-    // --- CORREÇÃO: Esconde o botão de tema ao entrar no quiz ---
     if (themeToggleBtn) themeToggleBtn.style.display = 'none';
 
     const footer = document.querySelector('footer');
-    if (footer) footer.style.display = 'none'; // Esconde footer no quiz
+    if (footer) footer.style.display = 'none';
     
     document.getElementById('tela-quiz').classList.remove('hidden'); 
     document.getElementById('tela-quiz').style.display = 'flex';
@@ -239,13 +253,12 @@ function abrirTelaQuiz() {
 function voltarAoMenu() {
     salvarProgresso(); 
     
-    // --- CORREÇÃO: Mostra o botão de tema ao voltar para o menu ---
     if (themeToggleBtn) themeToggleBtn.style.display = 'flex';
 
     document.getElementById('tela-quiz').classList.add('hidden');
     document.getElementById('menu-inicial').classList.remove('hidden');
     const footer = document.querySelector('footer');
-    if (footer) footer.style.display = 'block'; // Mostra footer no menu
+    if (footer) footer.style.display = 'block';
     verificarSaveGame(); 
 }
 

@@ -63,7 +63,7 @@ body {
 /* --- BOTÃO TEMA --- */
 .theme-toggle {
     position: fixed; 
-    top: 15px; 
+    top: 50px;  /* Aumentado de 15px para 50px no mobile */
     right: 15px;
     
     background: var(--card-color); 

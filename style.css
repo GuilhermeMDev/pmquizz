@@ -312,6 +312,7 @@ footer {
     transition: color 0.2s;
     font-weight: 500;
 }
+
 .footer-link:hover {
     color: var(--primary);
     text-decoration: underline;

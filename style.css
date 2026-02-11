@@ -239,37 +239,74 @@ body {
 
 #feedback { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; background: var(--header-bg); display: none; border: 1px solid var(--border-color); color: var(--text-main); }
 
-/* GRID RELATÓRIO - COLUNA VERTICAL */
+/* --- GRID RELATÓRIO (VERTICAL COMO O GABARITO) --- */
 .grid-relatorio { 
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    
+    /* O Segredo: Preenche Coluna por Coluna, não Linha por Linha */
+    grid-auto-flow: column; 
+    
+    /* Define EXATAMENTE 10 linhas, para que a 11ª questão vá para a próxima coluna */
+    grid-template-rows: repeat(10, auto); 
+    
+    /* Espaçamento entre as células */
     gap: 8px;
+    
+    /* Margens e Largura */
     margin-bottom: 30px;
     margin-top: 20px;
     width: 100%;
-    max-width: 600px;
+    
+    /* Centraliza e limita largura para não esticar demais */
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    
+    /* Scroll horizontal no mobile se ficar muito largo */
+    overflow-x: auto;
+    padding-bottom: 10px; /* Espaço para a barra de scroll se aparecer */
+}
+
+/* Opcional: Se quiser forçar 4 colunas exatas no PC para ficar igual ao PDF */
+@media (min-width: 768px) {
+    .grid-relatorio {
+        grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+    }
 }
 
 .card-resumo { 
-    padding: 12px 20px;
-    border-radius: 8px;
-    text-align: left;
-    font-size: 15px;
+    padding: 8px 12px; /* Reduzi um pouco o padding para caber melhor */
+    border-radius: 6px;
+    
+    text-align: center; /* Centralizado fica mais fácil de comparar letras */
+    font-size: 14px;
     font-weight: bold;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    /* SEM min-height - deixa ajustar ao conteúdo */
+    align-items: center;
+    
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    min-height: 50px; /* Altura mínima para ficar uniforme */
+    border: 1px solid transparent; /* Para evitar pulos de layout */
 }
 
-.resumo-certo { background-color: #1b5e20; border: 1px solid #2e7d32; color: #e8f5e9; }
-.resumo-errado { background-color: #b71c1c; border: 1px solid #c62828; color: #ffebee; }
-.resumo-neutro { background-color: var(--btn-bg); border: 1px solid var(--border-color); color: var(--text-sec); }
-.txt-gabarito { font-size: 11px; color: #fff; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; margin-top: 4px; display: inline-block; }
+/* Cores dos Cards (Mantidas) */
+.resumo-certo { background-color: #1b5e20; border-color: #2e7d32; color: #e8f5e9; }
+.resumo-errado { background-color: #b71c1c; border-color: #c62828; color: #ffebee; }
+.resumo-neutro { background-color: var(--btn-bg); border-color: var(--border-color); color: var(--text-sec); }
+
+/* Texto do Gabarito (Ajuste fino) */
+.txt-gabarito { 
+    font-size: 10px; 
+    color: #fff; 
+    background: rgba(0,0,0,0.3); 
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    margin-top: 4px; 
+    display: inline-block; 
+}
 
 .nav-bar { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--card-color); padding: 15px 20px; box-sizing: border-box; display: flex; justify-content: center; gap: 15px; box-shadow: 0 -5px 20px var(--shadow); z-index: 100; border-top: 1px solid var(--border-color); }
 .nav-btn { background: var(--btn-bg); color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 0; border-radius: 8px; font-size: 18px; cursor: pointer; flex: 1; max-width: 160px; display: flex; justify-content: center; align-items: center; position: relative; }

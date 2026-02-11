@@ -219,74 +219,93 @@ body {
 
 #feedback { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; background: var(--header-bg); display: none; border: 1px solid var(--border-color); color: var(--text-main); }
 
-/* --- GRID RELATÓRIO OTIMIZADO (MOBILE E PC) --- */
+/* --- GRID RELATÓRIO (ULTRA COMPACTO - SEM SCROLL) --- */
 .grid-relatorio { 
     display: grid;
     
-    /* Preenche verticalmente primeiro (Coluna 1 cheia, depois Coluna 2...) */
+    /* Organização Vertical: Enche a coluna 1 (1-10), depois a 2... */
     grid-auto-flow: column; 
-    
-    /* Força EXATAMENTE 10 linhas. Isso gera automaticamente 4 colunas para 40 questões */
     grid-template-rows: repeat(10, auto); 
     
-    gap: 5px; /* Gap pequeno para caber no celular */
+    /* GAP MÍNIMO: Apenas 2px no mobile para caber tudo */
+    gap: 2px; 
     
-    margin-bottom: 30px;
-    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     width: 100%;
     
-    /* Permite scroll lateral SE a tela for minúscula (iPhone SE), mas tenta caber */
+    /* Centraliza */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Mobile: Tenta esconder o scroll lateral se couber */
     overflow-x: auto; 
-    padding-bottom: 5px;
+    padding-bottom: 2px;
 }
 
 .card-resumo { 
-    /* Estilo Compacto para Mobile */
-    padding: 6px 2px;
-    border-radius: 6px;
+    /* Padding mínimo: Quase zero para economizar espaço */
+    padding: 2px 0; 
+    border-radius: 4px;
     
     text-align: center;
-    font-size: 11px; /* Fonte reduzida para caber "Q.134 - A" lado a lado */
+    
+    /* FONTE PEQUENA: Essencial para caber "Q.134 - Pulou" sem quebrar o layout */
+    font-size: 10px; 
     font-weight: bold;
-    white-space: nowrap; /* Impede quebra de linha do texto */
+    
+    /* Impede que o texto quebre para a linha de baixo, mantendo a altura uniforme */
+    white-space: nowrap; 
     
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    min-height: 40px; 
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    
+    /* ALTURA MÍNIMA REDUZIDA: Garante que as 10 linhas caibam na tela sem scroll */
+    min-height: 28px; 
     border: 1px solid transparent;
 }
 
-/* Ajustes para PC (Restaura tamanho normal) */
+/* Ajustes Específicos para PC/Tablet */
 @media (min-width: 768px) {
     .grid-relatorio {
-        gap: 10px;
-        /* No PC, força 4 colunas largas */
+        /* Força 4 colunas iguais */
         grid-template-columns: repeat(4, 1fr); 
+        
+        /* MATAR O SCROLL NO PC: Esconde a barra de rolagem */
+        overflow-x: hidden; 
+        
+        /* Um pouco mais de espaço no PC para estética, mas ainda compacto */
+        gap: 6px; 
+        margin-bottom: 20px;
     }
+    
     .card-resumo {
-        padding: 10px;
-        font-size: 14px;
-        min-height: 50px;
+        font-size: 13px; /* Aumenta um pouco a letra no PC para ler melhor */
+        min-height: 36px; /* Altura confortável mas compacta */
+        padding: 4px;
     }
 }
 
-.resumo-certo { background-color: #1b5e20; border-color: #2e7d32; color: #e8f5e9; }
-.resumo-errado { background-color: #b71c1c; border-color: #c62828; color: #ffebee; }
-.resumo-neutro { background-color: var(--btn-bg); border-color: var(--border-color); color: var(--text-sec); }
-
+/* Texto do Gabarito (Quando erra) */
 .txt-gabarito { 
     font-size: 9px; 
     color: #fff; 
     background: rgba(0,0,0,0.3); 
-    padding: 1px 4px; 
-    border-radius: 3px; 
-    margin-top: 2px; 
-    display: inline-block; 
+    padding: 0 4px; 
+    border-radius: 2px; 
+    margin-top: 1px; 
+    line-height: 1.1;
 }
+
+/* Cores (Mantidas iguais) */
+.resumo-certo { background-color: #1b5e20; border-color: #2e7d32; color: #e8f5e9; }
+.resumo-errado { background-color: #b71c1c; border-color: #c62828; color: #ffebee; }
+.resumo-neutro { background-color: var(--btn-bg); border-color: var(--border-color); color: var(--text-sec); }
 
 /* --- NAV BAR --- */
 .nav-bar { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--card-color); padding: 12px 15px; box-sizing: border-box; display: flex; justify-content: center; gap: 10px; box-shadow: 0 -5px 20px var(--shadow); z-index: 100; border-top: 1px solid var(--border-color); }

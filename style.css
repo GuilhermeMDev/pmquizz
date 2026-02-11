@@ -293,7 +293,7 @@ body {
 
 /* Texto do Gabarito (Quando erra) */
 .txt-gabarito { 
-    font-size: 9px; 
+    font-size: 11px; 
     color: #fff; 
     background: rgba(0,0,0,0.3); 
     padding: 0 4px; 

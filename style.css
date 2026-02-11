@@ -63,7 +63,7 @@ body {
 /* --- BOTÃO TEMA --- */
 .theme-toggle {
     position: fixed; 
-    top: 60px;  /* Aumentado de 15px para 50px no mobile */
+    top: 60px;
     right: 15px;
     
     background: var(--card-color); 
@@ -238,8 +238,34 @@ body {
 .resposta-errada::after { content: "❌"; position: absolute; right: 15px; }
 
 #feedback { margin-top: 20px; padding: 15px; border-radius: 8px; text-align: center; font-size: 18px; background: var(--header-bg); display: none; border: 1px solid var(--border-color); color: var(--text-main); }
-.grid-relatorio { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin-bottom: 30px; margin-top: 20px; width: 100%; }
-.card-resumo { padding: 10px; border-radius: 8px; text-align: center; font-size: 14px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+/* GRID RELATÓRIO - COLUNA VERTICAL */
+.grid-relatorio { 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-resumo { 
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 50px; /* Garante altura mínima igual para todos */
+}
+
 .resumo-certo { background-color: #1b5e20; border: 1px solid #2e7d32; color: #e8f5e9; }
 .resumo-errado { background-color: #b71c1c; border: 1px solid #c62828; color: #ffebee; }
 .resumo-neutro { background-color: var(--btn-bg); border: 1px solid var(--border-color); color: var(--text-sec); }
@@ -292,7 +318,7 @@ footer {
 
 /* Logo AGE no rodapé */
 .footer-logo {
-    height: 1.2em; /* Mesmo tamanho do emoji 📚 */
+    height: 1.2em;
     width: auto;
     vertical-align: middle;
     margin-right: 6px;

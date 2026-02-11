@@ -307,14 +307,106 @@ body {
 .resumo-errado { background-color: #b71c1c; border-color: #c62828; color: #ffebee; }
 .resumo-neutro { background-color: var(--btn-bg); border-color: var(--border-color); color: var(--text-sec); }
 
-/* --- NAV BAR --- */
-.nav-bar { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--card-color); padding: 12px 15px; box-sizing: border-box; display: flex; justify-content: center; gap: 10px; box-shadow: 0 -5px 20px var(--shadow); z-index: 100; border-top: 1px solid var(--border-color); }
-.nav-btn { background: var(--btn-bg); color: var(--text-main); border: 1px solid var(--border-color); padding: 12px 0; border-radius: 8px; font-size: 18px; cursor: pointer; flex: 1; max-width: 140px; display: flex; justify-content: center; align-items: center; position: relative; }
+/* --- NAV BAR (MOBILE - PADRÃO) --- */
+.nav-bar { 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    background-color: var(--card-color); 
+    padding: 12px 15px; 
+    box-sizing: border-box; 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    box-shadow: 0 -5px 20px var(--shadow); 
+    z-index: 100; 
+    border-top: 1px solid var(--border-color); 
+}
+
+.nav-btn { 
+    background: var(--btn-bg); 
+    color: var(--text-main); 
+    border: 1px solid var(--border-color); 
+    padding: 12px 0; 
+    border-radius: 8px; 
+    font-size: 18px; 
+    cursor: pointer; 
+    flex: 1; 
+    max-width: 140px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    position: relative; 
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
 .timer-on { background-color: #1b5e20; border-color: #2e7d32; color: #fff; }
 .btn-next { background-color: #0d47a1; border-color: #1565c0; color: white; }
-.tooltip-timer { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background-color: #ff9800; color: #000; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.5); animation: bounce 1s infinite alternate; display: none; z-index: 101; }
-.tooltip-timer::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border-width: 6px; border-style: solid; border-color: #ff9800 transparent transparent transparent; }
 
+/* Tooltip do Timer */
+.tooltip-timer { 
+    position: absolute; 
+    bottom: 60px; /* Posição original Mobile */
+    left: 50%; 
+    transform: translateX(-50%); 
+    background-color: #ff9800; 
+    color: #000; 
+    padding: 6px 10px; 
+    border-radius: 6px; 
+    font-size: 12px; 
+    font-weight: bold; 
+    white-space: nowrap; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
+    animation: bounce 1s infinite alternate; 
+    display: none; 
+    z-index: 101; 
+}
+.tooltip-timer::after { 
+    content: ""; 
+    position: absolute; 
+    top: 100%; 
+    left: 50%; 
+    margin-left: -6px; 
+    border-width: 6px; 
+    border-style: solid; 
+    border-color: #ff9800 transparent transparent transparent; 
+}
+
+/* --- AJUSTE INTELIGENTE PARA PC E TABLET --- */
+@media (min-width: 768px) {
+    .nav-bar {
+        /* O PULO DO GATO: Removemos a fixação no rodapé */
+        position: static; 
+        
+        /* Centraliza e alinha com a largura do cartão de perguntas */
+        width: 100%;
+        max-width: 800px; /* Mesma largura do #quiz-container */
+        margin: 20px auto 40px auto; /* Espaço em cima e em baixo */
+        
+        /* Removemos o visual de "barra flutuante" */
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+    }
+    
+    /* Remove a margem gigante que protegia o rodapé no mobile */
+    #quiz-container {
+        margin-bottom: 0px; 
+    }
+    
+    /* Ajusta o Tooltip para aparecer logo acima do botão (já que não tem mais barra fixa) */
+    .tooltip-timer {
+        bottom: 110%; /* 110% da altura do botão para cima */
+        margin-bottom: 5px;
+    }
+}
 /* --- FOOTER --- */
 footer {
     width: 100%;

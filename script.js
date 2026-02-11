@@ -91,8 +91,13 @@ window.onload = async () => {
 
 async function carregarBancoDeDados() {
     try {
+        // Cria um número único baseado na hora atual para "enganar" o cache
+        const versao = new Date().getTime(); 
+
         for (const nome of arquivos) {
-            const res = await fetch("./" + nome);
+            // Adicionamos ?v=número no final. O servidor ignora, mas o navegador baixa de novo.
+            const res = await fetch("./" + nome + "?v=" + versao);
+            
             if (!res.ok) {
                 console.error(`Falha ao carregar ${nome}`);
                 continue;

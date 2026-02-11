@@ -91,17 +91,13 @@ window.onload = async () => {
 
 async function carregarBancoDeDados() {
     try {
-        // Cria um código único baseado no horário atual (Ex: 1738492000)
-        // Isso garante que cada vez que o app abre, ele busca a versão mais nova
-        const versao = new Date().getTime();
-
+        // REMOVIDO: const versao = new Date().getTime(); 
+        
         for (const nome of arquivos) {
-            // O TRUQUE ESTÁ AQUI: Adicionamos ?v=... no final do nome
-            // O servidor ignora isso, mas o navegador é obrigado a baixar de novo
-            const res = await fetch("./" + nome + "?v=" + versao, {
-                cache: "no-store" // Reforço: diz pro navegador não guardar cache disso
-            });
-
+            // VOLTA AO ORIGINAL: Sem ?v=...
+            // O Service Worker novo já sabe que se for .json, ele deve tentar baixar novo.
+            const res = await fetch("./" + nome);
+            
             if (!res.ok) {
                 console.error(`Falha ao carregar ${nome}`);
                 continue;
@@ -109,7 +105,6 @@ async function carregarBancoDeDados() {
             const dados = await res.json();
             bancoCompleto = [...bancoCompleto, ...dados];
         }
-        // Ordena por ID para garantir a sequência correta
         bancoCompleto.sort((a, b) => a.id - b.id);
         appCarregado = true;
     } catch (e) {

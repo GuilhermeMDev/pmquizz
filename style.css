@@ -263,7 +263,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    min-height: 50px; /* Garante altura mínima igual para todos */
+    /* SEM min-height - deixa ajustar ao conteúdo */
 }
 
 .resumo-certo { background-color: #1b5e20; border: 1px solid #2e7d32; color: #e8f5e9; }

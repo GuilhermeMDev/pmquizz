@@ -77,6 +77,7 @@ window.onload = async () => {
     await carregarBancoDeDados();
     gerarBotoesProvas();
     verificarSaveGame();
+    atualizarContadorErrosUI();
     if (!localStorage.getItem('timer_dica_visto')) {
         const tooltip = document.getElementById('tooltip-timer');
         if (tooltip) {
@@ -188,18 +189,38 @@ function iniciarProva(tipo) {
     else if (tipo === 'aleatoria') {
         questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
     }
+    // --- NOVO MODO: ERROS ---
+    else if (tipo === 'erros') {
+        const idsErros = JSON.parse(localStorage.getItem('quiz_banco_erros')) || [];
+        
+        if (idsErros.length === 0) {
+            alert("Parabéns! Você não tem erros acumulados para revisar.");
+            return;
+        }
+
+        // Filtra o banco completo pegando só as questões que estão na lista de erros
+        questoesDaProva = bancoCompleto.filter(q => idsErros.includes(q.id));
+        
+        // Se tiver mais de 40 erros, embaralha e pega 40. Se tiver menos, pega todos.
+        if (questoesDaProva.length > 40) {
+            questoesDaProva = questoesDaProva.sort(() => Math.random() - 0.5).slice(0, 40);
+        } else {
+            // Embaralha mesmo sendo poucas para não vir na ordem numérica sempre
+            questoesDaProva = questoesDaProva.sort(() => Math.random() - 0.5);
+        }
+    }
+    // ------------------------
     else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
-        
         const inicioId = (numProva - 1) * 40 + 1;
         const fimId = numProva * 40;
         
         questoesDaProva = bancoCompleto.filter(q => q.id >= inicioId && q.id <= fimId);
-        
-        if (questoesDaProva.length === 0) {
-            alert(`Atenção: Não foram encontradas questões para a Prova ${numProva} (IDs ${inicioId} a ${fimId}). Verifique se o arquivo json correspondente foi carregado.`);
-            return;
-        }
+    }
+
+    if (questoesDaProva.length === 0) {
+        alert("Erro ao carregar questões. Verifique os arquivos.");
+        return;
     }
 
     abrirTelaQuiz();
@@ -283,6 +304,8 @@ function mostrarQuestao() {
         tituloPrincipal = `Prova ${num}`; 
     } else if (tipoProvaAtual === 'aleatoria') {
         tituloPrincipal = "Modo Aleatório";
+    } else if (tipoProvaAtual === 'erros') { // <--- NOVO
+        tituloPrincipal = "Revisão de Erros"; 
     } else {
         tituloPrincipal = "Simulado Completo";
     }
@@ -333,6 +356,10 @@ function verificarResposta(escolhida, gabarito, botao, idQuestao) {
     const letraEscolhida = escolhida.trim().charAt(0).toUpperCase();
     const letraCorreta = gabarito ? gabarito.trim().toUpperCase() : "?";
     const acertou = (letraEscolhida === letraCorreta);
+
+    // --- NOVO: ATUALIZA O BANCO DE ERROS ---
+    atualizarBancoErros(idQuestao, acertou);
+    // ---------------------------------------
 
     historicoRespostas[idQuestao] = { respondida: true, acertou: acertou, escolha: letraEscolhida };
 
@@ -435,6 +462,43 @@ function salvarProgresso() {
         data: new Date().getTime()
     };
     localStorage.setItem('quiz_offshore_save', JSON.stringify(dados));
+}
+
+// --- SISTEMA DE BANCO DE ERROS ---
+function atualizarBancoErros(idQuestao, acertou) {
+    // Pega a lista atual ou cria vazia
+    let errosSalvos = JSON.parse(localStorage.getItem('quiz_banco_erros')) || [];
+    
+    // Garante que são números
+    idQuestao = parseInt(idQuestao);
+
+    if (!acertou) {
+        // SE ERROU: Adiciona à lista se já não estiver lá
+        if (!errosSalvos.includes(idQuestao)) {
+            errosSalvos.push(idQuestao);
+        }
+    } else {
+        // SE ACERTOU: Remove da lista (você já aprendeu!)
+        errosSalvos = errosSalvos.filter(id => id !== idQuestao);
+    }
+
+    // Salva de volta
+    localStorage.setItem('quiz_banco_erros', JSON.stringify(errosSalvos));
+    atualizarContadorErrosUI();
+}
+
+function atualizarContadorErrosUI() {
+    const errosSalvos = JSON.parse(localStorage.getItem('quiz_banco_erros')) || [];
+    const span = document.getElementById('contagem-erros');
+    if (span) {
+        span.innerText = `(${errosSalvos.length})`;
+    }
+    // Se não tiver erros, podemos desabilitar o botão visualmente se quiser
+    const btn = document.getElementById('btn-erros');
+    if(btn) {
+        if(errosSalvos.length === 0) btn.style.opacity = "0.5";
+        else btn.style.opacity = "1";
+    }
 }
 
 function finalizarQuiz() {

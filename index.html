@@ -45,6 +45,10 @@
         <button class="btn-menu" onclick="iniciarProva('aleatoria')">
             <span>🎲 Modo Aleatório (40 questões)</span><span>➤</span>
         </button>
+        
+        <button id="btn-erros" class="btn-menu" onclick="iniciarProva('erros')" style="border-color: #e57373; background: linear-gradient(135deg, #381818, #2c2c2c);">
+            <span>🚨 Revisar Meus Erros <small id="contagem-erros">(0)</small></span><span>➤</span>
+        </button>
 
         <button id="accordion-btn" class="accordion-btn" onclick="toggleProvas()">
             📂 Selecionar Prova Específica (1 a 14) ▼

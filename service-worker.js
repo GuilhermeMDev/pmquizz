@@ -1,5 +1,5 @@
 // --- MUDEI A VERSÃO AQUI PARA FORÇAR ATUALIZAÇÃO ---
-const CACHE_NAME = 'quiz-offshore-v2.1';
+const CACHE_NAME = 'quiz-offshore-v2.2';
 
 const urlsToCache = [
   '/',

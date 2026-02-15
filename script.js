@@ -189,7 +189,7 @@ function iniciarProva(tipo) {
     else if (tipo === 'aleatoria') {
         questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
     }
-    // --- NOVO MODO: ERROS ---
+    // --- NOVO MODO: ERROS (ORGANIZADO) ---
     else if (tipo === 'erros') {
         const idsErros = JSON.parse(localStorage.getItem('quiz_banco_erros')) || [];
         
@@ -198,15 +198,17 @@ function iniciarProva(tipo) {
             return;
         }
 
-        // Filtra o banco completo pegando só as questões que estão na lista de erros
+        // 1. Pega as questões que estão na lista de erros
         questoesDaProva = bancoCompleto.filter(q => idsErros.includes(q.id));
         
-        // Se tiver mais de 40 erros, embaralha e pega 40. Se tiver menos, pega todos.
+        // 2. ORDENAÇÃO: Crescente (1, 2, 3...)
+        // Garante que a ordem segue o PDF/Gabarito físico
+        questoesDaProva.sort((a, b) => a.id - b.id);
+
+        // 3. Limita a 40 questões (as primeiras da lista)
+        // Se tiver 50 erros, ele mostra os 40 primeiros (menores IDs).
         if (questoesDaProva.length > 40) {
-            questoesDaProva = questoesDaProva.sort(() => Math.random() - 0.5).slice(0, 40);
-        } else {
-            // Embaralha mesmo sendo poucas para não vir na ordem numérica sempre
-            questoesDaProva = questoesDaProva.sort(() => Math.random() - 0.5);
+            questoesDaProva = questoesDaProva.slice(0, 40);
         }
     }
     // ------------------------

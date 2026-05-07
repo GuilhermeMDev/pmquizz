@@ -1,5 +1,5 @@
 // --- MUDEI A VERSÃO AQUI PARA FORÇAR ATUALIZAÇÃO ---
-const CACHE_NAME = 'quiz-offshore-v2.2';
+const CACHE_NAME = 'quiz-offshore-v2.3';
 
 const urlsToCache = [
   '/',
@@ -17,7 +17,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Cache aberto - Instalando v2.0');
+        console.log('Cache aberto - Instalando v2.3');
         return cache.addAll(urlsToCache);
       })
   );

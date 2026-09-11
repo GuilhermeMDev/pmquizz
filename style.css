@@ -210,6 +210,75 @@ body {
 .badge-red { color: #e57373; background: rgba(198, 40, 40, 0.2); border: 1px solid #b71c1c; }
 
 .pergunta { font-size: 18px; line-height: 1.5; margin-bottom: 20px; color: var(--text-main); font-weight: 500; }
+
+/* --- COMPONENTE DICA / FÓRMULA --- */
+.container-dica {
+    margin: -10px 0 20px 0;
+    width: 100%;
+}
+
+.btn-dica {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #fbbf24;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.btn-dica:hover {
+    background: rgba(245, 158, 11, 0.22);
+    border-color: #fbbf24;
+    transform: translateY(-1px);
+}
+
+.btn-dica:active {
+    transform: translateY(0);
+}
+
+.btn-dica-seta {
+    font-size: 10px;
+    transition: transform 0.2s ease;
+}
+
+.box-dica {
+    margin-top: 10px;
+    padding: 14px 16px;
+    background: rgba(245, 158, 11, 0.08);
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    color: var(--text-main);
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-line;
+    word-break: break-word;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.25s ease-out;
+}
+
+body.light-theme .btn-dica {
+    background: #fef3c7;
+    border-color: #d97706;
+    color: #92400e;
+}
+
+body.light-theme .btn-dica:hover {
+    background: #fde68a;
+}
+
+body.light-theme .box-dica {
+    background: #fffbeb;
+    border-left-color: #d97706;
+    color: #78350f;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
 .opcao { display: block; width: 100%; padding: 14px 18px; margin: 10px 0; background: var(--btn-bg); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 10px; cursor: pointer; text-align: left; font-size: 16px; position: relative; transition: all 0.2s; }
 .opcao:hover { background-color: var(--btn-hover); }
 .resposta-certa { background-color: #1b5e20 !important; border-color: #4caf50 !important; color: white !important; }

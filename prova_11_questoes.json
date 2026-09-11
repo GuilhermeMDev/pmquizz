@@ -178,6 +178,7 @@
   {
     "id": 18,
     "texto": "Qual a amperagem que deve circular numa bobina de cinco voltas para magnetizar uma barra de aço de 75mm de diâmetro e 250mm de comprimento.",
+    "dica": "• L/D ≥ 4 → Ampére/volta = 35000 / (L/D + 2) [o resultado dividir pelo nº de voltas]\n• 2 < L/D < 4 → Ampére/volta = 45000 / (L/D) [o resultado dividir pelo nº de voltas]",
     "alternativas": [
       "A)14.000A.",
       "B)1.500A.",
@@ -221,7 +222,7 @@
     "texto": "Para a detecção de todas as indicações, a luz negra deve ser:",
     "alternativas": [
       "A) de 18 a 33 velas-metro.",
-      "B) de 7 a 8 velas-metro.\nL/D ≥ 4 – Ampére/volta = 35000 / L/D +2 o resultado dividir pelo no de voltas\nL/D < 4 e > 2 Ampére/volta = 45000 / L/D o resultado dividir pelo no de voltas",
+      "B) de 7 a 8 velas-metro.",
       "C) de 82 a 150 velas-metro.",
       "D) 30 a 33 velas-metros."
     ],

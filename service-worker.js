@@ -1,5 +1,5 @@
 // --- VERSÃO PM QUIZZ ---
-const CACHE_NAME = 'quiz-pm-v1.0';
+const CACHE_NAME = 'quiz-pm-v1.1';
 
 const urlsToCache = [
   '/',

@@ -135,9 +135,10 @@
   {
     "id": 14,
     "texto": "Qual a amperagem que deve ser usada no exame de chapas de aço de 20mm de espessura, por meio de partículas magnéticas, quando for usada a técnica dos eletrodos, sendo de 150mm a distância entre os eletrodos.",
+    "dica": "Técnica dos Eletrodos (Regra de Cálculo):\n• Espessura < 19 mm: 3,54 a 4,33 A/mm de distância entre pontas\n• Espessura ≥ 19 mm: 3,93 a 4,92 A/mm de distância entre pontas",
     "alternativas": [
       "A) 1000 a 1300 ampères.",
-      "B) 600 a 750 ampères. <19mm –x 3,54 a 4,33mm;19mm-x3,93 a 4,92mm",
+      "B) 600 a 750 ampères.",
       "C) 250 a 400 ampères.",
       "D) 800 a 1000 ampères."
     ],

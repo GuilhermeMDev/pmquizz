@@ -192,6 +192,7 @@
   {
     "id": 19,
     "texto": "Qual a amperagem que deve circular numa bobina de cinco voltas para magnetizar uma barra de aço de 75mm de diâmetro e 250mm de comprimento.",
+    "dica": "• L/D ≥ 4 → Ampére/volta = 35000 / (L/D + 2) [o resultado dividir pelo nº de voltas]\n• 2 < L/D < 4 → Ampére/volta = 45000 / (L/D) [o resultado dividir pelo nº de voltas]",
     "alternativas": [
       "A) 14.000A.",
       "B) 1.500A.",
@@ -244,7 +245,7 @@
   },
   {
     "id": 24,
-    "texto": "Quando o campo magnético de uma peça de material ferromagnético atingiu certo valor, tal que não cresce mais, por mais que se aumente a força magnetizante, diz-se que a peça está:\nL/D ≥ 4 – Ampére/volta = 35000 / L/D +2 o resultado dividir pelo no de voltas\nL/D < 4 e > 2 Ampére/volta = 45000 / L/D o resultado dividir pelo no de voltas",
+    "texto": "Quando o campo magnético de uma peça de material ferromagnético atingiu certo valor, tal que não cresce mais, por mais que se aumente a força magnetizante, diz-se que a peça está:",
     "alternativas": [
       "A) magnetizada.",
       "B) coercitiva.",

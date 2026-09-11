@@ -324,6 +324,22 @@ function mostrarQuestao() {
 
     document.getElementById('pergunta-texto').innerText = q.pergunta || q.texto;
     
+    // Gerenciamento da Dica da Questão
+    const containerDica = document.getElementById('container-dica');
+    const boxDica = document.getElementById('box-dica');
+    const setaDica = document.getElementById('btn-dica-seta');
+    if (containerDica && boxDica) {
+        if (q.dica && q.dica.trim().length > 0) {
+            containerDica.style.display = 'block';
+            boxDica.innerText = q.dica;
+            boxDica.classList.add('hidden');
+            if (setaDica) setaDica.innerText = '▼';
+        } else {
+            containerDica.style.display = 'none';
+            boxDica.classList.add('hidden');
+        }
+    }
+
     const feedbackDiv = document.getElementById('feedback');
     feedbackDiv.style.display = 'none';
     feedbackDiv.innerHTML = "";
@@ -449,6 +465,17 @@ function alternarTimer() {
     }
 }
 
+function toggleDica() {
+    const boxDica = document.getElementById('box-dica');
+    const setaDica = document.getElementById('btn-dica-seta');
+    if (!boxDica) return;
+
+    boxDica.classList.toggle('hidden');
+    if (setaDica) {
+        setaDica.innerText = boxDica.classList.contains('hidden') ? '▼' : '▲';
+    }
+}
+
 function exibirFeedbackVisual(acertou, letraCorreta) {
     const feedbackDiv = document.getElementById('feedback');
     feedbackDiv.style.display = 'block';
@@ -501,6 +528,8 @@ function atualizarContadorErrosUI() {
 
 function finalizarQuiz() {
     document.getElementById('pergunta-texto').style.display = 'none';
+    const containerDica = document.getElementById('container-dica');
+    if (containerDica) containerDica.style.display = 'none';
     document.getElementById('opcoes-container').style.display = 'none';
     document.getElementById('feedback').style.display = 'none';
     document.querySelector('.nav-bar').style.display = 'none';

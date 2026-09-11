@@ -19,7 +19,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧲</text></svg>">
     <link rel="apple-touch-icon" href="icon-192.png">
     
-    <link rel="stylesheet" href="style.css?v=2.2">
+    <link rel="stylesheet" href="style.css?v=3.1">
 </head>
 <body>
 
@@ -81,6 +81,16 @@
             </div>
 
             <div id="pergunta-texto" class="pergunta">...</div>
+            
+            <div id="container-dica" class="container-dica" style="display: none;">
+                <button id="btn-dica" class="btn-dica" onclick="toggleDica()" type="button">
+                    <span class="btn-dica-icon">💡</span>
+                    <span class="btn-dica-texto">Ver Dica / Fórmula</span>
+                    <span id="btn-dica-seta" class="btn-dica-seta">▼</span>
+                </button>
+                <div id="box-dica" class="box-dica hidden"></div>
+            </div>
+
             <div id="opcoes-container"></div>
             <div id="feedback"></div>
             
@@ -121,7 +131,7 @@
         </div>
     </footer>
     
-    <script src="script.js?v=3.0"></script>    
+    <script src="script.js?v=3.1"></script>    
 
     <!-- Registra o Service Worker -->
     <script>

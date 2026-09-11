@@ -1,428 +1,426 @@
 [
   {
-    "id": 121,
-    "pergunta": "121) No processo corrosivo, o material metálico passa da forma metálica, energeticamente instável, à forma combinada (forma iônica), energeticamente mais estável, resultando em desgaste, perda de propriedades e alterações estruturais",
-    "opcoes": [
-      "A) falso.",
+    "id": 1,
+    "texto": "Um forjado foi reparado por soldagem. A inspeção por partículas magnéticas do reparo revelou indicações irregulares, paralelas aos passes de solda. As indicações localizavam-se perto do centro do cordão e nas extremidades desviavam-se levemente da direção axial do cordão. A interpretação correta destas indicações seria:",
+    "alternativas": [
+      "A) poros.",
+      "B) escórias.",
+      "C) trincas.",
+      "D) falta de fusão."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 2,
+    "texto": "Quando era feito o exame por meio de partículas magnéticas em peças de aço com superfície polida, verifica-se que muitas apresentavam indicações com aparência que variava desde traços finos até agrupamentos difusos. Aparentemente, estas indicações não apresentavam um comportamento padrão no que diz respeito a sua orientação ou posição que apareciam nas peças. Após a desmagnetização, as indicações não tornavam a aparecer em novo exame. A que corresponde a essas indicações é:",
+    "alternativas": [
+      "A) porosidade.",
+      "B) dobras de laminação.",
+      "C) soldas de metais diferentes.",
+      "D) escrita magnética."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 3,
+    "texto": "Qual dos materiais abaixo permite detectar mais facilmente a presença de defeitos internos, por possuir maior permeabilidade magnética:",
+    "alternativas": [
+      "A) aços de baixo carbono.",
+      "B) aços inoxidáveis austeníticos.",
+      "C) duralumínio.",
+      "D) aços de alto carbono."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 4,
+    "texto": "Geralmente ocorrem descontinuidades transversais em barras de aço laminadas?",
+    "alternativas": [
+      "A) não. O processo de obtenção destas barras, por laminação, não produz nenhuma descontinuidade.",
+      "B) sim. Os defeitos são sempre transversais.",
+      "C) os defeitos são transversais em barras de aço carbono, variando nos outros casos, dependendo do teor de liga.",
+      "D) não. As descontinuidades se orientam na direção de laminação, longitudinalmente."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 5,
+    "texto": "Descontinuidades em chapas, causadas por inclusões ou porosidades, no lingote que deu origem ao laminado, são geralmente planas e paralelas à superfície, e recebem a denominação de:",
+    "alternativas": [
+      "A) costuras.",
+      "B) trincas.",
+      "C) dobras.",
+      "D) laminações."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 6,
+    "texto": "Em qual direção, em relação ao eixo da peça, ocorrem as dobras de forjamento:",
+    "alternativas": [
+      "A) são sempre encontradas no eixo térmico da peça.",
+      "B) são encontradas na superfície da peça, formando um ângulo de 90 graus com relação ao seu eixo.",
+      "C) podem existir em qualquer lugar, sendo orientados na direção em que a peça foi trabalhada.",
+      "D) podem ocorrer em qualquer lugar da superfície e não tem, necessariamente, relacionamento com a direção do eixo da peça."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 7,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nÉ necessário saber quantas espiras existem numa bobina para calcular a força magnetizante. Esta informação está marcada em algumas bobinas. Caso contrário, deve ser obtida do fabricante e registrada para uso quando necessário.",
+    "alternativas": [
+      "A) falsa.",
       "B) verdadeiro."
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 122,
-    "pergunta": "122) Corrosão se processa em toda a extensão da superfície metálica, ocorrendo perda uniforme de espessura.",
-    "opcoes": [
-      "A) corrosão alveolar.",
-      "B) corrosão puntiforme.",
-      "C) corrosão uniforme.",
-      "D) Corrosão eletrolítica."
+    "id": 8,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nQuando algumas peças de aço devem ser soldadas com arco elétrico manual, o magnetismo residual que possuírem atrai o metal de adição. Isto é benefício quanto a disposição do metal que foi depositado, sendo vantajoso no que se refere a economia e qualidade.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "C"
+    "resposta": "b"
   },
   {
-    "id": 123,
-    "pergunta": "123) No trabalho de campo utilizando o bathycorrometer, ao se fazer as duas medidas na peça, a diferença aceitável entre as duas medidas é de:",
-    "opcoes": [
-      "A) ± 20mV.",
-      "B) ± 5mV.",
-      "C) ± 10mV.",
-      "D) ± 8mV."
+    "id": 9,
+    "texto": "O vazamento do campo magnético num determinado local de uma peça faz com que as partículas magnéticas sejam coletadas e mantidas sobre este local. Ao agrupamento de partículas observado numa peça em exame, dá-se o nome de:",
+    "alternativas": [
+      "A) descontinuidade.",
+      "B) defeito.",
+      "C) indicação.",
+      "D) ocorrência"
     ],
-    "resposta": "C"
+    "resposta": "c"
   },
   {
-    "id": 124,
-    "pergunta": "124) Na preparação do bathycorrometer para o ensaio, o mesmo deverá ser imerso em água salgada por um período mínimo de 01 hora. Isso é necessário para:",
-    "opcoes": [
-      "A) garantir a concentração adequada de íons de cloro na semicélula.",
-      "B) garantir a concentração adequada de íons de cobre na semicélula.",
-      "C) garantir a concentração adequada de íons de zinco na semicélula.",
-      "D) garantir a concentração adequada de íons de prata na semicélula."
+    "id": 10,
+    "texto": "Ocorrem casos em que as peças em exame apresentam interrupção de sua estrutura física normal, ou de sua configuração, por porosidade, dobras de laminação, dobras de forjamento etc., que possuem características tais que são aceitáveis. Ao serem examinadas por meio de partículas magnéticas, o laudo relativo às indicações resultantes de ocorrências desta natureza deve classificá-las como:",
+    "alternativas": [
+      "A) defeitos.",
+      "B) indicações.",
+      "C) descontinuidades.",
+      "D) ocorrências."
     ],
-    "resposta": "A"
+    "resposta": "c"
   },
   {
-    "id": 125,
-    "pergunta": "125) A calibração do equipamento de medição de potencial eletroquímico deve ser feita:",
-    "opcoes": [
-      "A) somente antes do ensaio.",
-      "B) somente após o ensaio.",
-      "C) precisa ser feita uma vez só durante o dia de trabalho.",
-      "D) antes e após as medidas na peça."
+    "id": 11,
+    "texto": "Ocorrem casos em que as partículas magnéticas são atraídas para uma determinada região da superfície de uma peça, devido a um vazamento de campo magnético provocado pela presença de uma trinca, dobra de forjamento ou outra condição não aceitável pelas especificações. Os laudos relativos à ocorrência dessa natureza devem classificá-las como:",
+    "alternativas": [
+      "A) descontinuidades.",
+      "B) indicações.",
+      "C) defeitos.",
+      "D) ocorrências."
     ],
-    "resposta": "D"
+    "resposta": "c"
   },
   {
-    "id": 126,
-    "pergunta": "126) A corrosão química se caracteriza, basicamente, por ocorrer:",
-    "opcoes": [
-      "A) sempre na ausência de água líquida.",
-      "B) em geral, em temperaturas elevadas.",
-      "C) pela ação direta entre o metal e o meio corrosivo.",
+    "id": 12,
+    "texto": "Indique o procedimento geralmente usado para eliminar as indicações não relevantes, mais que permita a detecção de defeitos:",
+    "alternativas": [
+      "A) aquecer a peça a 723 graus centígrados.",
+      "B) examinar a peça com yoke, posicionando este aparelho duas vezes, sucessivamente, sobre cada região da peça, sendo a segunda vez a 90 graus com a primeira.",
+      "C) magnetizar a peça novamente prolongando o tempo de magnetização.",
+      "D) desmagnetizar e reinspecionar convenientemente a peça."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 13,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nFicarão magnetizadas todas as peças que estiverem a menos de meio metro de distância livre do local onde é feito o exame por meio de partículas magnéticas em outras peças.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 14,
+    "texto": "Indique qual o grupo de descontinuidades abaixo podem ser encontradas em peças fundidas:",
+    "alternativas": [
+      "A) costuras.",
+      "B) rasgos e costuras.",
+      "C) rechupes, costuras e laminações.",
+      "D) bolhas de gás, rasgos e rechupes."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 15,
+    "texto": "Indique qual o grupo de descontinuidades abaixo, podem ser encontradas em peças forjadas:",
+    "alternativas": [
+      "A) rechupes e escórias.",
+      "B) trincas, falta de fusão e mordeduras.",
+      "C) dobras.",
+      "D) dobras e trincas."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 16,
+    "texto": "Ao submeter peças que já estiveram em serviço a um exame por meio de partículas magnéticas, qual o tipo de descontinuidades que tem maior probabilidade de ser determinada:",
+    "alternativas": [
+      "A) falta de fusão.",
+      "B) dobra de laminação.",
+      "C) porosidade.",
+      "D) trinca de fadiga."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 17,
+    "texto": "Dois fatores que devem ser considerados ao selecionar o método de magnetização de uma peça são:",
+    "alternativas": [
+      "A) temperatura e tensão de trabalho da peça.",
+      "B) se a peça será submetida a exame por meio de raio X ou raios gamas posteriormente.",
+      "C) o peso atômico e o ponto de fusão do material da peça.",
+      "D) forma e material da peça."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 18,
+    "texto": "Em que tipo de magnetização se usa a formula ampères-espiras 45.000/L/D.",
+    "alternativas": [
+      "A) circular.",
+      "B) longitudinal."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 19,
+    "texto": "Qual a amperagem que deve circular numa bobina de cinco voltas para magnetizar uma barra de aço de 75mm de diâmetro e 250mm de comprimento.",
+    "alternativas": [
+      "A) 14.000A.",
+      "B) 1.500A.",
+      "C) 27.000A.",
+      "D) 2.700A."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 20,
+    "texto": "Para exame por meio de partículas magnéticas fluorescentes, via úmida, a lâmpada de vapor de mercúrio mais indicada é a que tem a potência de:",
+    "alternativas": [
+      "A) 200 watts.",
+      "B) 50 watts.",
+      "C) 75 watts.",
+      "D) 100 watts."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 21,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nNão é necessário substituir os filtros das lâmpadas de vapor de mercúrio quando estes estiverem trincados ou quebrados, apenas quando o material a ser examinado for ferromagnético.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 22,
+    "texto": "O filtro e a lâmpada devem ser submetidos a limpeza periodicamente.",
+    "alternativas": [
+      "A) para dar um aspecto profissional ao laboratório de exames não destrutivos.",
+      "B) porque a acumulação de sujeira e pó permitirá que passe cada vez mais luz visível e menos luz negra.",
+      "C) para remover a sujeira e o pó, que reduzem sensivelmente a transmissão de luz negra.",
+      "D) para aumentar o campo magnético."
+    ],
+    "resposta": "c"
+  },
+  {
+    "id": 23,
+    "texto": "Para a detecção de todas as indicações, a luz negra deve ser:",
+    "alternativas": [
+      "A) de 18 a 33 velas-metro.",
+      "B) de 7 a 8 velas-metro.",
+      "C) de 82 a 150 velas-metro.",
+      "D) 30 a 33 velas-metros."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 24,
+    "texto": "Quando o campo magnético de uma peça de material ferromagnético atingiu certo valor, tal que não cresce mais, por mais que se aumente a força magnetizante, diz-se que a peça está:\nL/D ≥ 4 – Ampére/volta = 35000 / L/D +2 o resultado dividir pelo no de voltas\nL/D < 4 e > 2 Ampére/volta = 45000 / L/D o resultado dividir pelo no de voltas",
+    "alternativas": [
+      "A) magnetizada.",
+      "B) coercitiva.",
+      "C) retentiva.",
+      "D) saturada."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 25,
+    "texto": "Se duas peças iguais forem magnetizadas, uma circularmente e outra longitudinalmente, qual delas apresentará maior magnetismo residual:",
+    "alternativas": [
+      "A) a que foi magnetizada circularmente.",
+      "B) a que foi magnetizada longitudinalmente."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 26,
+    "texto": "No exame por meio de partículas magnéticas, uma indicação fixada mecanicamente, e não magneticamente, é conhecida por:",
+    "alternativas": [
+      "A) trincas.",
+      "B) indicação não-relevante.",
+      "C) escrita magnética.",
+      "D) indicação falsa."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 27,
+    "texto": "Indique a maneira mais adequada para examinar por meio de partículas magnéticas a superfície interna do furo com rasgo de chaveta existente no caso de uma engrenagem.",
+    "alternativas": [
+      "A) magnetização circular com campo magnético paralelo ao rasgo da chaveta.",
+      "B) magnetização circular com campo magnético perpendicular ao rasgo da chaveta.",
+      "C) usando um condutor central."
+    ],
+    "resposta": "c"
+  },
+  {
+    "id": 28,
+    "texto": "Indique qual das descontinuidades superficiais ou subsuperficiais de peças ferromagnéticas é mais difícil de detectar com exame por meio de partículas magnéticas por via seca.",
+    "alternativas": [
+      "A) trincas finas.",
+      "B) dobras de forjamento."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 29,
+    "texto": "Indique quando a desmagnetização é necessária:",
+    "alternativas": [
+      "A) peças de cobre e suas ligas.",
+      "B) peças que vão ser radiografadas.",
+      "C) peças de aço inoxidável austenítico.",
+      "D) peças que trabalharão junto a instrumentos magnéticos sensíveis."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 30,
+    "texto": "Indique quando a desmagnetização é desnecessária:",
+    "alternativas": [
+      "A) soldas de tubulões de caldeira.",
+      "B) peças que receberão tratamento térmico a 800 graus Celsius.",
+      "C) peças de aço doce de baixa retentividade.",
       "D) todas as respostas estão corretas."
     ],
-    "resposta": "D"
+    "resposta": "d"
   },
   {
-    "id": 127,
-    "pergunta": "127) Na pilha de corrosão, a ligação metálica (ou ligação elétrica) é responsável:",
-    "opcoes": [
-      "A) pela ligação da área anódica e catódica, por onde fluem os íons positivos resultantes da reação anódica.",
-      "B) pela ligação da área anódica e catódica, por onde fluem os íons hidroxila resultantes da reação anódica.",
-      "C) pela ligação da área anódica e catódica, por onde fluem os elétrons resultantes da reação anódica.",
-      "D) todas as respostas estão erradas."
+    "id": 31,
+    "texto": "Costuras em barras laminadas são detectadas de forma mais eficiente no exame por meio de partículas magnéticas se for usada magnetização:",
+    "alternativas": [
+      "A) longitudinal.",
+      "B) por meio de eletrodos.",
+      "C) por campo magnético oscilante.",
+      "D) circular."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 128,
-    "pergunta": "128) Em uma pilha de corrosão, na área anódica ocorre:",
-    "opcoes": [
-      "A) reações de redução.",
-      "B) reações de oxirredução.",
-      "C) reações de oxidação.",
-      "D) todas as respostas estão erradas."
+    "id": 32,
+    "texto": "Defeitos superficiais finos, tais como trincas de fadiga em superfícies retificadas, existentes em peças que já estiveram em serviço, são detectadas de modo mais eficiente no exame por meio de partículas magnéticas se for usado:",
+    "alternativas": [
+      "A) exame por via seca e magnetização com corrente contínua.",
+      "B) exame por via seca e corrente contínua pulsante, obtida por retificação de meia onda de corrente alternada.",
+      "C) exame por via úmida e corrente contínua pulsante, obtida por retificação de meia onda de corrente alternada.",
+      "D) exame por via úmida e magnetização com corrente alternada."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 129,
-    "pergunta": "129) Na medição de potencial eletroquímico, para que uma leitura seja registrada, esta deve estar estabilizada. Para considerar a leitura estabilizada, de acordo com a Norma, recomenda-se um tempo de:",
-    "opcoes": [
-      "A) 05 segundos.",
-      "B) 10 segundos.",
-      "C) 15 segundos.",
-      "D) 20 segundos."
+    "id": 33,
+    "texto": "Um exemplo de indicação não relevante, que seria classificada como anomalia magnética ao invés de uma descontinuidade real são:",
+    "alternativas": [
+      "A) escórias.",
+      "B) trincas.",
+      "C) nenhuma das mencionadas.",
+      "D) mudanças bruscas na dureza da peça."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 130,
-    "pergunta": "130) Na medição de potencial eletroquímico em uma estrutura marítima, a área a ser limpa para a medição deve:",
-    "opcoes": [
-      "A) ser em torno de 50mm de diâmetro.",
-      "B) ser apenas o suficiente para que haja o perfeito contato elétrico da probe do equipamento com a peça.",
-      "C) ser em torno de 10mm de diâmetro.",
-      "D) ser em torno de 5mm de diâmetro."
+    "id": 34,
+    "texto": "Indique os defeitos da relação abaixo que podem causar rejeição de uma peça:",
+    "alternativas": [
+      "A) defeitos inerentes aos materiais básicos usados para fabricar a peça.",
+      "B) defeitos que aparecem durante a fase em que a peça esteve em serviço.",
+      "C) defeitos provocados pelo processo de fabricação da peça a partir de materiais básicos.",
+      "D) nenhum dos defeitos citados.",
+      "E) todos os defeitos citados."
     ],
-    "resposta": "B"
+    "resposta": "e"
   },
   {
-    "id": 131,
-    "pergunta": "131) No teste para aferição do bathycorrometer, ao se fazer a medição de potencial do eletrodo de calomelano saturado com o bloco de zinco, como é a conexão de ambos nos polos do multímetro:",
-    "opcoes": [
-      "A) ECS positivo e Zn negativo.",
-      "B) ECS negativo Zn positivo.",
-      "C) Tanto faz, o que vale é o valor encontrado.",
-      "D) Todas as respostas estão erradas."
+    "id": 35,
+    "texto": "Porosidade é defeito causado por qual dos seguintes processos de fabricação de peças:",
+    "alternativas": [
+      "A) forjamento.",
+      "B) esmerilhamento.",
+      "C) tratamento térmico.",
+      "D) fundição."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 132,
-    "pergunta": "132) Na polarização por concentração, a concentração de íons do metal, devido a movimentação do eletrólito ser nula ou restrita, ocorre na:",
-    "opcoes": [
-      "A) área catódica.",
-      "B) área anódica.",
-      "C) área de oxigenação diferencial.",
-      "D) área onde o metal está revestido."
+    "id": 36,
+    "texto": "Quanto mais próximo da superfície estiver a descontinuidade:",
+    "alternativas": [
+      "A) mais difusa será a indicação que produzirá.",
+      "B) menor será a chance de que produza falhas por fadiga.",
+      "C) menor será o vazamento de campo que produzirá.",
+      "D) mais nítida será a indicação que produzirá."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 133,
-    "pergunta": "133) O potencial de um eletrodo para uma concentração qualquer pode ser calculado pela equação de:",
-    "opcoes": [
-      "A) Faraday.",
-      "B) Snell.",
-      "C) Nernst.",
-      "D) Tafel."
+    "id": 37,
+    "texto": "Porque se prefere usar partículas magnéticas fluorescentes em via úmida em vez de pó magnético colorido em alguns casos:",
+    "alternativas": [
+      "A) para tirar vantagem do efeito das lâmpadas fluorescentes, cujo uso está sendo padronizado para iluminação em muitas plantas.",
+      "B) porque dá melhor resultado no exame de peças grandes e volumosas.",
+      "C) porque é exigido pelas normas, toda vez que se trata de peças para equipamento agrícola.",
+      "D) para aumentar a velocidade e precisão do ensaio."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 134,
-    "pergunta": "134) Para estruturas de aço revestidas a superproteção pode ser prejudicial pelo fato de haver geração de hidrogênio molecular na área catódica, podendo causar empolamento no revestimento e até mesmo a fragilização do metal nessa área. Ela é caracterizada:",
-    "opcoes": [
-      "a) Pelo excesso de proteção ocasionado pelo potencial demasiadamente negativo adquirido pela instalação.",
-      "b) Pelo excesso de proteção ocasionado pelo potencial demasiadamente positivo adquirido pela instalação.",
-      "c) Pelo excesso de proteção ocasionado pelo potencial demasiadamente neutro adquirido pela instalação.",
-      "D) Todas as alternativas são falsas."
+    "id": 38,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nIndicações produzidas por trabalho a frio não tornam a aparecer em novo exame por meio de partículas magnéticas se a peça for desmagnetizada.",
+    "alternativas": [
+      "A) verdadeira.",
+      "B) falsa."
     ],
-    "resposta": "A"
+    "resposta": "b"
   },
   {
-    "id": 135,
-    "pergunta": "135) Quando um mesmo metal é exposto a concentrações diferentes de oxigênio, como o caso da interface ar/água salgada, a pilha de corrosão formada nesse processo é:",
-    "opcoes": [
-      "A) de aeração diferenciada.",
-      "B) de concentração iônica.",
-      "C) de ação local.",
-      "D) Não existe processo corrosivo."
+    "id": 39,
+    "texto": "Indique os itens da relação abaixo que podem produzir indicações não relevantes:",
+    "alternativas": [
+      "A) juntas entre materiais desiguais.",
+      "B) juntas brasadas.",
+      "C) trabalho a frio.",
+      "D) todas estas as respostas estão certas."
     ],
-    "resposta": "A"
+    "resposta": "d"
   },
   {
-    "id": 136,
-    "pergunta": "136) A área catódica é caracterizada pelos seguintes fatos:",
-    "opcoes": [
-      "A) só ocorrem reações de redução.",
-      "B) a superfície fica protegida (não há desgaste).",
-      "C) as reações são de redução dos íons do meio corrosivo.",
-      "D) todas as alternativas estão corretas."
+    "id": 40,
+    "texto": "Após detectar todas as descontinuidades de uma peça:",
+    "alternativas": [
+      "A) a peça deve ser rejeitada.",
+      "B) a peça deve ser reparada pela remoção das descontinuidades.",
+      "C) as trincas devem ser esmerilhadas para medir sua profundidade.",
+      "D) as descontinuidades devem ser avaliadas para verificar se preenchem os requisitos dos padrões de aceitação."
     ],
-    "resposta": "D"
-  },
-  {
-    "id": 137,
-    "pergunta": "137) A área anódica é caracterizada pelos seguintes fatos:",
-    "opcoes": [
-      "A) só ocorrem reações de oxidação.",
-      "B) a superfície fica protegida (não há desgaste).",
-      "C) O metal passa da forma reduzida para a forma iônica.",
-      "D) existem duas respostas corretas."
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 138,
-    "pergunta": "138) Água do mar é um dos meios mais corrosivos devido às concentrações elevadas de sais que funcionam como um eletrólito forte, provocando um rápido processo eletroquímico de corrosão.",
-    "opcoes": [
-      "A) falso.",
-      "B) verdadeiro."
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 139,
-    "pergunta": "139) A corrosão por pites é frequente em aço inox quando a película passivante é danificada em pontos localizados, sob a ação de certos agentes agressivos ou por danos mecânicos, possibilitando o desenvolvimento de processos corrosivos intensos devido a formação da pilha:",
-    "opcoes": [
-      "A) galvânica.",
-      "B) de ação local.",
-      "C) iônica.",
-      "D) todas as alternativas são falsas."
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 140,
-    "pergunta": "140) A fórmula M=e.I.t é utilizada para calcular a massa do material desgastado. Essa equação é chamada de:",
-    "opcoes": [
-      "A) equação de Tafel.",
-      "B) equação da energia livre.",
-      "C) equação Curier.",
-      "D) equação de Faraday."
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 141,
-    "pergunta": "141) Os eletrodos de referência usados comumente na monitoração do sistema de proteção catódica são os de:",
-    "opcoes": [
-      "A) prata/cloreto de prata.",
-      "B) hidrogênio.",
-      "C) zinco.",
-      "D) existem duas respostas corretas."
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 142,
-    "pergunta": "142) Vários critérios podem ser adotados para determinar se uma estrutura se encontra isenta de riscos de corrosão, no entanto, o critério mais utilizado e aceito é do potencial entre a estrutura e o eletrólito vizinho, medido com um eletrodo de referência.",
-    "opcoes": [
-      "A) falso.",
-      "B) verdadeiro."
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 143,
-    "pergunta": "143) Da célula eletroquímica ou eletrolítica artificial criada na proteção catódica, surgem as seguintes consequências que conduzem o metal à proteção:",
-    "opcoes": [
-      "A) o potencial do metal é diminuído de tal forma que todas as áreas tornam-se catódicas.",
-      "B) há uma elevação do pH em torno do catodo que favorece a imunidade do metal.",
-      "C) a superfície metálica é polarizada por ativação e por polarização ôhmica.",
-      "D) todas as alternativas estão corretas."
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 144,
-    "pergunta": "144) Esta pilha surge sempre que um material metálico de mesma natureza é exposto a concentrações iônicas diferentes, especialmente de seus próprios íons.",
-    "opcoes": [
-      "A) galvânica.",
-      "B) ôhmica.",
-      "C) Ação local.",
-      "D) de concentração diferencial."
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 145,
-    "pergunta": "145) A fórmula n = ß Log i / i0 desenvolvida por Tafel, é utilizada para:",
-    "opcoes": [
-      "A) calcular a elevação do pH.",
-      "B) calcular a sobrevoltagem do hidrogênio (H2).",
-      "C) calcular a massa do material desgastado.",
-      "D) calcular o potencial de um eletrodo."
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 146,
-    "pergunta": "146) A passivação ocorre quando o potencial de um eletrodo é abaixado, ou seja, se torna mais catódico ou mais nobre, devido à formação de uma película de produto de corrosão. Esta camada de proteção é denominada:",
-    "opcoes": [
-      "A) película adsorvida.",
-      "B) película eletrostática.",
-      "C) película passivante.",
-      "D) película dielétrica."
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 147,
-    "pergunta": "147) A corrosão associada ao atrito é ocasionada pela exposição de metal brilhante devido à fricção entre duas superfícies metálicas permitindo uma boa continuidade elétrica entre o metal e o eletrólito. A abrasão provoca o desgaste superficial do material removendo a película protetora constituída de produtos de corrosão, expondo essa superfície a um novo ataque.",
-    "opcoes": [
-      "A) falso.",
-      "B) verdadeiro."
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 148,
-    "pergunta": "148) A ............ é a pilha de corrosão mais frequente na natureza e aparece no metal devido a heterogeneidades diversas inerentes ao próprio material como descontinuidades, estados diferentes de tensões, tratamentos térmicos diferentes, materiais de diferentes épocas de fabricação, etc.",
-    "opcoes": [
-      "A) pilha ativa-passiva.",
-      "B) pilha galvânica.",
-      "C) pilha de ação local.",
-      "D) pilha de oxigenação diferencial."
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 149,
-    "pergunta": "149) Se na fórmula de variação de energia livre (ΔG = -nF. ΔV), o resultado for negativo, a reação será:",
-    "opcoes": [
-      "A) espontânea.",
-      "B) não espontânea."
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 150,
-    "pergunta": "150) Se um metal localizado mais acima na tabela de potenciais padrões for ligado a um outro metal mais abaixo na mesma tabela, o segundo metal será:",
-    "opcoes": [
-      "A) menos reativo.",
-      "B) com menor tendência a oxidação.",
-      "C) mais nobre.",
-      "D) todas as alternativas são corretas."
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 151,
-    "pergunta": "151) A reação anódica tem como consequência a dissolução do metal e, portanto, a corrosão. Já a reação catódica, conduz à redução de espécies presentes no meio, sem a participação do metal sobre o qual ela tem lugar.",
-    "opcoes": [
-      "A) verdadeiro.",
-      "B) falso."
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 152,
-    "pergunta": "152) O eletrólito é uma solução condutora que envolve as áreas anódicas e catódicas, e por onde fluem os elétrons resultantes de ambas as reações.",
-    "opcoes": [
-      "A) verdadeiro.",
-      "B) falso."
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 153,
-    "pergunta": "153) Na aferição do bathycorrometer com o eletrodo de calomelano saturado existe uma diferença aceitável entre os dois valores medidos. Essa diferença é dada pela fórmula:",
-    "opcoes": [
-      "A) (8±5)mV.",
-      "B) (3±5)mV.",
-      "C) (-8±5)mV.",
-      "D) (0±2) mV."
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 154,
-    "pergunta": "154) Na calibração do bathycorrometer com o ECS, a leitura “A” (ECS/Zn) deu - 1,032V e a leitura “B” (BCM/Zn) deu -1,037V. Pela fórmula (B)–(A), qual foi a diferença encontrada entre as duas leituras?",
-    "opcoes": [
-      "A) 0,005 mV.",
-      "B) -0,005 V.",
-      "C) -5 mV.",
-      "D) existem duas respostas corretas."
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 155,
-    "pergunta": "155) Pela diferença encontrada na pergunta acima, o equipamento:",
-    "opcoes": [
-      "A) pode ser utilizado pois a diferença se encontra dentro da faixa aceitável (13 a 3mV).",
-      "B) não pode ser utilizado pois a diferença se encontra fora da faixa aceitável (-3 a +10mV).",
-      "C) pode ser utilizado pois a diferença se encontra dentro da faixa aceitável (-13 a - 3mV).",
-      "D) não pode ser utilizado pois a diferença se encontra fora da faixa aceitável (-13 a -3mV)."
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 156,
-    "pergunta": "156) Na sequência de testes para escolha do ECS, de acordo com a Norma, o ECS 1 sempre é colocado no polo:",
-    "opcoes": [
-      "A) negativo do multímetro, estando o mesmo na escala de mV, CC.",
-      "B) positivo do multímetro, estando o mesmo na escala de mV, CA.",
-      "C) positivo do multímetro, estando o mesmo na escala de mV, CC.",
-      "D) negativo do multímetro, estando o mesmo na escala de mV, CA."
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 157,
-    "pergunta": "157) Na medição de potencial eletroquímico através de ROV, após a calibração do BCM, ele é afixado ao braço do ROV sendo retirado da água para isso. Quando o ROV é colocado na água, quanto tempo tem que se esperar para poder realizar as medições na peça em teste:",
-    "opcoes": [
-      "A) 30 minutos.",
-      "B) 60 minutos.",
-      "C) 15 minutos.",
-      "D) Não precisa esperar, pois o equipamento já foi calibrado."
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 158,
-    "pergunta": "158) Na medição de potencial de um ponto de uma jaqueta, na primeira medida o inspetor registrou o valor de -0,940V e na segunda, -0,970V. De acordo com a Norma, o que tem que ser feito?",
-    "opcoes": [
-      "A) Parar o ensaio e fazer novamente a verificação da calibração do equipamento na superfície. Refazer as medidas, se os valores persistirem, anotar os dois valores (diferença aceitável é de ±10mV).",
-      "B) Anotar a medida de menor valor absoluto.",
-      "C) Anotar as duas medidas.",
-      "D) Para o ensaio e recalibrar o equipamento."
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 159,
-    "pergunta": "159) Ao fazer várias medidas de potencial eletroquímico em uma plataforma fixa de aço, o inspetor verificou que todos os valores encontrados eram bem próximos. Esse fenômeno é chamado de:",
-    "opcoes": [
-      "A) curva de estabilidade.",
-      "B) polarização.",
-      "C) pilha eletroquímica.",
-      "D) metalização."
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 160,
-    "pergunta": "160) Em mais ou menos quanto tempo uma plataforma fixa de aço (jaqueta) leva para polarizar?",
-    "opcoes": [
-      "A) em torno de duas semanas.",
-      "B) em torno de 06 meses.",
-      "C) um ano.",
-      "D) alguns minuto"
-    ],
-    "resposta": "A"
+    "resposta": "d"
   }
 ]

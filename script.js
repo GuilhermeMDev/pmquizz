@@ -1,11 +1,9 @@
-// LISTA DE ARQUIVOS JSON
-// Certifique-se que os nomes aqui são IDÊNTICOS aos arquivos na sua pasta
+// LISTA DE ARQUIVOS JSON (11 PROVAS)
 const arquivos = [
     "prova_1_questoes.json", "prova_2_questoes.json", "prova_3_questoes.json",
     "prova_4_questoes.json", "prova_5_questoes.json", "prova_6_questoes.json",
     "prova_7_questoes.json", "prova_8_questoes.json", "prova_9_questoes.json",
-    "prova_10_questoes.json", "prova_11_questoes.json", "prova_12_questoes.json",
-    "prova_13_questoes.json", "prova_14_questoes.json"
+    "prova_10_questoes.json", "prova_11_questoes.json"
 ];
 
 let bancoCompleto = [];
@@ -56,7 +54,7 @@ if (themeToggleBtn) {
     });
 }
 
-// --- ACORDEÃO (Toggle Provas) ---
+// --- ACORDEÃO (Toggle Provas 1 a 11) ---
 function toggleProvas() {
     const container = document.getElementById('container-provas');
     const btn = document.getElementById('accordion-btn');
@@ -64,11 +62,11 @@ function toggleProvas() {
     if (container.classList.contains('hidden')) {
         container.classList.remove('hidden');
         btn.classList.add('active');
-        btn.innerText = "📂 Selecionar Prova Específica (1 a 14) ▲";
+        btn.innerText = "📂 Selecionar Prova Específica (1 a 11) ▲";
     } else {
         container.classList.add('hidden');
         btn.classList.remove('active');
-        btn.innerText = "📂 Selecionar Prova Específica (1 a 14) ▼";
+        btn.innerText = "📂 Selecionar Prova Específica (1 a 11) ▼";
     }
 }
 
@@ -92,21 +90,39 @@ window.onload = async () => {
 
 async function carregarBancoDeDados() {
     try {
-        // REMOVIDO: const versao = new Date().getTime(); 
-        
+        bancoCompleto = [];
         for (const nome of arquivos) {
-            // VOLTA AO ORIGINAL: Sem ?v=...
-            // O Service Worker novo já sabe que se for .json, ele deve tentar baixar novo.
+            const match = nome.match(/prova_(\d+)_questoes\.json/);
+            const numProva = match ? parseInt(match[1]) : 1;
+
             const res = await fetch("./" + nome);
-            
             if (!res.ok) {
                 console.error(`Falha ao carregar ${nome}`);
                 continue;
             }
             const dados = await res.json();
-            bancoCompleto = [...bancoCompleto, ...dados];
+            
+            const formatados = dados.map((q, idx) => {
+                const questaoId = q.id || (idx + 1);
+                return {
+                    ...q,
+                    id: questaoId,
+                    prova: numProva,
+                    uid: `p${numProva}_q${questaoId}`,
+                    pergunta: q.texto || q.pergunta || "",
+                    opcoes: q.alternativas || q.opcoes || []
+                };
+            });
+
+            bancoCompleto = [...bancoCompleto, ...formatados];
         }
-        bancoCompleto.sort((a, b) => a.id - b.id);
+
+        // Ordena por prova e depois por id da questão
+        bancoCompleto.sort((a, b) => {
+            if (a.prova !== b.prova) return a.prova - b.prova;
+            return a.id - b.id;
+        });
+
         appCarregado = true;
     } catch (e) {
         console.error(e);
@@ -120,53 +136,47 @@ function gerarBotoesProvas() {
     if (!grid) return;
     grid.innerHTML = "";
     
-    for (let i = 1; i <= 14; i++) {
+    for (let i = 1; i <= 11; i++) {
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
-        
-        const inicio = (i - 1) * 40 + 1;
-        const fim = i * 40;
-        
-        btn.innerHTML = `<strong>Prova ${i}</strong><br><small>Q. ${inicio} - ${fim}</small>`;
+        btn.innerHTML = `<strong>Prova ${i}</strong><br><small>40 Questões</small>`;
         btn.onclick = () => iniciarProva('prova_' + i);
         grid.appendChild(btn);
     }
 }
 
 function verificarSaveGame() {
-    const save = localStorage.getItem('quiz_offshore_save');
+    const save = localStorage.getItem('quiz_pm_save');
     const btn = document.getElementById('btn-continuar');
     if (save) {
         const dados = JSON.parse(save);
         btn.style.display = 'flex';
         
         let label = "Simulado Completo";
-        if (dados.tipo.startsWith('prova_')) {
+        if (dados.tipo && dados.tipo.startsWith('prova_')) {
             const n = dados.tipo.split('_')[1];
             label = `Prova ${n}`;
         } else if (dados.tipo === 'aleatoria') {
             label = "Modo Aleatório";
+        } else if (dados.tipo === 'erros') {
+            label = "Revisão de Erros";
         }
         
         // Encontra a primeira questão não respondida
-        let proximoIndice = dados.indice;
+        let proximoIndice = dados.indice || 0;
         if (dados.idsQuestao && dados.historico) {
-            const idxNaoRespondido = dados.idsQuestao.findIndex(id => !dados.historico[id]);
+            const idxNaoRespondido = dados.idsQuestao.findIndex(uid => !dados.historico[uid]);
             if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
             else proximoIndice = dados.idsQuestao.length - 1;
         }
         
-        // Pega o ID real da questão (referência do PDF)
-        let idReal = "?";
-        if(dados.idsQuestao && dados.idsQuestao[proximoIndice]) {
-            idReal = dados.idsQuestao[proximoIndice];
-        }
+        const questaoAtual = bancoCompleto.find(q => dados.idsQuestao && q.uid === dados.idsQuestao[proximoIndice]);
+        let refTexto = questaoAtual ? `Ref. Prova ${questaoAtual.prova} #${questaoAtual.id}` : `Ref. #${proximoIndice + 1}`;
         
-        // Monta o texto: "Prova X • Q. Y • Ref. PDF #Z"
         const posicaoNaProva = proximoIndice + 1;
         const totalQuestoes = dados.idsQuestao ? dados.idsQuestao.length : "?";
         
-        document.getElementById('info-save').innerText = `${label} • Q. ${posicaoNaProva}/${totalQuestoes} • Ref. PDF #${idReal}`;
+        document.getElementById('info-save').innerText = `${label} • Q. ${posicaoNaProva}/${totalQuestoes} • ${refTexto}`;
     } else {
         btn.style.display = 'none';
     }
@@ -175,7 +185,7 @@ function verificarSaveGame() {
 function iniciarProva(tipo) {
     if (!appCarregado) return;
     
-    localStorage.removeItem('quiz_offshore_save');
+    localStorage.removeItem('quiz_pm_save');
 
     indiceAtual = 0;
     acertos = 0;
@@ -189,35 +199,27 @@ function iniciarProva(tipo) {
     else if (tipo === 'aleatoria') {
         questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
     }
-    // --- NOVO MODO: ERROS (ORGANIZADO) ---
     else if (tipo === 'erros') {
-        const idsErros = JSON.parse(localStorage.getItem('quiz_banco_erros')) || [];
+        const uidsErros = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
         
-        if (idsErros.length === 0) {
+        if (uidsErros.length === 0) {
             alert("Parabéns! Você não tem erros acumulados para revisar.");
             return;
         }
 
-        // 1. Pega as questões que estão na lista de erros
-        questoesDaProva = bancoCompleto.filter(q => idsErros.includes(q.id));
-        
-        // 2. ORDENAÇÃO: Crescente (1, 2, 3...)
-        // Garante que a ordem segue o PDF/Gabarito físico
-        questoesDaProva.sort((a, b) => a.id - b.id);
+        questoesDaProva = bancoCompleto.filter(q => uidsErros.includes(q.uid));
+        questoesDaProva.sort((a, b) => {
+            if (a.prova !== b.prova) return a.prova - b.prova;
+            return a.id - b.id;
+        });
 
-        // 3. Limita a 40 questões (as primeiras da lista)
-        // Se tiver 50 erros, ele mostra os 40 primeiros (menores IDs).
         if (questoesDaProva.length > 40) {
             questoesDaProva = questoesDaProva.slice(0, 40);
         }
     }
-    // ------------------------
     else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
-        const inicioId = (numProva - 1) * 40 + 1;
-        const fimId = numProva * 40;
-        
-        questoesDaProva = bancoCompleto.filter(q => q.id >= inicioId && q.id <= fimId);
+        questoesDaProva = bancoCompleto.filter(q => q.prova === numProva);
     }
 
     if (questoesDaProva.length === 0) {
@@ -230,7 +232,7 @@ function iniciarProva(tipo) {
 }
 
 function retomarJogo() {
-    const save = localStorage.getItem('quiz_offshore_save');
+    const save = localStorage.getItem('quiz_pm_save');
     if (!save) return;
     const dados = JSON.parse(save);
     acertos = dados.acertos;
@@ -239,14 +241,13 @@ function retomarJogo() {
     tipoProvaAtual = dados.tipo;
     
     if (dados.idsQuestao && dados.idsQuestao.length > 0) {
-        questoesDaProva = dados.idsQuestao.map(id => bancoCompleto.find(q => q.id === id)).filter(q => q);
+        questoesDaProva = dados.idsQuestao.map(uid => bancoCompleto.find(q => q.uid === uid)).filter(q => q);
     } else {
         questoesDaProva = [...bancoCompleto];
     }
 
-    // Encontra a primeira questão não respondida
     let indiceInteligente = 0;
-    const primeiroNaoRespondido = questoesDaProva.findIndex(q => !historicoRespostas[q.id]);
+    const primeiroNaoRespondido = questoesDaProva.findIndex(q => !historicoRespostas[q.uid]);
     if (primeiroNaoRespondido !== -1) indiceInteligente = primeiroNaoRespondido;
     else indiceInteligente = questoesDaProva.length - 1;
     
@@ -298,24 +299,30 @@ function mostrarQuestao() {
     }
 
     const q = questoesDaProva[indiceAtual];
-    const estado = historicoRespostas[q.id];
+    const estado = historicoRespostas[q.uid];
 
     let tituloPrincipal = "Simulado";
+    let subtituloSeq = `Ref. PDF #${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
+
     if (tipoProvaAtual.startsWith('prova_')) {
         const num = parseInt(tipoProvaAtual.split('_')[1]);
         tituloPrincipal = `Prova ${num}`; 
+        subtituloSeq = `Questão ${q.id} de ${questoesDaProva.length}`;
     } else if (tipoProvaAtual === 'aleatoria') {
         tituloPrincipal = "Modo Aleatório";
-    } else if (tipoProvaAtual === 'erros') { // <--- NOVO
+        subtituloSeq = `Prova ${q.prova} • Questão ${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
+    } else if (tipoProvaAtual === 'erros') {
         tituloPrincipal = "Revisão de Erros"; 
+        subtituloSeq = `Prova ${q.prova} • Questão ${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
     } else {
         tituloPrincipal = "Simulado Completo";
+        subtituloSeq = `Prova ${q.prova} • Questão ${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
     }
 
     document.getElementById('txt-prova').innerText = tituloPrincipal;
-    document.getElementById('txt-seq').innerText = `Ref. PDF #${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
+    document.getElementById('txt-seq').innerText = subtituloSeq;
 
-    document.getElementById('pergunta-texto').innerText = q.pergunta;
+    document.getElementById('pergunta-texto').innerText = q.pergunta || q.texto;
     
     const feedbackDiv = document.getElementById('feedback');
     feedbackDiv.style.display = 'none';
@@ -324,24 +331,23 @@ function mostrarQuestao() {
     const container = document.getElementById('opcoes-container');
     container.innerHTML = ""; 
 
-    if (q.opcoes) {
-        q.opcoes.forEach(opcao => {
-            const btn = document.createElement('button');
-            btn.className = 'opcao';
-            btn.innerText = opcao;
-            
-            if (estado && estado.respondida) {
-                btn.disabled = true;
-                const letraOp = opcao.trim().charAt(0).toUpperCase();
-                const letraResp = q.resposta.trim().toUpperCase();
-                if (letraOp === letraResp) btn.classList.add('resposta-certa');
-                if (!estado.acertou && letraOp === estado.escolha) btn.classList.add('resposta-errada');
-            } else {
-                btn.onclick = () => verificarResposta(opcao, q.resposta, btn, q.id);
-            }
-            container.appendChild(btn);
-        });
-    }
+    const listaOpcoes = q.opcoes || q.alternativas || [];
+    listaOpcoes.forEach(opcao => {
+        const btn = document.createElement('button');
+        btn.className = 'opcao';
+        btn.innerText = opcao;
+        
+        if (estado && estado.respondida) {
+            btn.disabled = true;
+            const letraOp = opcao.trim().charAt(0).toUpperCase();
+            const letraResp = q.resposta ? q.resposta.trim().toUpperCase() : "";
+            if (letraOp === letraResp) btn.classList.add('resposta-certa');
+            if (!estado.acertou && letraOp === estado.escolha) btn.classList.add('resposta-errada');
+        } else {
+            btn.onclick = () => verificarResposta(opcao, q.resposta, btn, q.uid);
+        }
+        container.appendChild(btn);
+    });
 
     if (estado && estado.respondida) {
         exibirFeedbackVisual(estado.acertou, q.resposta);
@@ -349,8 +355,8 @@ function mostrarQuestao() {
     salvarProgresso();
 }
 
-function verificarResposta(escolhida, gabarito, botao, idQuestao) {
-    if (historicoRespostas[idQuestao]) return;
+function verificarResposta(escolhida, gabarito, botao, uidQuestao) {
+    if (historicoRespostas[uidQuestao]) return;
 
     const botoes = document.querySelectorAll('.opcao');
     botoes.forEach(b => b.disabled = true); 
@@ -359,11 +365,9 @@ function verificarResposta(escolhida, gabarito, botao, idQuestao) {
     const letraCorreta = gabarito ? gabarito.trim().toUpperCase() : "?";
     const acertou = (letraEscolhida === letraCorreta);
 
-    // --- NOVO: ATUALIZA O BANCO DE ERROS ---
-    atualizarBancoErros(idQuestao, acertou);
-    // ---------------------------------------
+    atualizarBancoErros(uidQuestao, acertou);
 
-    historicoRespostas[idQuestao] = { respondida: true, acertou: acertou, escolha: letraEscolhida };
+    historicoRespostas[uidQuestao] = { respondida: true, acertou: acertou, escolha: letraEscolhida };
 
     if (acertou) {
         acertos++;
@@ -460,42 +464,34 @@ function salvarProgresso() {
         acertos: acertos,
         erros: erros,
         historico: historicoRespostas,
-        idsQuestao: questoesDaProva.map(q => q.id),
+        idsQuestao: questoesDaProva.map(q => q.uid),
         data: new Date().getTime()
     };
-    localStorage.setItem('quiz_offshore_save', JSON.stringify(dados));
+    localStorage.setItem('quiz_pm_save', JSON.stringify(dados));
 }
 
 // --- SISTEMA DE BANCO DE ERROS ---
-function atualizarBancoErros(idQuestao, acertou) {
-    // Pega a lista atual ou cria vazia
-    let errosSalvos = JSON.parse(localStorage.getItem('quiz_banco_erros')) || [];
-    
-    // Garante que são números
-    idQuestao = parseInt(idQuestao);
+function atualizarBancoErros(uidQuestao, acertou) {
+    let errosSalvos = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
 
     if (!acertou) {
-        // SE ERROU: Adiciona à lista se já não estiver lá
-        if (!errosSalvos.includes(idQuestao)) {
-            errosSalvos.push(idQuestao);
+        if (!errosSalvos.includes(uidQuestao)) {
+            errosSalvos.push(uidQuestao);
         }
     } else {
-        // SE ACERTOU: Remove da lista (você já aprendeu!)
-        errosSalvos = errosSalvos.filter(id => id !== idQuestao);
+        errosSalvos = errosSalvos.filter(uid => uid !== uidQuestao);
     }
 
-    // Salva de volta
-    localStorage.setItem('quiz_banco_erros', JSON.stringify(errosSalvos));
+    localStorage.setItem('quiz_pm_erros', JSON.stringify(errosSalvos));
     atualizarContadorErrosUI();
 }
 
 function atualizarContadorErrosUI() {
-    const errosSalvos = JSON.parse(localStorage.getItem('quiz_banco_erros')) || [];
+    const errosSalvos = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
     const span = document.getElementById('contagem-erros');
     if (span) {
         span.innerText = `(${errosSalvos.length})`;
     }
-    // Se não tiver erros, podemos desabilitar o botão visualmente se quiser
     const btn = document.getElementById('btn-erros');
     if(btn) {
         if(errosSalvos.length === 0) btn.style.opacity = "0.5";
@@ -516,19 +512,20 @@ function finalizarQuiz() {
     `;
 
     questoesDaProva.forEach(q => {
-        const hist = historicoRespostas[q.id];
+        const hist = historicoRespostas[q.uid];
         let classe = "resumo-neutro";
-        let texto = `Q.${q.id} - Pulou`;
+        let texto = `P${q.prova} Q.${q.id} - Pulou`;
         let gabaritoInfo = "";
 
         if (hist) {
             if (hist.acertou) {
                 classe = "resumo-certo";
-                texto = `Q.${q.id} - ${hist.escolha}`;
+                texto = `P${q.prova} Q.${q.id} - ${hist.escolha}`;
             } else {
                 classe = "resumo-errado";
-                texto = `Q.${q.id} - ${hist.escolha}`;
-                gabaritoInfo = `<div class="txt-gabarito">Gab: ${q.resposta}</div>`;
+                texto = `P${q.prova} Q.${q.id} - ${hist.escolha}`;
+                const correta = q.resposta ? q.resposta.toUpperCase() : "?";
+                gabaritoInfo = `<div class="txt-gabarito">Gab: ${correta}</div>`;
             }
         }
 
@@ -548,5 +545,5 @@ function finalizarQuiz() {
     `;
 
     document.getElementById('relatorio-final').innerHTML = relatorioHTML;
-    localStorage.removeItem('quiz_offshore_save');
+    localStorage.removeItem('quiz_pm_save');
 }

@@ -1,442 +1,421 @@
 [
   {
-    "id": 401,
-    "pergunta": "401) Quando se mede o potencial de uma estrutura catodicamente protegida, procura-se se verificar o potencial:",
-    "opcoes": [
-      "A) De proteção anódica",
-      "B) De corrosão",
-      "C) De proteção catódica da estrutura",
-      "D) Natural da estrutura"
+    "id": 1,
+    "texto": "Quando era feito o exame por meio de partículas magnéticas em peças de aço com superfície polida, verifica-se que muitas apresentavam indicações com aparência que variava desde traços finos até agrupamentos difusos. Aparentemente, estas indicações não apresentavam um comportamento padrão no que diz respeito a sua orientação ou posição que apareciam nas peças. Após a desmagnetização, as indicações não tornavam a aparecer em novo exame. A que correspondiam as indicações observadas.",
+    "alternativas": [
+      "A) porosidade.",
+      "B) dobras de laminação.",
+      "C) soldas de metais diferentes.",
+      "D) escrita magnética."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 402,
-    "pergunta": "402) Na corrosão eletroquímica, o oxigênio funciona como fator de ....",
-    "opcoes": [
-      "A) controle de pH.",
-      "B) imunidade do metal.",
-      "C) elevação da taxa de polarização.",
-      "D) controle dos processos corrosivos."
+    "id": 2,
+    "texto": "Qual dos materiais abaixo permite detectar mais facilmente a presença de defeitos internos, por possuir maior permeabilidade magnética:",
+    "alternativas": [
+      "A) aços de baixo carbono.",
+      "B) aços inoxidáveis austeníticos.",
+      "C) duralumínio.",
+      "D) aços de alto carbono."
     ],
-    "resposta": "D"
+    "resposta": "d"
   },
   {
-    "id": 403,
-    "pergunta": "403) A corrosão eletroquímica ocorre:",
-    "opcoes": [
-      "A) Na presença de água no estado de vapor",
-      "B) Na presença de eletrólitos líquidos",
-      "C) Na presença de eletrólitos gasosos",
-      "D) Na ausência de eletrólitos líquidos"
+    "id": 3,
+    "texto": "Geralmente ocorrem descontinuidades transversais em barras de aço laminadas?",
+    "alternativas": [
+      "A) não. O processo de obtenção destas barras, por laminação, não produz nenhuma descontinuidade.",
+      "B) sim. Os defeitos são sempre transversais.",
+      "C) os defeitos são transversais em barras de aço carbono, variando nos outros casos, dependendo do teor de liga.",
+      "D) não. As descontinuidades se orientam na direção de laminação, longitudinalmente."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 404,
-    "pergunta": "404) O potencial eletroquímico natural de um material metálico indica a tendência que o material apresenta para:",
-    "opcoes": [
-      "A) se reduzir.",
-      "B) se fraturar.",
-      "C) se passivar.",
-      "D) se corroer."
+    "id": 4,
+    "texto": "Descontinuidades em chapas, causadas por inclusões ou porosidades, no lingote que deu origem ao laminado, são geralmente planas e paralelas à superfície, e recebem a denominação de:",
+    "alternativas": [
+      "A) costuras.",
+      "B) trincas.",
+      "C) dobras.",
+      "D) laminações."
     ],
-    "resposta": "D"
+    "resposta": "d"
   },
   {
-    "id": 405,
-    "pergunta": "405) O potencial natural normalmente encontrado para um eletrodo de zinco imerso na água do mar utilizando-se a referência de Prata/Cloreto de prata situado em torno de:",
-    "opcoes": [
-      "A) -1,05 V.",
-      "B) -0,80 V.",
-      "C) -1,55 V.",
-      "D) -1,50 V."
+    "id": 5,
+    "texto": "Em qual direção, em relação ao eixo da peça, ocorrem as dobras de forjamento:",
+    "alternativas": [
+      "A) são sempre encontradas no eixo térmico da peça.",
+      "B) são encontradas na superfície da peça, formando um ângulo de 90 graus com relação ao seu eixo.",
+      "C) podem existir em qualquer lugar, sendo orientados na direção em que a peça foi trabalhada.",
+      "D) podem ocorrer em qualquer lugar da superfície e não tem, necessariamente, relacionamento com a direção do eixo da peça."
     ],
-    "resposta": "A"
+    "resposta": "d"
   },
   {
-    "id": 406,
-    "pergunta": "406) O potencial eletroquímico natural de um material metálico indica a tendência que o material apresenta para:",
-    "opcoes": [
-      "A) Se fraturar",
-      "B) Se passivar",
-      "C) Se corroer",
-      "D) Se reduzir"
+    "id": 6,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nÉ necessário saber quantas espiras existem numa bobina para calcular a força magnetizante. Esta informação está marcada em algumas bobinas. Caso contrário, deve ser obtida do fabricante e registrada para uso quando necessário.",
+    "alternativas": [
+      "A) falsa.",
+      "B) verdadeiro."
     ],
-    "resposta": "C"
+    "resposta": "b"
   },
   {
-    "id": 407,
-    "pergunta": "407) A corrosão eletroquímica promove a passagem do material metálico da forma reduzida para a forma de íons:",
-    "opcoes": [
-      "A) positivos.",
-      "B) eletricamente descarregados.",
-      "C) do tipo anions.",
-      "D) negativos."
+    "id": 7,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nQuando algumas peças de aço devem ser soldadas com arco elétrico manual, o magnetismo residual que possuírem atrai o metal de adição. Isto é benefício quanto a disposição do metal que foi depositado, sendo vantajoso no que se refere a economia e qualidade.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "A"
+    "resposta": "b"
   },
   {
-    "id": 408,
-    "pergunta": "408) O potencial de uma estrutura com proteção catódica medido em relação a um eletrodo de referência fornece indicações sobre as condições:",
-    "opcoes": [
-      "A) de resistência elétrica de estrutura",
-      "B) de proteção catódica ou de corrosão da estrutura.",
-      "C) de proteção catódica e de resistência elétrica da estrutura.",
-      "D) de proteção anódica da estrutura."
+    "id": 8,
+    "texto": "O vazamento do campo magnético num determinado local de uma peça faz com que as partículas magnéticas sejam coletadas e mantidas sobre este local. Ao agrupamento de partículas observado numa peça em exame, dá-se o nome de:",
+    "alternativas": [
+      "A) descontinuidade.",
+      "B) defeito.",
+      "C) indicação."
     ],
-    "resposta": "B"
+    "resposta": "c"
   },
   {
-    "id": 409,
-    "pergunta": "409) O potencial natural normalmente encontrado para um eletrodo de zinco imerso na água do mar utilizando-se a referência de prata/cloreto de prata fica situado em torno de:",
-    "opcoes": [
-      "A) -1,55 V",
-      "B) -1,05 V",
-      "C) -0,85 V",
-      "D) -1,50 V"
+    "id": 9,
+    "texto": "Ocorrem casos em que as peças em exame apresentam interrupção de sua estrutura física normal, ou de sua configuração, por porosidade, dobras de laminação, dobras de forjamento, etc. que possuem características tais que são aceitáveis. Ao serem examinadas por meio de partículas magnéticas, o laudo relativo às indicações resultantes de ocorrências desta natureza deve classificá-las como:",
+    "alternativas": [
+      "A) defeitos.",
+      "B) indicações.",
+      "C) descontinuidades."
     ],
-    "resposta": "B"
+    "resposta": "c"
   },
   {
-    "id": 410,
-    "pergunta": "410) Potencial eletroquímico de oxidação é a diferença de potencial natural que ocorre entre um material metálico e um eletrólito devido:",
-    "opcoes": [
-      "A) a passagem de íons do eletrólito para o metal.",
-      "B) a passagem de íons do metal para o eletrólito.",
-      "C) a oxidação de íons do metal em solução.",
-      "D) a redução de íons do metal em solução."
+    "id": 10,
+    "texto": "Ocorrem casos em que as partículas magnéticas são atraídas para uma determinada região da superfície de uma peça, devido a um vazamento de campo magnético provocado pela presença de uma trinca, dobra de forjamento ou outra condição não aceitável pelas especificações. Os laudos relativos à ocorrência dessa natureza devem classificá-las como:",
+    "alternativas": [
+      "A) descontinuidades.",
+      "B) indicações.",
+      "C) defeitos."
     ],
-    "resposta": "B"
+    "resposta": "c"
   },
   {
-    "id": 411,
-    "pergunta": "411) As principais limitações da tabela de potenciais eletroquímicos padrão são:",
-    "opcoes": [
-      "A) indicar a tendência a oxidação e corrosão, utilizar eletrólito de concentração padrão e contemplar apenas metais puros.",
-      "B) indicar apenas a tendência a corrosão, utilizar eletrólito com qualquer concentração e contemplar apenas metais puros.",
-      "C) indicar a tendência a oxidação e corrosão, utilizar eletrólito de concentração padrão e contemplar todas as ligas metálicas.",
-      "D) indicar a tendência apenas a oxidação, utilizar eletrólito de concentração padrão e contemplar apenas metais puros."
+    "id": 11,
+    "texto": "Indique o procedimento geralmente usado para eliminar as indicações não relevantes, mais que permita a detecção de defeitos:",
+    "alternativas": [
+      "A) aquecer a peça a 723 graus centígrados.",
+      "B) examinar a peça com yoke, posicionando este aparelho duas vezes, sucessivamente, sobre cada região da peça, sendo a segunda vez a 90 graus com a primeira.",
+      "C) magnetizar a peça novamente prolongando o tempo de magnetização.",
+      "D) desmagnetizar e reinspecionar convenientemente a peça."
     ],
-    "resposta": "A"
+    "resposta": "d"
   },
   {
-    "id": 412,
-    "pergunta": "412) A utilização de um revestimento associado com a utilização de proteção catódica:",
-    "opcoes": [
-      "A) Aumenta o número de anodos",
-      "B) Diminui o número de anodos",
-      "C) Pode aumentar ou diminuir o número de anodos",
-      "D) Não influencia na quantidade de anodos"
+    "id": 12,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nFicarão magnetizadas todas as peças que estiverem a menos de meio metro de distância livre do local onde é feito o exame por meio de partículas magnéticas em outras peças.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 413,
-    "pergunta": "413) Nas tabelas práticas de nobreza na água do mar, os metais e ligas metálicas tem um posicionamento em relação a tabela de potenciais padrão:",
-    "opcoes": [
-      "A) totalmente invertido para os metais não apassiváveis.",
-      "B) similar para os metais não apassiváveis e diferente para aqueles apassiváveis.",
-      "C) completamente diferente para todos os materiais metálicos.",
-      "D) exatamente igual para todos os metais passiváveis e não passiváveis."
+    "id": 13,
+    "texto": "Indique qual o grupo de descontinuidades abaixo podem ser encontradas em peças fundidas:",
+    "alternativas": [
+      "A) costuras.",
+      "B) rasgos e costuras.",
+      "C) rechupes, costuras e laminações.",
+      "D) bolhas de gás, rasgos e rechupes."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 414,
-    "pergunta": "414) A polarização ôhmica ou por resistência é responsável pela formação de um depósito devido:",
-    "opcoes": [
-      "A) ao pH baixo na área catódica",
-      "B) ao abaixamento do pH na área catódica",
-      "C) A neutralização do eletrólito na área catódica",
-      "D) A elevação do pH na área catódica"
+    "id": 14,
+    "texto": "Indique qual o grupo de descontinuidades abaixo, podem ser encontradas em peças forjadas:",
+    "alternativas": [
+      "A) rechupes e escórias.",
+      "B) trincas, falta de fusão e mordeduras.",
+      "C) dobras.",
+      "D) dobras e trincas."
     ],
-    "resposta": "D"
+    "resposta": "d"
   },
   {
-    "id": 415,
-    "pergunta": "415) Na pilha de concentração diferencial a área catódica relativamente a anódica é constituída pela região com concentração dos íons do metal:",
-    "opcoes": [
-      "A) idêntica a anódica.",
-      "B) desprezível.",
-      "C) maior que a anódica.",
-      "D) menor que a anódica."
+    "id": 15,
+    "texto": "Ao submeter peças que já estiveram em serviço a um exame por meio de partículas magnéticas, qual o tipo de descontinuidades que tem maior probabilidade de ser determinada:",
+    "alternativas": [
+      "A) falta de fusão.",
+      "B) dobra de laminação.",
+      "C) porosidade.",
+      "D) trinca de fadiga."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 416,
-    "pergunta": "416) A polarização ôhmica ou por resistência é responsável pela formação de um depósito calco-magnesiano devido:",
-    "opcoes": [
-      "A) a neutralização do eletrólito na área catódica.",
-      "B) a elevação do pH na área catódica.",
-      "C) ao abaixamento do pH na área catódica.",
-      "D) ao pH muito baixo na área catódica."
+    "id": 16,
+    "texto": "Dois fatores que devem ser considerados ao selecionar o método de magnetização de uma peça são:",
+    "alternativas": [
+      "A) temperatura e tensão de trabalho da peça.",
+      "B) se a peça será submetida a exame por meio de raio X ou raios gamas posteriormente.",
+      "C) o peso atômico e o ponto de fusão do material da peça.",
+      "D) forma e material da peça."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 417,
-    "pergunta": "417) Os sistemas de proteção catódica por corrente impressa são ainda pouco usados para estruturas marítimas em mar aberto, como as plataformas de produção, devido as seguintes limitações:",
-    "opcoes": [
-      "A) perigo de superproteção e dificuldade de arranjo dos anodos que permita uma boa distribuição de corrente.",
-      "B) dificuldade de arranjo dos anodos que permita uma boa distribuição de corrente e ser indicado só para eletrólito de alta resistividade.",
-      "C) não se aplicar a grandes estruturas situadas em eletrólitos de baixa resistividade.",
-      "D) perigo de superproteção e ser indicado para pequenas estruturas."
+    "id": 17,
+    "texto": "Em que tipo de magnetização se usa a formula ampères-espiras 45.000/L/D.",
+    "alternativas": [
+      "A) circular",
+      "B) longitudinal"
     ],
-    "resposta": "A"
+    "resposta": "b"
   },
   {
-    "id": 418,
-    "pergunta": "418) Os anodos galvânicos utilizados em proteção catódica são fabricados com:",
-    "opcoes": [
-      "A) Metal puro",
-      "B) Liga de metal com teor de impurezas controlada",
-      "C) Liga de metal com alto grau de impureza",
-      "D) Metais extremamente puro sem qualquer adição"
+    "id": 18,
+    "texto": "Qual a amperagem que deve circular numa bobina de cinco voltas para magnetizar uma barra de aço de 75mm de diâmetro e 250mm de comprimento.",
+    "alternativas": [
+      "A)14.000A.",
+      "B)1.500A.",
+      "C)27.000A.",
+      "D) 2.700A."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 419,
-    "pergunta": "419) Através da aplicação de proteção catódica elimina-se as correntes de corrosão porque:",
-    "opcoes": [
-      "A) incrementam-se as diferenças de potencial das pilhas de corrosão.",
-      "B) anula-se o potencial da estrutura.",
-      "C) anulam-se as diferenças de potencial das pilhas de corrosão.",
-      "D) torna-se muito positivo o potencial da estrutura."
+    "id": 19,
+    "texto": "Para exame por meio de partículas magnéticas fluorescentes, via úmida, a lâmpada de vapor de mercúrio mais indicada e a que tem a potência de:",
+    "alternativas": [
+      "A) 200 watts.",
+      "B) 50 watts.",
+      "C) 75 watts.",
+      "D) 100 watts."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 420,
-    "pergunta": "420) A superproteção em uma instalação marítima é ocasionada por uma densidade de corrente :",
-    "opcoes": [
-      "A) Adequada e bem distribuída",
-      "B) Muito maior que a necessária para proteção",
-      "C) Muito menor que a necessária",
-      "D) Igual a necessária para proteção"
+    "id": 20,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nNão é necessário substituir os filtros das lâmpadas de vapor de mercúrio quando estes estiverem trincados ou quebrados, apenas quando o material a ser examinado for ferromagnético.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 421,
-    "pergunta": "421) No entorno de uma estrutura protegida catodicamente as reações que se processam são de:",
-    "opcoes": [
-      "A) oxidação.",
-      "B) oxidação durante o maior período de tempo.",
-      "C) redução.",
-      "D) oxidação e redução."
+    "id": 21,
+    "texto": "O filtro e a lâmpada devem ser submetidos a limpeza periodicamente.",
+    "alternativas": [
+      "A) para dar um aspecto profissional ao laboratório de exames não destrutivos.",
+      "B) porque a acumulação de sujeira e pó permitirá que passe cada vez mais luz visível e menos luz negra.",
+      "C) para remover a sujeira e o pó, que reduzem sensivelmente a transmissão de luz negra."
     ],
-    "resposta": "C"
+    "resposta": "c"
   },
   {
-    "id": 422,
-    "pergunta": "422) Na técnica de medição de potencial eletroquímico com veículos de controle remoto o esquema mais comum e de melhor resultado consiste em o veículo conduzir:",
-    "opcoes": [
-      "A) O voltímetro",
-      "B) O voltímetro, a semicélula e o contato com a estrutura",
-      "C) O voltímetro e a semicélula",
-      "D) Somente a semicélula"
+    "id": 22,
+    "texto": "Para a detecção de todas as indicações, a luz negra deve ser:",
+    "alternativas": [
+      "A) de 18 a 33 velas-metro.",
+      "B) de 7 a 8 velas-metro.\nL/D ≥ 4 – Ampére/volta = 35000 / L/D +2 o resultado dividir pelo no de voltas\nL/D < 4 e > 2 Ampére/volta = 45000 / L/D o resultado dividir pelo no de voltas",
+      "C) de 82 a 150 velas-metro.",
+      "D) 30 a 33 velas-metros."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 423,
-    "pergunta": "423) Os potenciais eletroquímicos em plataformas devem ser medidos sempre em pontos característicos como:",
-    "opcoes": [
-      "A) nos anodos e na zona de variação de maré.",
-      "B) nos anodos, nos membros, perto e longe dos anodos e nos pontos críticos .",
-      "C) só nos anodos.",
-      "D) só nos membros críticos."
+    "id": 23,
+    "texto": "Quando o campo magnético de uma peça de material ferromagnético atingiu certo valor, tal que não cresce mais, por mais que se aumente a força magnetizante, diz-se que a peça está:",
+    "alternativas": [
+      "A) magnetizada.",
+      "B) coercitiva.",
+      "C) retentiva.",
+      "D) saturada."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 424,
-    "pergunta": "424) – Na água do mar o monel em relação ao aço carbono é:",
-    "opcoes": [
-      "A) Mais anódico",
-      "B) Menos catódico",
-      "C) Mais reativo",
-      "D) Mais catódico"
+    "id": 24,
+    "texto": "Se duas peças iguais forem magnetizadas, uma circularmente e outra longitudinalmente, qual delas apresentará maior magnetismo residual:",
+    "alternativas": [
+      "A) a que foi magnetizada circularmente.",
+      "B) a que foi magnetizada longitudinalmente."
     ],
-    "resposta": "D"
+    "resposta": "b"
   },
   {
-    "id": 425,
-    "pergunta": "425) A corrosão por pites traz como inconvenientes em uma plataforma:",
-    "opcoes": [
-      "A) prejudicar a polarização da estrutura.",
-      "B) criar áreas de concentração de tensões.",
-      "C) prejudicar o funcionamento do sistema de proteção catódica.",
-      "D) promover um grande desgaste e perda de espessura."
+    "id": 25,
+    "texto": "No exame por meio de partículas magnéticas, uma indicação fixada mecanicamente, e não magneticamente, é conhecida por:",
+    "alternativas": [
+      "A) trincas.",
+      "B) indicação não-relevante.",
+      "C) escrita magnética.",
+      "D) indicação falsa."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 426,
-    "pergunta": "426) As plataformas fixas de aço não são totalmente revestidas na parte submersa, se no entanto se fosse usado um bom revestimento a quantidade de anodos de um sistema galvânico para uma dada plataforma iria:",
-    "opcoes": [
-      "A) Diminuir significativamente",
-      "B) Manter-se na mesma quantidade",
-      "C) Diminuir ligeiramente",
-      "D) Aumentar muito"
+    "id": 26,
+    "texto": "Indique a maneira mais adequada para examinar por meio de partículas magnéticas a superfície interna do furo com rasgo de chaveta existente no caso de uma engrenagem.",
+    "alternativas": [
+      "A) magnetização circular com campo magnético paralelo ao rasgo da chaveta.",
+      "B) magnetização circular com campo magnético perpendicular ao rasgo da chaveta.",
+      "C) usando um condutor central."
     ],
-    "resposta": "A"
+    "resposta": "c"
   },
   {
-    "id": 427,
-    "pergunta": "427) Anodos de chumbo-estanho-prata, titânio platinizado são de utilizados em que tipo de ambiente:",
-    "opcoes": [
-      "A) enterrado no fundo do mar.",
-      "B) submerso.",
-      "C) submerso temporariamente.",
-      "D) enterrado."
+    "id": 27,
+    "texto": "Indique qual das descontinuidades superficiais ou subsuperficiais de peças ferromagnéticas é mais difícil de detectar com exame por meio de partículas magnéticas por via seca.",
+    "alternativas": [
+      "A) trincas finas.",
+      "B) dobras de forjamento."
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 428,
-    "pergunta": "428) Qual a tolerância aceitável nos resultados obtidos em corpos de prova durante a qualificação do procedimento entre um aparelho definido em um procedimento e um sistema padrão de medição:",
-    "opcoes": [
-      "A) mais ou menos 50 mV",
-      "B) mais ou menos 5 mV",
-      "C) mais ou menos 10 mV",
-      "D) mais ou menos 20 mV"
+    "id": 28,
+    "texto": "Indique quando a desmagnetização é necessária:",
+    "alternativas": [
+      "A) peças de cobre e suas ligas.",
+      "B) peças que vão ser radiografadas.",
+      "C) peças de aço inoxidável austenítico.",
+      "D) peças que trabalharão junto a instrumentos magnéticos sensíveis."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 429,
-    "pergunta": "429) Dentre as impurezas que podem prejudicar o funcionamento de anodos galvânicos destacam-se os elevados teores de....:",
-    "opcoes": [
-      "A) índio e cobre.",
-      "B) titânio e ferro.",
-      "C) titânio e índio.",
-      "D) cobre e ferro."
+    "id": 29,
+    "texto": "Indique quando a desmagnetização é desnecessária:",
+    "alternativas": [
+      "A) soldas de tubulões de caldeira.",
+      "B) peças que receberão tratamento térmico a 800 graus Celsius.",
+      "C) peças de aço doce de baixa retentividade.",
+      "D) todas as respostas estão corretas."
     ],
-    "resposta": "D"
+    "resposta": "d"
   },
   {
-    "id": 430,
-    "pergunta": "430) Na medição de potencial eletroquímico de uma estrutura, o eletrodo de referência necessita ser:",
-    "opcoes": [
-      "A) Bastante instável",
-      "B) Pouco passível",
-      "C) Muito polarizável",
-      "D) Pouco polarizável"
+    "id": 30,
+    "texto": "Costuras em barras laminadas são detectadas de forma mais eficiente no exame por meio de partículas magnéticas se for usada magnetização:",
+    "alternativas": [
+      "A) longitudinal.",
+      "B) por meio de eletrodos.",
+      "C) por campo magnético oscilante.",
+      "D) circular."
     ],
-    "resposta": "D"
+    "resposta": "d"
   },
   {
-    "id": 431,
-    "pergunta": "431) Na corrosão eletroquímica, a formação do eletrólito necessita da presença de água no(s) estado(s):",
-    "opcoes": [
-      "A) Líquido/vapor/congelado",
-      "B) Líquido",
-      "C) De vapor/líquido",
-      "D) De vapor"
+    "id": 31,
+    "texto": "Defeitos superficiais finos, tais como trincas de fadiga em superfícies retificadas, existentes em peças que já estiveram em serviço, são detectadas de modo mais eficiente no exame por meio de partículas magnéticas se for usado:",
+    "alternativas": [
+      "A) exame por via seca e magnetização com corrente contínua.",
+      "B) exame por via seca e corrente contínua pulsante, obtida por retificação de meia onda de corrente alternada.",
+      "C) exame por via úmida e corrente contínua pulsante, obtida por retificação de meia onda de corrente alternada.",
+      "D) exame por via úmida e magnetização com corrente alternada."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 432,
-    "pergunta": "432) O processo corrosivo que ocorre comumente no aço pode ser definido como:",
-    "opcoes": [
-      "A) reações atômicas de oxidação e redução.",
-      "B) tendência que os materiais metálicos possuem de retornar à sua forma original na natureza que são os óxidos metálicos.",
-      "C) processos eletroquímicos e físicos complexos.",
-      "D) decomposição causada pela ação de agentes agressivos presentes na água ou no ar."
+    "id": 32,
+    "texto": "Um exemplo de indicação não relevante, que seria classificada como anomalia magnética ao invés de uma descontinuidade real são:",
+    "alternativas": [
+      "A) escórias.",
+      "B) trincas.",
+      "C) nenhuma das mencionadas.",
+      "D) mudanças bruscas na dureza da peça."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 433,
-    "pergunta": "433) A proteção catódica por corrente impressa utiliza para injeção de corrente na estrutura a proteger uma fonte de corrente:",
-    "opcoes": [
-      "A) Contínua",
-      "B) Alternada de alta frequência",
-      "C) Alternada",
-      "D) Contínua de baixa frequência"
+    "id": 33,
+    "texto": "Indique os defeitos da relação abaixo que podem causar rejeição de uma peça:",
+    "alternativas": [
+      "A) defeitos inerentes aos materiais básicos usados para fabricar a peça.",
+      "B) defeitos que aparecem durante a fase em que a peça esteve em serviço.",
+      "C) defeitos provocados pelo processo de fabricação da peça a partir de materiais básicos.",
+      "D) todos os defeitos citados."
     ],
-    "resposta": "A"
+    "resposta": "d"
   },
   {
-    "id": 434,
-    "pergunta": "434) Em um sistema de proteção catódica de uma estrutura marítima, procura-se criar:",
-    "opcoes": [
-      "A) condições para formação de uma pilha de corrosão.",
-      "B) uma área catódica na estrutura.",
-      "C) regiões mistas.",
-      "D) regiões anódicas na estrutura e catódicas nos anodos de sacrifício."
+    "id": 34,
+    "texto": "Porosidade é defeito causado por qual dos seguintes processos de fabricação de peças:",
+    "alternativas": [
+      "A) forjamento.",
+      "B) esmerilhamento.",
+      "C) tratamento térmico.",
+      "D) fundição."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 435,
-    "pergunta": "435) A corrosão eletroquímica se caracteriza por:",
-    "opcoes": [
-      "A) Interação direta metal/meio",
-      "B) Temperaturas elevadas (acima do ponto de orvalho da água)",
-      "C) Ausência de água",
-      "D) Pilha de corrosão (anodo, catodo, conexão elétrica e eletrólito)"
+    "id": 35,
+    "texto": "Quanto mais próximo da superfície estiver a descontinuidade:",
+    "alternativas": [
+      "A) mais difusa será a indicação que produzirá.",
+      "B) menor será a chance de que produza falhas por fadiga.",
+      "C) menor será o vazamento de campo que produzirá.",
+      "D) mais nítida será a indicação que produzirá."
     ],
-    "resposta": "D"
+    "resposta": "d"
   },
   {
-    "id": 436,
-    "pergunta": "436) O potencial eletroquímico de uma estrutura depende, entre outras variáveis:",
-    "opcoes": [
-      "A) do material metálico e eletrólito.",
-      "B) do material metálico e da configuração da estrutura.",
-      "C) do material metálico e do tipo de estrutura.",
-      "D) do eletrólito e do tipo de estrutura."
+    "id": 36,
+    "texto": "Porque se prefere usar partículas magnéticas fluorescentes em via úmida em vez de pó magnético colorido em alguns casos:",
+    "alternativas": [
+      "A) para tirar vantagem do efeito das lâmpadas fluorescentes, cujo uso está sendo padronizado para iluminação em muitas plantas.",
+      "B) porque dá melhor resultado no exame de peças grandes e volumosas.",
+      "C) porque é exigido pelas normas, toda vez que se tratam de peças para equipamento agrícola.",
+      "D) para aumentar a velocidade e precisão do ensaio."
     ],
-    "resposta": "A"
+    "resposta": "d"
   },
   {
-    "id": 437,
-    "pergunta": "437) Os anodos empregados em um sistema de proteção catódica por corrente impressa são:",
-    "opcoes": [
-      "A) Neutros",
-      "B) Inertes",
-      "C) Ativos",
-      "D) Polarizados"
+    "id": 37,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nIndicações produzidas por trabalho a frio não tornam a aparecer em novo exame por meio de partículas magnéticas se a peça for desmagnetizada.",
+    "alternativas": [
+      "A) verdadeira.",
+      "B) falsa."
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 438,
-    "pergunta": "438) Na medição de potencial eletroquímico de uma estrutura, o eletrodo de referência necessita ser:",
-    "opcoes": [
-      "A) muito polarizável.",
-      "B) pouco passível.",
-      "C) pouco polarizável.",
-      "D) bastante instável."
+    "id": 38,
+    "texto": "Indique os itens da relação abaixo que podem produzir indicações não relevantes:",
+    "alternativas": [
+      "A) juntas entre materiais desiguais.",
+      "B) juntas brasadas.",
+      "C) trabalho a frio.",
+      "D) todas estas as respostas estão certas."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
-    "id": 439,
-    "pergunta": "439) Na corrosão eletroquímica, o oxigênio funciona como fator de ....",
-    "opcoes": [
-      "A) controle de pH.",
-      "B) imunidade do metal.",
-      "C) elevação da taxa de polarização.",
-      "D) controle dos processos corrosivos."
+    "id": 39,
+    "texto": "Após detectar todas as descontinuidades de uma peça:",
+    "alternativas": [
+      "A) a peça deve ser rejeitada.",
+      "B) a peça deve ser reparada pela remoção das descontinuidades.",
+      "C) as trincas devem ser esmerilhadas para medir sua profundidade.",
+      "D) as descontinuidades devem ser avaliadas para verificar se preenchem os requisitos dos padrões de aceitação."
     ],
-    "resposta": "D"
+    "resposta": "d"
   },
   {
-    "id": 440,
-    "pergunta": "440) A superproteção de uma estrutura protegida catodicamente decorre de uma densidade de corrente...",
-    "opcoes": [
-      "A) adequada e bem distribuída.",
-      "B) muito menor que a necessária.",
-      "C) igual a necessária para proteção.",
-      "D) muito maior que a necessária para proteção."
+    "id": 40,
+    "texto": "É mais fácil remover os defeitos apresentados por peças brutas de fundição do que de peças usinadas porque:",
+    "alternativas": [
+      "A) as peças fundidas têm superfícies brutas.",
+      "B) as peças usinadas possuem maior teor de liga.",
+      "C) as peças usinadas tendem a apresentar magnetismo.",
+      "D) as tolerâncias dimensionais são maiores nas peças brutas de fundição."
     ],
-    "resposta": "D"
+    "resposta": "d"
   }
 ]

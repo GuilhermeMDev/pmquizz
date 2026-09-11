@@ -1,441 +1,425 @@
 [
   {
-    "id": 321,
-    "pergunta": "321) Quando o potencial de um eletrodo é abaixado, ou seja, desce na tabela de potenciais, se tornando mais catódico ou mais nobre, devido à formação de uma película de produto de corrosão esse fenômeno é chamado de:",
-    "opcoes": [
-      "A) barreira anódica",
-      "B) reversão ôhmica",
-      "C) corrosão",
-      "D) passivação"
+    "id": 1,
+    "texto": "Quando uma peça é magnetizada por uma bobina, o campo magnético induzido é:",
+    "alternativas": [
+      "A) residual.",
+      "B) longitudinal.",
+      "C) retilíneo.",
+      "D) circular."
     ],
-    "resposta": "D"
+    "resposta": "b"
   },
   {
-    "id": 322,
-    "pergunta": "322) São processos corrosivos encontrados durante a inspeção de partes submersas de uma instalação marítima:",
-    "opcoes": [
-      "A) uniforme, placas e alveolar",
-      "B) puntiforme, uniforme e filiforme",
-      "C) alveolar, uniforme e pitiforme",
-      "D) uniforme, por pites e intergranular"
+    "id": 2,
+    "texto": "Para detectar defeitos longitudinais no interior de um furo existente numa peça devese:",
+    "alternativas": [
+      "A) aumentar a amperagem.",
+      "B) magnetizar a peça usando uma bobina.",
+      "C) estabelecer o fluxo de corrente num condutor que passe pelo centro do furo.",
+      "D) passar a corrente através da peça."
     ],
-    "resposta": "C"
+    "resposta": "c"
   },
   {
-    "id": 323,
-    "pergunta": "323) A proteção catódica para proteger um componente estrutural que está próximo do leito marinho em uma plataforma fixa de aço, deve ter seus anodos de sacrifício instalados:",
-    "opcoes": [
-      "A) na zona de variação de maré",
-      "B) na parte superior da jaqueta",
-      "C) próximos do componente a proteger",
-      "D) no meio da jaqueta"
+    "id": 3,
+    "texto": "Qual a razão para que haja bom contato elétrico na maior área possível, ao examinar uma peça por meio de partículas magnéticas, utilizando a técnica de contato direto?",
+    "alternativas": [
+      "A) para que não haja fulga do campo magnético.",
+      "B) para evitar que seja desnecessário desmagnetizar a peça posteriormente.",
+      "C) evitar o superaquecimento da peça nos pontos de injeção de corrente e permitir o uso de correntes mais intensas.",
+      "D) para fechar o circuito magnético com maior eficiência."
     ],
-    "resposta": "C"
+    "resposta": "c"
   },
   {
-    "id": 324,
-    "pergunta": "324) Os medidores de potencial eletroquímico usados pelos inspetores subaquáticos possuem acoplados um eletrodo de referência de:",
-    "opcoes": [
-      "A) zinco",
-      "B) calomelano",
-      "C) prata/cloreto de prata água do mar",
-      "D) cobre/sulfato de cobre"
+    "id": 4,
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nO preparo da suspensão de partículas magnéticas, no caso de utilizar pasta misturada com óleo, pode ser feito diretamente no tanque do equipamento.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "C"
+    "resposta": "b"
   },
   {
-    "id": 325,
-    "pergunta": "325) O aumento da correnteza na água do mar, aumenta a taxa de corrosão porque aumenta:",
-    "opcoes": [
-      "A) a despolarização catódica",
-      "B) a polarização catódica",
-      "C) a passivação",
-      "D) a imunização"
+    "id": 5,
+    "texto": "Indique a maneira mais simples para verificar se uma peça é magnetizável.",
+    "alternativas": [
+      "A) verificando se uma peça é atraída por um ímã.",
+      "B) aplicando partícula magnética na peça.",
+      "C) verificando se uma peça similar é atraída pela peça em questão.",
+      "D) usando um medidor de campo magnético."
     ],
-    "resposta": "A"
+    "resposta": "a"
   },
   {
-    "id": 326,
-    "pergunta": "326) São exemplos de instalações nas quais se pode aplicar proteção catódica:",
-    "opcoes": [
-      "A) casco de embarcações",
-      "B) monoboias",
-      "C) jaqueta de plataformas fixas ",
-      "D) manifolds submarinos",
-      "E) todas estão corretas"
+    "id": 6,
+    "texto": "Qual é a maneira de verificar se uma peça foi desmagnetizada?",
+    "alternativas": [
+      "A) aplicação de um ímã na peça.",
+      "B) verificação por um medidor de campo magnético.",
+      "C) tirando uma radiografia da peça.",
+      "D) por uma observação cuidadosa de como a partícula magnética se distribui na superfície da peça."
     ],
-    "resposta": "E"
+    "resposta": "b"
   },
   {
-    "id": 327,
-    "pergunta": "327) -A polarização por ativação que ocorre nas áreas catódica se dá pela sobretensão ou sobrevoltagem do:",
-    "opcoes": [
-      "A) oxigênio do meio",
-      "B) oxigênio e do cloro",
-      "C) hidrogênio liberado",
-      "D) cloro liberado"
+    "id": 7,
+    "texto": "Que é um exame por meio de partículas magnéticas?",
+    "alternativas": [
+      "A) consiste na magnetização e exame de pequenas peças.",
+      "B) é um exame não destrutivo aplicável a materiais ferromagnéticos.",
+      "C) consiste no exame de pequenas partículas de materiais ferromagnéticos."
     ],
-    "resposta": "C"
+    "resposta": "b"
   },
   {
-    "id": 328,
-    "pergunta": "328) -A capacidade de corrente de um anodo galvânico de sacrifício é expressa normalmente em:",
-    "opcoes": [
-      "A) V.h / kg",
-      "B) Ω.h / kg",
-      "C) Ω.cm",
-      "D) A.h / kg"
+    "id": 8,
+    "texto": "Em que consiste o exame por via úmida com magnetismo residual?",
+    "alternativas": [
+      "A) consiste em umedecer as peças que apresentaram magnetismo residual.",
+      "B) consiste na aplicação de suspensão de partículas magnéticas em peças de materiais ferromagnéticos após interromper a corrente elétrica de magnetização.",
+      "C) consiste no exame do resíduo do tanque da suspensão.",
+      "D) consiste na aplicação de partícula magnética na forma de pó em peças de materiais ferromagnéticos após interromper a corrente elétrica de magnetização."
     ],
-    "resposta": "D"
+    "resposta": "b"
   },
   {
-    "id": 329,
-    "pergunta": "329) A corrosividade de um eletrólito depende entre outros fatores de sua resistividade. No caso da água do mar, em mar aberto, onde essa água não tem interferências de poluentes ou água doce dos rios, o valor da resistividade situa-se de modo geral, na seguinte faixa:",
-    "opcoes": [
-      "A) 0,20 a 0,35 Ω.cm",
-      "B) 2.000 a 4.000 Ω.cm",
-      "C) 20 a 35 Ω.cm",
-      "D) 3.000 a 5.000 Ω.cm"
+    "id": 9,
+    "texto": "no exame por via seca é mais usado",
+    "alternativas": [
+      "A) corrente contínua correspondente a retificação de meia onda de corrente alternada de 110 volts.",
+      "B) corrente de alta frequência tipo VHF.",
+      "C) corrente de alta voltagem e baixa amperagem.",
+      "D) corrente contínua correspondente a retificação completa das ondas de corrente alternada, trifásica de 440 volts."
     ],
-    "resposta": "C"
+    "resposta": "a"
   },
   {
-    "id": 330,
-    "pergunta": "330) A medição de potencial eletroquímico é sempre realizada:",
-    "opcoes": [
-      "A) entre a estrutura e uma semicélula de referência",
-      "B) entre a estrutura e outra instalação",
-      "C) entre a estrutura e um leito de anodos",
-      "D) por um anodo galvânico da estrutura"
+    "id": 10,
+    "texto": "O exame por via úmida com magnetização contínua é caracterizado:",
+    "alternativas": [
+      "A) pelo método de aplicação da solução.",
+      "B) pelo contínuo umedecimento da peça.",
+      "C) pela aplicação da suspensão enquanto circula a corrente de magnetização.",
+      "D) pela manutenção do fluxo da suspensão após o corte da corrente de magnetização."
     ],
-    "resposta": "A"
+    "resposta": "c"
   },
   {
-    "id": 331,
-    "pergunta": "331) Se na tabela padrão de potenciais eletroquímicos forem considerados dois metais, o que está acima na tabela será:",
-    "opcoes": [
-      "A) mais nobre que o que está abaixo",
-      "B) menos reativo do que está abaixo",
-      "C) menos eletronegativo do que está abaixo",
-      "D) mais anódico que o que está abaixo"
+    "id": 11,
+    "texto": "Em que consiste o exame por via seca",
+    "alternativas": [
+      "A) consiste na obtenção de corrente de magnetização por meio de baterias secas.",
+      "B) consiste na obtenção de corrente de magnetização por meio de bateria seca.",
+      "C) consiste na utilização de partícula magnética na forma de pó para examinar peças de material ferromagnético.",
+      "D) consiste em secar previamente as peças antes de aplicar a corrente de magnetização."
     ],
-    "resposta": "D"
+    "resposta": "c"
   },
   {
-    "id": 332,
-    "pergunta": "332) Nas estruturas que possuem revestimentos de boa qualidade, bem especificados e aplicados com o máximo rigor, os anodos galvânicos podem ser instalados com um maior espaçamento porque é:",
-    "opcoes": [
-      "A) mais difícil polarizar uma estrutura revestida",
-      "B) mais fácil polarizar uma estrutura revestida",
-      "C) tecnicamente impossível polarizar uma estrutura revestida",
-      "D) desnecessário polarizar uma estrutura"
+    "id": 12,
+    "texto": "Por que deve ser feita a limpeza das peças antes de magnetizá-las?",
+    "alternativas": [
+      "A) para reduzir o consumo de energia de magnetização.",
+      "B) para reduzir o aparecimento de indicações falsas.",
+      "C) para não sujar o local de trabalho.",
+      "D) para facilitara limpeza após o exame."
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 333,
-    "pergunta": "333) Pilha que surge sempre que um material metálico de mesma natureza é exposto a concentrações iônicas diferentes, especialmente de seus próprios íons:",
-    "opcoes": [
-      "A) Pilha de aeração diferencial",
-      "B) Pilha de concentração diferencial",
-      "C) Pilha de ação local",
-      "D) Pilha ativa-passiva"
+    "id": 13,
+    "texto": "Indique as razões que justifiquem a desmagnetização prévia de peças que serão examinadas por meio de partículas magnéticas.",
+    "alternativas": [
+      "A) facilitar o manuseio de peças grandes.",
+      "B) assegurar a eliminação de indicações não relevantes permanecendo as demais.",
+      "C) impedir a formação de correntes elétricas geradas pelo movimento relativo de peças magnetizadas com outras peças metálicas.",
+      "D) facilitar a limpeza de peças paramagnéticas."
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 334,
-    "pergunta": "334) Podem-se prever as reações eletroquímicas pela variação de energia livre que acompanha essas reações. Ela é dada pela expressão ∆G = -n.F. E (variação de energia livre). Quando a variação de energia livre é positiva a reação é:",
-    "opcoes": [
-      "A) não reativa",
-      "B) não espontânea",
-      "C) espontânea",
-      "D) oxidativa"
+    "id": 14,
+    "texto": "Por que se usa luz negra no exame com partículas magnéticas fluorescentes?",
+    "alternativas": [
+      "A) para proteger os olhos do operador.",
+      "B) para que as indicações sejam detectadas com maior facilidade.",
+      "C) para identificar quais indicações não relevantes correspondem à defeitos.",
+      "D) para salientar o campo magnético."
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 335,
-    "pergunta": "335) Em uma jaqueta de plataforma fixa de produção as regiões que podem ser protegidas catodicamente são as superfícies:",
-    "opcoes": [
-      "A) enterradas ou submersas",
-      "B) enterradas, submersas ou aéreas",
-      "C) aéreas ou enterradas",
-      "D) aéreas ou submersas"
+    "id": 15,
+    "texto": "Por que deve ser feita a limpeza das peças após sua desmagnetização?",
+    "alternativas": [
+      "A) para evitar a corrosão das peças examinadas.",
+      "B) para reaproveitar as partículas magnéticas da suspensão.",
+      "C) para assegurar a remoção das partículas magnéticas.",
+      "D) para evitar a ocorrência de trincas durante o tratamento térmico."
     ],
-    "resposta": "A"
+    "resposta": "c"
   },
   {
-    "id": 336,
-    "pergunta": "336) O potencial eletroquímico de um anodo de liga de alumínio de boa qualidade imerso no mar, medido em relação a uma semicélula de prata/cloreto de prata situa-se em torno de:",
-    "opcoes": [
-      "A) -1,050 V",
-      "B) -1,000 V",
-      "C) -1,550 V",
-      "D) -0,850 V"
+    "id": 16,
+    "texto": "Que se entende por veículo líquido",
+    "alternativas": [
+      "A) um líquido que possui partículas magnéticas em suspensão, por meio do qual elas são transportadas para a superfície da peça em exame.",
+      "B) um produto para remover as partículas magnéticas da superfície da peça após executado o exame.",
+      "C) um produto para limpeza da peça antes do exame.",
+      "D) um veículo para transporte de líquido."
     ],
-    "resposta": "A"
+    "resposta": "a"
   },
   {
-    "id": 337,
-    "pergunta": "337) Nos processos de corrosão eletroquímica o material metálico se transforma em um:",
-    "opcoes": [
-      "A) metal puríssimo",
-      "B) sal neutro",
-      "C) composto",
-      "D) composto intermetálico"
+    "id": 17,
+    "texto": "Quando uma corrente elétrica circula num condutor de cobre",
+    "alternativas": [
+      "A) forma-se linhas de força paralelas ao eixo do condutor.",
+      "B) forma-se um campo magnético em torno do condutor.",
+      "C) forma-se polos magnéticos no condutor."
     ],
-    "resposta": "C"
+    "resposta": "b"
   },
   {
-    "id": 338,
-    "pergunta": "338) Os voltímetros para medição de potencial em proteção catódica devem apresentar:",
-    "opcoes": [
-      "A) resistência interna baixíssima e fixa",
-      "B) elevada resistência interna",
-      "C) baixa resistência interna",
-      "D) resistência interna variável"
+    "id": 18,
+    "texto": "A desmagnetização de uma peça geralmente não é necessária se",
+    "alternativas": [
+      "A) a peça for de aço carbono.",
+      "B) a peça for pequena.",
+      "C) for utilizado o método de magnetização contínua.",
+      "D) a peça receberá tratamento para aumento de dureza após o exame."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
-    "id": 339,
-    "pergunta": "339) Na superfície metálica de uma instalação marítima protegida catodicamente há uma:",
-    "opcoes": [
-      "A) elevação do pH",
-      "B) diminuição do pH",
-      "C) anulação do pH",
-      "D) neutralização do pH"
+    "id": 19,
+    "texto": "A intensidade do campo magnético é determinada",
+    "alternativas": [
+      "A) pela amperagem da corrente de magnetização.",
+      "B) pelo tempo de circulação da corrente.",
+      "C) pela voltagem da corrente de magnetização."
     ],
-    "resposta": "A"
+    "resposta": "a"
   },
   {
-    "id": 340,
-    "pergunta": "340) A velocidade dos processos corrosivos pode ser influenciada pela resistividade do eletrólito, pela superfície de contato das áreas anódicas e catódicas e também pelos fenômenos de polarização e passivação. Ainda pode ser influenciada por outros fatores do meio corrosivo, tais como:",
-    "opcoes": [
-      "A) nível de pH do ambiente",
-      "B) temperatura ",
-      "C) taxa de fluxo de água no local",
-      "D) todas as alternativas estão corretas"
+    "id": 20,
+    "texto": "Qual a direção das linhas de força do campo magnético em relação à direção da corrente de magnetização",
+    "alternativas": [
+      "A) ângulo de 45.",
+      "B) todas as direções.",
+      "C) normal.",
+      "D) paralela."
     ],
-    "resposta": "D"
+    "resposta": "c"
   },
   {
-    "id": 341,
-    "pergunta": "341) Uma estrutura protegida catodicamente fica polarizada por ativação devido ao:",
-    "opcoes": [
-      "A) cloro e ao oxigênio liberados",
-      "B) cloro liberado",
-      "C) hidrogênio liberado",
-      "D) oxigênio liberado"
+    "id": 21,
+    "texto": "A magnetização por meio de um condutor central",
+    "alternativas": [
+      "A) deve ser utilizada apenas para detecção de defeitos cuja direção principal é paralela as linhas de força do campo magnético produzido.",
+      "B) não é recomendável, tendo em vista que o calor gerado pela passagem de corrente no condutor prejudica a eficiência do exame.",
+      "C) constitui um meio efetivo de magnetização de peças com vistas a determinar a presença de defeitos em superfícies internas.",
+      "D) é a maneira correta de magnetizar peças de materiais diamagnéticos com vista à detecção de defeitos internos."
     ],
-    "resposta": "C"
+    "resposta": "c"
   },
   {
-    "id": 342,
-    "pergunta": "342) A pilha ativa-passiva é característica dos materiais formadores de:",
-    "opcoes": [
-      "A) películas porosas",
-      "B) películas semiprotetoras",
-      "C) películas solúveis",
-      "D) películas passivadoras"
+    "id": 22,
+    "texto": "-Na magnetização circular, a força magnetizante é expressa em ampères. Qual é o termo usado para expressar a força de magnetização na magnetização longitudinal.",
+    "alternativas": [
+      "A) volts.",
+      "B) ampere-espiras.",
+      "C) volts-amperes.",
+      "D) ampères."
     ],
-    "resposta": "D"
+    "resposta": "b"
   },
   {
-    "id": 343,
-    "pergunta": "343) A superproteção em uma plataforma tem como inconveniente a possibilidade de gerar trincas:",
-    "opcoes": [
-      "A) na fixação dos anodos possibilitando a sua queda",
-      "B) na estrutura que poderão acelerar falhas por fadiga",
-      "C) na massa dos anodos que poderão acelerar falhas por fadiga",
-      "D) nos anodos e nas almas dos anodos que poderão acelerar falhas por fadiga"
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 344,
-    "pergunta": "344) Uma estrutura de aço carbono é dita protegida catodicamente quando seu potencial eletroquímico for:",
-    "opcoes": [
-      "A) menos negativo que –0,800 V em relação a semicélula de prata/cloreto de prata",
-      "B) muito menos negativo que –0,800 V em relação a semicélula de prata/cloreto de prata",
-      "C) nulo em relação a semicélula de prata/cloreto de prata",
-      "D) mais negativo que –0,800 V em relação a semicélula de prata/cloreto de prata"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 345,
-    "pergunta": "345) A polarização por concentração é caracteristicamente de eletrólitos:",
-    "opcoes": [
-      "A) muito concentrados",
-      "B) com fortíssimo movimento",
-      "C) bastante diluído",
-      "D) com pouco ou sem movimento"
-    ],
-    "resposta": "D"
-  },
-  {
-    "id": 346,
-    "pergunta": "346) Nas plataformas marítimas os anodos galvânicos mais usados são os de:",
-    "opcoes": [
-      "A) liga de magnésio e liga de zinco",
-      "B) liga de alumínio e liga de zinco",
-      "C) liga de cobre e liga de alumínio",
-      "D) liga de chumbo e liga de alumínio"
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 347,
-    "pergunta": "347) A polarização ôhmica forma uma camada calco-magnesiana devido:",
-    "opcoes": [
-      "A) ao abaixamento de pH na área catódica",
-      "B) ao pH muito baixo na área catódica",
-      "C) a elevação do pH na área catódica",
-      "D) a neutralização do eletrólito na área catódica"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 348,
-    "pergunta": "348) Tipo de anodo muito utilizado em estruturas metálicas imersas em água doce, de baixa resistividade, ou enterradas em solos com resistividade elétrica até 3.000 Ω.cm:",
-    "opcoes": [
-      "A) magnésio",
-      "B) alumínio",
-      "C) zinco",
-      "D) titânio platinizado"
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 349,
-    "pergunta": "349) A corrosão eletroquímica promove a passagem do material metálico da forma reduzida para a forma de íons:",
-    "opcoes": [
-      "A) positivos",
-      "B) eletricamente carregados",
-      "C) negativos",
-      "D) do tipo ânions"
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 350,
-    "pergunta": "350) A proteção catódica é um método de controle de corrosão que consiste em tornar a estrutura a proteger:",
-    "opcoes": [
-      "A) em um anodo da pilha de corrosão",
-      "B) em um anodo monitorado",
-      "C) em um catodo de uma pilha de corrosão",
-      "D) em um íon metálico"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 351,
-    "pergunta": "351) Pilha que ocorre em uma superfície metálica, devido às heterogeneidades do material.",
-    "opcoes": [
-      "A) pilha ativa-passiva",
-      "B) pilha de aeração diferencial",
-      "C) pilha de ação local",
-      "D) pilha galvânica"
-    ],
-    "resposta": "C"
-  },
-  {
-    "id": 352,
-    "pergunta": "352) Materiais passiváveis como o aço inox, o titânio e o alumínio, quando corroem, em geral a pilha formada é do tipo:",
-    "opcoes": [
-      "A) pilha ativa-passiva",
-      "B) pilha de aeração diferencial",
-      "C) pilha de ação local",
-      "D) pilha galvânica"
-    ],
-    "resposta": "A"
-  },
-  {
-    "id": 353,
-    "pergunta": "353) O retardamento da velocidade das reações de corrosão é conseguido, entre outras coisas, pelos fenômenos:",
-    "opcoes": [
-      "A) oxidativos da água do mar",
-      "B) da passivação e polarização",
-      "C) físico-químicos",
-      "D) aeróbicos"
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 354,
-    "pergunta": "354) Área anódica é uma região onde ocorrem as reações de oxidação (perda de elétrons). É a superfície onde se verifica o desgaste e este ocorre devido:",
-    "opcoes": [
-      "A) a saída de elétrons para o eletrólito",
-      "B) a saída de íons positivos do metal para o eletrólito",
-      "C) a saída de hidroxila para o eletrólito",
-      "D) a saída de gás hidrogênio para o eletrólito"
-    ],
-    "resposta": "B"
-  },
-  {
-    "id": 355,
-    "pergunta": "355) O eletrólito é uma solução condutora que envolve as áreas anódicas e catódicas, e por onde fluem os elétrons resultantes de ambas as reações.",
-    "opcoes": [
+    "id": 23,
+    "texto": "-Indique se a afirmação abaixo é verdadeira ou falsa.\nTodas as partes que apresentem indicações devem ser esmerilhadas.",
+    "alternativas": [
       "A) verdadeiro",
       "B) falso"
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 356,
-    "pergunta": "356) A área catódica é a superfície protegida (onde não há desgaste). Os elétrons que chegam da área anódica provocam reações de ........... nos íons do eletrólito.",
-    "opcoes": [
-      "A) oxidação",
-      "B) oxirredução",
-      "C) neutralização",
-      "D) redução"
+    "id": 24,
+    "texto": "-Indique se a afirmação abaixo é verdadeira ou falsa.\nÉ desnecessário remover a graxa que protege a superfície das peças contra corrosão para submetê-las ao exame por meio de partículas magnéticas.",
+    "alternativas": [
+      "A) verdadeiro",
+      "B) falso"
     ],
-    "resposta": "D"
+    "resposta": "b"
   },
   {
-    "id": 357,
-    "pergunta": "357) A variação do potencial de um eletrodo causada pela passagem de uma corrente elétrica é chamada de:",
-    "opcoes": [
-      "A) oxidação",
-      "B) polarização",
-      "C) passivação",
-      "D) energização"
+    "id": 25,
+    "texto": "-Indique se a afirmação abaixo é verdadeira ou falsa.\nO processo empregado para desmagnetizar uma peça consiste simplesmente em colocar a peça no interior de uma bobina, estabelecendo e interrompendo o circuito logo após a passagem da corrente.",
+    "alternativas": [
+      "A) verdadeiro",
+      "B) falso"
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 358,
-    "pergunta": "358) A característica fundamental do mecanismo eletroquímico é que ele só se verifica em presença de um eletrólito. As reações de corrosão eletroquímica envolvem reações de:",
-    "opcoes": [
-      "A) polimerização",
-      "B) oxirredução",
-      "C) redução",
-      "D) oxidação"
+    "id": 26,
+    "texto": "-Quando a desmagnetização de uma peça é feita pela técnica do contato direto, a força magnetizante usada para desmagnetizar deve ser.",
+    "alternativas": [
+      "A) igual a força magnetizadora que magnetizou a peça.",
+      "B) maior do que a força magnetizadora que magnetizou a peça.",
+      "C) de qualquer valor",
+      "D) menor do que a força magnetizadora que magnetizou a peça."
     ],
-    "resposta": "B"
+    "resposta": "b"
   },
   {
-    "id": 359,
-    "pergunta": "359) A equação de Tafel é utilizada para calcular:",
-    "opcoes": [
-      "A) A sobrevoltagem do hidrogênio.",
-      "B) A sobrevoltagem do nitrogênio.",
-      "C) A sobrevoltagem do do dióxido de carbono.",
-      "D) A sobrevoltagem do aço carbono."
+    "id": 27,
+    "texto": "-Indique se a afirmação abaixo é verdadeira ou falsa.\nO procedimento para examinar uma peça por meio de partículas magnéticas deve ser sempre previamente qualificado.",
+    "alternativas": [
+      "A) verdadeiro",
+      "B) falso"
     ],
-    "resposta": "A"
+    "resposta": "a"
   },
   {
-    "id": 360,
-    "pergunta": "360) O aumento do oxigênio dissolvido no mar, devido as ondulações e correnteza:",
-    "opcoes": [
-      "A) aumenta a taxa de corrosão",
-      "B) diminui de início e depois aumenta as taxas de corrosão",
-      "C) diminui as taxas de corrosão",
-      "D) não tem influência nas taxas de corrosão"
+    "id": 28,
+    "texto": "-Indique se a afirmação abaixo é verdadeira ou falsa.\nO pó magnético de cor preta dá um bom contraste em superfícies escurecidas ou oxidadas por tratamento térmico.",
+    "alternativas": [
+      "A) verdadeiro",
+      "B) falso"
     ],
-    "resposta": "A"
+    "resposta": "b"
+  },
+  {
+    "id": 29,
+    "texto": "Se uma barra magnética é curvada de modo a assumir forma circular, estando suas extremidades encostadas uma na outra:",
+    "alternativas": [
+      "A) ainda assim terá um polo sul e um polo norte.",
+      "B) sua magnetização aumentará.",
+      "C) haverá apenas um polo no centro do círculo.",
+      "D) sua polaridade desaparecerá."
+    ],
+    "resposta": "d"
+  },
+  {
+    "id": 30,
+    "texto": "O aparecimento de uma trinca numa peça em forma de anel, que foi magnetizada de modo que as linhas de força percorrem o anel, determinará:",
+    "alternativas": [
+      "A) a formação de polos magnéticos.",
+      "B) o aparecimento de um terceiro polo.",
+      "C) a alteração da posição dos polos magnéticos existentes no anel.",
+      "D) o desaparecimento do campo magnético."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 31,
+    "texto": "A passagem de corrente elétrica num condutor reto",
+    "alternativas": [
+      "A) determina a formação de polos.",
+      "B) faz com que se desenvolva um campo magnético longitudinal junto ao condutor.",
+      "C) faz com que se desenvolva um campo magnético circular em torno do condutor.",
+      "D) forma um campo magnético circular se a corrente for alternada e longitudinal se a corrente for contínua."
+    ],
+    "resposta": "c"
+  },
+  {
+    "id": 32,
+    "texto": "A passagem de corrente elétrica num condutor que dá uma volta numa peça faz que se desenvolva um campo magnético na peça se:",
+    "alternativas": [
+      "A) a peça for de seção circular.",
+      "B) a peça for de material ferromagnético.",
+      "C) a corrente for muito fraca.",
+      "D) a peça estiver trincada."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 33,
+    "texto": "A magnetização circular é indicada para detecção de",
+    "alternativas": [
+      "A) defeitos existentes próximos ao eixo de barras cilíndricas.",
+      "B) trincas longitudinais.",
+      "C) trincas circunferenciais.",
+      "D) falhas em tubulações."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 34,
+    "texto": "No exame por meio de partículas magnéticas, qual dos defeitos relacionados abaixo é mais difícil de detectar, supondo que estejam na mesma posição relativa, numa peça pequena:",
+    "alternativas": [
+      "A) risco.",
+      "B) trinca subsuperficial.",
+      "C) trinca superficial.",
+      "D) lasca."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 35,
+    "texto": "Usando-se a magnetização circular, a corrente para o teste de peças é geralmente determinada:",
+    "alternativas": [
+      "A) pelo comprimento da peça.",
+      "B) pelo tipo de material da peça.",
+      "C) pelo diâmetro da peça.",
+      "D) pela forma da peça."
+    ],
+    "resposta": "c"
+  },
+  {
+    "id": 36,
+    "texto": "O campo magnético no interior de uma bobina é afetado",
+    "alternativas": [
+      "A) todas as respostas estão certas.",
+      "B) pelo diâmetro da bobina.",
+      "C) pelo número de espiras da bobina.",
+      "D) pela corrente elétrica que circula na bobina."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 37,
+    "texto": "O líquido empregado no exame por via úmida e corretamente denominado:",
+    "alternativas": [
+      "A) líquido magnético.",
+      "B) líquido de lavagem.",
+      "C) suspensão.",
+      "D) solução."
+    ],
+    "resposta": "c"
+  },
+  {
+    "id": 38,
+    "texto": "A suspensão usada no exame por via úmida deve ser uniforme:",
+    "alternativas": [
+      "A) para que o fluxo magnético seja uniforme.",
+      "B) para assegurar maior mobilidade das partículas magnéticas.",
+      "C) porque diferentes composições da suspensão levarão a diferentes resultados no exame.",
+      "D) caso contrário ocorrerão indicações de trinca no local onde não existem."
+    ],
+    "resposta": "c"
+  },
+  {
+    "id": 39,
+    "texto": "A eficiência da detecção de defeitos profundos em soldas depende",
+    "alternativas": [
+      "A) da limpeza da superfície que devem estar isentas de escória, carepa, graxa, etc.",
+      "B) da técnica de soldagem.",
+      "C) do tratamento térmico que a peça tiver recebido.",
+      "D) todas estão certas."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 40,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nA magnetização de uma barra, de forma que seja mínimo o vazamento de campo magnético é obtida colocando a barra entre os contactores de uma máquina especial para exame por meio de partículas magnéticas.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "a"
   }
 ]

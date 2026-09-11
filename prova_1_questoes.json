@@ -1,442 +1,442 @@
 [
   {
     "id": 1,
-    "pergunta": "1) Para o caso de plataformas marítimas, a técnica de medição de potencial para se verificar o nível de proteção catódica é aplicável:",
-    "opcoes": [
-      "A) as regiões submersas ou aéreas.",
-      "B) aos locais acima do nível máximo de variação do nível de maré.",
-      "C) as regiões permanentemente submersas.",
-      "D) somente as regiões enterradas"
+    "texto": "Indique a afirmativa correta sobre descontinuidades.",
+    "alternativas": [
+      "a) Toda descontinuidade é um defeito, porém alguns defeitos não são descontinuidades.",
+      "b) Somente os defeitos reprovados são descontinuidades.",
+      "c) Todo defeito é uma descontinuidade, porém nem toda descontinuidade é um defeito.",
+      "d) Quando a descontinuidade afeta o desempenho do material no serviço a que se destina, temos, então, um defeito não prejudicial."
     ],
-    "resposta": "C"
+    "resposta": "c"
   },
   {
     "id": 2,
-    "pergunta": "2) A corrosão eletroquímica promove a passagem do material metálico da forma reduzida para a forma de íons:",
-    "opcoes": [
-      "A) positivos.",
-      "B) eletricamente carregados.",
-      "C) negativos.",
-      "D) do tipo ânions"
+    "texto": "Quando se inspeciona por partículas magnéticas peças com a superfície pintada e, sendo necessário o uso de pontas (eletrodos):",
+    "alternativas": [
+      "a) Usa-se pontas de chumbo para melhor contato.",
+      "b) Limpa-se as pontas com lixa para garantir o contato.",
+      "c) Efetua-se a limpeza nos locais de contato e depois executa-se o ensaio.",
+      "d) Qualquer das opções são aceitáveis para assegurar a inspeção de peças fundidas e usinadas"
     ],
-    "resposta": "A"
+    "resposta": "c"
   },
   {
     "id": 3,
-    "pergunta": "3) A medição de potencial com uso do RCV em ângulos agudos é realizada usando-se:",
-    "opcoes": [
-      "A) extensores apropriados que garantem uma aproximação nunca inferior a 300 mm.",
-      "B) eletrodos de referência que perm itam com u ma distância de 800 mm, boa medição.",
-      "C) extensores apropriados que permitam medição a uma distância inferior a 50 mm.",
-      "D) eletrodos de referência apropriados que permitam uma aproximação nunca inferior a 800mm"
+    "texto": "O uso de pó seco numa peça aquecida a 140ºC com pontas produz arco que não comprometeu a peça, este fenômeno pode ser evitado da seguinte forma:",
+    "alternativas": [
+      "a) Colocando nas pontas, malha de cobre ou chumbo.",
+      "b) Evitando efetuar os ensaios de peças em temperatura muito alta.",
+      "c) Passar o yoke na peça para limpar as áreas da inspeção, após as pontas.",
+      "d) Melhorando o contato das pontas e limpando o local de ensaio."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
     "id": 4,
-    "pergunta": "4) Uma estrutura protegida catodicamente encontra-se polarizada:",
-    "opcoes": [
-      "A) catodicamente e anodicamente.",
-      "B) anodicamente.",
-      "C) pela geração e adsorção de oxigênio.",
-      "D) catodicamente"
+    "texto": "No ensaio por via úmida de uma peça submetida a banho de níquel, onde há suspeita de trincas na camada niquelada. Como efetuar o ensaio?",
+    "alternativas": [
+      "a) Partícula úmida fluorescente de alta permeabilidade.",
+      "b) Utilizar pó seco via úmida e AC.",
+      "c) Utilizar técnica dos Eletrodos (Pontas).",
+      "d) Este ensaio deve ser feito por outro método não magnético."
     ],
-    "resposta": "D"
+    "resposta": "d"
   },
   {
     "id": 5,
-    "pergunta": "5) Das alternativas abaixo qual delas corresponde ao item “método e ferramentas para preparação da superfície para medição” de um procedimento de medição de potencial eletroquímico por mergulhador:",
-    "opcoes": [
-      "A) a limpeza será executada com raspa e escova metálica manual e a área máxima da superfície a ser limpa deverá ser 3 centímetros quadrados.",
-      "B) em materiais a base de ligas de níquel e aços inoxidáveis austeníticos os discos de desbaste deverão ter alma de nylon e as escovas deverão ser de aço inoxidável ou revestidas com aço inoxidável.",
-      "C) no ponto a ser medido, a limpeza deve ser apenas a ne cessária para o perfeito acoplamento da probe do equipamento com a superfície metálica.",
-      "D) a superfície deverá ser preparada com jato abrasivo de areia e deve atingir o estado definido como jato comercial SAE 2"
+    "texto": "No ensaio por via seca observa-se que, para o ensaio em peças pintadas:",
+    "alternativas": [
+      "a) O método não se aplica devido ao isolamento da superfície, independente da técnica de magnetização usada.",
+      "b) A pintura muito brilhante dificulta o ensaio da peça por ofuscar a visão.",
+      "c) As alternativas \"a\" e \"b\" estão corretas.",
+      "d) Pode-se efetuar o ensaio dependendo da espessura e da técnica de magnetização utilizada."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
     "id": 6,
-    "pergunta": "6) Os voltímetros usados na medição de p otencial pelos inspetores submar inos possuem acoplados um eletrodo de referência de:",
-    "opcoes": [
-      "A) prata/cloreto de prata água do mar.",
-      "B) zinco.",
-      "C) cobre/sulfato de cobre.",
-      "D) calomelano"
+    "texto": "Se um tubo oco for magnetizado por meio de um condutor central, o fluxo de campo não será zero:",
+    "alternativas": [
+      "a) Somente na superfície interna.",
+      "b) Somente na superfície externa.",
+      "c) Em ambas as superfícies.",
+      "d) Apenas nas extremidades do tubo."
     ],
-    "resposta": "A"
+    "resposta": "c"
   },
   {
     "id": 7,
-    "pergunta": "7) Na medição do potencial eletroquímico de uma estrutura, o eletrodo de referência deve ficar no eletrólito posicionado:",
-    "opcoes": [
-      "A) o mais próximo possível da estrutura sem contato elétrico",
-      "B) distante da estrutura.",
-      "C) em contato elétrico com a estrutura.",
-      "D) muito distante da estrutura"
+    "texto": "Uma descontinuidade é detectável por partículas magnéticas num campo contínuo. Ela é subsuperficial, se aplicarmos um campo alternado:",
+    "alternativas": [
+      "a) O pó se acumulará com maior evidência.",
+      "b) Não aparecerá tão nítida podendo não ser detectada.",
+      "c) As partículas vão aderir muito fortemente.",
+      "d) N.D.A"
     ],
-    "resposta": "A"
+    "resposta": "b"
   },
   {
     "id": 8,
-    "pergunta": "8) O potencial de proteção ca tódica do aço-carbono na água do mar em rela ção ao eletrodo de referência prata/cloreto de prata:",
-    "opcoes": [
-      "A) -0,800 V.",
-      "B) -0,650 V.",
-      "C) -0,850 V.",
-      "D) -1,050 V"
+    "texto": "A relação de aspecto é um fator muito importante para a determinação de descontinuidades porque:",
+    "alternativas": [
+      "a) É através dele que se detecta trincas abertas para a superfície.",
+      "b) É através de trincas profundas que se calcula a sua determinação.",
+      "c) Quando uma descontinuidade for igual ou maior a um a cinco (largura/profundidade), então haverá a possibilidade de ser detectada.",
+      "d) Descontinuidades não abertas a superfície são sempre impossíveis de serem detectadas."
     ],
-    "resposta": "A"
+    "resposta": "c"
   },
   {
     "id": 9,
-    "pergunta": "9) A capacidade de corrente de um anodo galvânico representa na unidade de massa:",
-    "opcoes": [
-      "A) a diferença de potencial disponível.",
-      "B) a quantidade de eletricidade disponível.",
-      "C) a quantidade utilizável do anodo.",
-      "D) a diferença de desgaste para a corrente disponível"
+    "texto": "Ao inspecionar uma peça por Yoke com campo AC na posição de maior dificuldade notou-se o pó agitando-se ao bater o campo intermitente. O que aconteceu?",
+    "alternativas": [
+      "a) As partículas estão de acordo.",
+      "b) O uso de campo AC causa estas perturbações.",
+      "c) O campo de fuga atrai e repele as partículas que se movem, em campo AC este efeito facilita a formação das indicações e lhes dá mobilidade, e isto é um efeito perfeitamente normal na aplicação da técnica.",
+      "d) Quando as pontas tocam a peça não fecham direito o circuito."
     ],
-    "resposta": "B"
+    "resposta": "c"
   },
   {
     "id": 10,
-    "pergunta": "10) A polarização ôhmica ou por resistência é responsável pela formação de um depósito calco-magnésico devido:",
-    "opcoes": [
-      "A) ao abaixamento de pH na área catódica.",
-      "B) ao pH muito baixo na área catódica.",
-      "C) a elevação do pH na área catódica.",
-      "D) a neutralização do eletrólito na área catódica"
+    "texto": "Para executar o ensaio por eletrodos uma inspeção de campo AC contínuo não é muito usado para uma das alternativas abaixo descrita:",
+    "alternativas": [
+      "a) As partículas não fixam bem nas trincas superficiais.",
+      "b) Detecta somente defeito muito superficiais.",
+      "c) Equipamentos CC não muito pesados e o AC é muito leve por não possuir retificadores.",
+      "d) Detecta defeitos superficiais não muito abertos para a superfície de ensaio."
     ],
-    "resposta": "C"
+    "resposta": "b"
   },
   {
     "id": 11,
-    "pergunta": "11) Nas plataformas marítimas os anodos galvânicos mais usados são os de:",
-    "opcoes": [
-      "A) liga de ferro e liga de zinco.",
-      "B) liga de alumínio e liga de zinco.",
-      "C) liga de cobre e liga de zinco.",
-      "D) liga de chumbo e liga de alumínio"
+    "texto": "O ensaio por AC é normalmente feito por via úmida porque:",
+    "alternativas": [
+      "a) A mobilidade e sensibilidade é menor.",
+      "b) Detecta muito bem trincas pouco abertas à superfície.",
+      "c) Por causa do Efeito SKIM.",
+      "d) As alternativas \"b\" e \"c\" estão corretas."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
     "id": 12,
-    "pergunta": "12) A polarização por concentração é caracteristicamente de eletrólitos:",
-    "opcoes": [
-      "A) muito concentrados.",
-      "B) com fortíssimo movimento.",
-      "C) bastante diluído.",
-      "D) com pouco ou sem movimento"
+    "texto": "Qual a vantagem do método de Partículas Magnéticas de Ensaio não Destrutivo sobre o método de Ensaio por Líquidos Penetrantes?",
+    "alternativas": [
+      "a) Não é necessário equipamento especial.",
+      "b) É mais rápido se a peça for limpa antes do ensaio.",
+      "c) Ele pode detectar indicações contidas ligeiramente abaixo da superfície.",
+      "d) Tem maior probabilidade de detectar indicações causadas por trincas de usinagem superficiais abertas na superfície da peça de teste."
     ],
-    "resposta": "D"
+    "resposta": "c"
   },
   {
     "id": 13,
-    "pergunta": "13) Uma estrutura é dita protegida catodicamente quando seu potencial eletroquímico for:",
-    "opcoes": [
-      "A) menos negativo que –0,80V em relação a semicélula de prata/cloreto de prata.",
-      "B) muto menos negativo que –0,80V em re lação a semicélula de prata/cloreto de prata.",
-      "C) nulo em relação a semicélula de prata/cloreto de prata.",
-      "D) mais negativo que –0,80V em relação a semicélula de prata/cloreto de prata"
+    "texto": "A relação entre força de magnetização de um campo magnético e do fluxo magnético que o campo produz num material é mostrado por:",
+    "alternativas": [
+      "a) Uma curva de histerese.",
+      "b) Um indicador de campo.",
+      "c) Uma fita de deflexão do medidor de campo.",
+      "d) Um penetrômetro magnético."
     ],
-    "resposta": "D"
+    "resposta": "a"
   },
   {
     "id": 14,
-    "pergunta": "14) A superproteção em uma plataforma tem como inconveniente a possi bilidade de gerar trincas:",
-    "opcoes": [
-      "A) na alma dos anodos que possibilitem a sua queda.",
-      "B) na estrutura que poderão acelerar falhas por fadiga.",
-      "C) nos anodos que poderão acelerar falhas por fadiga.",
-      "D) nos anodos e nas almas dos anodos que poderão acelerar falhas por fadiga"
+    "texto": "As descontinuidades inerentes num bloco de aço incluem qual das abaixo?",
+    "alternativas": [
+      "a) Trincas de laminação e duplas laminações.",
+      "b) Trincas e escamas de tratamento térmico.",
+      "c) Porosidades e Vazio ou bolhas de gás.",
+      "d) N.D.A"
     ],
-    "resposta": "B"
+    "resposta": "c"
   },
   {
     "id": 15,
-    "pergunta": "15) A corrosividade de um eletrólito depende entre o utros fatores de sua resistividade. No caso da água do mar, em mar aberto, o valor da resistividade situa-se de modo geral, na seguinte faixa:",
-    "opcoes": [
-      "A) 0,20 a 0,35 ohm.cm.",
-      "B) 2.000 a 4.000 ohm.cm.",
-      "C) nenhuma das respostas.",
-      "D) 3.000 a 5.000 ohm.cm"
+    "texto": "Uma indicação não relevante causada por fuga de fluxo num contorno de grão não pode ser devido a:",
+    "alternativas": [
+      "a) Uma diferença na permeabilidade das matrizes com os grãos.",
+      "b) Grande tamanho de grão provocado por tratamento térmico do material de modo anormal.",
+      "c) Presença de trincas finas de tratamento térmico localizadas nos contornos dos grãos.",
+      "d) N.D.A."
     ],
-    "resposta": "C"
+    "resposta": "c"
   },
   {
     "id": 16,
-    "pergunta": "16) Uma estrutura protegida catodicamente fica polarizada por ativação devido ao:",
-    "opcoes": [
-      "A) cloro e ao oxigênio liberados.",
-      "B) cloro liberado.",
-      "C) hidrogênio liberado.",
-      "D) oxigênio liberado"
+    "texto": "Se a mesma corrente alternada e a mesma corrente contínua de magnetização for usada em uma mesma peça com a técnica dos contatos (pontas), o campo gerado pela CC não é afetado sensivelmente pela corrente elétrica:",
+    "alternativas": [
+      "a) Será o de maior poder de penetração.",
+      "b) Será o de melhor visualização para a superfície de ensaio.",
+      "c) Ficará com uma resolução igual a do CA.",
+      "d) É sempre aconselhável que nestes casos mude-se para o pó via úmida de granulação mais adequada."
     ],
-    "resposta": "C"
+    "resposta": "a"
   },
   {
     "id": 17,
-    "pergunta": "17) A medição de potencial eletroquímico é sempre realizada entre uma estrutura e:",
-    "opcoes": [
-      "A) uma outra estrutura.",
-      "B) um anodo galvânico de estrutura.",
-      "C) uma referência qualquer.",
-      "D) uma semicélula de referência"
+    "texto": "No ensaio por técnica de Yoke (AC), e a via úmida deve-se tomar a precaução de não aplicar muito banho ou deixar aspersor sob alta pressão, para:",
+    "alternativas": [
+      "a) Não haver contaminação do banho.",
+      "b) Aumentar a viscosidade do banho e mascarar o ensaio prejudicando as indicações que aparecem.",
+      "c) Retirar a formação das partículas, nos campos de fuga das descontinuidades já formadas.",
+      "d) O líquido ficar mais transparente e formar de maneira irregular as indicações."
     ],
-    "resposta": "D"
+    "resposta": "c"
   },
   {
     "id": 18,
-    "pergunta": "18) Em uma estrutura revestida a distribuição dos anodo s galvânicos permite que se tenha maior espaçamento entre eles porque é:",
-    "opcoes": [
-      "A) mais fácil polarizar uma estrutura revestida.",
-      "B) impossível polarizar uma estrutura revestida.",
-      "C) indiferente polarizar uma estrutura revestida ou não revestida.",
-      "D) mais difícil polarizar uma estrutura revestida"
+    "texto": "Que descontinuidade mais aparece como pequenas pernas separadas em peças forjadas ou não terminadas?",
+    "alternativas": [
+      "a) Rechupe",
+      "b) Costura",
+      "c) Gota Fria",
+      "d) Dobras de forjamento."
     ],
-    "resposta": "A"
+    "resposta": "d"
   },
   {
     "id": 19,
-    "pergunta": "19) A proteção catódica galvânica quando bem projetada tende a apresentar no que concerne a distribuição da corrente:",
-    "opcoes": [
-      "A) uma distribuição muito pouco uniforme.",
-      "B) uma distribuição muito pior do que na corrente impressa.",
-      "C) uma distribuição que enseja com facilidade a superproteção.",
-      "D) uma distribuição muito boa se comparada a corrente impressa"
+    "texto": "Pequenas descontinuidades detectadas nas raízes de algumas roscas rosqueadas a frio ou usinadas, num parafuso ou eixo roscado são chamadas:",
+    "alternativas": [
+      "a) Fissura na face da raiz.",
+      "b) Escamas de rosca.",
+      "c) Costuras.",
+      "d) N.D.A"
     ],
-    "resposta": "D"
+    "resposta": "c"
   },
   {
     "id": 20,
-    "pergunta": "20) Na superfície de uma estrutura protegida catodicamente há uma:",
-    "opcoes": [
-      "A) elevação do pH.",
-      "B) diminuição do pH.",
-      "C) anulação do pH.",
-      "D) neutralização do pH"
+    "texto": "Na técnica de contatos (eletrodos) a corrente contínua em relação a Alternada no valor nominal o campo magnético é:",
+    "alternativas": [
+      "a) Mais penetrante, detectando indicações mais internas, pois as correntes alternadas ficam sujeitas ao efeito SKIN ou pelicular.",
+      "b) Mais visível.",
+      "c) Na CA há aquecimento maior da peça.",
+      "d) O campo magnético alternado é sempre maior que o de Corrente Contínua."
     ],
-    "resposta": "A"
+    "resposta": "a"
   },
   {
     "id": 21,
-    "pergunta": "21) os voltímetros para medição de potencial em proteção catódica devem apresentar:",
-    "opcoes": [
-      "A) resistência interna baixíssima e fixa.",
-      "B) elevada resistência interna.",
-      "C) baixa resistência interna.",
-      "D) resistência interna variável"
+    "texto": "Das técnicas abaixo qual não provoca danos por arco elétrico em uma peça na região inspecionada?",
+    "alternativas": [
+      "a) Yoke eletromagnético.",
+      "b) Eletrodos (Pontas).",
+      "c) Máquina tipo Tira-Prova portátil.",
+      "d) Todas causam e podem ser perfeitamente evitadas se bem usadas as técnicas recomendadas."
     ],
-    "resposta": "B"
+    "resposta": "a"
   },
   {
     "id": 22,
-    "pergunta": "22) Nos processos de corrosão eletroquímica o material metálico se transforma em um:",
-    "opcoes": [
-      "A) metal puríssimo.",
-      "B) sal neutro.",
-      "C) composto.",
-      "D) composto intermetálico"
+    "texto": "Um inspetor tem três Yoke: um de Eletroímã, um de braços flexíveis sem imantação e um de Ímã Permanente de Alnico, para inspecionar peças num andaime de local que não se permite nenhum uso de centelha (gás altamente combustível). Qual seria o usado e permitido pelas Normas e Procedimentos de Segurança e Ensaios não Destrutivo de sua empresa de Petróleo?",
+    "alternativas": [
+      "a) Usar os pólos do Eletroímã com fios mais compridos.",
+      "b) Usar o Yoke de Eletroímã em bateria CC.",
+      "c) Usar o de Eletroímã de pernas articuladas CA para não prejudicar as malhas.",
+      "d) Usar o de Ímã Permanente, pois em caso de falta de energia este inspeciona e, não se usa eletricidade nele diretamente na área."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
     "id": 23,
-    "pergunta": "23) O potencial eletroquímico de um anodo de liga de alumínio de boa qualidade imerso no mar, medido em relação a uma semicélula de prata/cloreto de prata situa-se em torno de:",
-    "opcoes": [
-      "A) -1,050V.",
-      "B) -1,000V.",
-      "C) -1,550V.",
-      "D) -0,850V"
+    "texto": "Pela regra da mão direita que define que se passarmos uma corrente contínua através de um condutor teremos um campo magnético. Pergunta-se: num eletroímã tipo Yoke de CA de braços flexíveis também gera-se o campo magnético longitudinal na peça a ser ensaiada?",
+    "alternativas": [
+      "a) Sim.",
+      "b) Não.",
+      "c) Quando aplicamos o eletroímã não gera campo longitudinal se não circular corrente, na perna móvel isto só ocorre com pernas fixas.",
+      "d) O campo gerado depende da voltagem se a corrente for contínua as duas linhas que se cruzarem terão suas resultantes iguais a uma normal e não se fará sentido aplicar o pó, em CA a onda senoidal inverte esta regra mas mantém o Yoke gerando com força."
     ],
-    "resposta": "A"
+    "resposta": "a"
   },
   {
     "id": 24,
-    "pergunta": "24) Na medição de potencial de uma estrutura marítima o voltímetro deverá ficar:",
-    "opcoes": [
-      "A) imerso ou emerso em relação ao eletrólito dependendo da técnica de medição.",
-      "B) alguns instantes apenas fora do eletrólito.",
-      "C) pelo menos algum tempo imerso no eletrólito.",
-      "D) sempre imerso no eletrólito"
+    "texto": "Ao inspecionarmos com Eletrodos que contêm pontas com malhas de chumbo em CC em uma peça tratada termicamente as extremidades provocaram arcos. Qual a alternativa está em falha com os procedimentos normais de inspeção?",
+    "alternativas": [
+      "a) N.D.A",
+      "b) Ao se fechar os contatos com a máquina em funcionamento há formação de arco na região de contatos e retira-se com ela ligada.",
+      "c) Faltou limpeza da peça nas regiões em que se tocou as pontas dos contatos.",
+      "d) Apenas faltou energia reativa no aparelho de CC."
     ],
-    "resposta": "A"
+    "resposta": "b"
   },
   {
     "id": 25,
-    "pergunta": "25) Em uma plataforma fixa de produção as regiões que podem ser protegi das catodicamente são as superfícies:",
-    "opcoes": [
-      "A) enterradas ou submersas.",
-      "B) enterradas, submersas ou aéreas.",
-      "C) aéreas ou enterradas.",
-      "D) aéreas ou submersas"
+    "texto": "A indicação mais forte de descontinuidade deve ser obtida ou indicada, mais sensivelmente nas regiões:",
+    "alternativas": [
+      "a) De campo contínuo magnetizado por cabo numa peça cilíndrica de ferro doce.",
+      "b) De campo magnético onde não existem contornos de grãos, mesmo sendo as linhas não paralelas aos defeitos.",
+      "c) Onde as linhas de força de fluxo magnético encontrem descontinuidade com deflexão à 90º da trinca ou falha.",
+      "d) Aquela onde a inspeção de via seca for fluorescente nas posições variadas de descontinuidade em CC ou CA alternadamente."
     ],
-    "resposta": "A"
+    "resposta": "c"
   },
   {
     "id": 26,
-    "pergunta": "26) A pilha ativa-passiva é característica dos materiais formadores de:",
-    "opcoes": [
-      "A) películas muito porosas.",
-      "B) películas passivantes.",
-      "C) película solúvel.",
-      "D) película sem aderência"
+    "texto": "A relação (razão) largura/profundidade de uma descontinuidade ou falha deve ser de:",
+    "alternativas": [
+      "a) Quanto menor a relação L/P melhor para o ensaio.",
+      "b) Quando a relação for de 1 para 3 a inspeção de peça usinada fica reprovada.",
+      "c) Para uma melhor probabilidade de detecção de campo de fuga, no caso da descontinuidade não aberta à superfície (maior sensibilidade).",
+      "d) Todas as acima com a devida consideração estão certas."
     ],
-    "resposta": "B"
+    "resposta": "a"
   },
   {
     "id": 27,
-    "pergunta": "27) O contato elétrico entre o instrumento de medição de potencial e a estrutura tem:",
-    "opcoes": [
-      "A) a tendência a evitar a despolarização.",
-      "B) a tendência de causar a despolarização.",
-      "C) grande influência no resultado da medição.",
-      "D) insuficiência insignificante na medição"
+    "texto": "Para que tenhamos uma maior certeza dos resultados na técnica por via úmida não visível, é recomendado o procedimento:",
+    "alternativas": [
+      "a) Ensaiar com partículas de banho de água.",
+      "b) Fazer exame com a lâmpada de luz U.V para constatar a visibilidade na área de trabalho.",
+      "c) Avaliar o nível de luz do ambiente com fotômetro especial visível na área de teste e fazer o decantamento do meio.",
+      "d) Medir a luz U.V sobre a superfície da peça ou área a ser testada, verificar o contraste das partículas, conferir o método de suspensão (líquido) das partículas pelo método do decantamento da proveta."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
     "id": 28,
-    "pergunta": "28) Em uma estrutura revestida a distribuição dos anodos galvânicos permite que se tenha um maior espaçamento entre eles porque é:",
-    "opcoes": [
-      "A) mais difícil polarizar uma estrutura revestida.",
-      "B) mais fácil polarizar uma estrutura revestida.",
-      "C) impossível polarizar uma estrutura revestida.",
-      "D) indiferente polarizar uma estrutura revestida ou não revestida"
+    "texto": "Quando se inspeciona com técnica de Eletrodos (Pontas), deve se manter um contato bem apertado para se evitar:",
+    "alternativas": [
+      "a) O superaquecimento e queima (abertura de arco voltaico).",
+      "b) Para fixar a peça e não balançar com a indução.",
+      "c) Evitar choques no inspetor que segura as pontas.",
+      "d) Todas a respostas são verdadeiras num ensaio de peça fundida."
     ],
-    "resposta": "B"
+    "resposta": "a"
   },
   {
     "id": 29,
-    "pergunta": "29) A medida do potencial de proteção catódica consiste na determ inação de uma diferença de potencial entre:",
-    "opcoes": [
-      "A) um ponto da estrutura e eletrólito sem eletrodo de referência.",
-      "B) um ponto da estrutura e o anodo mais próximo.",
-      "C) dois pontos da estrutura.",
-      "D) um ponto da estrutura e um eletrodo de referência"
+    "texto": "Para executar um exame na rosca de um parafuso onde o acabamento for de usinagem e de coloração acinzentada, que tipo de partícula deve-se usar?",
+    "alternativas": [
+      "a) Cinza claro de baixo contraste.",
+      "b) Vermelha de modo que fique bem de acordo com a área.",
+      "c) Partícula fluorescente ou de elevado contraste e sensibilidade do tipo úmida contínua.",
+      "d) Não testaria os fios de rosca pelas extremidades em CA e nem usaria pó com cores brancas, pois o parafuso poderia ser muito comprido e fino."
     ],
-    "resposta": "D"
+    "resposta": "c"
   },
   {
     "id": 30,
-    "pergunta": "30) A medição de potencial eletroquímico é sempre realizada entre uma estrutura e:",
-    "opcoes": [
-      "A) uma semicélula de referência.",
-      "B) uma outra estrutura.",
-      "C) uma referência qualquer.",
-      "D) um anodo galvânico da estrutura"
+    "texto": "Em uma inspeção efetuada com Yoke de corrente contínua a fim de determinar melhor sensibilidade em defeitos e não mascarar muito as indicações deve se fazer o seguinte artifício na peça inspecionada:",
+    "alternativas": [
+      "a) Uma melhor indicação em todos os pontos da mesma.",
+      "b) O uso de um pó que salte em CC.",
+      "c) Aumentar a corrente de modo alternado.",
+      "d) Ligar e desligar a máquina enquanto se espalha o pó de maneira que a indicação do pó tenha mais mobilidade na peça inspecionada, e se mova para formar as indicações no campo de fuga."
     ],
-    "resposta": "A"
+    "resposta": "d"
   },
   {
     "id": 31,
-    "pergunta": "31) A corrosividade de um eletrólito depende entre o utros fatores de sua resistividade. No caso da água do mar, em mar aberto, o valor da resistividade situa-se de modo geral, na seguinte faixa:",
-    "opcoes": [
-      "A) 0,20 a 0,35 ohm.cm.",
-      "B) 2.000 a 4.000 ohm.cm.",
-      "C) 20 a 35 ohm.cm.",
-      "D) 3.000 a 5.000 ohm.cm"
+    "texto": "Em uma junta soldada foi detetada uma falsa indicação (indicação não relevante) de uma trinca ou defeito similar. O que devemos fazer com a dita solda?",
+    "alternativas": [
+      "a) Relatar como trinca, mas por observação dizer que foi duvidoso e requerer outro método.",
+      "b) Limpar a solda testando antes de testá-la e retestar com as posições dos yokes modificadas da primeira, caso a indicação seja não linear a trinca não existe.",
+      "c) Preparar novamente os passes de solda pois as indicações não relevantes são aquelas que de alguma maneira saem para a superfície do cordão e formam porções falsas e errôneas as observações.",
+      "d) A avaliação deve ser efetuada em outro lugar para se tirar a prova de que o material das trincas seria de porosidade alinhada."
     ],
-    "resposta": "C"
+    "resposta": "b"
   },
   {
     "id": 32,
-    "pergunta": "32) Uma estrutura protegida catodicamente encontra-se polarizada:",
-    "opcoes": [
-      "A) catodicamente e anodicamente.",
-      "B) anodicamente.",
-      "C) pela geração e adsorção de oxigênio.",
-      "D) catodicamente"
+    "texto": "O medidor de luz U.V para exame fluorescente é expresso ou lido em quais unidades para a luz não visível a luz do sol:",
+    "alternativas": [
+      "a) Microwatt's por centímetro quadrado.",
+      "b) Ampère por metro.",
+      "c) Volt por metro.",
+      "d) Nanômetros ou Angstron."
     ],
-    "resposta": "D"
+    "resposta": "a"
   },
   {
     "id": 33,
-    "pergunta": "33) A polarização por ativação na área catódica se dá pela sobretensão ou sobrevoltagem do:",
-    "opcoes": [
-      "A) oxigênio do meio.",
-      "B) oxigênio e do cloro.",
-      "C) hidrogênio liberado.",
-      "D) cloro liberado"
+    "texto": "Uma descontinuidade ou falha encontrada freqüentemente e que são causadas pelo não aquecimento e resfriamento desigual em grande massa forjada de modo brusco é a:",
+    "alternativas": [
+      "a) Flocos ou flakes",
+      "b) Segregações",
+      "c) Trinca térmica de têmpera",
+      "d) O forjamento é feito pelo desaquecimento e batidas do material quando laminado."
     ],
-    "resposta": "C"
+    "resposta": "a"
   },
   {
     "id": 34,
-    "pergunta": "34) A capacidade de corrente de um anodo galvânico representa na sua massa:",
-    "opcoes": [
-      "A) a quantidade utilizável do anodo.",
-      "B) a diferença de potencial disponível.",
-      "C) a diferença de desgaste para a corrente disponível.",
-      "D) a quantidade de eletricidade disponível"
+    "texto": "Uma indicação numa peça desmagnetizada quando posta perto de um Yoke, este foi acionado e depois a peça foi virada para observar-se outro lado, o que devemos fazer e ou providenciar se nada foi notado na referida peça que foi inspecionada com via úmida?",
+    "alternativas": [
+      "a) As posições e os campos magnéticos estavam opostos na peça inspecionada.",
+      "b) Refazer a desmagnetização num campo igual em força que o usado para a verificação com as posições invertidas até abaixar a zero a indicação, limpar e começar de novo.",
+      "c) Fazer um banho em solvente para a retirada total das películas e retestar as correntes em valores superiores no campo da peça inspecionada que é um rolamento.",
+      "d) Bater um pó a seco para tirar a prova de que existiu o defeito nas áreas menos prováveis."
     ],
-    "resposta": "D"
+    "resposta": "b"
   },
   {
     "id": 35,
-    "pergunta": "35) O aumento da velocidade relativa metal/eletrólito na água do mar, aumenta a taxa de corrosão porque aumenta:",
-    "opcoes": [
-      "A) a despolarização catódica.",
-      "B) a polarização catódica.",
-      "C) a passivação catódica.",
-      "D) a imunização"
+    "texto": "Indicações que têm de ser avaliadas e comparadas pelo ensaio magnético dependendo da aplicação do componente ou da peça de teste, e são sempre verdadeiras quanto a sua formação e a conseqüência da fuga de campo provocado pela geometria da trinca são sempre do tipo abaixo:",
+    "alternativas": [
+      "a) Indicações lineares.",
+      "b) Indicações arredondadas.",
+      "c) Indicações relevantes.",
+      "d) Todas estão de acordo."
     ],
-    "resposta": "A"
+    "resposta": "d"
   },
   {
     "id": 36,
-    "pergunta": "36) Potencial eletroquímico de redução é a diferença de potencial natural que ocorre entre um material metálico e um eletrodo devido à tendência:",
-    "opcoes": [
-      "A) a redução do metal sob a forma não iônica.",
-      "B) a passagem de íons do eletrólito para o metal.",
-      "C) a oxidação de íons do metal solução.",
-      "D) a passagem de íons do metal para o eletrólito"
+    "texto": "Na técnica de contatos a CC é normalmente não recomendada para peças tratadas ou para acabamento superior de usinagem, pois:",
+    "alternativas": [
+      "a) Podem danificá-la.",
+      "b) Podem esquentar as peças tratadas perdendo o tratamento e destemperando-as.",
+      "c) Pode perfurar a peça por arco elétrico formando crateras muito profundas.",
+      "d) As alternativas \"a\", \"b\" e \"c\" estão de acordo com o texto acima, dependendo do acabamento."
     ],
-    "resposta": "B"
+    "resposta": "d"
   },
   {
     "id": 37,
-    "pergunta": "37) Os voltímetros usados na medição de potencial pelos inspetores submarinos possuem acoplados um eletrodo de referência de:",
-    "opcoes": [
-      "A) zinco.",
-      "B) calomelano.",
-      "C) prata/cloreto de prata água do mar.",
-      "D) cobre/sulfato de cobre"
+    "texto": "Qual a relação que mais traduz e tem poder e probabilidade da partícula ser atraída e retida num campo de fuga sobre um material e em uma falha ou defeito?",
+    "alternativas": [
+      "a) Relação do tipo da área inspecionada.",
+      "b) Relação do pó ou tipo de pó aplicado.",
+      "c) Relação do meio usado, se for úmido este se retém melhor que o pó seco por gravidade.",
+      "d) Relação comprimento da largura do defeito ou profundidade por espessura superficial do campo defletido em material."
     ],
-    "resposta": "C"
+    "resposta": "d"
   },
   {
     "id": 38,
-    "pergunta": "38) O produto de corrosão nos processos de natureza eletroquímica forma -se, em geral, pela precipitação de um composto insolúvel originado entre:",
-    "opcoes": [
-      "A) íons do metal e íons do eletrólito, principalmente OH-.",
-      "B) íons do metal e íons H+ do eletrólito.",
-      "C) íons contidos no eletrólito, excetos os do metal.",
-      "D) íons H+ e outros íons do eletrólito, exceto os do metal"
+    "texto": "Um campo retido num medidor de campo Oersted de peça ensaiada em pó magnético úmido com coloração muito escura indicou 20 Gauss; o que aconteceu e deve ser feito:",
+    "alternativas": [
+      "a) Se é material muito retentivo, se limpar com ar após o uso de banho desmagnetiza.",
+      "b) O método está de acordo, pois 20 Gauss é normal nas superfícies ensaiadas por pó via úmida coloração tipo fluorescente.",
+      "c) Os materiais testados ficam normalmente sem campo algum por não passarem em pó úmido e sim em via seca no final do ensaio.",
+      "d) A peça é avaliada de acordo com a área final que ela vai ser aplicada e é desmagnetizada dependendo do valor residual permitido ou aplicável na inspeção."
     ],
-    "resposta": "A"
+    "resposta": "d"
   },
   {
     "id": 39,
-    "pergunta": "39) O aumento da aeração de um eletrólito na pressão atmosférica",
-    "opcoes": [
-      "A) aumenta a taxa de corrosão.",
-      "B) diminui de início e depois aumenta as taxas de corrosão.",
-      "C) diminui as taxas de corrosão.",
-      "D) não tem influência nas taxas de corrosão"
+    "texto": "Um Yoke de AC tem maior probabilidade de encontrar um defeito abaixo da superfície em milímetros quando a peça usinada no caso for testada com pó não magnético fluorescente em água limpa ou em querosene para aviação desodorizada?",
+    "alternativas": [
+      "a) Sim.",
+      "b) O uso de querosene é mais recomendável.",
+      "c) O não emprego do pó magnético na inspeção inviabiliza o teste todo.",
+      "d) As alternativas \"a\" e \"c\" indicam as descontinuidades."
     ],
-    "resposta": "A"
+    "resposta": "c"
   },
   {
     "id": 40,
-    "pergunta": "40) As regiões enterradas de uma plataforma marítima, que são constituídas pelas estacas têm seus anodos para proteção catódica instalados:",
-    "opcoes": [
-      "A) na parte inferior da jaqueta.",
-      "B) fora da jaqueta.",
-      "C) na parte superior da jaqueta.",
-      "D) enterrados no fundo do mar"
+    "texto": "Qual as descontinuidades que mais têm formato parecido com trincas nos materiais e peças com defeitos forjados em bloco de aço especial para engrenagens de redutores de máquinas de papel ou celulose da Votorantim?",
+    "alternativas": [
+      "a) Respingos de solda",
+      "b) Trincas a frio no material não conformado e tratado com pó de ensaio a seco.",
+      "c) Flocos e trincas térmicas.",
+      "d) O pó não salta nos engripamentos das engrenagens sem forjamentos em campo e com defeitos de vazios ou gotas frias de laminação de blocos."
     ],
-    "resposta": "A"
+    "resposta": "c"
   }
 ]

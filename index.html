@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulados Teórica Geral PE</title>
+    <title>Simulados Teórica Geral PM</title>
     
     <!-- PWA Meta Tags -->
-    <meta name="description" content="Simulador de questões de Potencial Eletroquímico para mergulhadores offshore">
+    <meta name="description" content="Simulador de questões de Partículas Magnéticas para mergulhadores offshore e inspetores END">
     <meta name="theme-color" content="#1565c0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Quiz PE Offshore">
+    <meta name="apple-mobile-web-app-title" content="Quiz PM Offshore">
     
     <!-- Manifest -->
     <link rel="manifest" href="manifest.json">
     
     <!-- Ícones -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚓</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧲</text></svg>">
     <link rel="apple-touch-icon" href="icon-192.png">
     
     <link rel="stylesheet" href="style.css?v=2.2">
@@ -28,8 +28,8 @@
     <div id="menu-inicial">
         <div class="menu-header">
             <div class="logo-area">
-                <h1>⚓ Simulados de Teórica Geral</h1>
-                <p>Potencial Eletroquímico</p>
+                <h1>🧲 Simulados de Teórica Geral</h1>
+                <p>Partículas Magnéticas</p>
             </div>
             </div>
         
@@ -39,7 +39,7 @@
         </button>
 
         <button class="btn-menu btn-destaque" onclick="iniciarProva('completa')">
-            <span>🚀 Simulado Completo (1-560)</span><span>➤</span>
+            <span>🚀 Simulado Completo (440 questões)</span><span>➤</span>
         </button>
 
         <button class="btn-menu" onclick="iniciarProva('aleatoria')">
@@ -51,7 +51,7 @@
         </button>
 
         <button id="accordion-btn" class="accordion-btn" onclick="toggleProvas()">
-            📂 Selecionar Prova Específica (1 a 14) ▼
+            📂 Selecionar Prova Específica (1 a 11) ▼
         </button>
 
         <div id="container-provas" class="hidden">
@@ -121,7 +121,7 @@
         </div>
     </footer>
     
-    <script src="script.js?v=2.3"></script>    
+    <script src="script.js?v=3.0"></script>    
 
     <!-- Registra o Service Worker -->
     <script>

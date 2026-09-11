@@ -354,6 +354,7 @@
   {
     "id": 33,
     "texto": "De acordo com ASME Sec. VIII Div.1, Ap. 6, quais descontinuidades apresentadas na fig.1 corresponde a forma linear?",
+    "imagem": "fig1_solda.svg",
     "alternativas": [
       "A) 1,2,3 e 4.",
       "B) 2,3 e,5.",
@@ -365,6 +366,7 @@
   {
     "id": 34,
     "texto": "De acordo com ASME Sec. VIII Div.1, Ap. 6, quais descontinuidades apresentadas na fig.1 corresponde a forma arredondada?",
+    "imagem": "fig1_solda.svg",
     "alternativas": [
       "A) 1 ,3 e 4",
       "B) 2,3 e,5",
@@ -376,6 +378,7 @@
   {
     "id": 35,
     "texto": "De acordo com ASME Sec. VIII Div.1, Ap.6, quais descontinuidades apresentadas na fig.1 são reprovadas?",
+    "imagem": "fig1_solda.svg",
     "alternativas": [
       "A) 1,2,3 e 5.",
       "B) 2,3 e,5.",
@@ -387,6 +390,7 @@
   {
     "id": 36,
     "texto": "De acordo com ASME Sec. VIII Div.1, Ap. 6, quais descontinuidades apresentadas na fig.1 são aprovadas?",
+    "imagem": "fig1_solda.svg",
     "alternativas": [
       "A) 1 e 5.",
       "B) 3 e 4.",

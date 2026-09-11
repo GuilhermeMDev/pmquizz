@@ -1,15 +1,13 @@
 // --- VERSÃO PM QUIZZ ---
-const CACHE_NAME = 'quiz-pm-v1.1';
+const CACHE_NAME = 'quiz-pm-v1.2';
 
 const urlsToCache = [
   '/',
   '/index.html',
   '/style.css',
   '/script.js',
-  '/age_logo.png'
-  // REMOVI OS JSONS DAQUI PROPOSITALMENTE
-  // Vamos deixar os JSONs serem cacheados dinamicamente ou buscados na rede
-  // para evitar que fiquem presos em versões antigas.
+  '/age_logo.png',
+  '/fig1_solda.svg'
 ];
 
 // Instalação

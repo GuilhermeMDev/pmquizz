@@ -209,6 +209,24 @@ body {
 .badge-green { color: #81c784; background: rgba(46, 125, 50, 0.2); border: 1px solid #1b5e20; }
 .badge-red { color: #e57373; background: rgba(198, 40, 40, 0.2); border: 1px solid #b71c1c; }
 
+/* --- IMAGEM DE APOIO DA QUESTÃO --- */
+.container-imagem {
+    text-align: center;
+    margin: 0 auto 16px auto;
+    width: 100%;
+}
+
+.pergunta-imagem {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    background: #ffffff;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
 .pergunta { font-size: 18px; line-height: 1.5; margin-bottom: 20px; color: var(--text-main); font-weight: 500; }
 
 /* --- COMPONENTE DICA / FÓRMULA --- */

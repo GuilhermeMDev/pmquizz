@@ -271,6 +271,10 @@ function abrirTelaQuiz() {
     document.getElementById('erros').innerText = erros;
     document.getElementById('relatorio-final').innerHTML = "";
     document.getElementById('pergunta-texto').style.display = 'block';
+    const containerImg = document.getElementById('container-imagem');
+    if (containerImg) containerImg.style.display = 'none';
+    const containerDica = document.getElementById('container-dica');
+    if (containerDica) containerDica.style.display = 'none';
     document.getElementById('opcoes-container').style.display = 'block';
     document.getElementById('feedback').style.display = 'none';
     document.querySelector('.nav-bar').style.display = 'flex';
@@ -321,6 +325,19 @@ function mostrarQuestao() {
 
     document.getElementById('txt-prova').innerText = tituloPrincipal;
     document.getElementById('txt-seq').innerText = subtituloSeq;
+
+    // Imagem de apoio da questão (se houver)
+    const containerImg = document.getElementById('container-imagem');
+    const imgEl = document.getElementById('pergunta-imagem');
+    if (containerImg && imgEl) {
+        if (q.imagem) {
+            imgEl.src = q.imagem;
+            containerImg.style.display = 'block';
+        } else {
+            containerImg.style.display = 'none';
+            imgEl.src = '';
+        }
+    }
 
     document.getElementById('pergunta-texto').innerText = q.pergunta || q.texto;
     
@@ -527,6 +544,8 @@ function atualizarContadorErrosUI() {
 }
 
 function finalizarQuiz() {
+    const containerImg = document.getElementById('container-imagem');
+    if (containerImg) containerImg.style.display = 'none';
     document.getElementById('pergunta-texto').style.display = 'none';
     const containerDica = document.getElementById('container-dica');
     if (containerDica) containerDica.style.display = 'none';

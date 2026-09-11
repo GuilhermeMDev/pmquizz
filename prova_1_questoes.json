@@ -1,442 +1,400 @@
 [
   {
     "id": 1,
-    "texto": "Indique a afirmativa correta sobre descontinuidades.",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\n“Qualquer peça que tenha sido examinada por meio de partículas magnéticas dispensa desmagnetização”.",
     "alternativas": [
-      "a) Toda descontinuidade é um defeito, porém alguns defeitos não são descontinuidades.",
-      "b) Somente os defeitos reprovados são descontinuidades.",
-      "c) Todo defeito é uma descontinuidade, porém nem toda descontinuidade é um defeito.",
-      "d) Quando a descontinuidade afeta o desempenho do material no serviço a que se destina, temos, então, um defeito não prejudicial."
+      "A) verdadeiro",
+      "B) falso."
     ],
-    "resposta": "c"
+    "resposta": "b"
   },
   {
     "id": 2,
-    "texto": "Quando se inspeciona por partículas magnéticas peças com a superfície pintada e, sendo necessário o uso de pontas (eletrodos):",
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nO teste da bússola para verificar se uma peça está magnetizada não é valido se a peça estiver magnetizada circularmente.",
     "alternativas": [
-      "a) Usa-se pontas de chumbo para melhor contato.",
-      "b) Limpa-se as pontas com lixa para garantir o contato.",
-      "c) Efetua-se a limpeza nos locais de contato e depois executa-se o ensaio.",
-      "d) Qualquer das opções são aceitáveis para assegurar a inspeção de peças fundidas e usinadas"
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 3,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nPartes de alumínio são facilmente examinadas por meio de partículas magnéticas.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 4,
+    "texto": "Indique se a afirmação abaixo é verdadeira ou falsa.\nPara detectar falhas longitudinais em uma barra de aço, o método de magnetização circular é o mais indicado.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 5,
+    "texto": "Marque uma das causas de indicações não relevantes.",
+    "alternativas": [
+      "A) falta de fusão.",
+      "B) porosidade.",
+      "C) amperagem muito alta.",
+      "D) trinca."
     ],
     "resposta": "c"
   },
   {
-    "id": 3,
-    "texto": "O uso de pó seco numa peça aquecida a 140ºC com pontas produz arco que não comprometeu a peça, este fenômeno pode ser evitado da seguinte forma:",
-    "alternativas": [
-      "a) Colocando nas pontas, malha de cobre ou chumbo.",
-      "b) Evitando efetuar os ensaios de peças em temperatura muito alta.",
-      "c) Passar o yoke na peça para limpar as áreas da inspeção, após as pontas.",
-      "d) Melhorando o contato das pontas e limpando o local de ensaio."
-    ],
-    "resposta": "d"
-  },
-  {
-    "id": 4,
-    "texto": "No ensaio por via úmida de uma peça submetida a banho de níquel, onde há suspeita de trincas na camada niquelada. Como efetuar o ensaio?",
-    "alternativas": [
-      "a) Partícula úmida fluorescente de alta permeabilidade.",
-      "b) Utilizar pó seco via úmida e AC.",
-      "c) Utilizar técnica dos Eletrodos (Pontas).",
-      "d) Este ensaio deve ser feito por outro método não magnético."
-    ],
-    "resposta": "d"
-  },
-  {
-    "id": 5,
-    "texto": "No ensaio por via seca observa-se que, para o ensaio em peças pintadas:",
-    "alternativas": [
-      "a) O método não se aplica devido ao isolamento da superfície, independente da técnica de magnetização usada.",
-      "b) A pintura muito brilhante dificulta o ensaio da peça por ofuscar a visão.",
-      "c) As alternativas \"a\" e \"b\" estão corretas.",
-      "d) Pode-se efetuar o ensaio dependendo da espessura e da técnica de magnetização utilizada."
-    ],
-    "resposta": "d"
-  },
-  {
     "id": 6,
-    "texto": "Se um tubo oco for magnetizado por meio de um condutor central, o fluxo de campo não será zero:",
+    "texto": "Várias peças foram magnetizadas e deixadas sobre uma bancada enquanto aguardam a aplicação das partículas magnéticas e a inspeção. Por que que não se deve atritar ou tocar umas nas outras enquanto não tiverem sido examinadas?",
     "alternativas": [
-      "a) Somente na superfície interna.",
-      "b) Somente na superfície externa.",
-      "c) Em ambas as superfícies.",
-      "d) Apenas nas extremidades do tubo."
+      "A) para facilitar o manuseio.",
+      "B) para não estragar o preparo da superfície da peça, feito para executar o exame por meio de partículas magnéticas.",
+      "C) para que não ocorra a magnetização que dá origem a escrita magnética.",
+      "D) todas as respostas estão erradas."
     ],
     "resposta": "c"
   },
   {
     "id": 7,
-    "texto": "Uma descontinuidade é detectável por partículas magnéticas num campo contínuo. Ela é subsuperficial, se aplicarmos um campo alternado:",
+    "texto": "Que é magnetismo residual?",
     "alternativas": [
-      "a) O pó se acumulará com maior evidência.",
-      "b) Não aparecerá tão nítida podendo não ser detectada.",
-      "c) As partículas vão aderir muito fortemente.",
-      "d) N.D.A"
-    ],
-    "resposta": "b"
-  },
-  {
-    "id": 8,
-    "texto": "A relação de aspecto é um fator muito importante para a determinação de descontinuidades porque:",
-    "alternativas": [
-      "a) É através dele que se detecta trincas abertas para a superfície.",
-      "b) É através de trincas profundas que se calcula a sua determinação.",
-      "c) Quando uma descontinuidade for igual ou maior a um a cinco (largura/profundidade), então haverá a possibilidade de ser detectada.",
-      "d) Descontinuidades não abertas a superfície são sempre impossíveis de serem detectadas."
-    ],
-    "resposta": "c"
-  },
-  {
-    "id": 9,
-    "texto": "Ao inspecionar uma peça por Yoke com campo AC na posição de maior dificuldade notou-se o pó agitando-se ao bater o campo intermitente. O que aconteceu?",
-    "alternativas": [
-      "a) As partículas estão de acordo.",
-      "b) O uso de campo AC causa estas perturbações.",
-      "c) O campo de fuga atrai e repele as partículas que se movem, em campo AC este efeito facilita a formação das indicações e lhes dá mobilidade, e isto é um efeito perfeitamente normal na aplicação da técnica.",
-      "d) Quando as pontas tocam a peça não fecham direito o circuito."
-    ],
-    "resposta": "c"
-  },
-  {
-    "id": 10,
-    "texto": "Para executar o ensaio por eletrodos uma inspeção de campo AC contínuo não é muito usado para uma das alternativas abaixo descrita:",
-    "alternativas": [
-      "a) As partículas não fixam bem nas trincas superficiais.",
-      "b) Detecta somente defeito muito superficiais.",
-      "c) Equipamentos CC não muito pesados e o AC é muito leve por não possuir retificadores.",
-      "d) Detecta defeitos superficiais não muito abertos para a superfície de ensaio."
-    ],
-    "resposta": "b"
-  },
-  {
-    "id": 11,
-    "texto": "O ensaio por AC é normalmente feito por via úmida porque:",
-    "alternativas": [
-      "a) A mobilidade e sensibilidade é menor.",
-      "b) Detecta muito bem trincas pouco abertas à superfície.",
-      "c) Por causa do Efeito SKIM.",
-      "d) As alternativas \"b\" e \"c\" estão corretas."
+      "A) é o magnetismo que possuem as peças metálicas devido ao campo magnético terrestre.",
+      "B) é o tipo de magnetismo característico dos materiais diamagnéticos.",
+      "C) é o magnetismo que a peça apresenta nas vizinhanças dos defeitos, e que permite sua detecção.",
+      "D) é o magnetismo que permanece no circuito magnético depois da remoção da força magnetizante."
     ],
     "resposta": "d"
   },
   {
-    "id": 12,
-    "texto": "Qual a vantagem do método de Partículas Magnéticas de Ensaio não Destrutivo sobre o método de Ensaio por Líquidos Penetrantes?",
+    "id": 8,
+    "texto": "O ponto a partir do qual a intensidade do campo magnético produzido numa peça permanece invariável por mais que cresça o valor da força magnetizante é denominado:",
     "alternativas": [
-      "a) Não é necessário equipamento especial.",
-      "b) É mais rápido se a peça for limpa antes do ensaio.",
-      "c) Ele pode detectar indicações contidas ligeiramente abaixo da superfície.",
-      "d) Tem maior probabilidade de detectar indicações causadas por trincas de usinagem superficiais abertas na superfície da peça de teste."
+      "A) ponto residual.",
+      "B) ponto de saturação.",
+      "C) ponto remanescente.",
+      "D) ponto saliente."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 9,
+    "texto": "O campo magnético existente nas proximidades de uma barra magnetizada é mais denso:",
+    "alternativas": [
+      "A) na extremidade da barra.",
+      "B) no meio da barra.",
+      "C) aproximadamente no centro da barra."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 10,
+    "texto": "Na localização de defeitos de uma peça, sua magnetização deve ser feita de modo que o plano principal das possíveis descontinuidades:",
+    "alternativas": [
+      "A) seja perpendicular as linhas de força.",
+      "B) seja paralelo as linhas de força."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 11,
+    "texto": "Indique na relação abaixo o caso em que pode ser usada a magnetização de peças pelo método residual.",
+    "alternativas": [
+      "A) peças de material de baixa retentividade.",
+      "B) peças de formato irregular.",
+      "C) para avaliar as indicações encontradas no exame de peças pelo método contínuo.",
+      "D) peças muito tencionadas."
     ],
     "resposta": "c"
   },
   {
-    "id": 13,
-    "texto": "A relação entre força de magnetização de um campo magnético e do fluxo magnético que o campo produz num material é mostrado por:",
+    "id": 12,
+    "texto": "Quando circula corrente elétrica numa bobina, a direção das linhas de força induzidas numa barra colocada dentro da bobina:",
     "alternativas": [
-      "a) Uma curva de histerese.",
-      "b) Um indicador de campo.",
-      "c) Uma fita de deflexão do medidor de campo.",
-      "d) Um penetrômetro magnético."
+      "A) circular.",
+      "B) longitudinal.",
+      "C) vetorial.",
+      "D) desconhecida."
+    ],
+    "resposta": "b"
+  },
+  {
+    "id": 13,
+    "texto": "O exame por meio de partículas magnéticas não é indicado para detecção de:",
+    "alternativas": [
+      "A) dupla laminação.",
+      "B) soldas.",
+      "C) descontinuidades subsuperficiais.",
+      "D) dobras de laminação."
     ],
     "resposta": "a"
   },
   {
     "id": 14,
-    "texto": "As descontinuidades inerentes num bloco de aço incluem qual das abaixo?",
+    "texto": "O exame por meio de partículas magnéticas fluorescentes difere do exame por meio de partículas magnéticas comuns no que diz respeito ao uso de:",
     "alternativas": [
-      "a) Trincas de laminação e duplas laminações.",
-      "b) Trincas e escamas de tratamento térmico.",
-      "c) Porosidades e Vazio ou bolhas de gás.",
-      "d) N.D.A"
+      "A) correntes mais altas.",
+      "B) luz negra.",
+      "C) partículas mais finamente divididas nas cores preta, cinza.",
+      "D) máquina diferente."
     ],
-    "resposta": "c"
+    "resposta": "b"
   },
   {
     "id": 15,
-    "texto": "Uma indicação não relevante causada por fuga de fluxo num contorno de grão não pode ser devido a:",
+    "texto": "Uma peça se tornou magnetizada após ser submetida a uma força magnetizante. Este magnetismo residual é, em relação a força magnetizante que atuava na peça:",
     "alternativas": [
-      "a) Uma diferença na permeabilidade das matrizes com os grãos.",
-      "b) Grande tamanho de grão provocado por tratamento térmico do material de modo anormal.",
-      "c) Presença de trincas finas de tratamento térmico localizadas nos contornos dos grãos.",
-      "d) N.D.A."
+      "A) da mesma intensidade.",
+      "B) mais fraco.",
+      "C) mais forte."
     ],
-    "resposta": "c"
+    "resposta": "b"
   },
   {
     "id": 16,
-    "texto": "Se a mesma corrente alternada e a mesma corrente contínua de magnetização for usada em uma mesma peça com a técnica dos contatos (pontas), o campo gerado pela CC não é afetado sensivelmente pela corrente elétrica:",
+    "texto": "Que tipo de magnetização é produzido pela passagem de corrente elétrica através de uma peça:",
     "alternativas": [
-      "a) Será o de maior poder de penetração.",
-      "b) Será o de melhor visualização para a superfície de ensaio.",
-      "c) Ficará com uma resolução igual a do CA.",
-      "d) É sempre aconselhável que nestes casos mude-se para o pó via úmida de granulação mais adequada."
+      "A) circular.",
+      "B) longitudinal."
     ],
     "resposta": "a"
   },
   {
     "id": 17,
-    "texto": "No ensaio por técnica de Yoke (AC), e a via úmida deve-se tomar a precaução de não aplicar muito banho ou deixar aspersor sob alta pressão, para:",
+    "texto": "Um banho para lavar uma peça após o seu exame por meio de partículas magnéticas:",
     "alternativas": [
-      "a) Não haver contaminação do banho.",
-      "b) Aumentar a viscosidade do banho e mascarar o ensaio prejudicando as indicações que aparecem.",
-      "c) Retirar a formação das partículas, nos campos de fuga das descontinuidades já formadas.",
-      "d) O líquido ficar mais transparente e formar de maneira irregular as indicações."
+      "A) é desnecessário.",
+      "B) é necessário para remover as partículas mais quando isso é requerido.",
+      "C) promove a lubrificação da peça.",
+      "D) é necessário para remover o magnetismo residual."
     ],
-    "resposta": "c"
+    "resposta": "b"
   },
   {
     "id": 18,
-    "texto": "Que descontinuidade mais aparece como pequenas pernas separadas em peças forjadas ou não terminadas?",
+    "texto": "A indicação produzida por um defeito superficial é:",
     "alternativas": [
-      "a) Rechupe",
-      "b) Costura",
-      "c) Gota Fria",
-      "d) Dobras de forjamento."
+      "A) fina e distinta.",
+      "B) alta e larga.",
+      "C) larga e indefinida.",
+      "D) em forma de cruz."
     ],
-    "resposta": "d"
+    "resposta": "a"
   },
   {
     "id": 19,
-    "texto": "Pequenas descontinuidades detectadas nas raízes de algumas roscas rosqueadas a frio ou usinadas, num parafuso ou eixo roscado são chamadas:",
+    "texto": "Marque a sequência básica dos exames por meio de partículas magnéticas.\n1- remoção do penetrante.\n2- inspeção.\n3- exposição\n4- limpeza e magnetização\n5- fixação e lavagem\n6- aplicação de partículas magnéticas\n7- desmagnetização",
     "alternativas": [
-      "a) Fissura na face da raiz.",
-      "b) Escamas de rosca.",
-      "c) Costuras.",
-      "d) N.D.A"
+      "A) 4, 7, 5, 3.",
+      "B) 4, 6, 7, 2.",
+      "C) 4, 6, 2, 7.",
+      "D) 4, 6, 5, 1."
     ],
     "resposta": "c"
   },
   {
     "id": 20,
-    "texto": "Na técnica de contatos (eletrodos) a corrente contínua em relação a Alternada no valor nominal o campo magnético é:",
+    "texto": "Indique um método que produza magnetismo circular:",
     "alternativas": [
-      "a) Mais penetrante, detectando indicações mais internas, pois as correntes alternadas ficam sujeitas ao efeito SKIN ou pelicular.",
-      "b) Mais visível.",
-      "c) Na CA há aquecimento maior da peça.",
-      "d) O campo magnético alternado é sempre maior que o de Corrente Contínua."
+      "A) passando corrente através da peça em exame.",
+      "B) colocando a peça num solenóide.",
+      "C) passando corrente através de um condutor enrolado na peça.",
+      "D) uso da técnica do eletroimã."
     ],
     "resposta": "a"
   },
   {
     "id": 21,
-    "texto": "Das técnicas abaixo qual não provoca danos por arco elétrico em uma peça na região inspecionada?",
+    "texto": "Qual o tipo de corrente geralmente usada em aparelhos desmagnetizadores:",
     "alternativas": [
-      "a) Yoke eletromagnético.",
-      "b) Eletrodos (Pontas).",
-      "c) Máquina tipo Tira-Prova portátil.",
-      "d) Todas causam e podem ser perfeitamente evitadas se bem usadas as técnicas recomendadas."
+      "A) corrente alternada.",
+      "B) corrente contínua.",
+      "C) corrente contínua de amperagem crescente.",
+      "D) corrente alternada de alta voltagem, geralmente 3.800 V."
     ],
     "resposta": "a"
   },
   {
     "id": 22,
-    "texto": "Um inspetor tem três Yoke: um de Eletroímã, um de braços flexíveis sem imantação e um de Ímã Permanente de Alnico, para inspecionar peças num andaime de local que não se permite nenhum uso de centelha (gás altamente combustível). Qual seria o usado e permitido pelas Normas e Procedimentos de Segurança e Ensaios não Destrutivo de sua empresa de Petróleo?",
+    "texto": "Quando estiver sendo feito exame por via úmida com processo contínuo, o fluxo da suspensão que banha a peça, proveniente de uma mangueira, deve ser interrompido:",
     "alternativas": [
-      "a) Usar os pólos do Eletroímã com fios mais compridos.",
-      "b) Usar o Yoke de Eletroímã em bateria CC.",
-      "c) Usar o de Eletroímã de pernas articuladas CA para não prejudicar as malhas.",
-      "d) Usar o de Ímã Permanente, pois em caso de falta de energia este inspeciona e, não se usa eletricidade nele diretamente na área."
-    ],
-    "resposta": "d"
-  },
-  {
-    "id": 23,
-    "texto": "Pela regra da mão direita que define que se passarmos uma corrente contínua através de um condutor teremos um campo magnético. Pergunta-se: num eletroímã tipo Yoke de CA de braços flexíveis também gera-se o campo magnético longitudinal na peça a ser ensaiada?",
-    "alternativas": [
-      "a) Sim.",
-      "b) Não.",
-      "c) Quando aplicamos o eletroímã não gera campo longitudinal se não circular corrente, na perna móvel isto só ocorre com pernas fixas.",
-      "d) O campo gerado depende da voltagem se a corrente for contínua as duas linhas que se cruzarem terão suas resultantes iguais a uma normal e não se fará sentido aplicar o pó, em CA a onda senoidal inverte esta regra mas mantém o Yoke gerando com força."
+      "A) alguns segundos antes da interrupção da força magnetizante.",
+      "B) 30 segundos após a interrupção da força magnetizante.",
+      "C) imediatamente antes da aplicação da corrente.",
+      "D) imediatamente após a aplicação da corrente."
     ],
     "resposta": "a"
   },
   {
-    "id": 24,
-    "texto": "Ao inspecionarmos com Eletrodos que contêm pontas com malhas de chumbo em CC em uma peça tratada termicamente as extremidades provocaram arcos. Qual a alternativa está em falha com os procedimentos normais de inspeção?",
+    "id": 23,
+    "texto": "Nas vizinhanças de uma bobina, o local onde o campo magnético possui maior intensidade:",
     "alternativas": [
-      "a) N.D.A",
-      "b) Ao se fechar os contatos com a máquina em funcionamento há formação de arco na região de contatos e retira-se com ela ligada.",
-      "c) Faltou limpeza da peça nas regiões em que se tocou as pontas dos contatos.",
-      "d) Apenas faltou energia reativa no aparelho de CC."
+      "A) na periferia, no lado externo.",
+      "B) na periferia, no lado interno.",
+      "C) no centro.",
+      "D) na extremidade correspondente ao pólo sul."
     ],
-    "resposta": "b"
+    "resposta": "c"
+  },
+  {
+    "id": 24,
+    "texto": "No exame por partículas magnéticas, a limpeza da peça deve ser feita:",
+    "alternativas": [
+      "A) antes e depois do exame.",
+      "B) depois.",
+      "C) antes.",
+      "D).não precisa fazer."
+    ],
+    "resposta": "a"
   },
   {
     "id": 25,
-    "texto": "A indicação mais forte de descontinuidade deve ser obtida ou indicada, mais sensivelmente nas regiões:",
+    "texto": "O método mais eficiente para examinar peças de material de baixa retentividade por meio de partículas magnéticas é:",
     "alternativas": [
-      "a) De campo contínuo magnetizado por cabo numa peça cilíndrica de ferro doce.",
-      "b) De campo magnético onde não existem contornos de grãos, mesmo sendo as linhas não paralelas aos defeitos.",
-      "c) Onde as linhas de força de fluxo magnético encontrem descontinuidade com deflexão à 90º da trinca ou falha.",
-      "d) Aquela onde a inspeção de via seca for fluorescente nas posições variadas de descontinuidade em CC ou CA alternadamente."
+      "A) exame por via seca com magnetização contínua.",
+      "B) exame por via seca com magnetização residual.",
+      "C) exame por via úmida com magnetização contínua.",
+      "D) exame por via úmida com magnetização residual."
     ],
     "resposta": "c"
   },
   {
     "id": 26,
-    "texto": "A relação (razão) largura/profundidade de uma descontinuidade ou falha deve ser de:",
+    "texto": "Indique o principal fator a considerar na seleção da técnica a ser adotada para examinar uma peça por meio de partículas magnéticas.",
     "alternativas": [
-      "a) Quanto menor a relação L/P melhor para o ensaio.",
-      "b) Quando a relação for de 1 para 3 a inspeção de peça usinada fica reprovada.",
-      "c) Para uma melhor probabilidade de detecção de campo de fuga, no caso da descontinuidade não aberta à superfície (maior sensibilidade).",
-      "d) Todas as acima com a devida consideração estão certas."
+      "A) valor da densidade de fluxo.",
+      "B) tipo de corrente.",
+      "C) direção do campo magnético.",
+      "D) tamanho da peça."
     ],
-    "resposta": "a"
+    "resposta": "c"
   },
   {
     "id": 27,
-    "texto": "Para que tenhamos uma maior certeza dos resultados na técnica por via úmida não visível, é recomendado o procedimento:",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nO exame por via úmida com magnetização residual pode ser aplicado em qualquer peça de aço.",
     "alternativas": [
-      "a) Ensaiar com partículas de banho de água.",
-      "b) Fazer exame com a lâmpada de luz U.V para constatar a visibilidade na área de trabalho.",
-      "c) Avaliar o nível de luz do ambiente com fotômetro especial visível na área de teste e fazer o decantamento do meio.",
-      "d) Medir a luz U.V sobre a superfície da peça ou área a ser testada, verificar o contraste das partículas, conferir o método de suspensão (líquido) das partículas pelo método do decantamento da proveta."
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "d"
+    "resposta": "b"
   },
   {
     "id": 28,
-    "texto": "Quando se inspeciona com técnica de Eletrodos (Pontas), deve se manter um contato bem apertado para se evitar:",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nUm defeito localizado a 6mm abaixo da superfície de uma barra de 12mm de diâmetro não será detectado pelo exame de partículas magnéticas.",
     "alternativas": [
-      "a) O superaquecimento e queima (abertura de arco voltaico).",
-      "b) Para fixar a peça e não balançar com a indução.",
-      "c) Evitar choques no inspetor que segura as pontas.",
-      "d) Todas a respostas são verdadeiras num ensaio de peça fundida."
+      "A) verdadeiro.",
+      "B) falso."
     ],
     "resposta": "a"
   },
   {
     "id": 29,
-    "texto": "Para executar um exame na rosca de um parafuso onde o acabamento for de usinagem e de coloração acinzentada, que tipo de partícula deve-se usar?",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nAs linhas de força do campo magnético sempre formam um circuito fechado.",
     "alternativas": [
-      "a) Cinza claro de baixo contraste.",
-      "b) Vermelha de modo que fique bem de acordo com a área.",
-      "c) Partícula fluorescente ou de elevado contraste e sensibilidade do tipo úmida contínua.",
-      "d) Não testaria os fios de rosca pelas extremidades em CA e nem usaria pó com cores brancas, pois o parafuso poderia ser muito comprido e fino."
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "c"
+    "resposta": "a"
   },
   {
     "id": 30,
-    "texto": "Em uma inspeção efetuada com Yoke de corrente contínua a fim de determinar melhor sensibilidade em defeitos e não mascarar muito as indicações deve se fazer o seguinte artifício na peça inspecionada:",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nEm qualquer indicação obtida num exame por meio de partículas magnéticas sempre existe um polo norte e um polo sul.",
     "alternativas": [
-      "a) Uma melhor indicação em todos os pontos da mesma.",
-      "b) O uso de um pó que salte em CC.",
-      "c) Aumentar a corrente de modo alternado.",
-      "d) Ligar e desligar a máquina enquanto se espalha o pó de maneira que a indicação do pó tenha mais mobilidade na peça inspecionada, e se mova para formar as indicações no campo de fuga."
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "d"
+    "resposta": "a"
   },
   {
     "id": 31,
-    "texto": "Em uma junta soldada foi detetada uma falsa indicação (indicação não relevante) de uma trinca ou defeito similar. O que devemos fazer com a dita solda?",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nQualquer peça deve ser desmagnetizada após sofrer exame por meio de partículas magnéticas, excetuando-se as que posteriormente receberem tratamento térmico.",
     "alternativas": [
-      "a) Relatar como trinca, mas por observação dizer que foi duvidoso e requerer outro método.",
-      "b) Limpar a solda testando antes de testá-la e retestar com as posições dos yokes modificadas da primeira, caso a indicação seja não linear a trinca não existe.",
-      "c) Preparar novamente os passes de solda pois as indicações não relevantes são aquelas que de alguma maneira saem para a superfície do cordão e formam porções falsas e errôneas as observações.",
-      "d) A avaliação deve ser efetuada em outro lugar para se tirar a prova de que o material das trincas seria de porosidade alinhada."
+      "A) verdadeiro.",
+      "B) falso."
     ],
     "resposta": "b"
   },
   {
     "id": 32,
-    "texto": "O medidor de luz U.V para exame fluorescente é expresso ou lido em quais unidades para a luz não visível a luz do sol:",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nOs defeitos existentes na superfície de uma peça podem ser detectados efetuando-se exame por meio de partículas magnéticas usando corrente alternada.",
     "alternativas": [
-      "a) Microwatt's por centímetro quadrado.",
-      "b) Ampère por metro.",
-      "c) Volt por metro.",
-      "d) Nanômetros ou Angstron."
+      "A) verdadeiro.",
+      "B) falso."
     ],
     "resposta": "a"
   },
   {
     "id": 33,
-    "texto": "Uma descontinuidade ou falha encontrada freqüentemente e que são causadas pelo não aquecimento e resfriamento desigual em grande massa forjada de modo brusco é a:",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nDepois de serem examinadas por meio de partículas magnéticas, as peças devem receber tratamento de limpeza.",
     "alternativas": [
-      "a) Flocos ou flakes",
-      "b) Segregações",
-      "c) Trinca térmica de têmpera",
-      "d) O forjamento é feito pelo desaquecimento e batidas do material quando laminado."
+      "A) verdadeiro.",
+      "B) falso."
     ],
     "resposta": "a"
   },
   {
     "id": 34,
-    "texto": "Uma indicação numa peça desmagnetizada quando posta perto de um Yoke, este foi acionado e depois a peça foi virada para observar-se outro lado, o que devemos fazer e ou providenciar se nada foi notado na referida peça que foi inspecionada com via úmida?",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nAs características das suspensões empregadas no exame por via úmida devem ser verificadas periodicamente.",
     "alternativas": [
-      "a) As posições e os campos magnéticos estavam opostos na peça inspecionada.",
-      "b) Refazer a desmagnetização num campo igual em força que o usado para a verificação com as posições invertidas até abaixar a zero a indicação, limpar e começar de novo.",
-      "c) Fazer um banho em solvente para a retirada total das películas e retestar as correntes em valores superiores no campo da peça inspecionada que é um rolamento.",
-      "d) Bater um pó a seco para tirar a prova de que existiu o defeito nas áreas menos prováveis."
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 35,
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nA corrente de magnetização deve ter a menor voltagem possível.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 36,
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nA eficiência de um aparelho desmagnetizador é maior nas proximidades do lado interno da bobina.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
+    ],
+    "resposta": "a"
+  },
+  {
+    "id": 37,
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nTodas as peças que apresentarem indicações ao serem examinadas por meio de partículas magnéticas devem ser reparadas.",
+    "alternativas": [
+      "A) verdadeiro.",
+      "B) falso."
     ],
     "resposta": "b"
   },
   {
-    "id": 35,
-    "texto": "Indicações que têm de ser avaliadas e comparadas pelo ensaio magnético dependendo da aplicação do componente ou da peça de teste, e são sempre verdadeiras quanto a sua formação e a conseqüência da fuga de campo provocado pela geometria da trinca são sempre do tipo abaixo:",
-    "alternativas": [
-      "a) Indicações lineares.",
-      "b) Indicações arredondadas.",
-      "c) Indicações relevantes.",
-      "d) Todas estão de acordo."
-    ],
-    "resposta": "d"
-  },
-  {
-    "id": 36,
-    "texto": "Na técnica de contatos a CC é normalmente não recomendada para peças tratadas ou para acabamento superior de usinagem, pois:",
-    "alternativas": [
-      "a) Podem danificá-la.",
-      "b) Podem esquentar as peças tratadas perdendo o tratamento e destemperando-as.",
-      "c) Pode perfurar a peça por arco elétrico formando crateras muito profundas.",
-      "d) As alternativas \"a\", \"b\" e \"c\" estão de acordo com o texto acima, dependendo do acabamento."
-    ],
-    "resposta": "d"
-  },
-  {
-    "id": 37,
-    "texto": "Qual a relação que mais traduz e tem poder e probabilidade da partícula ser atraída e retida num campo de fuga sobre um material e em uma falha ou defeito?",
-    "alternativas": [
-      "a) Relação do tipo da área inspecionada.",
-      "b) Relação do pó ou tipo de pó aplicado.",
-      "c) Relação do meio usado, se for úmido este se retém melhor que o pó seco por gravidade.",
-      "d) Relação comprimento da largura do defeito ou profundidade por espessura superficial do campo defletido em material."
-    ],
-    "resposta": "d"
-  },
-  {
     "id": 38,
-    "texto": "Um campo retido num medidor de campo Oersted de peça ensaiada em pó magnético úmido com coloração muito escura indicou 20 Gauss; o que aconteceu e deve ser feito:",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nA presença de carepa em peças submetidas a exame por meio de partículas magnéticas causa frequentemente a formação de indicações.",
     "alternativas": [
-      "a) Se é material muito retentivo, se limpar com ar após o uso de banho desmagnetiza.",
-      "b) O método está de acordo, pois 20 Gauss é normal nas superfícies ensaiadas por pó via úmida coloração tipo fluorescente.",
-      "c) Os materiais testados ficam normalmente sem campo algum por não passarem em pó úmido e sim em via seca no final do ensaio.",
-      "d) A peça é avaliada de acordo com a área final que ela vai ser aplicada e é desmagnetizada dependendo do valor residual permitido ou aplicável na inspeção."
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "d"
+    "resposta": "a"
   },
   {
     "id": 39,
-    "texto": "Um Yoke de AC tem maior probabilidade de encontrar um defeito abaixo da superfície em milímetros quando a peça usinada no caso for testada com pó não magnético fluorescente em água limpa ou em querosene para aviação desodorizada?",
+    "texto": "Indique se afirmação abaixo é verdadeira ou falsa.\nQuando uma peça vai ser examinada com partículas magnéticas, a limpeza de sua superfície é desnecessária desde que esteja protegida com graxa.",
     "alternativas": [
-      "a) Sim.",
-      "b) O uso de querosene é mais recomendável.",
-      "c) O não emprego do pó magnético na inspeção inviabiliza o teste todo.",
-      "d) As alternativas \"a\" e \"c\" indicam as descontinuidades."
+      "A) verdadeiro.",
+      "B) falso."
     ],
-    "resposta": "c"
+    "resposta": "b"
   },
   {
     "id": 40,
-    "texto": "Qual as descontinuidades que mais têm formato parecido com trincas nos materiais e peças com defeitos forjados em bloco de aço especial para engrenagens de redutores de máquinas de papel ou celulose da Votorantim?",
+    "texto": "O método de magnetização a ser usado em partes feitas de aço doce com baixa retentividade é o:",
     "alternativas": [
-      "a) Respingos de solda",
-      "b) Trincas a frio no material não conformado e tratado com pó de ensaio a seco.",
-      "c) Flocos e trincas térmicas.",
-      "d) O pó não salta nos engripamentos das engrenagens sem forjamentos em campo e com defeitos de vazios ou gotas frias de laminação de blocos."
+      "A) contínuo.",
+      "B) residual."
     ],
-    "resposta": "c"
+    "resposta": "a"
   }
 ]

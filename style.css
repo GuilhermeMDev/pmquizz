@@ -873,13 +873,7 @@ footer {
 .version { font-size: 11px; opacity: 0.5; margin-top: 5px; }
 .footer-logo { height: 1.2em; width: auto; vertical-align: middle; margin-right: 6px; display: inline-block; }
 .footer-logo-line { display: flex; align-items: center; justify-content: center; gap: 0; }
-.footer-link {
-    color: var(--text-main);
-    text-decoration: none;
-    transition: color 0.2s;
-    font-weight: 500;
-}
-.footer-link:hover { color: var(--primary); text-decoration: underline; }
+
 
 /* =========================================================
    TABLET & PC — AJUSTES A PARTIR DE 600px

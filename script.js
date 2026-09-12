@@ -31,7 +31,7 @@ let historicoRespostas = {};
 let modoAutomaticoAtivo = false;
 let tipoProvaAtual = "";
 let intervaloContagem = null;
-let tempoRestante = 3;
+let tempoRestante = 2;
 let isNavigating = false;
 
 // Suporte a teclado
@@ -786,7 +786,7 @@ function navegar(direcao) {
 }
 
 function iniciarContagemRegressiva() {
-    tempoRestante = 3;
+    tempoRestante = 2;
     atualizarTextoTimer(tempoRestante);
     if (intervaloContagem) clearInterval(intervaloContagem);
     intervaloContagem = setInterval(() => {
@@ -799,7 +799,7 @@ function iniciarContagemRegressiva() {
 function pararContagem() {
     if (intervaloContagem) clearInterval(intervaloContagem);
     const txt = document.getElementById('txt-timer');
-    if (txt) txt.innerText = modoAutomaticoAtivo ? "⏰ 3s" : "⏰ Off";
+    if (txt) txt.innerText = modoAutomaticoAtivo ? "⏰ 2s" : "⏰ Off";
 }
 
 function atualizarTextoTimer(segundos) {
@@ -816,7 +816,7 @@ function alternarTimer() {
     localStorage.setItem('timer_dica_visto', 'true');
     if (modoAutomaticoAtivo) {
         btn.className = "nav-btn timer-on";
-        txt.innerText = "⏰ 3s";
+        txt.innerText = "⏰ 2s";
     } else {
         btn.className = "nav-btn timer-off";
         txt.innerText = "⏰ Off";

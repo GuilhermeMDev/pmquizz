@@ -32,9 +32,9 @@ let modoAutomaticoAtivo = false;
 let tipoProvaAtual = "";
 let intervaloContagem = null;
 let tempoRestante = 3;
-let isNavigating = false; // Trava para evitar duplo-clique durante animação
+let isNavigating = false;
 
-// --- SUPORTE A TECLADO (SETAS) ---
+// Suporte a teclado
 document.addEventListener('keydown', (e) => {
     const quizDiv = document.getElementById('tela-quiz');
     if (quizDiv && !quizDiv.classList.contains('hidden')) {
@@ -74,17 +74,18 @@ if (themeToggleBtn) {
 function toggleProvas() {
     const container = document.getElementById('container-provas');
     const btn = document.getElementById('accordion-btn');
-
     if (container.classList.contains('hidden')) {
         container.classList.remove('hidden');
         btn.classList.add('active');
-        btn.querySelector('span:first-child').textContent = '📂 Selecionar Prova (1 a 11)';
     } else {
         container.classList.add('hidden');
         btn.classList.remove('active');
-        btn.querySelector('span:first-child').textContent = '📂 Selecionar Prova (1 a 11)';
     }
 }
+
+// =====================================================
+//  INICIALIZAÇÃO
+// =====================================================
 
 window.onload = async () => {
     initTheme();
@@ -92,6 +93,8 @@ window.onload = async () => {
     gerarBotoesProvas();
     verificarSaveGame();
     atualizarContadorErrosUI();
+    atualizarCicloUI();
+
     if (!localStorage.getItem('timer_dica_visto')) {
         const tooltip = document.getElementById('tooltip-timer');
         if (tooltip) {
@@ -110,11 +113,9 @@ async function carregarBancoDeDados() {
         for (const nome of arquivos) {
             const match = nome.match(/prova_(\d+)_questoes\.json/);
             const numProva = match ? parseInt(match[1]) : 1;
-
             const res = await fetch("./" + nome);
             if (!res.ok) { console.error(`Falha ao carregar ${nome}`); continue; }
             const dados = await res.json();
-
             const formatados = dados.map((q, idx) => {
                 const questaoId = q.id || (idx + 1);
                 return {
@@ -126,22 +127,293 @@ async function carregarBancoDeDados() {
                     opcoes: q.alternativas || q.opcoes || []
                 };
             });
-
             bancoCompleto = [...bancoCompleto, ...formatados];
         }
-
         bancoCompleto.sort((a, b) => {
             if (a.prova !== b.prova) return a.prova - b.prova;
             return a.id - b.id;
         });
-
         appCarregado = true;
     } catch (e) {
         console.error(e);
         const grid = document.getElementById('grid-provas');
-        if (grid) grid.innerHTML = "<p style='color:red'>Erro ao carregar dados. Verifique o console.</p>";
+        if (grid) grid.innerHTML = "<p style='color:red'>Erro ao carregar dados.</p>";
     }
 }
+
+// =====================================================
+//  DADOS DE PROGRESSO — HISTÓRICO E CICLO
+// =====================================================
+
+function salvarHistoricoProva(numProva, acertosTotal, errosTotal, total, aproveitamento) {
+    const historico = JSON.parse(localStorage.getItem('quiz_pm_historico')) || {};
+    const key = `prova_${numProva}`;
+    if (!historico[key]) historico[key] = [];
+
+    historico[key].push({
+        date: Date.now(),
+        acertos: acertosTotal,
+        erros: errosTotal,
+        total,
+        aproveitamento
+    });
+
+    // Mantém no máximo as últimas 10 sessões por prova
+    if (historico[key].length > 10) {
+        historico[key] = historico[key].slice(-10);
+    }
+
+    localStorage.setItem('quiz_pm_historico', JSON.stringify(historico));
+}
+
+function atualizarCiclo(numProva) {
+    const ciclo = JSON.parse(localStorage.getItem('quiz_pm_ciclo')) || {
+        ciclosCompletos: 0,
+        provasNoAtual: [],
+        inicioCiclo: Date.now()
+    };
+
+    // Adiciona prova ao ciclo atual se ainda não estiver
+    if (!ciclo.provasNoAtual.includes(numProva)) {
+        ciclo.provasNoAtual.push(numProva);
+    }
+
+    // Verifica se completou o ciclo de todas as 11 provas
+    if (ciclo.provasNoAtual.length >= 11) {
+        ciclo.ciclosCompletos++;
+        ciclo.provasNoAtual = [];
+        ciclo.inicioCiclo = Date.now();
+        localStorage.setItem('quiz_pm_ciclo', JSON.stringify(ciclo));
+        atualizarCicloUI();
+        // Celebra o ciclo completo
+        exibirCelebraCiclo(ciclo.ciclosCompletos);
+        return;
+    }
+
+    localStorage.setItem('quiz_pm_ciclo', JSON.stringify(ciclo));
+    atualizarCicloUI();
+}
+
+function exibirCelebraCiclo(numCiclo) {
+    setTimeout(() => {
+        alert(`🏆 Incrível! Você completou o Ciclo ${numCiclo}!\n\nTodas as 11 provas foram concluídas. O ciclo ${numCiclo + 1} começa agora. Continue assim!`);
+    }, 500);
+}
+
+function obterDadosProva(numProva) {
+    const historico = JSON.parse(localStorage.getItem('quiz_pm_historico')) || {};
+    const sessoes = historico[`prova_${numProva}`] || [];
+    if (sessoes.length === 0) return null;
+
+    const ultima = sessoes[sessoes.length - 1];
+    const melhor = Math.max(...sessoes.map(s => s.aproveitamento));
+    const anterior = sessoes.length >= 2 ? sessoes[sessoes.length - 2] : null;
+    const trend = anterior ? ultima.aproveitamento - anterior.aproveitamento : null;
+
+    return {
+        tentativas: sessoes.length,
+        ultima: ultima.aproveitamento,
+        melhor,
+        trend, // null se só 1 sessão
+        sessoes
+    };
+}
+
+function atualizarCicloUI() {
+    const ciclo = JSON.parse(localStorage.getItem('quiz_pm_ciclo')) || {
+        ciclosCompletos: 0,
+        provasNoAtual: []
+    };
+    const completadas = ciclo.provasNoAtual || [];
+    const cicloAtual = ciclo.ciclosCompletos + 1;
+
+    const label = document.getElementById('ciclo-label');
+    if (label) {
+        label.textContent = `Ciclo ${cicloAtual} • ${completadas.length}/11 provas`;
+    }
+
+    const dotsContainer = document.getElementById('ciclo-dots-mini');
+    if (dotsContainer) {
+        dotsContainer.innerHTML = '';
+        for (let i = 1; i <= 11; i++) {
+            const done = completadas.includes(i);
+            const dot = document.createElement('div');
+            dot.className = `ciclo-dot ${done ? 'done' : ''}`;
+            dot.title = `Prova ${i}${done ? ' ✓' : ''}`;
+            if (done) {
+                dot.style.background = PROVA_CORES[(i - 1) % PROVA_CORES.length];
+                dot.style.borderColor = PROVA_CORES[(i - 1) % PROVA_CORES.length];
+            }
+            dotsContainer.appendChild(dot);
+        }
+    }
+}
+
+// =====================================================
+//  TELA DE ESTATÍSTICAS
+// =====================================================
+
+function abrirStats() {
+    document.getElementById('menu-inicial').classList.add('hidden');
+    if (themeToggleBtn) themeToggleBtn.style.display = 'none';
+    const footer = document.querySelector('footer');
+    if (footer) footer.style.display = 'none';
+    document.getElementById('tela-stats').classList.remove('hidden');
+    renderizarStats();
+    window.scrollTo(0, 0);
+}
+
+function fecharStats() {
+    document.getElementById('tela-stats').classList.add('hidden');
+    document.getElementById('menu-inicial').classList.remove('hidden');
+    if (themeToggleBtn) themeToggleBtn.style.display = 'flex';
+    const footer = document.querySelector('footer');
+    if (footer) footer.style.display = 'block';
+}
+
+function renderizarStats() {
+    const historico = JSON.parse(localStorage.getItem('quiz_pm_historico')) || {};
+    const ciclo = JSON.parse(localStorage.getItem('quiz_pm_ciclo')) || {
+        ciclosCompletos: 0,
+        provasNoAtual: []
+    };
+
+    // Calcula estatísticas globais
+    let totalRespondidas = 0;
+    let totalAcertosGlobal = 0;
+    let provasComDados = 0;
+
+    for (let i = 1; i <= 11; i++) {
+        const sessoes = historico[`prova_${i}`] || [];
+        if (sessoes.length > 0) provasComDados++;
+        sessoes.forEach(s => {
+            totalRespondidas += s.total || 0;
+            totalAcertosGlobal += s.acertos || 0;
+        });
+    }
+
+    // Se não há nenhum dado ainda
+    if (totalRespondidas === 0 && ciclo.ciclosCompletos === 0) {
+        document.getElementById('stats-content').innerHTML = `
+            <div class="stats-vazio">
+                <div class="stats-vazio-icon">📊</div>
+                <div class="stats-vazio-texto">Nenhuma estatística ainda</div>
+                <div class="stats-vazio-sub">Complete uma prova para ver seu progresso aqui.</div>
+            </div>`;
+        return;
+    }
+
+    const aprovGlobal = totalRespondidas > 0
+        ? Math.round((totalAcertosGlobal / totalRespondidas) * 100)
+        : 0;
+
+    const cicloAtual = ciclo.ciclosCompletos + 1;
+    const completadasNoCiclo = ciclo.provasNoAtual || [];
+
+    let html = '';
+
+    // --- RESUMO GERAL ---
+    html += `
+        <div class="stats-resumo-geral">
+            <div class="stat-card-big">
+                <span class="stat-big-num">${ciclo.ciclosCompletos}</span>
+                <span class="stat-big-label">Ciclos<br>completos</span>
+            </div>
+            <div class="stat-card-big">
+                <span class="stat-big-num">${aprovGlobal}%</span>
+                <span class="stat-big-label">Aproveita-<br>mento geral</span>
+            </div>
+            <div class="stat-card-big">
+                <span class="stat-big-num">${totalRespondidas}</span>
+                <span class="stat-big-label">Questões<br>respondidas</span>
+            </div>
+        </div>`;
+
+    // --- CICLO ATUAL ---
+    const dotsHtml = Array.from({ length: 11 }, (_, i) => {
+        const num = i + 1;
+        const done = completadasNoCiclo.includes(num);
+        const cor = PROVA_CORES[i % PROVA_CORES.length];
+        const style = done
+            ? `background:${cor}; border-color:${cor}`
+            : `border-color:${cor}40`;
+        return `<div class="stats-dot ${done ? 'stats-dot-done' : ''}" style="${style}" title="Prova ${num}">
+            <span class="stats-dot-num">${num}</span>
+        </div>`;
+    }).join('');
+
+    html += `
+        <div class="stats-ciclo-card">
+            <div class="stats-ciclo-header">
+                <span class="stats-ciclo-titulo">Ciclo ${cicloAtual} em andamento</span>
+                <span class="stats-ciclo-sub">${completadasNoCiclo.length}/11 concluídas</span>
+            </div>
+            <div class="stats-ciclo-dots">${dotsHtml}</div>
+        </div>`;
+
+    // --- POR PROVA ---
+    html += `<div class="stats-section-title">Por Prova</div><div class="stats-provas-lista">`;
+
+    for (let i = 1; i <= 11; i++) {
+        const dados = obterDadosProva(i);
+        const cor = PROVA_CORES[(i - 1) % PROVA_CORES.length];
+        const noAtual = completadasNoCiclo.includes(i);
+
+        if (!dados) {
+            html += `
+                <div class="stats-prova-card stats-prova-vazia" style="--card-accent:${cor}">
+                    <div class="stats-prova-header">
+                        <span class="stats-prova-num" style="color:${cor}">${i}</span>
+                        <span class="stats-prova-nome">Prova ${i}</span>
+                        <span class="stats-prova-badge-nao">Não iniciada</span>
+                    </div>
+                </div>`;
+            continue;
+        }
+
+        // Tendência
+        let trendHTML = '';
+        if (dados.trend === null) {
+            trendHTML = `<span class="trend-neutro">1ª tentativa</span>`;
+        } else if (dados.trend > 0) {
+            trendHTML = `<span class="trend-positivo">↑ +${dados.trend}%</span>`;
+        } else if (dados.trend < 0) {
+            trendHTML = `<span class="trend-negativo">↓ ${dados.trend}%</span>`;
+        } else {
+            trendHTML = `<span class="trend-neutro">→ Estável</span>`;
+        }
+
+        const badgeAtual = noAtual
+            ? `<span class="stats-prova-badge-ok">✓ Ciclo ${cicloAtual}</span>`
+            : '';
+
+        html += `
+            <div class="stats-prova-card" style="--card-accent:${cor}">
+                <div class="stats-prova-header">
+                    <span class="stats-prova-num" style="color:${cor}">${i}</span>
+                    <span class="stats-prova-nome">Prova ${i}</span>
+                    <span class="stats-prova-tentativas">${dados.tentativas}x</span>
+                    ${badgeAtual}
+                </div>
+                <div class="stats-prova-barra-container">
+                    <div class="stats-prova-barra" style="width:${dados.ultima}%; background:${cor}"></div>
+                    <div class="stats-prova-marcador-melhor" style="left:${dados.melhor}%" title="Melhor: ${dados.melhor}%"></div>
+                </div>
+                <div class="stats-prova-numeros">
+                    <span class="stats-prova-ultima">Última: <strong>${dados.ultima}%</strong></span>
+                    ${trendHTML}
+                    <span class="stats-prova-melhor">Melhor: <strong>${dados.melhor}%</strong></span>
+                </div>
+            </div>`;
+    }
+
+    html += `</div>`;
+    document.getElementById('stats-content').innerHTML = html;
+}
+
+// =====================================================
+//  MENU
+// =====================================================
 
 function gerarBotoesProvas() {
     const grid = document.getElementById('grid-provas');
@@ -150,13 +422,26 @@ function gerarBotoesProvas() {
 
     for (let i = 1; i <= 11; i++) {
         const cor = PROVA_CORES[(i - 1) % PROVA_CORES.length];
+        const dados = obterDadosProva(i);
+
+        let scoreHTML = '<span class="prova-score trend-new">Não iniciada</span>';
+        if (dados) {
+            let trendClass = 'trend-flat';
+            let trendChar = '→';
+            if (dados.trend !== null) {
+                if (dados.trend > 0) { trendClass = 'trend-up'; trendChar = '↑'; }
+                else if (dados.trend < 0) { trendClass = 'trend-down'; trendChar = '↓'; }
+            }
+            scoreHTML = `<span class="prova-score ${trendClass}">${dados.ultima}% <span class="trend-arrow">${trendChar}</span></span>`;
+        }
+
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
         btn.style.setProperty('--btn-accent', cor);
         btn.innerHTML = `
             <span class="prova-numero">${i}</span>
             <span class="prova-label">Prova ${i}</span>
-            <span class="prova-sub">40 Q.</span>`;
+            ${scoreHTML}`;
         btn.onclick = () => iniciarProva('prova_' + i);
         grid.appendChild(btn);
     }
@@ -168,25 +453,20 @@ function verificarSaveGame() {
     if (save) {
         const dados = JSON.parse(save);
         btn.style.display = 'flex';
-
         let label = "Prova";
         if (dados.tipo && dados.tipo.startsWith('prova_')) {
-            const n = dados.tipo.split('_')[1];
-            label = `Prova ${n}`;
+            label = `Prova ${dados.tipo.split('_')[1]}`;
         } else if (dados.tipo === 'erros') {
             label = "Revisão de Erros";
         }
-
         let proximoIndice = dados.indice || 0;
         if (dados.idsQuestao && dados.historico) {
             const idxNaoRespondido = dados.idsQuestao.findIndex(uid => !dados.historico[uid]);
             if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
             else proximoIndice = dados.idsQuestao.length - 1;
         }
-
         const posicaoNaProva = proximoIndice + 1;
         const totalQuestoes = dados.idsQuestao ? dados.idsQuestao.length : "?";
-
         const titleEl = btn.querySelector('.btn-menu-title');
         const subEl = document.getElementById('info-save');
         if (titleEl) titleEl.textContent = `Continuar — ${label}`;
@@ -196,9 +476,12 @@ function verificarSaveGame() {
     }
 }
 
+// =====================================================
+//  LÓGICA DA PROVA
+// =====================================================
+
 function iniciarProva(tipo) {
     if (!appCarregado) return;
-
     localStorage.removeItem('quiz_pm_save');
     indiceAtual = 0;
     acertos = 0;
@@ -227,7 +510,6 @@ function iniciarProva(tipo) {
         alert("Erro ao carregar questões. Verifique os arquivos.");
         return;
     }
-
     abrirTelaQuiz();
     mostrarQuestao();
 }
@@ -247,16 +529,15 @@ function retomarJogo() {
     } else {
         questoesDaProva = [...bancoCompleto];
     }
-
     const primeiroNaoRespondido = questoesDaProva.findIndex(q => !historicoRespostas[q.uid]);
     indiceAtual = primeiroNaoRespondido !== -1 ? primeiroNaoRespondido : questoesDaProva.length - 1;
-
     abrirTelaQuiz();
     mostrarQuestao();
 }
 
 function abrirTelaQuiz() {
     document.getElementById('menu-inicial').classList.add('hidden');
+    document.getElementById('tela-stats').classList.add('hidden');
     if (themeToggleBtn) themeToggleBtn.style.display = 'none';
     const footer = document.querySelector('footer');
     if (footer) footer.style.display = 'none';
@@ -267,7 +548,6 @@ function abrirTelaQuiz() {
     document.getElementById('erros').innerText = erros;
     document.getElementById('relatorio-final').innerHTML = "";
 
-    // Mostra elementos da tela de quiz
     const qw = document.getElementById('question-wrapper');
     if (qw) qw.style.display = 'block';
     const pc = document.getElementById('progress-container');
@@ -292,12 +572,15 @@ function voltarAoMenu() {
     document.getElementById('menu-inicial').classList.remove('hidden');
     const footer = document.querySelector('footer');
     if (footer) footer.style.display = 'block';
-    // Reset accent para azul padrão ao sair
     document.documentElement.style.setProperty('--prova-accent', '#4f8ef7');
     verificarSaveGame();
+    atualizarCicloUI();
+    gerarBotoesProvas(); // Atualiza scores nos botões
 }
 
-// --- PROGRESSO E ACENTO POR PROVA ---
+// =====================================================
+//  PROGRESSO, ACENTO E QUESTÃO
+// =====================================================
 
 function atualizarProgressBar() {
     const progress = questoesDaProva.length > 0
@@ -312,11 +595,8 @@ function atualizarAcentoProva(numProva) {
     document.documentElement.style.setProperty('--prova-accent', cor);
 }
 
-// --- MOSTRAR QUESTÃO ---
-
 function mostrarQuestao() {
     pararContagem();
-
     if (indiceAtual >= questoesDaProva.length) {
         finalizarQuiz();
         return;
@@ -325,11 +605,9 @@ function mostrarQuestao() {
     const q = questoesDaProva[indiceAtual];
     const estado = historicoRespostas[q.uid];
 
-    // Atualiza barra de progresso e cor de acento
     atualizarProgressBar();
     atualizarAcentoProva(q.prova);
 
-    // Título e subtítulo
     let tituloPrincipal = "Simulado";
     let subtituloSeq = `Ref. PDF #${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
 
@@ -339,13 +617,13 @@ function mostrarQuestao() {
         subtituloSeq = `Questão ${q.id} de ${questoesDaProva.length}`;
     } else if (tipoProvaAtual === 'erros') {
         tituloPrincipal = "Revisão de Erros";
-        subtituloSeq = `Prova ${q.prova} • Questão ${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
+        subtituloSeq = `Prova ${q.prova} • Q.${q.id} • (${indiceAtual + 1}/${questoesDaProva.length})`;
     }
 
     document.getElementById('txt-prova').innerText = tituloPrincipal;
     document.getElementById('txt-seq').innerText = subtituloSeq;
 
-    // Imagem de apoio
+    // Imagem
     const containerImg = document.getElementById('container-imagem');
     const imgEl = document.getElementById('pergunta-imagem');
     if (containerImg && imgEl) {
@@ -353,7 +631,6 @@ function mostrarQuestao() {
         else { containerImg.style.display = 'none'; imgEl.src = ''; }
     }
 
-    // Texto da questão
     document.getElementById('pergunta-texto').innerText = q.pergunta || q.texto;
 
     // Dica
@@ -386,7 +663,6 @@ function mostrarQuestao() {
         const btn = document.createElement('button');
         btn.className = 'opcao';
         btn.innerText = opcao;
-
         if (estado && estado.respondida) {
             btn.disabled = true;
             const letraOp = opcao.trim().charAt(0).toUpperCase();
@@ -408,11 +684,12 @@ function mostrarQuestao() {
     salvarProgresso();
 }
 
-// --- VERIFICAR RESPOSTA (com animações) ---
+// =====================================================
+//  RESPOSTA E ANIMAÇÕES
+// =====================================================
 
 function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes) {
     if (historicoRespostas[uidQuestao]) return;
-
     const botoes = document.querySelectorAll('.opcao');
     botoes.forEach(b => b.disabled = true);
 
@@ -421,27 +698,20 @@ function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes) 
     const acertou = (letraEscolhida === letraCorreta);
 
     atualizarBancoErros(uidQuestao, acertou);
-    historicoRespostas[uidQuestao] = { respondida: true, acertou: acertou, escolha: letraEscolhida };
+    historicoRespostas[uidQuestao] = { respondida: true, acertou, escolha: letraEscolhida };
 
     if (acertou) {
         acertos++;
         animarScore('acertos', acertos, 'badge-acertos');
         botao.classList.add('resposta-certa');
-
-        // Animação de pulso no botão correto
         botao.classList.add('btn-correct-pulse');
         botao.addEventListener('animationend', () => botao.classList.remove('btn-correct-pulse'), { once: true });
-
     } else {
         erros++;
         animarScore('erros', erros, 'badge-erros');
         botao.classList.add('resposta-errada');
-
-        // Animação de tremer no botão errado
         botao.classList.add('btn-shake');
         botao.addEventListener('animationend', () => botao.classList.remove('btn-shake'), { once: true });
-
-        // Destaca o correto
         botoes.forEach(b => {
             if (b.innerText.trim().charAt(0).toUpperCase() === letraCorreta) b.classList.add('resposta-certa');
         });
@@ -450,45 +720,38 @@ function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes) 
     const alternativaCorreta = listaOpcoes.find(op => op.trim().charAt(0).toUpperCase() === letraCorreta) || letraCorreta;
     exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta);
     salvarProgresso();
-
     if (modoAutomaticoAtivo) iniciarContagemRegressiva();
 }
 
-// --- ANIMAÇÃO DO SCORE ---
 function animarScore(elementId, novoValor, badgeId) {
     const el = document.getElementById(elementId);
     const badge = document.getElementById(badgeId);
     if (el) el.innerText = novoValor;
     if (badge) {
         badge.classList.remove('badge-pop');
-        void badge.offsetWidth; // Force reflow para reiniciar animação
+        void badge.offsetWidth;
         badge.classList.add('badge-pop');
         badge.addEventListener('animationend', () => badge.classList.remove('badge-pop'), { once: true });
     }
 }
 
-// --- NAVEGAÇÃO COM SLIDE ---
+// =====================================================
+//  NAVEGAÇÃO COM SLIDE
+// =====================================================
+
 function navegar(direcao) {
-    if (isNavigating) return; // Trava durante animação
+    if (isNavigating) return;
     pararContagem();
-
     const novoIndice = indiceAtual + direcao;
-
-    if (novoIndice >= questoesDaProva.length) {
-        finalizarQuiz();
-        return;
-    }
+    if (novoIndice >= questoesDaProva.length) { finalizarQuiz(); return; }
     if (novoIndice < 0) return;
 
     const wrapper = document.getElementById('question-wrapper');
-
     if (wrapper) {
         isNavigating = true;
         const slideOut = direcao > 0 ? 'slide-out-left' : 'slide-out-right';
         const slideIn  = direcao > 0 ? 'slide-in-right' : 'slide-in-left';
-
         wrapper.classList.add(slideOut);
-
         setTimeout(() => {
             indiceAtual = novoIndice;
             mostrarQuestao();
@@ -512,10 +775,7 @@ function iniciarContagemRegressiva() {
     intervaloContagem = setInterval(() => {
         tempoRestante--;
         atualizarTextoTimer(tempoRestante);
-        if (tempoRestante <= 0) {
-            clearInterval(intervaloContagem);
-            navegar(1);
-        }
+        if (tempoRestante <= 0) { clearInterval(intervaloContagem); navegar(1); }
     }, 1000);
 }
 
@@ -535,10 +795,8 @@ function alternarTimer() {
     const btn = document.getElementById('btn-timer');
     const txt = document.getElementById('txt-timer');
     const tooltip = document.getElementById('tooltip-timer');
-
     if (tooltip) tooltip.style.display = 'none';
     localStorage.setItem('timer_dica_visto', 'true');
-
     if (modoAutomaticoAtivo) {
         btn.className = "nav-btn timer-on";
         txt.innerText = "⏰ 3s";
@@ -557,11 +815,13 @@ function toggleDica() {
     if (setaDica) setaDica.innerText = boxDica.classList.contains('hidden') ? '▼' : '▲';
 }
 
-// --- FEEDBACK VISUAL ---
+// =====================================================
+//  FEEDBACK VISUAL
+// =====================================================
+
 function exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta) {
     const feedbackDiv = document.getElementById('feedback');
     feedbackDiv.style.display = 'block';
-
     if (acertou) {
         feedbackDiv.innerHTML = `
             <div class="feedback-acerto">
@@ -575,7 +835,6 @@ function exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta) {
         const textoExibir = alternativaCorreta && alternativaCorreta.length > 2
             ? alternativaCorreta
             : `Alternativa ${letraCorreta}`;
-
         feedbackDiv.innerHTML = `
             <div class="feedback-erro">
                 <span class="feedback-icon">❌</span>
@@ -588,21 +847,23 @@ function exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta) {
     }
 }
 
-// --- SALVAR PROGRESSO ---
+// =====================================================
+//  SALVAR E ERROS
+// =====================================================
+
 function salvarProgresso() {
     const dados = {
         tipo: tipoProvaAtual,
         indice: indiceAtual,
-        acertos: acertos,
-        erros: erros,
+        acertos,
+        erros,
         historico: historicoRespostas,
         idsQuestao: questoesDaProva.map(q => q.uid),
-        data: new Date().getTime()
+        data: Date.now()
     };
     localStorage.setItem('quiz_pm_save', JSON.stringify(dados));
 }
 
-// --- BANCO DE ERROS ---
 function atualizarBancoErros(uidQuestao, acertou) {
     let errosSalvos = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
     if (!acertou) {
@@ -633,9 +894,11 @@ function zerarBancoErros() {
     }
 }
 
-// --- FINALIZAR QUIZ ---
+// =====================================================
+//  FINALIZAR QUIZ — salva histórico e atualiza ciclo
+// =====================================================
+
 function finalizarQuiz() {
-    // Esconde elementos da prova
     const containerImg = document.getElementById('container-imagem');
     if (containerImg) containerImg.style.display = 'none';
     document.getElementById('pergunta-texto').style.display = 'none';
@@ -646,18 +909,24 @@ function finalizarQuiz() {
     document.querySelector('.nav-bar').style.display = 'none';
     document.querySelector('.top-bar').style.display = 'none';
 
-    // Esconde question-wrapper e progress bar
     const qw = document.getElementById('question-wrapper');
     if (qw) qw.style.display = 'none';
     const pc = document.getElementById('progress-container');
     if (pc) pc.style.display = 'none';
 
-    // --- Calcula estatísticas ---
+    // Calcula estatísticas
     const totalQuestoes = questoesDaProva.length;
     const totalAcertos = Object.values(historicoRespostas).filter(h => h.acertou).length;
     const totalErros = Object.values(historicoRespostas).filter(h => !h.acertou).length;
     const totalPuladas = totalQuestoes - totalAcertos - totalErros;
     const aproveitamento = totalQuestoes > 0 ? Math.round((totalAcertos / totalQuestoes) * 100) : 0;
+
+    // Salva no histórico e atualiza ciclo (só para provas específicas com pelo menos 1 resposta)
+    if (tipoProvaAtual.startsWith('prova_') && (totalAcertos + totalErros) > 0) {
+        const numProva = parseInt(tipoProvaAtual.split('_')[1]);
+        salvarHistoricoProva(numProva, totalAcertos, totalErros, totalQuestoes, aproveitamento);
+        atualizarCiclo(numProva);
+    }
 
     let emojiDesempenho = aproveitamento >= 80 ? '🏆' : aproveitamento >= 60 ? '💪' : '📖';
 
@@ -690,22 +959,21 @@ function finalizarQuiz() {
                 </div>
             </div>
         </div>
-        <div class="grid-relatorio">
-    `;
+        <div class="grid-relatorio">`;
 
     questoesDaProva.forEach(q => {
         const hist = historicoRespostas[q.uid];
         let classe = "resumo-neutro";
-        let texto = `P${q.prova} Q.${q.id} - Pulou`;
+        let texto = `P${q.prova} Q.${q.id}`;
         let gabaritoInfo = "";
 
         if (hist) {
             if (hist.acertou) {
                 classe = "resumo-certo";
-                texto = `P${q.prova} Q.${q.id} - ${hist.escolha}`;
+                texto = `P${q.prova} Q.${q.id} ·${hist.escolha}`;
             } else {
                 classe = "resumo-errado";
-                texto = `P${q.prova} Q.${q.id} - ${hist.escolha}`;
+                texto = `P${q.prova} Q.${q.id} ·${hist.escolha}`;
                 const correta = q.resposta ? q.resposta.toUpperCase() : "?";
                 gabaritoInfo = `<div class="txt-gabarito">Gab: ${correta}</div>`;
             }
@@ -713,7 +981,7 @@ function finalizarQuiz() {
 
         relatorioHTML += `
             <div class="card-resumo ${classe}">
-                <div style="font-size: 16px;">${texto}</div>
+                <div>${texto}</div>
                 ${gabaritoInfo}
             </div>`;
     });

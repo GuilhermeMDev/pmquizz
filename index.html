@@ -5,21 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulados Teórica Geral PM</title>
     
-    <!-- PWA Meta Tags -->
     <meta name="description" content="Simulador de questões de Partículas Magnéticas para END.">
     <meta name="theme-color" content="#1565c0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Quiz PM">
     
-    <!-- Manifest -->
     <link rel="manifest" href="manifest.json">
-    
-    <!-- Ícones -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧲</text></svg>">
     <link rel="apple-touch-icon" href="icon-192.png">
 
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,6 +25,7 @@
 
     <button id="theme-toggle" class="theme-toggle" title="Alternar Tema">🌙</button>
 
+    <!-- ===================== MENU PRINCIPAL ===================== -->
     <div id="menu-inicial">
         <div class="menu-header">
             <div class="logo-area">
@@ -65,6 +61,17 @@
             🗑 Zerar banco de erros
         </button>
 
+        <!-- Rastreador de Ciclo -->
+        <div class="ciclo-tracker" id="ciclo-tracker">
+            <div class="ciclo-tracker-header">
+                <span id="ciclo-label" class="ciclo-label">Ciclo 1 • 0/11 provas</span>
+                <button class="btn-stats-link" onclick="abrirStats()">📊 Ver Estatísticas</button>
+            </div>
+            <div class="ciclo-dots-mini" id="ciclo-dots-mini">
+                <!-- Preenchido via JS -->
+            </div>
+        </div>
+
         <button id="accordion-btn" class="accordion-btn" onclick="toggleProvas()">
             <span>📂 Selecionar Prova (1 a 11)</span>
             <span id="accordion-arrow" class="accordion-arrow">▼</span>
@@ -77,6 +84,7 @@
         </div>
     </div>
 
+    <!-- ===================== TELA DE QUIZ ===================== -->
     <div id="tela-quiz" class="hidden">
         <div id="quiz-container">
             <div class="top-bar">
@@ -95,19 +103,15 @@
                 </div>
             </div>
 
-            <!-- Barra de progresso visual -->
             <div class="progress-container" id="progress-container">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
 
-            <!-- Wrapper com animação de slide entre questões -->
             <div id="question-wrapper">
                 <div id="container-imagem" class="container-imagem" style="display: none;">
                     <img id="pergunta-imagem" class="pergunta-imagem" src="" alt="Figura de Apoio da Questão">
                 </div>
-
                 <div id="pergunta-texto" class="pergunta">...</div>
-                
                 <div id="container-dica" class="container-dica" style="display: none;">
                     <button id="btn-dica" class="btn-dica" onclick="toggleDica()" type="button">
                         <span class="btn-dica-icon">💡</span>
@@ -116,7 +120,6 @@
                     </button>
                     <div id="box-dica" class="box-dica hidden"></div>
                 </div>
-
                 <div id="opcoes-container"></div>
                 <div id="feedback"></div>
             </div>
@@ -131,6 +134,20 @@
                 <span id="txt-timer">⏰ Off</span>
             </button>
             <button class="nav-btn btn-next" onclick="navegar(1)" aria-label="Próxima questão">➡️</button>
+        </div>
+    </div>
+
+    <!-- ===================== TELA DE ESTATÍSTICAS ===================== -->
+    <div id="tela-stats" class="hidden">
+        <div id="stats-container">
+            <div class="stats-topbar">
+                <button onclick="fecharStats()" class="btn-text">⬅ Voltar</button>
+                <span class="stats-titulo-header">📊 Estatísticas</span>
+                <div style="width:80px"></div><!-- Spacer -->
+            </div>
+            <div id="stats-content">
+                <!-- Renderizado via JS -->
+            </div>
         </div>
     </div>
 
@@ -157,9 +174,8 @@
         </div>
     </footer>
     
-    <script src="script.js"></script>    
+    <script src="script.js"></script>
 
-    <!-- Registra o Service Worker e aplica atualizações automaticamente -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -168,7 +184,6 @@
                         console.log('[App] Service Worker registrado:', reg.scope);
                         navigator.serviceWorker.addEventListener('message', event => {
                             if (event.data && event.data.type === 'SW_UPDATED') {
-                                console.log('[App] Nova versão detectada — recarregando...');
                                 const ultimoReload = parseInt(sessionStorage.getItem('sw_reload') || '0');
                                 if (Date.now() - ultimoReload > 5000) {
                                     sessionStorage.setItem('sw_reload', Date.now());
@@ -177,7 +192,7 @@
                             }
                         });
                     })
-                    .catch(err => console.log('[App] Erro ao registrar Service Worker:', err));
+                    .catch(err => console.log('[App] Erro ao registrar SW:', err));
             });
         }
     </script>

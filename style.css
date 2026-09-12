@@ -1162,3 +1162,408 @@ footer {
     from { transform: translateX(-50%) translateY(0); }
     to   { transform: translateX(-50%) translateY(-5px); }
 }
+
+/* =========================================================
+   RASTREADOR DE CICLO (Menu)
+   ========================================================= */
+.ciclo-tracker {
+    background: var(--card-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ciclo-tracker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.ciclo-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.1px;
+}
+
+.btn-stats-link {
+    background: none;
+    border: 1px solid var(--border-mid);
+    color: var(--text-sec);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: inherit;
+    touch-action: manipulation;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    flex-shrink: 0;
+}
+.btn-stats-link:active {
+    background: var(--btn-hover);
+    color: var(--text-main);
+    border-color: var(--primary);
+}
+
+/* Dots do ciclo (mini) */
+.ciclo-dots-mini {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.ciclo-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 2px solid var(--border-mid);
+    background: transparent;
+    transition: background 0.3s, border-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: default;
+    position: relative;
+}
+
+.ciclo-dot.done {
+    color: white;
+    transform: scale(1.05);
+}
+
+.ciclo-dot.done::after {
+    content: '✓';
+    font-size: 11px;
+    font-weight: 800;
+    position: absolute;
+}
+
+/* Score nos botões de prova */
+.prova-score {
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-top: 1px;
+}
+
+.prova-score.trend-up    { color: var(--success); }
+.prova-score.trend-down  { color: var(--error); }
+.prova-score.trend-flat  { color: var(--text-sec); }
+.prova-score.trend-new   { color: var(--text-muted); font-weight: 500; }
+
+.trend-arrow { font-size: 10px; }
+
+/* =========================================================
+   TELA DE ESTATÍSTICAS
+   ========================================================= */
+#tela-stats {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 auto;
+    animation: fadeUp 0.3s ease-out;
+}
+
+#tela-stats:not(.hidden) {
+    display: flex;
+}
+
+#stats-container {
+    width: 100%;
+    max-width: 720px;
+    padding-bottom: 40px;
+}
+
+.stats-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 14px 12px;
+    position: sticky;
+    top: 0;
+    background: var(--bg-color);
+    z-index: 10;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stats-titulo-header {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.2px;
+}
+
+/* Resumo Geral */
+.stats-resumo-geral {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 16px 14px 0;
+}
+
+.stat-card-big {
+    background: var(--card-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+}
+
+.stat-big-num {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.stat-big-label {
+    font-size: 10px;
+    color: var(--text-sec);
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: center;
+}
+
+/* Ciclo Atual na tela de stats */
+.stats-ciclo-card {
+    margin: 12px 14px 0;
+    background: var(--card-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 14px;
+}
+
+.stats-ciclo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.stats-ciclo-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.stats-ciclo-sub {
+    font-size: 12px;
+    color: var(--text-sec);
+    font-weight: 500;
+}
+
+.stats-ciclo-dots {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.stats-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 2px solid var(--border-mid);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.stats-dot-num {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text-muted);
+    line-height: 1;
+}
+
+.stats-dot.stats-dot-done .stats-dot-num {
+    display: none;
+}
+
+.stats-dot.stats-dot-done::after {
+    content: '✓';
+    font-size: 13px;
+    font-weight: 800;
+    color: white;
+}
+
+/* Seção "Por Prova" */
+.stats-section-title {
+    margin: 16px 14px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stats-provas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 14px;
+}
+
+/* Card de cada prova nas stats */
+.stats-prova-card {
+    background: var(--card-elevated);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--card-accent, var(--primary));
+    border-radius: var(--radius-md);
+    padding: 14px;
+    transition: background 0.2s;
+}
+
+.stats-prova-vazia {
+    opacity: 0.5;
+}
+
+.stats-prova-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.stats-prova-num {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1px;
+    min-width: 28px;
+}
+
+.stats-prova-nome {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-main);
+    flex: 1;
+}
+
+.stats-prova-tentativas {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+    background: var(--btn-bg);
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.stats-prova-badge-ok {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--success);
+    background: rgba(34, 197, 94, 0.1);
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.stats-prova-badge-nao {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-left: auto;
+}
+
+/* Barra de progresso da prova nas stats */
+.stats-prova-barra-container {
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: visible;
+}
+
+.stats-prova-barra {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 4px;
+}
+
+/* Marcador da melhor nota */
+.stats-prova-marcador-melhor {
+    position: absolute;
+    top: -3px;
+    width: 2px;
+    height: 14px;
+    background: var(--text-sec);
+    border-radius: 1px;
+    transform: translateX(-50%);
+}
+
+.stats-prova-numeros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-sec);
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.stats-prova-ultima strong,
+.stats-prova-melhor strong {
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.trend-positivo { color: var(--success); font-weight: 600; font-size: 12px; }
+.trend-negativo { color: var(--error); font-weight: 600; font-size: 12px; }
+.trend-neutro   { color: var(--text-muted); font-weight: 500; font-size: 12px; }
+
+/* Estado vazio das stats */
+.stats-vazio {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+}
+.stats-vazio-icon { font-size: 48px; margin-bottom: 12px; }
+.stats-vazio-texto { font-size: 15px; font-weight: 600; color: var(--text-sec); margin-bottom: 6px; }
+.stats-vazio-sub   { font-size: 13px; }
+
+/* Alerta de ciclo completo */
+.ciclo-completo-banner {
+    background: linear-gradient(135deg, #14532d, #166534);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin: 12px 14px 0;
+    text-align: center;
+    animation: fadeUp 0.4s ease-out;
+}
+
+.ciclo-completo-banner h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.ciclo-completo-banner p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+}

@@ -1,7 +1,7 @@
 {
   "name": "Simulados Teórica Geral - Partículas Magnéticas",
   "short_name": "Quiz PM Offshore",
-  "description": "Simulador de questões de Partículas Magnéticas para mergulhadores offshore e inspetores END",
+  "description": "Simulador de questões de Partículas Magnéticas para END.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#121212",

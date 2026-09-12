@@ -50,19 +50,25 @@ self.addEventListener('install', event => {
   self.skipWaiting();
 });
 
-// --- ATIVAÇÃO: remove caches de versões antigas automaticamente ---
+// --- ATIVAÇÃO: remove caches de versões antigas e avisa clientes ---
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
+    caches.keys()
+      .then(cacheNames => Promise.all(
         cacheNames
           .filter(name => name !== CACHE_NAME)
           .map(name => {
             console.log('[SW] Removendo cache antigo:', name);
             return caches.delete(name);
           })
-      );
-    })
+      ))
+      .then(() => {
+        // Avisa todas as abas abertas que há uma nova versão
+        // Isso dispara o reload automático no app (ver script de registro em index.html)
+        return self.clients.matchAll({ type: 'window' }).then(clients => {
+          clients.forEach(client => client.postMessage({ type: 'SW_UPDATED' }));
+        });
+      })
   );
   // Assume controle de todas as abas abertas imediatamente
   self.clients.claim();

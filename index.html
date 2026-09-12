@@ -134,13 +134,28 @@
     
     <script src="script.js"></script>    
 
-    <!-- Registra o Service Worker -->
+    <!-- Registra o Service Worker e aplica atualizações automaticamente -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js')
-                    .then(reg => console.log('Service Worker registrado!', reg))
-                    .catch(err => console.log('Erro ao registrar Service Worker:', err));
+                    .then(reg => {
+                        console.log('[App] Service Worker registrado:', reg.scope);
+
+                        // Escuta mensagem do SW avisando que há nova versão instalada
+                        navigator.serviceWorker.addEventListener('message', event => {
+                            if (event.data && event.data.type === 'SW_UPDATED') {
+                                console.log('[App] Nova versão detectada — recarregando...');
+                                // Evita loop: só recarrega se não foi recarregado nos últimos 5s
+                                const ultimoReload = parseInt(sessionStorage.getItem('sw_reload') || '0');
+                                if (Date.now() - ultimoReload > 5000) {
+                                    sessionStorage.setItem('sw_reload', Date.now());
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                    })
+                    .catch(err => console.log('[App] Erro ao registrar Service Worker:', err));
             });
         }
     </script>

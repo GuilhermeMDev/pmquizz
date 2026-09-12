@@ -150,6 +150,12 @@ function salvarHistoricoProva(numProva, acertosTotal, errosTotal, total, aprovei
     const key = `prova_${numProva}`;
     if (!historico[key]) historico[key] = [];
 
+    // Limpa o detalhamento das tentativas anteriores para economizar memória (rastreabilidade apenas na última)
+    historico[key].forEach(sessao => {
+        delete sessao.historicoRespostas;
+        delete sessao.idsQuestao;
+    });
+
     historico[key].push({
         date: Date.now(),
         acertos: acertosTotal,

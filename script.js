@@ -145,7 +145,7 @@ async function carregarBancoDeDados() {
 //  DADOS DE PROGRESSO — HISTÓRICO E CICLO
 // =====================================================
 
-function salvarHistoricoProva(numProva, acertosTotal, errosTotal, total, aproveitamento) {
+function salvarHistoricoProva(numProva, acertosTotal, errosTotal, total, aproveitamento, historicoResp, idsQuestao) {
     const historico = JSON.parse(localStorage.getItem('quiz_pm_historico')) || {};
     const key = `prova_${numProva}`;
     if (!historico[key]) historico[key] = [];
@@ -155,7 +155,9 @@ function salvarHistoricoProva(numProva, acertosTotal, errosTotal, total, aprovei
         acertos: acertosTotal,
         erros: errosTotal,
         total,
-        aproveitamento
+        aproveitamento,
+        historicoRespostas: historicoResp,
+        idsQuestao: idsQuestao
     });
 
     // Mantém no máximo as últimas 10 sessões por prova
@@ -387,6 +389,14 @@ function renderizarStats() {
             ? `<span class="stats-prova-badge-ok">✓ Ciclo ${cicloAtual}</span>`
             : '';
 
+        const podeVerRelatorio = dados.sessoes.length > 0 && dados.sessoes[dados.sessoes.length - 1].historicoRespostas;
+        const btnRelatorio = podeVerRelatorio 
+            ? `<button class="btn-ver-relatorio" onclick="mostrarRelatorioSalvo(${i})">
+                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                 Gabarito
+               </button>` 
+            : '';
+
         html += `
             <div class="stats-prova-card" style="--card-accent:${cor}">
                 <div class="stats-prova-header">
@@ -404,6 +414,7 @@ function renderizarStats() {
                     ${trendHTML}
                     <span class="stats-prova-melhor">Melhor: <strong>${dados.melhor}%</strong></span>
                 </div>
+                ${btnRelatorio}
             </div>`;
     }
 
@@ -924,11 +935,9 @@ function finalizarQuiz() {
     // Salva no histórico e atualiza ciclo (só para provas específicas com pelo menos 1 resposta)
     if (tipoProvaAtual.startsWith('prova_') && (totalAcertos + totalErros) > 0) {
         const numProva = parseInt(tipoProvaAtual.split('_')[1]);
-        salvarHistoricoProva(numProva, totalAcertos, totalErros, totalQuestoes, aproveitamento);
+        salvarHistoricoProva(numProva, totalAcertos, totalErros, totalQuestoes, aproveitamento, historicoRespostas, questoesDaProva.map(q => q.uid));
         atualizarCiclo(numProva);
     }
-
-    let emojiDesempenho = aproveitamento >= 80 ? '🏆' : aproveitamento >= 60 ? '💪' : '📖';
 
     let tituloProva = "Simulado";
     if (tipoProvaAtual.startsWith('prova_')) {
@@ -936,6 +945,22 @@ function finalizarQuiz() {
     } else if (tipoProvaAtual === 'erros') {
         tituloProva = "Revisão de Erros";
     }
+
+    const btnVoltar = `<button onclick="location.reload()" class="btn-voltar-menu">← Voltar ao Menu</button>`;
+    
+    document.getElementById('relatorio-final').innerHTML = gerarHTMLRelatorio(
+        tituloProva, aproveitamento, totalAcertos, totalErros, totalPuladas, 
+        questoesDaProva, historicoRespostas, btnVoltar
+    );
+    localStorage.removeItem('quiz_pm_save');
+}
+
+// =====================================================
+//  GERAÇÃO DE RELATÓRIO
+// =====================================================
+
+function gerarHTMLRelatorio(tituloProva, aproveitamento, totalAcertos, totalErros, totalPuladas, questoesDaProvaLocal, historicoRespostasLocal, btnVoltarHTML) {
+    let emojiDesempenho = aproveitamento >= 80 ? '🏆' : aproveitamento >= 60 ? '💪' : '📖';
 
     let relatorioHTML = `
         <div class="relatorio-header">
@@ -961,8 +986,8 @@ function finalizarQuiz() {
         </div>
         <div class="grid-relatorio">`;
 
-    questoesDaProva.forEach(q => {
-        const hist = historicoRespostas[q.uid];
+    questoesDaProvaLocal.forEach(q => {
+        const hist = historicoRespostasLocal[q.uid];
         let classe = "resumo-neutro";
         let texto = `P${q.prova} Q.${q.id}`;
         let gabaritoInfo = "";
@@ -986,9 +1011,52 @@ function finalizarQuiz() {
             </div>`;
     });
 
-    relatorioHTML += `</div>
-        <button onclick="location.reload()" class="btn-voltar-menu">← Voltar ao Menu</button>`;
+    relatorioHTML += `</div>${btnVoltarHTML}`;
+    return relatorioHTML;
+}
 
-    document.getElementById('relatorio-final').innerHTML = relatorioHTML;
-    localStorage.removeItem('quiz_pm_save');
+// =====================================================
+//  RELATÓRIO SALVO NAS ESTATÍSTICAS
+// =====================================================
+
+function mostrarRelatorioSalvo(numProva) {
+    const historico = JSON.parse(localStorage.getItem('quiz_pm_historico')) || {};
+    const sessoes = historico[`prova_${numProva}`];
+    if (!sessoes || sessoes.length === 0) return;
+    
+    const ultimaSessao = sessoes[sessoes.length - 1];
+    
+    if (!ultimaSessao.historicoRespostas || !ultimaSessao.idsQuestao) {
+        alert("O relatório detalhado não está disponível para esta sessão antiga.");
+        return;
+    }
+    
+    const questoes = ultimaSessao.idsQuestao.map(uid => bancoCompleto.find(q => q.uid === uid)).filter(q => q);
+    
+    const totalQuestoes = ultimaSessao.total || questoes.length;
+    const totalAcertos = ultimaSessao.acertos || 0;
+    const totalErros = ultimaSessao.erros || 0;
+    const totalPuladas = totalQuestoes - totalAcertos - totalErros;
+    
+    const tituloProva = `Prova ${numProva}`;
+    const btnVoltar = `<button onclick="fecharRelatorioSalvo()" class="btn-voltar-menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: bottom;"><path d="M15 18l-6-6 6-6"/></svg>
+        Voltar para Estatísticas
+    </button>`;
+    
+    const html = gerarHTMLRelatorio(
+        tituloProva, ultimaSessao.aproveitamento, totalAcertos, totalErros, totalPuladas,
+        questoes, ultimaSessao.historicoRespostas, btnVoltar
+    );
+    
+    document.getElementById('stats-content').classList.add('hidden');
+    document.getElementById('stats-modal-relatorio').classList.remove('hidden');
+    document.getElementById('stats-modal-relatorio').innerHTML = html;
+    window.scrollTo(0, 0);
+}
+
+function fecharRelatorioSalvo() {
+    document.getElementById('stats-modal-relatorio').classList.add('hidden');
+    document.getElementById('stats-content').classList.remove('hidden');
+    window.scrollTo(0, 0);
 }

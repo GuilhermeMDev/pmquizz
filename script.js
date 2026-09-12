@@ -40,8 +40,49 @@ document.addEventListener('keydown', (e) => {
     if (quizDiv && !quizDiv.classList.contains('hidden')) {
         if (e.key === 'ArrowRight') navegar(1);
         if (e.key === 'ArrowLeft') navegar(-1);
+        
+        if (e.key === 'Enter' || e.key === ' ') {
+            const q = questoesDaProva[indiceAtual];
+            if (q && historicoRespostas[q.uid] && !isNavigating) {
+                e.preventDefault();
+                navegar(1);
+            }
+        }
     }
 });
+
+// Suporte a Swipe (Arrastar no Mobile)
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+    const quizDiv = document.getElementById('tela-quiz');
+    if (quizDiv && !quizDiv.classList.contains('hidden') && e.changedTouches.length > 0) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+}, {passive: true});
+
+document.addEventListener('touchend', e => {
+    const quizDiv = document.getElementById('tela-quiz');
+    if (quizDiv && !quizDiv.classList.contains('hidden') && e.changedTouches.length > 0) {
+        touchEndX = e.changedTouches[0].screenX;
+        const swipedDistance = touchEndX - touchStartX;
+        const minSwipeDistance = 60;
+        
+        if (swipedDistance < -minSwipeDistance) {
+            navegar(1); // Esquerda -> Proxima
+        } else if (swipedDistance > minSwipeDistance) {
+            navegar(-1); // Direita -> Anterior
+        }
+    }
+}, {passive: true});
+
+function removerBalaoFlutuante() {
+    const btnBox = document.getElementById('floating-next-btn');
+    if (btnBox) {
+        btnBox.remove();
+    }
+}
 
 // --- TEMA ---
 const themeToggleBtn = document.getElementById('theme-toggle');
@@ -687,7 +728,7 @@ function mostrarQuestao() {
             if (letraOp === letraResp) btn.classList.add('resposta-certa');
             if (!estado.acertou && letraOp === estado.escolha) btn.classList.add('resposta-errada');
         } else {
-            btn.onclick = () => verificarResposta(opcao, q.resposta, btn, q.uid, listaOpcoes);
+            btn.onclick = (e) => verificarResposta(opcao, q.resposta, btn, q.uid, listaOpcoes, e);
         }
         container.appendChild(btn);
     });
@@ -705,7 +746,7 @@ function mostrarQuestao() {
 //  RESPOSTA E ANIMAÇÕES
 // =====================================================
 
-function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes) {
+function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes, e) {
     if (historicoRespostas[uidQuestao]) return;
     const botoes = document.querySelectorAll('.opcao');
     botoes.forEach(b => b.disabled = true);
@@ -738,6 +779,28 @@ function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes) 
     exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta);
     salvarProgresso();
     if (modoAutomaticoAtivo) iniciarContagemRegressiva();
+    
+    // Injeta o Balão Flutuante (Premium)
+    if (e && e.clientX && e.clientY) {
+        removerBalaoFlutuante();
+        const balao = document.createElement('button');
+        balao.id = 'floating-next-btn';
+        balao.className = 'floating-next-btn';
+        balao.innerHTML = 'Próxima <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+        balao.onclick = (ev) => { ev.stopPropagation(); navegar(1); };
+        
+        let posX = e.clientX + 15;
+        let posY = e.clientY - 30;
+        
+        // Evita estourar o limite direito da tela (ex: clique no cantinho)
+        if (posX + 130 > window.innerWidth) {
+            posX = e.clientX - 130;
+        }
+        
+        balao.style.left = posX + 'px';
+        balao.style.top = posY + 'px';
+        document.body.appendChild(balao);
+    }
 }
 
 function animarScore(elementId, novoValor, badgeId) {
@@ -759,6 +822,8 @@ function animarScore(elementId, novoValor, badgeId) {
 function navegar(direcao) {
     if (isNavigating) return;
     pararContagem();
+    removerBalaoFlutuante();
+    
     const novoIndice = indiceAtual + direcao;
     if (novoIndice >= questoesDaProva.length) { finalizarQuiz(); return; }
     if (novoIndice < 0) return;

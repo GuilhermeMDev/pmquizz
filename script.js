@@ -6,17 +6,33 @@ const arquivos = [
     "prova_10_questoes.json", "prova_11_questoes.json"
 ];
 
+// Cores por prova — accent visual dinâmico
+const PROVA_CORES = [
+    '#4f8ef7', // 1 — Azul
+    '#a855f7', // 2 — Roxo
+    '#14b8a6', // 3 — Teal
+    '#f97316', // 4 — Laranja
+    '#ec4899', // 5 — Rosa
+    '#22c55e', // 6 — Verde
+    '#ef4444', // 7 — Vermelho
+    '#6366f1', // 8 — Índigo
+    '#eab308', // 9 — Amarelo
+    '#06b6d4', // 10 — Ciano
+    '#a16207', // 11 — Âmbar escuro
+];
+
 let bancoCompleto = [];
 let appCarregado = false;
-let questoesDaProva = []; 
+let questoesDaProva = [];
 let indiceAtual = 0;
 let acertos = 0;
 let erros = 0;
-let historicoRespostas = {}; 
-let modoAutomaticoAtivo = false; 
-let tipoProvaAtual = ""; 
-let intervaloContagem = null; 
+let historicoRespostas = {};
+let modoAutomaticoAtivo = false;
+let tipoProvaAtual = "";
+let intervaloContagem = null;
 let tempoRestante = 3;
+let isNavigating = false; // Trava para evitar duplo-clique durante animação
 
 // --- SUPORTE A TECLADO (SETAS) ---
 document.addEventListener('keydown', (e) => {
@@ -34,10 +50,10 @@ function initTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
-        if(themeToggleBtn) themeToggleBtn.textContent = '☀️';
+        if (themeToggleBtn) themeToggleBtn.textContent = '☀️';
     } else {
         document.body.classList.remove('light-theme');
-        if(themeToggleBtn) themeToggleBtn.textContent = '🌙';
+        if (themeToggleBtn) themeToggleBtn.textContent = '🌙';
     }
 }
 
@@ -54,19 +70,19 @@ if (themeToggleBtn) {
     });
 }
 
-// --- ACORDEÃO (Toggle Provas 1 a 11) ---
+// --- ACORDEÃO ---
 function toggleProvas() {
     const container = document.getElementById('container-provas');
     const btn = document.getElementById('accordion-btn');
-    
+
     if (container.classList.contains('hidden')) {
         container.classList.remove('hidden');
         btn.classList.add('active');
-        btn.innerText = "📂 Selecionar Prova (1 a 11) ▲";
+        btn.querySelector('span:first-child').textContent = '📂 Selecionar Prova (1 a 11)';
     } else {
         container.classList.add('hidden');
         btn.classList.remove('active');
-        btn.innerText = "📂 Selecionar Prova (1 a 11) ▼";
+        btn.querySelector('span:first-child').textContent = '📂 Selecionar Prova (1 a 11)';
     }
 }
 
@@ -96,12 +112,9 @@ async function carregarBancoDeDados() {
             const numProva = match ? parseInt(match[1]) : 1;
 
             const res = await fetch("./" + nome);
-            if (!res.ok) {
-                console.error(`Falha ao carregar ${nome}`);
-                continue;
-            }
+            if (!res.ok) { console.error(`Falha ao carregar ${nome}`); continue; }
             const dados = await res.json();
-            
+
             const formatados = dados.map((q, idx) => {
                 const questaoId = q.id || (idx + 1);
                 return {
@@ -117,7 +130,6 @@ async function carregarBancoDeDados() {
             bancoCompleto = [...bancoCompleto, ...formatados];
         }
 
-        // Ordena por prova e depois por id da questão
         bancoCompleto.sort((a, b) => {
             if (a.prova !== b.prova) return a.prova - b.prova;
             return a.id - b.id;
@@ -127,7 +139,7 @@ async function carregarBancoDeDados() {
     } catch (e) {
         console.error(e);
         const grid = document.getElementById('grid-provas');
-        if(grid) grid.innerHTML = "<p style='color:red'>Erro ao carregar dados. Verifique o console.</p>";
+        if (grid) grid.innerHTML = "<p style='color:red'>Erro ao carregar dados. Verifique o console.</p>";
     }
 }
 
@@ -135,11 +147,16 @@ function gerarBotoesProvas() {
     const grid = document.getElementById('grid-provas');
     if (!grid) return;
     grid.innerHTML = "";
-    
+
     for (let i = 1; i <= 11; i++) {
+        const cor = PROVA_CORES[(i - 1) % PROVA_CORES.length];
         const btn = document.createElement('button');
         btn.className = 'btn-prova';
-        btn.innerHTML = `<strong>Prova ${i}</strong><br><small>40 Questões</small>`;
+        btn.style.setProperty('--btn-accent', cor);
+        btn.innerHTML = `
+            <span class="prova-numero">${i}</span>
+            <span class="prova-label">Prova ${i}</span>
+            <span class="prova-sub">40 Q.</span>`;
         btn.onclick = () => iniciarProva('prova_' + i);
         grid.appendChild(btn);
     }
@@ -151,7 +168,7 @@ function verificarSaveGame() {
     if (save) {
         const dados = JSON.parse(save);
         btn.style.display = 'flex';
-        
+
         let label = "Prova";
         if (dados.tipo && dados.tipo.startsWith('prova_')) {
             const n = dados.tipo.split('_')[1];
@@ -159,22 +176,21 @@ function verificarSaveGame() {
         } else if (dados.tipo === 'erros') {
             label = "Revisão de Erros";
         }
-        
-        // Encontra a primeira questão não respondida
+
         let proximoIndice = dados.indice || 0;
         if (dados.idsQuestao && dados.historico) {
             const idxNaoRespondido = dados.idsQuestao.findIndex(uid => !dados.historico[uid]);
             if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
             else proximoIndice = dados.idsQuestao.length - 1;
         }
-        
-        const questaoAtual = bancoCompleto.find(q => dados.idsQuestao && q.uid === dados.idsQuestao[proximoIndice]);
-        let refTexto = questaoAtual ? `Q. ${questaoAtual.id}` : `Q. ${proximoIndice + 1}`;
-        
+
         const posicaoNaProva = proximoIndice + 1;
         const totalQuestoes = dados.idsQuestao ? dados.idsQuestao.length : "?";
-        
-        document.getElementById('info-save').innerText = `${label} • ${posicaoNaProva}/${totalQuestoes} • ${refTexto}`;
+
+        const titleEl = btn.querySelector('.btn-menu-title');
+        const subEl = document.getElementById('info-save');
+        if (titleEl) titleEl.textContent = `Continuar — ${label}`;
+        if (subEl) subEl.textContent = `Questão ${posicaoNaProva} de ${totalQuestoes}`;
     } else {
         btn.style.display = 'none';
     }
@@ -182,31 +198,27 @@ function verificarSaveGame() {
 
 function iniciarProva(tipo) {
     if (!appCarregado) return;
-    
-    localStorage.removeItem('quiz_pm_save');
 
+    localStorage.removeItem('quiz_pm_save');
     indiceAtual = 0;
     acertos = 0;
     erros = 0;
     historicoRespostas = {};
     tipoProvaAtual = tipo;
+    isNavigating = false;
 
     if (tipo === 'erros') {
         const uidsErros = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
-        
         if (uidsErros.length === 0) {
             alert("Parabéns! Você não tem erros acumulados para revisar.");
             return;
         }
-
         questoesDaProva = bancoCompleto.filter(q => uidsErros.includes(q.uid));
         questoesDaProva.sort((a, b) => {
             if (a.prova !== b.prova) return a.prova - b.prova;
             return a.id - b.id;
         });
-        // Sem limite — mostra TODOS os erros
-    }
-    else if (tipo.startsWith('prova_')) {
+    } else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
         questoesDaProva = bancoCompleto.filter(q => q.prova === numProva);
     }
@@ -228,37 +240,39 @@ function retomarJogo() {
     erros = dados.erros;
     historicoRespostas = dados.historico;
     tipoProvaAtual = dados.tipo;
-    
+    isNavigating = false;
+
     if (dados.idsQuestao && dados.idsQuestao.length > 0) {
         questoesDaProva = dados.idsQuestao.map(uid => bancoCompleto.find(q => q.uid === uid)).filter(q => q);
     } else {
         questoesDaProva = [...bancoCompleto];
     }
 
-    let indiceInteligente = 0;
     const primeiroNaoRespondido = questoesDaProva.findIndex(q => !historicoRespostas[q.uid]);
-    if (primeiroNaoRespondido !== -1) indiceInteligente = primeiroNaoRespondido;
-    else indiceInteligente = questoesDaProva.length - 1;
-    
-    indiceAtual = indiceInteligente;
-    
+    indiceAtual = primeiroNaoRespondido !== -1 ? primeiroNaoRespondido : questoesDaProva.length - 1;
+
     abrirTelaQuiz();
     mostrarQuestao();
 }
 
 function abrirTelaQuiz() {
     document.getElementById('menu-inicial').classList.add('hidden');
-    
     if (themeToggleBtn) themeToggleBtn.style.display = 'none';
-
     const footer = document.querySelector('footer');
     if (footer) footer.style.display = 'none';
-    
-    document.getElementById('tela-quiz').classList.remove('hidden'); 
+
+    document.getElementById('tela-quiz').classList.remove('hidden');
     document.getElementById('tela-quiz').style.display = 'flex';
     document.getElementById('acertos').innerText = acertos;
     document.getElementById('erros').innerText = erros;
     document.getElementById('relatorio-final').innerHTML = "";
+
+    // Mostra elementos da tela de quiz
+    const qw = document.getElementById('question-wrapper');
+    if (qw) qw.style.display = 'block';
+    const pc = document.getElementById('progress-container');
+    if (pc) pc.style.display = 'block';
+
     document.getElementById('pergunta-texto').style.display = 'block';
     const containerImg = document.getElementById('container-imagem');
     if (containerImg) containerImg.style.display = 'none';
@@ -272,19 +286,36 @@ function abrirTelaQuiz() {
 }
 
 function voltarAoMenu() {
-    salvarProgresso(); 
-    
+    salvarProgresso();
     if (themeToggleBtn) themeToggleBtn.style.display = 'flex';
-
     document.getElementById('tela-quiz').classList.add('hidden');
     document.getElementById('menu-inicial').classList.remove('hidden');
     const footer = document.querySelector('footer');
     if (footer) footer.style.display = 'block';
-    verificarSaveGame(); 
+    // Reset accent para azul padrão ao sair
+    document.documentElement.style.setProperty('--prova-accent', '#4f8ef7');
+    verificarSaveGame();
 }
 
+// --- PROGRESSO E ACENTO POR PROVA ---
+
+function atualizarProgressBar() {
+    const progress = questoesDaProva.length > 0
+        ? ((indiceAtual + 1) / questoesDaProva.length) * 100
+        : 0;
+    const fill = document.getElementById('progress-fill');
+    if (fill) fill.style.width = progress + '%';
+}
+
+function atualizarAcentoProva(numProva) {
+    const cor = PROVA_CORES[(numProva - 1) % PROVA_CORES.length] || PROVA_CORES[0];
+    document.documentElement.style.setProperty('--prova-accent', cor);
+}
+
+// --- MOSTRAR QUESTÃO ---
+
 function mostrarQuestao() {
-    pararContagem(); 
+    pararContagem();
 
     if (indiceAtual >= questoesDaProva.length) {
         finalizarQuiz();
@@ -294,37 +325,38 @@ function mostrarQuestao() {
     const q = questoesDaProva[indiceAtual];
     const estado = historicoRespostas[q.uid];
 
+    // Atualiza barra de progresso e cor de acento
+    atualizarProgressBar();
+    atualizarAcentoProva(q.prova);
+
+    // Título e subtítulo
     let tituloPrincipal = "Simulado";
     let subtituloSeq = `Ref. PDF #${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
 
     if (tipoProvaAtual.startsWith('prova_')) {
         const num = parseInt(tipoProvaAtual.split('_')[1]);
-        tituloPrincipal = `Prova ${num}`; 
+        tituloPrincipal = `Prova ${num}`;
         subtituloSeq = `Questão ${q.id} de ${questoesDaProva.length}`;
     } else if (tipoProvaAtual === 'erros') {
-        tituloPrincipal = "Revisão de Erros"; 
+        tituloPrincipal = "Revisão de Erros";
         subtituloSeq = `Prova ${q.prova} • Questão ${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
     }
 
     document.getElementById('txt-prova').innerText = tituloPrincipal;
     document.getElementById('txt-seq').innerText = subtituloSeq;
 
-    // Imagem de apoio da questão (se houver)
+    // Imagem de apoio
     const containerImg = document.getElementById('container-imagem');
     const imgEl = document.getElementById('pergunta-imagem');
     if (containerImg && imgEl) {
-        if (q.imagem) {
-            imgEl.src = q.imagem;
-            containerImg.style.display = 'block';
-        } else {
-            containerImg.style.display = 'none';
-            imgEl.src = '';
-        }
+        if (q.imagem) { imgEl.src = q.imagem; containerImg.style.display = 'block'; }
+        else { containerImg.style.display = 'none'; imgEl.src = ''; }
     }
 
+    // Texto da questão
     document.getElementById('pergunta-texto').innerText = q.pergunta || q.texto;
-    
-    // Gerenciamento da Dica da Questão
+
+    // Dica
     const containerDica = document.getElementById('container-dica');
     const boxDica = document.getElementById('box-dica');
     const setaDica = document.getElementById('btn-dica-seta');
@@ -340,19 +372,21 @@ function mostrarQuestao() {
         }
     }
 
+    // Feedback
     const feedbackDiv = document.getElementById('feedback');
     feedbackDiv.style.display = 'none';
     feedbackDiv.innerHTML = "";
-    
-    const container = document.getElementById('opcoes-container');
-    container.innerHTML = ""; 
 
+    // Alternativas
+    const container = document.getElementById('opcoes-container');
+    container.innerHTML = "";
     const listaOpcoes = q.opcoes || q.alternativas || [];
+
     listaOpcoes.forEach(opcao => {
         const btn = document.createElement('button');
         btn.className = 'opcao';
         btn.innerText = opcao;
-        
+
         if (estado && estado.respondida) {
             btn.disabled = true;
             const letraOp = opcao.trim().charAt(0).toUpperCase();
@@ -360,59 +394,119 @@ function mostrarQuestao() {
             if (letraOp === letraResp) btn.classList.add('resposta-certa');
             if (!estado.acertou && letraOp === estado.escolha) btn.classList.add('resposta-errada');
         } else {
-            btn.onclick = () => verificarResposta(opcao, q.resposta, btn, q.uid, q.opcoes || q.alternativas || []);
+            btn.onclick = () => verificarResposta(opcao, q.resposta, btn, q.uid, listaOpcoes);
         }
         container.appendChild(btn);
     });
 
     if (estado && estado.respondida) {
-        // Reconstrói o feedback com o texto completo da alternativa correta
         const letraCorreta = q.resposta ? q.resposta.trim().toUpperCase() : "?";
         const alternativaCorreta = listaOpcoes.find(op => op.trim().charAt(0).toUpperCase() === letraCorreta) || letraCorreta;
         exibirFeedbackVisual(estado.acertou, letraCorreta, alternativaCorreta);
     }
+
     salvarProgresso();
 }
+
+// --- VERIFICAR RESPOSTA (com animações) ---
 
 function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes) {
     if (historicoRespostas[uidQuestao]) return;
 
     const botoes = document.querySelectorAll('.opcao');
-    botoes.forEach(b => b.disabled = true); 
+    botoes.forEach(b => b.disabled = true);
 
     const letraEscolhida = escolhida.trim().charAt(0).toUpperCase();
     const letraCorreta = gabarito ? gabarito.trim().toUpperCase() : "?";
     const acertou = (letraEscolhida === letraCorreta);
 
     atualizarBancoErros(uidQuestao, acertou);
-
     historicoRespostas[uidQuestao] = { respondida: true, acertou: acertou, escolha: letraEscolhida };
 
     if (acertou) {
         acertos++;
-        document.getElementById('acertos').innerText = acertos;
+        animarScore('acertos', acertos, 'badge-acertos');
         botao.classList.add('resposta-certa');
+
+        // Animação de pulso no botão correto
+        botao.classList.add('btn-correct-pulse');
+        botao.addEventListener('animationend', () => botao.classList.remove('btn-correct-pulse'), { once: true });
+
     } else {
         erros++;
-        document.getElementById('erros').innerText = erros;
+        animarScore('erros', erros, 'badge-erros');
         botao.classList.add('resposta-errada');
+
+        // Animação de tremer no botão errado
+        botao.classList.add('btn-shake');
+        botao.addEventListener('animationend', () => botao.classList.remove('btn-shake'), { once: true });
+
+        // Destaca o correto
         botoes.forEach(b => {
             if (b.innerText.trim().charAt(0).toUpperCase() === letraCorreta) b.classList.add('resposta-certa');
         });
     }
 
-    // Encontra o texto completo da alternativa correta para exibir no feedback
     const alternativaCorreta = listaOpcoes.find(op => op.trim().charAt(0).toUpperCase() === letraCorreta) || letraCorreta;
     exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta);
-    salvarProgresso(); 
+    salvarProgresso();
 
-    if (modoAutomaticoAtivo) {
-        iniciarContagemRegressiva();
+    if (modoAutomaticoAtivo) iniciarContagemRegressiva();
+}
+
+// --- ANIMAÇÃO DO SCORE ---
+function animarScore(elementId, novoValor, badgeId) {
+    const el = document.getElementById(elementId);
+    const badge = document.getElementById(badgeId);
+    if (el) el.innerText = novoValor;
+    if (badge) {
+        badge.classList.remove('badge-pop');
+        void badge.offsetWidth; // Force reflow para reiniciar animação
+        badge.classList.add('badge-pop');
+        badge.addEventListener('animationend', () => badge.classList.remove('badge-pop'), { once: true });
+    }
+}
+
+// --- NAVEGAÇÃO COM SLIDE ---
+function navegar(direcao) {
+    if (isNavigating) return; // Trava durante animação
+    pararContagem();
+
+    const novoIndice = indiceAtual + direcao;
+
+    if (novoIndice >= questoesDaProva.length) {
+        finalizarQuiz();
+        return;
+    }
+    if (novoIndice < 0) return;
+
+    const wrapper = document.getElementById('question-wrapper');
+
+    if (wrapper) {
+        isNavigating = true;
+        const slideOut = direcao > 0 ? 'slide-out-left' : 'slide-out-right';
+        const slideIn  = direcao > 0 ? 'slide-in-right' : 'slide-in-left';
+
+        wrapper.classList.add(slideOut);
+
+        setTimeout(() => {
+            indiceAtual = novoIndice;
+            mostrarQuestao();
+            wrapper.classList.remove(slideOut);
+            wrapper.classList.add(slideIn);
+            wrapper.addEventListener('animationend', () => {
+                wrapper.classList.remove(slideIn);
+                isNavigating = false;
+            }, { once: true });
+        }, 180);
+    } else {
+        indiceAtual = novoIndice;
+        mostrarQuestao();
     }
 }
 
 function iniciarContagemRegressiva() {
-    tempoRestante = 3; 
+    tempoRestante = 3;
     atualizarTextoTimer(tempoRestante);
     if (intervaloContagem) clearInterval(intervaloContagem);
     intervaloContagem = setInterval(() => {
@@ -422,7 +516,7 @@ function iniciarContagemRegressiva() {
             clearInterval(intervaloContagem);
             navegar(1);
         }
-    }, 1000); 
+    }, 1000);
 }
 
 function pararContagem() {
@@ -436,37 +530,22 @@ function atualizarTextoTimer(segundos) {
     if (txt) txt.innerText = `⏰ ${segundos}...`;
 }
 
-function navegar(direcao) {
-    pararContagem(); 
-    const novoIndice = indiceAtual + direcao;
-    
-    if (novoIndice >= questoesDaProva.length) {
-        finalizarQuiz();
-        return;
-    }
-
-    if (novoIndice >= 0) {
-        indiceAtual = novoIndice;
-        mostrarQuestao();
-    }
-}
-
 function alternarTimer() {
     modoAutomaticoAtivo = !modoAutomaticoAtivo;
     const btn = document.getElementById('btn-timer');
     const txt = document.getElementById('txt-timer');
     const tooltip = document.getElementById('tooltip-timer');
-    
-    if(tooltip) tooltip.style.display = 'none';
+
+    if (tooltip) tooltip.style.display = 'none';
     localStorage.setItem('timer_dica_visto', 'true');
 
     if (modoAutomaticoAtivo) {
         btn.className = "nav-btn timer-on";
-        txt.innerText = "⏰ 3s"; 
+        txt.innerText = "⏰ 3s";
     } else {
         btn.className = "nav-btn timer-off";
         txt.innerText = "⏰ Off";
-        pararContagem(); 
+        pararContagem();
     }
 }
 
@@ -474,13 +553,11 @@ function toggleDica() {
     const boxDica = document.getElementById('box-dica');
     const setaDica = document.getElementById('btn-dica-seta');
     if (!boxDica) return;
-
     boxDica.classList.toggle('hidden');
-    if (setaDica) {
-        setaDica.innerText = boxDica.classList.contains('hidden') ? '▼' : '▲';
-    }
+    if (setaDica) setaDica.innerText = boxDica.classList.contains('hidden') ? '▼' : '▲';
 }
 
+// --- FEEDBACK VISUAL ---
 function exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta) {
     const feedbackDiv = document.getElementById('feedback');
     feedbackDiv.style.display = 'block';
@@ -489,11 +566,12 @@ function exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta) {
         feedbackDiv.innerHTML = `
             <div class="feedback-acerto">
                 <span class="feedback-icon">✅</span>
-                <span class="feedback-texto">Correto!</span>
+                <div class="feedback-detalhe">
+                    <span class="feedback-texto">Correto!</span>
+                </div>
             </div>`;
         feedbackDiv.className = 'feedback-box feedback-acerto-box';
     } else {
-        // Mostra o texto completo da alternativa correta, não só a letra
         const textoExibir = alternativaCorreta && alternativaCorreta.length > 2
             ? alternativaCorreta
             : `Alternativa ${letraCorreta}`;
@@ -510,6 +588,7 @@ function exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta) {
     }
 }
 
+// --- SALVAR PROGRESSO ---
 function salvarProgresso() {
     const dados = {
         tipo: tipoProvaAtual,
@@ -523,18 +602,14 @@ function salvarProgresso() {
     localStorage.setItem('quiz_pm_save', JSON.stringify(dados));
 }
 
-// --- SISTEMA DE BANCO DE ERROS ---
+// --- BANCO DE ERROS ---
 function atualizarBancoErros(uidQuestao, acertou) {
     let errosSalvos = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
-
     if (!acertou) {
-        if (!errosSalvos.includes(uidQuestao)) {
-            errosSalvos.push(uidQuestao);
-        }
+        if (!errosSalvos.includes(uidQuestao)) errosSalvos.push(uidQuestao);
     } else {
         errosSalvos = errosSalvos.filter(uid => uid !== uidQuestao);
     }
-
     localStorage.setItem('quiz_pm_erros', JSON.stringify(errosSalvos));
     atualizarContadorErrosUI();
 }
@@ -542,32 +617,25 @@ function atualizarBancoErros(uidQuestao, acertou) {
 function atualizarContadorErrosUI() {
     const errosSalvos = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
     const span = document.getElementById('contagem-erros');
-    if (span) {
-        span.innerText = `(${errosSalvos.length})`;
-    }
+    if (span) span.innerText = `(${errosSalvos.length} questões)`;
     const btn = document.getElementById('btn-erros');
     const btnZerar = document.getElementById('btn-zerar-erros');
-    if(btn) {
-        if(errosSalvos.length === 0) btn.style.opacity = "0.5";
-        else btn.style.opacity = "1";
-    }
-    if(btnZerar) {
-        btnZerar.style.display = errosSalvos.length > 0 ? 'block' : 'none';
-    }
+    if (btn) btn.style.opacity = errosSalvos.length === 0 ? "0.45" : "1";
+    if (btnZerar) btnZerar.style.display = errosSalvos.length > 0 ? 'block' : 'none';
 }
 
 function zerarBancoErros() {
     const errosSalvos = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
     if (errosSalvos.length === 0) return;
-
-    const confirmar = confirm(`Zerar ${errosSalvos.length} erro(s) acumulado(s)? Esta ação não pode ser desfeita.`);
-    if (confirmar) {
+    if (confirm(`Zerar ${errosSalvos.length} erro(s) acumulado(s)? Esta ação não pode ser desfeita.`)) {
         localStorage.removeItem('quiz_pm_erros');
         atualizarContadorErrosUI();
     }
 }
 
+// --- FINALIZAR QUIZ ---
 function finalizarQuiz() {
+    // Esconde elementos da prova
     const containerImg = document.getElementById('container-imagem');
     if (containerImg) containerImg.style.display = 'none';
     document.getElementById('pergunta-texto').style.display = 'none';
@@ -578,6 +646,12 @@ function finalizarQuiz() {
     document.querySelector('.nav-bar').style.display = 'none';
     document.querySelector('.top-bar').style.display = 'none';
 
+    // Esconde question-wrapper e progress bar
+    const qw = document.getElementById('question-wrapper');
+    if (qw) qw.style.display = 'none';
+    const pc = document.getElementById('progress-container');
+    if (pc) pc.style.display = 'none';
+
     // --- Calcula estatísticas ---
     const totalQuestoes = questoesDaProva.length;
     const totalAcertos = Object.values(historicoRespostas).filter(h => h.acertou).length;
@@ -585,17 +659,11 @@ function finalizarQuiz() {
     const totalPuladas = totalQuestoes - totalAcertos - totalErros;
     const aproveitamento = totalQuestoes > 0 ? Math.round((totalAcertos / totalQuestoes) * 100) : 0;
 
-    // Emoji de desempenho
-    let emojiDesempenho = '📊';
-    if (aproveitamento >= 80) emojiDesempenho = '🏆';
-    else if (aproveitamento >= 60) emojiDesempenho = '💪';
-    else emojiDesempenho = '📖';
+    let emojiDesempenho = aproveitamento >= 80 ? '🏆' : aproveitamento >= 60 ? '💪' : '📖';
 
-    // Título do relatório
     let tituloProva = "Simulado";
     if (tipoProvaAtual.startsWith('prova_')) {
-        const num = tipoProvaAtual.split('_')[1];
-        tituloProva = `Prova ${num}`;
+        tituloProva = `Prova ${tipoProvaAtual.split('_')[1]}`;
     } else if (tipoProvaAtual === 'erros') {
         tituloProva = "Revisão de Erros";
     }
@@ -647,16 +715,11 @@ function finalizarQuiz() {
             <div class="card-resumo ${classe}">
                 <div style="font-size: 16px;">${texto}</div>
                 ${gabaritoInfo}
-            </div>
-        `;
+            </div>`;
     });
 
-    relatorioHTML += `</div>`;
-    relatorioHTML += `
-        <button onclick="location.reload()" class="btn-voltar-menu">
-            ← Voltar ao Menu
-        </button>
-    `;
+    relatorioHTML += `</div>
+        <button onclick="location.reload()" class="btn-voltar-menu">← Voltar ao Menu</button>`;
 
     document.getElementById('relatorio-final').innerHTML = relatorioHTML;
     localStorage.removeItem('quiz_pm_save');

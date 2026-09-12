@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#1565c0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Quiz PM Offshore">
+    <meta name="apple-mobile-web-app-title" content="Quiz PM">
     
     <!-- Manifest -->
     <link rel="manifest" href="manifest.json">
@@ -18,6 +18,11 @@
     <!-- Ícones -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧲</text></svg>">
     <link rel="apple-touch-icon" href="icon-192.png">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -28,18 +33,32 @@
     <div id="menu-inicial">
         <div class="menu-header">
             <div class="logo-area">
-                <h1>🧲 Simulados de Teórica Geral</h1>
+                <div class="logo-icon">🧲</div>
+                <h1>Simulados de Teórica Geral</h1>
                 <p>Partículas Magnéticas</p>
             </div>
-            </div>
+        </div>
         
         <button id="btn-continuar" class="btn-menu btn-continuar" onclick="retomarJogo()">
-            <span>▶ Continuar de onde parei</span>
-            <small id="info-save" style="opacity: 0.8">Q. 1</small>
+            <div class="btn-menu-inner">
+                <span class="btn-menu-icon">▶</span>
+                <div class="btn-menu-text">
+                    <span class="btn-menu-title">Continuar de onde parei</span>
+                    <small id="info-save" class="btn-menu-sub">Q. 1</small>
+                </div>
+            </div>
+            <span class="btn-arrow">➤</span>
         </button>
 
         <button id="btn-erros" class="btn-menu btn-erros-menu" onclick="iniciarProva('erros')">
-            <span>🚨 Revisar Meus Erros <small id="contagem-erros">(0)</small></span><span>➤</span>
+            <div class="btn-menu-inner">
+                <span class="btn-menu-icon">🚨</span>
+                <div class="btn-menu-text">
+                    <span class="btn-menu-title">Revisar Meus Erros</span>
+                    <small id="contagem-erros" class="btn-menu-sub">(0 questões)</small>
+                </div>
+            </div>
+            <span class="btn-arrow">➤</span>
         </button>
 
         <button id="btn-zerar-erros" class="btn-zerar-erros" onclick="zerarBancoErros()" style="display:none;">
@@ -47,7 +66,8 @@
         </button>
 
         <button id="accordion-btn" class="accordion-btn" onclick="toggleProvas()">
-            📂 Selecionar Prova (1 a 11) ▼
+            <span>📂 Selecionar Prova (1 a 11)</span>
+            <span id="accordion-arrow" class="accordion-arrow">▼</span>
         </button>
 
         <div id="container-provas" class="hidden">
@@ -69,41 +89,48 @@
                     <span id="txt-prova" class="info-principal">Carregando...</span>
                     <span id="txt-seq" class="info-secundaria">...</span>
                 </div>
-                
                 <div class="score-box">
-                    <span class="badge badge-green">✔ <span id="acertos">0</span></span>
-                    <span class="badge badge-red">✖ <span id="erros">0</span></span>
+                    <span class="badge badge-green" id="badge-acertos">✔ <span id="acertos">0</span></span>
+                    <span class="badge badge-red" id="badge-erros">✖ <span id="erros">0</span></span>
                 </div>
             </div>
 
-            <div id="container-imagem" class="container-imagem" style="display: none;">
-                <img id="pergunta-imagem" class="pergunta-imagem" src="" alt="Figura de Apoio da Questão">
+            <!-- Barra de progresso visual -->
+            <div class="progress-container" id="progress-container">
+                <div class="progress-fill" id="progress-fill"></div>
             </div>
 
-            <div id="pergunta-texto" class="pergunta">...</div>
-            
-            <div id="container-dica" class="container-dica" style="display: none;">
-                <button id="btn-dica" class="btn-dica" onclick="toggleDica()" type="button">
-                    <span class="btn-dica-icon">💡</span>
-                    <span class="btn-dica-texto">Ver Dica / Fórmula</span>
-                    <span id="btn-dica-seta" class="btn-dica-seta">▼</span>
-                </button>
-                <div id="box-dica" class="box-dica hidden"></div>
-            </div>
+            <!-- Wrapper com animação de slide entre questões -->
+            <div id="question-wrapper">
+                <div id="container-imagem" class="container-imagem" style="display: none;">
+                    <img id="pergunta-imagem" class="pergunta-imagem" src="" alt="Figura de Apoio da Questão">
+                </div>
 
-            <div id="opcoes-container"></div>
-            <div id="feedback"></div>
+                <div id="pergunta-texto" class="pergunta">...</div>
+                
+                <div id="container-dica" class="container-dica" style="display: none;">
+                    <button id="btn-dica" class="btn-dica" onclick="toggleDica()" type="button">
+                        <span class="btn-dica-icon">💡</span>
+                        <span class="btn-dica-texto">Ver Dica / Fórmula</span>
+                        <span id="btn-dica-seta" class="btn-dica-seta">▼</span>
+                    </button>
+                    <div id="box-dica" class="box-dica hidden"></div>
+                </div>
+
+                <div id="opcoes-container"></div>
+                <div id="feedback"></div>
+            </div>
             
             <div id="relatorio-final"></div> 
         </div>
 
         <div class="nav-bar">
-            <button class="nav-btn" onclick="navegar(-1)">⬅️</button>
+            <button class="nav-btn nav-prev" onclick="navegar(-1)" aria-label="Questão anterior">⬅️</button>
             <button id="btn-timer" class="nav-btn timer-off" onclick="alternarTimer()" style="flex: 0.6;">
                 <div id="tooltip-timer" class="tooltip-timer">Pulo Automático!</div>
                 <span id="txt-timer">⏰ Off</span>
             </button>
-            <button class="nav-btn btn-next" onclick="navegar(1)">➡️</button>
+            <button class="nav-btn btn-next" onclick="navegar(1)" aria-label="Próxima questão">➡️</button>
         </div>
     </div>
 
@@ -111,17 +138,15 @@
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-content">
-                 <strong>📚 Conteúdo Oficial</strong>
-                 <p class="footer-logo-line">
-                     <img src="age_logo.png" alt="AGE Logo" class="footer-logo">
+                    <strong>📚 Conteúdo Oficial</strong>
+                    <p class="footer-logo-line">
+                        <img src="age_logo.png" alt="AGE Logo" class="footer-logo">
                         AGE Treinamentos • Prof. Andre Luiz Nicolau
                     </p>
                     <p class="gratitude">Agradecimento especial ao Mestre Nicolau pela excelência em ensinar.</p>
                 </div>
             </div>
-        
             <div class="footer-divider-mobile"></div>
-        
             <div class="footer-right">
                 <div class="footer-content">
                     <strong>💻 Desenvolvido por</strong>
@@ -141,12 +166,9 @@
                 navigator.serviceWorker.register('/service-worker.js')
                     .then(reg => {
                         console.log('[App] Service Worker registrado:', reg.scope);
-
-                        // Escuta mensagem do SW avisando que há nova versão instalada
                         navigator.serviceWorker.addEventListener('message', event => {
                             if (event.data && event.data.type === 'SW_UPDATED') {
                                 console.log('[App] Nova versão detectada — recarregando...');
-                                // Evita loop: só recarrega se não foi recarregado nos últimos 5s
                                 const ultimoReload = parseInt(sessionStorage.getItem('sw_reload') || '0');
                                 if (Date.now() - ultimoReload > 5000) {
                                     sessionStorage.setItem('sw_reload', Date.now());
@@ -160,5 +182,4 @@
         }
     </script>
 </body>
-
 </html>

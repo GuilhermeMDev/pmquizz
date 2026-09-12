@@ -62,11 +62,11 @@ function toggleProvas() {
     if (container.classList.contains('hidden')) {
         container.classList.remove('hidden');
         btn.classList.add('active');
-        btn.innerText = "📂 Selecionar Prova Específica (1 a 11) ▲";
+        btn.innerText = "📂 Selecionar Prova (1 a 11) ▲";
     } else {
         container.classList.add('hidden');
         btn.classList.remove('active');
-        btn.innerText = "📂 Selecionar Prova Específica (1 a 11) ▼";
+        btn.innerText = "📂 Selecionar Prova (1 a 11) ▼";
     }
 }
 
@@ -152,12 +152,10 @@ function verificarSaveGame() {
         const dados = JSON.parse(save);
         btn.style.display = 'flex';
         
-        let label = "Simulado Completo";
+        let label = "Prova";
         if (dados.tipo && dados.tipo.startsWith('prova_')) {
             const n = dados.tipo.split('_')[1];
             label = `Prova ${n}`;
-        } else if (dados.tipo === 'aleatoria') {
-            label = "Modo Aleatório";
         } else if (dados.tipo === 'erros') {
             label = "Revisão de Erros";
         }
@@ -171,12 +169,12 @@ function verificarSaveGame() {
         }
         
         const questaoAtual = bancoCompleto.find(q => dados.idsQuestao && q.uid === dados.idsQuestao[proximoIndice]);
-        let refTexto = questaoAtual ? `Ref. Prova ${questaoAtual.prova} #${questaoAtual.id}` : `Ref. #${proximoIndice + 1}`;
+        let refTexto = questaoAtual ? `Q. ${questaoAtual.id}` : `Q. ${proximoIndice + 1}`;
         
         const posicaoNaProva = proximoIndice + 1;
         const totalQuestoes = dados.idsQuestao ? dados.idsQuestao.length : "?";
         
-        document.getElementById('info-save').innerText = `${label} • Q. ${posicaoNaProva}/${totalQuestoes} • ${refTexto}`;
+        document.getElementById('info-save').innerText = `${label} • ${posicaoNaProva}/${totalQuestoes} • ${refTexto}`;
     } else {
         btn.style.display = 'none';
     }
@@ -193,13 +191,7 @@ function iniciarProva(tipo) {
     historicoRespostas = {};
     tipoProvaAtual = tipo;
 
-    if (tipo === 'completa') {
-        questoesDaProva = [...bancoCompleto];
-    } 
-    else if (tipo === 'aleatoria') {
-        questoesDaProva = [...bancoCompleto].sort(() => Math.random() - 0.5).slice(0, 40);
-    }
-    else if (tipo === 'erros') {
+    if (tipo === 'erros') {
         const uidsErros = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
         
         if (uidsErros.length === 0) {
@@ -212,10 +204,7 @@ function iniciarProva(tipo) {
             if (a.prova !== b.prova) return a.prova - b.prova;
             return a.id - b.id;
         });
-
-        if (questoesDaProva.length > 40) {
-            questoesDaProva = questoesDaProva.slice(0, 40);
-        }
+        // Sem limite — mostra TODOS os erros
     }
     else if (tipo.startsWith('prova_')) {
         const numProva = parseInt(tipo.split('_')[1]);
@@ -312,14 +301,8 @@ function mostrarQuestao() {
         const num = parseInt(tipoProvaAtual.split('_')[1]);
         tituloPrincipal = `Prova ${num}`; 
         subtituloSeq = `Questão ${q.id} de ${questoesDaProva.length}`;
-    } else if (tipoProvaAtual === 'aleatoria') {
-        tituloPrincipal = "Modo Aleatório";
-        subtituloSeq = `Prova ${q.prova} • Questão ${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
     } else if (tipoProvaAtual === 'erros') {
         tituloPrincipal = "Revisão de Erros"; 
-        subtituloSeq = `Prova ${q.prova} • Questão ${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
-    } else {
-        tituloPrincipal = "Simulado Completo";
         subtituloSeq = `Prova ${q.prova} • Questão ${q.id} • (${indiceAtual + 1} de ${questoesDaProva.length})`;
     }
 
@@ -377,18 +360,21 @@ function mostrarQuestao() {
             if (letraOp === letraResp) btn.classList.add('resposta-certa');
             if (!estado.acertou && letraOp === estado.escolha) btn.classList.add('resposta-errada');
         } else {
-            btn.onclick = () => verificarResposta(opcao, q.resposta, btn, q.uid);
+            btn.onclick = () => verificarResposta(opcao, q.resposta, btn, q.uid, q.opcoes || q.alternativas || []);
         }
         container.appendChild(btn);
     });
 
     if (estado && estado.respondida) {
-        exibirFeedbackVisual(estado.acertou, q.resposta);
+        // Reconstrói o feedback com o texto completo da alternativa correta
+        const letraCorreta = q.resposta ? q.resposta.trim().toUpperCase() : "?";
+        const alternativaCorreta = listaOpcoes.find(op => op.trim().charAt(0).toUpperCase() === letraCorreta) || letraCorreta;
+        exibirFeedbackVisual(estado.acertou, letraCorreta, alternativaCorreta);
     }
     salvarProgresso();
 }
 
-function verificarResposta(escolhida, gabarito, botao, uidQuestao) {
+function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes) {
     if (historicoRespostas[uidQuestao]) return;
 
     const botoes = document.querySelectorAll('.opcao');
@@ -415,7 +401,9 @@ function verificarResposta(escolhida, gabarito, botao, uidQuestao) {
         });
     }
 
-    exibirFeedbackVisual(acertou, letraCorreta);
+    // Encontra o texto completo da alternativa correta para exibir no feedback
+    const alternativaCorreta = listaOpcoes.find(op => op.trim().charAt(0).toUpperCase() === letraCorreta) || letraCorreta;
+    exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta);
     salvarProgresso(); 
 
     if (modoAutomaticoAtivo) {
@@ -493,12 +481,33 @@ function toggleDica() {
     }
 }
 
-function exibirFeedbackVisual(acertou, letraCorreta) {
+function exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta) {
     const feedbackDiv = document.getElementById('feedback');
     feedbackDiv.style.display = 'block';
-    feedbackDiv.innerHTML = acertou 
-        ? "<span style='color: #81c784'>Correto! ✅</span>" 
-        : `<span style='color: #e57373'>Errou! A correta é <strong>${letraCorreta}</strong></span>`;
+
+    if (acertou) {
+        feedbackDiv.innerHTML = `
+            <div class="feedback-acerto">
+                <span class="feedback-icon">✅</span>
+                <span class="feedback-texto">Correto!</span>
+            </div>`;
+        feedbackDiv.className = 'feedback-box feedback-acerto-box';
+    } else {
+        // Mostra o texto completo da alternativa correta, não só a letra
+        const textoExibir = alternativaCorreta && alternativaCorreta.length > 2
+            ? alternativaCorreta
+            : `Alternativa ${letraCorreta}`;
+
+        feedbackDiv.innerHTML = `
+            <div class="feedback-erro">
+                <span class="feedback-icon">❌</span>
+                <div class="feedback-detalhe">
+                    <span class="feedback-texto">Errou!</span>
+                    <span class="feedback-gabarito">A correta era: <strong>${textoExibir}</strong></span>
+                </div>
+            </div>`;
+        feedbackDiv.className = 'feedback-box feedback-erro-box';
+    }
 }
 
 function salvarProgresso() {
@@ -537,9 +546,24 @@ function atualizarContadorErrosUI() {
         span.innerText = `(${errosSalvos.length})`;
     }
     const btn = document.getElementById('btn-erros');
+    const btnZerar = document.getElementById('btn-zerar-erros');
     if(btn) {
         if(errosSalvos.length === 0) btn.style.opacity = "0.5";
         else btn.style.opacity = "1";
+    }
+    if(btnZerar) {
+        btnZerar.style.display = errosSalvos.length > 0 ? 'block' : 'none';
+    }
+}
+
+function zerarBancoErros() {
+    const errosSalvos = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
+    if (errosSalvos.length === 0) return;
+
+    const confirmar = confirm(`Zerar ${errosSalvos.length} erro(s) acumulado(s)? Esta ação não pode ser desfeita.`);
+    if (confirmar) {
+        localStorage.removeItem('quiz_pm_erros');
+        atualizarContadorErrosUI();
     }
 }
 
@@ -554,8 +578,50 @@ function finalizarQuiz() {
     document.querySelector('.nav-bar').style.display = 'none';
     document.querySelector('.top-bar').style.display = 'none';
 
+    // --- Calcula estatísticas ---
+    const totalQuestoes = questoesDaProva.length;
+    const totalAcertos = Object.values(historicoRespostas).filter(h => h.acertou).length;
+    const totalErros = Object.values(historicoRespostas).filter(h => !h.acertou).length;
+    const totalPuladas = totalQuestoes - totalAcertos - totalErros;
+    const aproveitamento = totalQuestoes > 0 ? Math.round((totalAcertos / totalQuestoes) * 100) : 0;
+
+    // Emoji de desempenho
+    let emojiDesempenho = '📊';
+    if (aproveitamento >= 80) emojiDesempenho = '🏆';
+    else if (aproveitamento >= 60) emojiDesempenho = '💪';
+    else emojiDesempenho = '📖';
+
+    // Título do relatório
+    let tituloProva = "Simulado";
+    if (tipoProvaAtual.startsWith('prova_')) {
+        const num = tipoProvaAtual.split('_')[1];
+        tituloProva = `Prova ${num}`;
+    } else if (tipoProvaAtual === 'erros') {
+        tituloProva = "Revisão de Erros";
+    }
+
     let relatorioHTML = `
-        <h2 style="text-align: center; margin-bottom: 20px; color: var(--text-main);">Relatório de Desempenho</h2>
+        <div class="relatorio-header">
+            <div class="relatorio-titulo">${emojiDesempenho} ${tituloProva} — Resultado</div>
+            <div class="relatorio-stats-grid">
+                <div class="stat-card stat-acerto">
+                    <span class="stat-num">${totalAcertos}</span>
+                    <span class="stat-label">✔ Acertos</span>
+                </div>
+                <div class="stat-card stat-erro">
+                    <span class="stat-num">${totalErros}</span>
+                    <span class="stat-label">✖ Erros</span>
+                </div>
+                <div class="stat-card stat-pulou">
+                    <span class="stat-num">${totalPuladas}</span>
+                    <span class="stat-label">⏭ Puladas</span>
+                </div>
+                <div class="stat-card stat-aproveitamento">
+                    <span class="stat-num">${aproveitamento}%</span>
+                    <span class="stat-label">Aproveitamento</span>
+                </div>
+            </div>
+        </div>
         <div class="grid-relatorio">
     `;
 
@@ -587,8 +653,8 @@ function finalizarQuiz() {
 
     relatorioHTML += `</div>`;
     relatorioHTML += `
-        <button onclick="location.reload()" class="opcao" style="text-align: center; background: #444; margin-top: 20px;">
-            Voltar ao Menu
+        <button onclick="location.reload()" class="btn-voltar-menu">
+            ← Voltar ao Menu
         </button>
     `;
 

@@ -19,7 +19,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧲</text></svg>">
     <link rel="apple-touch-icon" href="icon-192.png">
     
-    <link rel="stylesheet" href="style.css?v=3.2">
+    <link rel="stylesheet" href="style.css?v=4.0">
 </head>
 <body>
 
@@ -38,20 +38,16 @@
             <small id="info-save" style="opacity: 0.8">Q. 1</small>
         </button>
 
-        <button class="btn-menu btn-destaque" onclick="iniciarProva('completa')">
-            <span>🚀 Simulado Completo (440 questões)</span><span>➤</span>
-        </button>
-
-        <button class="btn-menu" onclick="iniciarProva('aleatoria')">
-            <span>🎲 Modo Aleatório (40 questões)</span><span>➤</span>
-        </button>
-
-        <button id="btn-erros" class="btn-menu" onclick="iniciarProva('erros')" style="border-color: #e57373; background: linear-gradient(135deg, #381818, #2c2c2c);">
+        <button id="btn-erros" class="btn-menu btn-erros-menu" onclick="iniciarProva('erros')">
             <span>🚨 Revisar Meus Erros <small id="contagem-erros">(0)</small></span><span>➤</span>
         </button>
 
+        <button id="btn-zerar-erros" class="btn-zerar-erros" onclick="zerarBancoErros()" style="display:none;">
+            🗑 Zerar banco de erros
+        </button>
+
         <button id="accordion-btn" class="accordion-btn" onclick="toggleProvas()">
-            📂 Selecionar Prova Específica (1 a 11) ▼
+            📂 Selecionar Prova (1 a 11) ▼
         </button>
 
         <div id="container-provas" class="hidden">
@@ -129,13 +125,13 @@
             <div class="footer-right">
                 <div class="footer-content">
                     <strong>💻 Desenvolvido por</strong>
-                        <p><a href="https://www.linkedin.com/in/guilherme-magioni-da-silva-116b0029a/" target="_blank" rel="noopener noreferrer" class="footer-link">Guilherme M.</a> • Mergulhador</p>                 <p class="version">Versão 1.0 • Fevereiro 2026</p>
+                        <p><a href="https://www.linkedin.com/in/guilherme-magioni-da-silva-116b0029a/" target="_blank" rel="noopener noreferrer" class="footer-link">Guilherme M.</a> • Mergulhador</p>                 <p class="version">Versão 2.0 • Setembro 2026</p>
                 </div>
             </div>
         </div>
     </footer>
     
-    <script src="script.js?v=3.2"></script>    
+    <script src="script.js?v=4.0"></script>    
 
     <!-- Registra o Service Worker -->
     <script>

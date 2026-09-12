@@ -1,13 +1,26 @@
 // --- VERSÃO PM QUIZZ ---
-const CACHE_NAME = 'quiz-pm-v1.2';
+const CACHE_NAME = 'quiz-pm-v2.0';
 
 const urlsToCache = [
   '/',
   '/index.html',
-  '/style.css',
-  '/script.js',
+  '/style.css?v=4.0',
+  '/script.js?v=4.0',
   '/age_logo.png',
-  '/fig1_solda.svg'
+  '/icon-192.png',
+  '/icon-512.png',
+  '/fig1_solda.svg',
+  '/prova_1_questoes.json',
+  '/prova_2_questoes.json',
+  '/prova_3_questoes.json',
+  '/prova_4_questoes.json',
+  '/prova_5_questoes.json',
+  '/prova_6_questoes.json',
+  '/prova_7_questoes.json',
+  '/prova_8_questoes.json',
+  '/prova_9_questoes.json',
+  '/prova_10_questoes.json',
+  '/prova_11_questoes.json'
 ];
 
 // Instalação

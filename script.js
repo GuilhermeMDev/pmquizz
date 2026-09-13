@@ -780,8 +780,9 @@ function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes, 
     salvarProgresso();
     if (modoAutomaticoAtivo) iniciarContagemRegressiva();
     
-    // Injeta o Balão Flutuante (Premium)
-    if (e && e.clientX && e.clientY) {
+    // Injeta o Balão Flutuante (Premium) apenas se NÃO for touch (mobile)
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (!isTouch && e && e.clientX && e.clientY) {
         removerBalaoFlutuante();
         const balao = document.createElement('button');
         balao.id = 'floating-next-btn';

@@ -682,7 +682,13 @@ function verificarSaveGame() {
 
 function iniciarProva(tipo) {
     if (!appCarregado) return;
-    localStorage.removeItem('quiz_pm_save');
+    
+    // Apenas limpa o save se estiver iniciando uma nova prova numerada.
+    // Assim, abrir "Erros" não apaga o progresso da prova atual.
+    if (tipo !== 'erros') {
+        localStorage.removeItem('quiz_pm_save');
+    }
+    
     indiceAtual = 0;
     acertos = 0;
     erros = 0;
@@ -1086,6 +1092,9 @@ function exibirFeedbackVisual(acertou, letraCorreta, alternativaCorreta) {
 // =====================================================
 
 function salvarProgresso() {
+    // Não salva progresso para o modo de revisão de erros
+    if (tipoProvaAtual === 'erros') return;
+
     const dados = {
         tipo: tipoProvaAtual,
         indice: indiceAtual,

@@ -162,25 +162,37 @@ window.onload = async () => {
 async function carregarBancoDeDados() {
     try {
         bancoCompleto = [];
-        for (const nome of arquivos) {
-            const match = nome.match(/prova_(\d+)_questoes\.json/);
-            const numProva = match ? parseInt(match[1]) : 1;
-            const res = await fetch("./" + nome);
-            if (!res.ok) { console.error(`Falha ao carregar ${nome}`); continue; }
-            const dados = await res.json();
-            const formatados = dados.map((q, idx) => {
-                const questaoId = q.id || (idx + 1);
-                return {
-                    ...q,
-                    id: questaoId,
-                    prova: numProva,
-                    uid: `p${numProva}_q${questaoId}`,
-                    pergunta: q.texto || q.pergunta || "",
-                    opcoes: q.alternativas || q.opcoes || []
-                };
-            });
-            bancoCompleto = [...bancoCompleto, ...formatados];
-        }
+
+        // Carrega todos os JSONs em paralelo (5-10x mais rápido que serial)
+        const resultados = await Promise.all(
+            arquivos.map(async (nome) => {
+                const match = nome.match(/prova_(\d+)_questoes\.json/);
+                const numProva = match ? parseInt(match[1]) : 1;
+                try {
+                    const res = await fetch('./' + nome);
+                    if (!res.ok) { console.error(`Falha ao carregar ${nome}`); return []; }
+                    const dados = await res.json();
+                    return dados.map((q, idx) => {
+                        const questaoId = q.id || (idx + 1);
+                        return {
+                            ...q,
+                            id: questaoId,
+                            prova: numProva,
+                            uid: `p${numProva}_q${questaoId}`,
+                            pergunta: q.texto || q.pergunta || '',
+                            opcoes: q.alternativas || q.opcoes || []
+                        };
+                    });
+                } catch (err) {
+                    console.error(`Erro ao processar ${nome}:`, err);
+                    return []; // arquivo com problema não derruba os outros
+                }
+            })
+        );
+
+        // Junta todos os arrays (usa reduce+concat, compatível com todos os browsers)
+        bancoCompleto = resultados.reduce((acc, arr) => acc.concat(arr), []);
+
         bancoCompleto.sort((a, b) => {
             if (a.prova !== b.prova) return a.prova - b.prova;
             return a.id - b.id;

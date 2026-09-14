@@ -137,7 +137,7 @@ function toggleProvas() {
 //  INICIALIZAÇÃO
 // =====================================================
 
-window.onload = async () => {
+window.addEventListener('load', async () => {
     initTheme();
     await carregarBancoDeDados();
     gerarBotoesProvas();
@@ -155,7 +155,8 @@ window.onload = async () => {
             }, 8000);
         }
     }
-};
+});
+
 
 async function carregarBancoDeDados() {
     try {

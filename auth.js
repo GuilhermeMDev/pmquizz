@@ -2,7 +2,7 @@ let usuarioAtual = null;
 
 // Verifica se já está logado ao iniciar
 async function verificarSessao() {
-    const { data, error } = await supabase.auth.getSession();
+    const { data, error } = await window.supabaseApp.auth.getSession();
     if (data && data.session) {
         usuarioAtual = data.session.user;
         atualizarUIAuth(true);
@@ -12,7 +12,7 @@ async function verificarSessao() {
     }
 
     // Fica escutando mudanças na autenticação
-    supabase.auth.onAuthStateChange((event, session) => {
+    window.supabaseApp.auth.onAuthStateChange((event, session) => {
         if (session) {
             usuarioAtual = session.user;
             atualizarUIAuth(true);
@@ -50,7 +50,7 @@ async function loginSupabase(email, password) {
     mostrarModal("Entrando... Aguarde.");
     
     try {
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await window.supabaseApp.auth.signInWithPassword({
             email: email,
             password: password
         });
@@ -80,7 +80,7 @@ async function cadastroSupabase(email, password) {
     mostrarModal("Criando conta... Aguarde."); // feedback imediato
     
     try {
-        const { data, error } = await supabase.auth.signUp({
+        const { data, error } = await window.supabaseApp.auth.signUp({
             email: email,
             password: password
         });
@@ -111,7 +111,7 @@ async function cadastroSupabase(email, password) {
 }
 
 async function logoutSupabase() {
-    await supabase.auth.signOut();
+    await window.supabaseApp.auth.signOut();
     usuarioAtual = null;
     fecharModalAuth();
     mostrarModal("Você saiu da conta.");

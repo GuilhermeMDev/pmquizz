@@ -54,11 +54,14 @@ document.addEventListener('keydown', (e) => {
 // Suporte a Swipe (Arrastar no Mobile)
 let touchStartX = 0;
 let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
 
 document.addEventListener('touchstart', e => {
     const quizDiv = document.getElementById('tela-quiz');
     if (quizDiv && !quizDiv.classList.contains('hidden') && e.changedTouches.length > 0) {
         touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
     }
 }, {passive: true});
 
@@ -66,16 +69,22 @@ document.addEventListener('touchend', e => {
     const quizDiv = document.getElementById('tela-quiz');
     if (quizDiv && !quizDiv.classList.contains('hidden') && e.changedTouches.length > 0) {
         touchEndX = e.changedTouches[0].screenX;
-        const swipedDistance = touchEndX - touchStartX;
+        touchEndY = e.changedTouches[0].screenY;
+        const deltaX = Math.abs(touchEndX - touchStartX);
+        const deltaY = Math.abs(touchEndY - touchStartY);
         const minSwipeDistance = 60;
-        
-        if (swipedDistance < -minSwipeDistance) {
-            navegar(1); // Esquerda -> Proxima
-        } else if (swipedDistance > minSwipeDistance) {
-            navegar(-1); // Direita -> Anterior
+
+        // Só aciona se o gesto for predominantemente horizontal (evita scroll vertical acidental)
+        if (deltaX > minSwipeDistance && deltaX > deltaY * 1.5) {
+            if (touchEndX < touchStartX) {
+                navegar(1);  // Esquerda -> Próxima
+            } else {
+                navegar(-1); // Direita -> Anterior
+            }
         }
     }
 }, {passive: true});
+
 
 function removerBalaoFlutuante() {
     const btnBox = document.getElementById('floating-next-btn');

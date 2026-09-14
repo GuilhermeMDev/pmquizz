@@ -914,6 +914,52 @@ body.light-theme .box-dica { background: #fffbeb; border-left-color: #d97706; co
     border-top: 1px solid var(--border-color);
 }
 
+.modal-btn-cancelar {
+    background-color: var(--bg-card);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+}
+.modal-btn-cancelar:hover {
+    color: var(--text-color);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-auth-top {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(33, 150, 243, 0.15);
+    color: #64b5f6;
+    border: 1px solid rgba(33, 150, 243, 0.3);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.btn-auth-top:hover {
+    background: rgba(33, 150, 243, 0.25);
+    color: #90caf9;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+.auth-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
 .nav-btn {
     background: var(--btn-bg);
     color: var(--text-main);

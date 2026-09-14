@@ -378,6 +378,12 @@ function atualizarCiclo(numProva) {
         ciclo.provasNoAtual = [];
         ciclo.inicioCiclo = Date.now();
         localStorage.setItem('quiz_pm_ciclo', JSON.stringify(ciclo));
+
+        // Nova chamada de persistência cloud
+        if (typeof pushParaNuvem === 'function') pushParaNuvem();
+        
+        // UI update
+        gerarBotoesProvas();
         atualizarCicloUI();
         // Celebra o ciclo completo
         exibirCelebraCiclo(ciclo.ciclosCompletos);
@@ -752,6 +758,7 @@ function iniciarProva(tipo) {
         if (saves[tipo]) {
             delete saves[tipo];
             localStorage.setItem('quiz_pm_saves', JSON.stringify(saves));
+            if (typeof pushParaNuvem === 'function') pushParaNuvem();
         }
     }
     
@@ -1191,6 +1198,8 @@ function salvarProgresso() {
     let saves = JSON.parse(localStorage.getItem('quiz_pm_saves')) || {};
     saves[tipoProvaAtual] = dados;
     localStorage.setItem('quiz_pm_saves', JSON.stringify(saves));
+    
+    if (typeof pushParaNuvem === 'function') pushParaNuvem();
 }
 
 function atualizarBancoErros(uidQuestao, acertou) {
@@ -1202,6 +1211,7 @@ function atualizarBancoErros(uidQuestao, acertou) {
     }
     localStorage.setItem('quiz_pm_erros', JSON.stringify(errosSalvos));
     atualizarContadorErrosUI();
+    if (typeof pushParaNuvem === 'function') pushParaNuvem();
 }
 
 function atualizarContadorErrosUI() {
@@ -1291,6 +1301,8 @@ function finalizarQuiz(confirmado = false) {
             localStorage.setItem('quiz_pm_saves', JSON.stringify(saves));
         }
     }
+    
+    if (typeof pushParaNuvem === 'function') pushParaNuvem();
 }
 
 // =====================================================

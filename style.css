@@ -124,23 +124,19 @@ body {
 }
 .theme-toggle:active { transform: scale(0.88); }
 
-/* Botão de Som — fica à esquerda do theme-toggle */
+/* Botão de Som — agora fica junto do botão Entregar */
 .sound-toggle {
-    position: fixed;
-    top: 16px;
-    left: 16px; /* Movido para o lado esquerdo */
     background: var(--card-color);
     border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     color: var(--text-main);
-    z-index: 9999;
     cursor: pointer;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     font-size: 20px;
     touch-action: manipulation;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s, opacity 0.2s;
@@ -503,8 +499,6 @@ body.light-theme .btn-menu-sub {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 14px;
-    padding-left: 48px; /* Espaço para o ícone de som */
-    padding-right: 48px; /* Espaço para o ícone de tema */
 }
 
 .btn-text {

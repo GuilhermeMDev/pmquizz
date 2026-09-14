@@ -53,19 +53,33 @@ async function loginSupabase(email, password) {
 }
 
 async function cadastroSupabase(email, password) {
+    if (password.length < 6) {
+        mostrarModal("A senha deve ter pelo menos 6 caracteres.");
+        return false;
+    }
+    
+    mostrarModal("Criando conta..."); // feedback imediato
+    
     const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password
     });
+    
     if (error) {
         mostrarModal("Erro no cadastro: " + error.message);
         return false;
     }
-    fecharModalAuth();
-    mostrarModal("Cadastro realizado! Verifique seu email se necessário, ou já está logado.");
     
-    // Faz o primeiro push
-    await pushParaNuvem();
+    fecharModalAuth();
+    
+    // O Supabase exige confirmação de email por padrão. Se 'session' for nula, o usuário precisa confirmar.
+    if (data.session) {
+        mostrarModal("Conta criada com sucesso! Sincronizando dados...");
+        await pushParaNuvem();
+    } else {
+        mostrarModal("Conta criada! O Supabase exige que você confirme o link enviado para o seu e-mail antes de fazer o primeiro login.");
+    }
+    
     return true;
 }
 

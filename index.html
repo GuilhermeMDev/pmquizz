@@ -209,21 +209,24 @@
         </div>
     </footer>
     
-    <!-- Modal de Autenticação Supabase -->
+    <!-- Modal de Autenticação -->
     <div id="modal-auth-overlay" class="modal-overlay hidden" onclick="if(event.target === this) fecharModalAuth()">
-        <div class="modal-box" style="text-align: center; max-width: 320px;">
+        <div class="modal-box" style="text-align: center; max-width: 340px;">
             <div id="auth-panel-login">
-                <h3 style="margin-top:0; color:var(--text-color);">Nuvem Supabase ☁️</h3>
-                <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 20px;">Crie uma conta ou faça login para salvar seu progresso e usá-lo em qualquer dispositivo.</p>
+                <div style="font-size: 2rem; margin-bottom: 10px;">☁️</div>
+                <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Sincronização em Nuvem</h3>
+                <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 25px; line-height: 1.4;">
+                    Mantenha seu progresso a salvo. Conecte-se para continuar seus simulados em qualquer dispositivo.
+                </p>
                 
-                <input type="email" id="auth-email" placeholder="Seu email" class="auth-input">
-                <input type="password" id="auth-senha" placeholder="Sua senha" class="auth-input">
+                <input type="email" id="auth-email" placeholder="Seu e-mail" class="auth-input">
+                <input type="password" id="auth-senha" placeholder="Sua senha (mín. 6 caracteres)" class="auth-input">
                 
                 <div style="display:flex; gap:10px; margin-top:20px;">
-                    <button class="btn-menu" style="flex:1; padding:12px;" onclick="submeterAuth(false)">Entrar</button>
-                    <button class="btn-menu" style="flex:1; padding:12px; background:var(--bg-card); color:var(--text-color); border:1px solid var(--border-color);" onclick="submeterAuth(true)">Cadastrar</button>
+                    <button class="btn-menu" style="flex:1; padding:12px; font-weight: 700;" onclick="submeterAuth(false)">Entrar</button>
+                    <button class="btn-menu" style="flex:1; padding:12px; font-weight: 700; background:var(--bg-card); color:var(--text-color); border:1px solid var(--border-color);" onclick="submeterAuth(true)">Criar Conta</button>
                 </div>
-                <button style="margin-top:15px; background:none; border:none; color:var(--text-muted); text-decoration:underline; cursor:pointer;" onclick="fecharModalAuth()">Continuar sem conta (Apenas Local)</button>
+                <button style="margin-top:20px; background:none; border:none; color:var(--text-muted); text-decoration:none; font-size: 0.85rem; cursor:pointer;" onclick="fecharModalAuth()">Continuar offline sem conta</button>
             </div>
 
             <div id="auth-panel-logado" style="display: none;">

@@ -166,16 +166,11 @@ function abrirModalAuth(logado) {
     const overlay = document.getElementById('modal-auth-overlay');
     if (!overlay) return;
     
-    const panelLogado = document.getElementById('auth-panel-logado');
-    const panelLogin = document.getElementById('auth-panel-login');
-    
     if (logado) {
         document.getElementById('auth-user-email').textContent = usuarioAtual.email;
-        panelLogado.style.display = 'block';
-        panelLogin.style.display = 'none';
+        alternarPainelAuth('logado');
     } else {
-        panelLogado.style.display = 'none';
-        panelLogin.style.display = 'block';
+        alternarPainelAuth('login');
     }
     
     overlay.classList.remove('hidden');
@@ -186,20 +181,48 @@ function fecharModalAuth() {
     if (overlay) overlay.classList.add('hidden');
 }
 
-function submeterAuth(isCadastro) {
-    const email = document.getElementById('auth-email').value;
-    const senha = document.getElementById('auth-senha').value;
+function alternarPainelAuth(painel) {
+    document.getElementById('auth-panel-login').style.display = painel === 'login' ? 'block' : 'none';
+    document.getElementById('auth-panel-cadastro').style.display = painel === 'cadastro' ? 'block' : 'none';
+    document.getElementById('auth-panel-logado').style.display = painel === 'logado' ? 'block' : 'none';
+}
+
+function toggleSenha(inputId) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
+    }
+}
+
+function submeterLogin() {
+    const email = document.getElementById('auth-email-login').value;
+    const senha = document.getElementById('auth-senha-login').value;
     
     if (!email || !senha) {
         mostrarModal("Preencha email e senha!");
         return;
     }
+    loginSupabase(email, senha);
+}
+
+function submeterCadastro() {
+    const email = document.getElementById('auth-email-cad').value;
+    const senha = document.getElementById('auth-senha-cad').value;
+    const senhaConfirm = document.getElementById('auth-senha-confirm').value;
     
-    if (isCadastro) {
-        cadastroSupabase(email, senha);
-    } else {
-        loginSupabase(email, senha);
+    if (!email || !senha || !senhaConfirm) {
+        mostrarModal("Preencha todos os campos!");
+        return;
     }
+    
+    if (senha !== senhaConfirm) {
+        mostrarModal("As senhas não coincidem!");
+        return;
+    }
+    
+    cadastroSupabase(email, senha);
 }
 
 // Inicia verificação ao carregar a página

@@ -212,23 +212,55 @@
     <!-- Modal de Autenticação -->
     <div id="modal-auth-overlay" class="modal-overlay hidden" onclick="if(event.target === this) fecharModalAuth()">
         <div class="modal-box" style="text-align: center; max-width: 340px;">
+            
+            <!-- PAINEL LOGIN -->
             <div id="auth-panel-login">
                 <div style="font-size: 2rem; margin-bottom: 10px;">☁️</div>
-                <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Sincronização em Nuvem</h3>
+                <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Entrar</h3>
                 <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 25px; line-height: 1.4;">
-                    Mantenha seu progresso a salvo. Conecte-se para continuar seus simulados em qualquer dispositivo.
+                    Bem-vindo de volta! Conecte-se para continuar seus simulados.
                 </p>
                 
-                <input type="email" id="auth-email" placeholder="Seu e-mail" class="auth-input">
-                <input type="password" id="auth-senha" placeholder="Sua senha (mín. 6 caracteres)" class="auth-input">
+                <input type="email" id="auth-email-login" placeholder="Seu e-mail" class="auth-input">
                 
-                <div style="display:flex; gap:10px; margin-top:20px;">
-                    <button class="btn-menu" style="flex:1; padding:12px; font-weight: 700;" onclick="submeterAuth(false)">Entrar</button>
-                    <button class="btn-menu" style="flex:1; padding:12px; font-weight: 700; background:var(--bg-card); color:var(--text-color); border:1px solid var(--border-color);" onclick="submeterAuth(true)">Criar Conta</button>
+                <div class="input-com-olho">
+                    <input type="password" id="auth-senha-login" placeholder="Sua senha" class="auth-input">
+                    <button class="btn-olho" onclick="toggleSenha('auth-senha-login')">👁️</button>
                 </div>
-                <button style="margin-top:20px; background:none; border:none; color:var(--text-muted); text-decoration:none; font-size: 0.85rem; cursor:pointer;" onclick="fecharModalAuth()">Continuar offline sem conta</button>
+                
+                <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+                    <button class="btn-menu" style="padding:12px; font-weight: 700;" onclick="submeterLogin()">Entrar</button>
+                    <button class="btn-menu" style="padding:12px; font-weight: 700; background:transparent; color:var(--primary-color); border:none;" onclick="alternarPainelAuth('cadastro')">Não tem conta? Cadastre-se</button>
+                </div>
+                <button style="margin-top:10px; background:none; border:none; color:var(--text-muted); text-decoration:none; font-size: 0.85rem; cursor:pointer;" onclick="fecharModalAuth()">Continuar offline</button>
             </div>
 
+            <!-- PAINEL CADASTRO -->
+            <div id="auth-panel-cadastro" style="display: none;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🚀</div>
+                <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Criar Conta</h3>
+                <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 25px; line-height: 1.4;">
+                    Crie sua conta para manter seu progresso sincronizado na nuvem.
+                </p>
+                
+                <input type="email" id="auth-email-cad" placeholder="Seu melhor e-mail" class="auth-input">
+                
+                <div class="input-com-olho">
+                    <input type="password" id="auth-senha-cad" placeholder="Senha (mín. 6 caracteres)" class="auth-input">
+                    <button class="btn-olho" onclick="toggleSenha('auth-senha-cad')">👁️</button>
+                </div>
+                <div class="input-com-olho">
+                    <input type="password" id="auth-senha-confirm" placeholder="Confirme sua senha" class="auth-input">
+                    <button class="btn-olho" onclick="toggleSenha('auth-senha-confirm')">👁️</button>
+                </div>
+                
+                <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+                    <button class="btn-menu" style="padding:12px; font-weight: 700;" onclick="submeterCadastro()">Finalizar Cadastro</button>
+                    <button class="btn-menu" style="padding:12px; font-weight: 700; background:transparent; color:var(--primary-color); border:none;" onclick="alternarPainelAuth('login')">Já tenho conta</button>
+                </div>
+            </div>
+
+            <!-- PAINEL LOGADO -->
             <div id="auth-panel-logado" style="display: none;">
                 <h3 style="margin-top:0; color:var(--text-color);">Seu Perfil</h3>
                 <p style="font-size:0.9rem; color:var(--text-muted);">Logado como: <br><strong id="auth-user-email" style="color:var(--primary-color);">...</strong></p>

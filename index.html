@@ -231,6 +231,7 @@
                 <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
                     <button class="btn-menu" style="padding:12px; font-weight: 700;" onclick="submeterLogin()">Entrar</button>
                     <button class="btn-menu" style="padding:12px; font-weight: 700; background:transparent; color:var(--primary-color); border:none;" onclick="alternarPainelAuth('cadastro')">Não tem conta? Cadastre-se</button>
+                    <button style="margin-top:5px; background:none; border:none; color:var(--text-muted); text-decoration:underline; font-size: 0.85rem; cursor:pointer;" onclick="alternarPainelAuth('reset')">Esqueci minha senha</button>
                 </div>
             </div>
 
@@ -256,6 +257,22 @@
                 <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
                     <button class="btn-menu" style="padding:12px; font-weight: 700;" onclick="submeterCadastro()">Finalizar Cadastro</button>
                     <button class="btn-menu" style="padding:12px; font-weight: 700; background:transparent; color:var(--primary-color); border:none;" onclick="alternarPainelAuth('login')">Já tenho conta</button>
+                </div>
+            </div>
+
+            <!-- PAINEL RESET -->
+            <div id="auth-panel-reset" style="display: none; position: relative;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🔑</div>
+                <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Redefinir Senha</h3>
+                <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 25px; line-height: 1.4;">
+                    Digite seu e-mail abaixo e enviaremos um link para você criar uma nova senha.
+                </p>
+                
+                <input type="email" id="auth-email-reset" placeholder="Seu e-mail cadastrado" class="auth-input">
+                
+                <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+                    <button class="btn-menu" style="padding:12px; font-weight: 700;" onclick="redefinirSenhaSupabase()">Enviar Link Mágico</button>
+                    <button class="btn-menu" style="padding:12px; font-weight: 700; background:transparent; color:var(--primary-color); border:none;" onclick="alternarPainelAuth('login')">Voltar para o Login</button>
                 </div>
             </div>
 

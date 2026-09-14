@@ -236,6 +236,7 @@ function alternarPainelAuth(painel) {
     document.getElementById('auth-panel-login').style.display = painel === 'login' ? 'block' : 'none';
     document.getElementById('auth-panel-cadastro').style.display = painel === 'cadastro' ? 'block' : 'none';
     document.getElementById('auth-panel-logado').style.display = painel === 'logado' ? 'block' : 'none';
+    document.getElementById('auth-panel-reset').style.display = painel === 'reset' ? 'block' : 'none';
 }
 
 function toggleSenha(inputId) {
@@ -279,4 +280,45 @@ function submeterCadastro() {
 // Inicia verificação ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     verificarSessao();
+});
+
+async function redefinirSenhaSupabase() {
+    const email = document.getElementById('auth-email-reset').value;
+    if (!email) {
+        mostrarModal("Digite seu e-mail primeiro.");
+        return;
+    }
+
+    if (!window.supabaseApp) {
+        mostrarModal("❌ Erro: Conexão com o banco falhou.");
+        return;
+    }
+
+    mostrarModal("Enviando link... Aguarde.");
+    
+    try {
+        const { data, error } = await window.supabaseApp.auth.resetPasswordForEmail(email, {
+            redirectTo: window.location.origin
+        });
+
+        if (error) {
+            mostrarModal("❌ Erro ao enviar: " + traduzirErroSupabase(error.message));
+        } else {
+            mostrarModal("✅ Link enviado! Verifique sua caixa de entrada (e o Spam) para redefinir sua senha.");
+            alternarPainelAuth('login');
+        }
+    } catch (e) {
+        mostrarModal("❌ Erro interno: " + (e.message || e.toString()));
+    }
+}
+
+// -----------------------------------------
+// SINCRONIZAÇÃO AUTOMÁTICA PÓS-OFFLINE
+// -----------------------------------------
+window.addEventListener('online', () => {
+    if (usuarioAtual) {
+        console.log("Internet voltou! Sincronizando dados locais pra nuvem...");
+        pushParaNuvem();
+        mostrarModal("🌐 Conexão restaurada. Progresso sincronizado na nuvem.");
+    }
 });

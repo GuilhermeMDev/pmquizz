@@ -47,6 +47,11 @@ function traduzirErroSupabase(msg) {
 }
 
 async function loginSupabase(email, password) {
+    if (!window.supabaseApp) {
+        mostrarModal("❌ Erro: O servidor do banco de dados (Supabase) não pôde ser carregado. Verifique sua conexão, VPN ou se há algum bloqueador de anúncios (AdBlock) ativo na página.");
+        return false;
+    }
+    
     mostrarModal("Entrando... Aguarde.");
     
     try {
@@ -72,6 +77,11 @@ async function loginSupabase(email, password) {
 }
 
 async function cadastroSupabase(email, password) {
+    if (!window.supabaseApp) {
+        mostrarModal("❌ Erro: O servidor do banco de dados (Supabase) não pôde ser carregado. Verifique sua conexão, VPN ou se há algum bloqueador de anúncios (AdBlock) ativo na página.");
+        return false;
+    }
+
     if (password.length < 6) {
         mostrarModal("A senha deve ter pelo menos 6 caracteres.");
         return false;

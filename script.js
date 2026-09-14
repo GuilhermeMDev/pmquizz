@@ -34,6 +34,113 @@ let intervaloContagem = null;
 let tempoRestante = 2;
 let isNavigating = false;
 
+// =====================================================
+//  SOM — Web Audio API (sem arquivos externos)
+// =====================================================
+let somAtivo = localStorage.getItem('quiz_pm_som') !== 'off';
+
+function alternarSom() {
+    somAtivo = !somAtivo;
+    localStorage.setItem('quiz_pm_som', somAtivo ? 'on' : 'off');
+    const btn = document.getElementById('sound-toggle');
+    if (btn) {
+        btn.textContent = somAtivo ? '🔔' : '🔕';
+        btn.classList.toggle('mudo', !somAtivo);
+    }
+}
+
+function inicializarSomUI() {
+    const btn = document.getElementById('sound-toggle');
+    if (btn) {
+        btn.textContent = somAtivo ? '🔔' : '🔕';
+        btn.classList.toggle('mudo', !somAtivo);
+    }
+}
+
+function tocarSom(tipo) {
+    if (!somAtivo) return;
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (tipo === 'acerto') {
+            osc.frequency.setValueAtTime(880, ctx.currentTime);
+            osc.frequency.setValueAtTime(1100, ctx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.3);
+        } else {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(220, ctx.currentTime);
+            osc.frequency.setValueAtTime(160, ctx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.12, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.25);
+        }
+        osc.onended = () => ctx.close();
+    } catch (e) {
+        // AudioContext não disponível — ignora silenciosamente
+    }
+}
+
+// =====================================================
+//  MODAL CUSTOMIZADO (substitui alert/confirm)
+// =====================================================
+let _modalCallbackOk = null;
+let _modalCallbackCancelar = null;
+
+function mostrarModal(mensagem, onOk, onCancelar) {
+    const overlay = document.getElementById('modal-overlay');
+    const msg = document.getElementById('modal-mensagem');
+    const btnCancelar = document.getElementById('modal-btn-cancelar');
+    if (!overlay || !msg) return;
+
+    msg.textContent = mensagem;
+    _modalCallbackOk = onOk || null;
+    _modalCallbackCancelar = onCancelar || null;
+
+    if (onCancelar) {
+        btnCancelar.classList.remove('hidden');
+    } else {
+        btnCancelar.classList.add('hidden');
+    }
+    overlay.classList.remove('hidden');
+}
+
+function fecharModal() {
+    const overlay = document.getElementById('modal-overlay');
+    if (overlay) overlay.classList.add('hidden');
+    _modalCallbackOk = null;
+    _modalCallbackCancelar = null;
+}
+
+function modalCallbackOk() {
+    const cb = _modalCallbackOk;
+    fecharModal();
+    if (cb) cb();
+}
+
+function modalCallbackCancelar() {
+    const cb = _modalCallbackCancelar;
+    fecharModal();
+    if (cb) cb();
+}
+
+function fecharModalOverlay(event) {
+    // Fecha ao clicar fora do modal-box
+    if (event.target === document.getElementById('modal-overlay')) {
+        const cb = _modalCallbackCancelar;
+        fecharModal();
+        if (cb) cb();
+    }
+}
+
+
 // Suporte a teclado
 document.addEventListener('keydown', (e) => {
     const quizDiv = document.getElementById('tela-quiz');
@@ -139,6 +246,7 @@ function toggleProvas() {
 
 window.onload = async () => {
     initTheme();
+    inicializarSomUI();
     await carregarBancoDeDados();
     gerarBotoesProvas();
     verificarSaveGame();
@@ -268,7 +376,9 @@ function atualizarCiclo(numProva) {
 
 function exibirCelebraCiclo(numCiclo) {
     setTimeout(() => {
-        alert(`🏆 Incrível! Você completou o Ciclo ${numCiclo}!\n\nTodas as 11 provas foram concluídas. O ciclo ${numCiclo + 1} começa agora. Continue assim!`);
+        mostrarModal(`🏆 Incrível! Você completou o Ciclo ${numCiclo}!
+
+Todas as 11 provas foram concluídas. O ciclo ${numCiclo + 1} começa agora. Continue assim!`);
     }, 500);
 }
 
@@ -583,7 +693,7 @@ function iniciarProva(tipo) {
     if (tipo === 'erros') {
         const uidsErros = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
         if (uidsErros.length === 0) {
-            alert("Parabéns! Você não tem erros acumulados para revisar.");
+            mostrarModal('Parabéns! Você não tem erros acumulados para revisar.');
             return;
         }
         questoesDaProva = bancoCompleto.filter(q => uidsErros.includes(q.uid));
@@ -597,7 +707,7 @@ function iniciarProva(tipo) {
     }
 
     if (questoesDaProva.length === 0) {
-        alert("Erro ao carregar questões. Verifique os arquivos.");
+        mostrarModal('Erro ao carregar questões. Verifique os arquivos.');
         return;
     }
     abrirTelaQuiz();
@@ -794,6 +904,7 @@ function verificarResposta(escolhida, gabarito, botao, uidQuestao, listaOpcoes, 
     const letraEscolhida = escolhida.trim().charAt(0).toUpperCase();
     const letraCorreta = gabarito ? gabarito.trim().toUpperCase() : "?";
     const acertou = (letraEscolhida === letraCorreta);
+    tocarSom(acertou ? 'acerto' : 'erro');
 
     atualizarBancoErros(uidQuestao, acertou);
     historicoRespostas[uidQuestao] = { respondida: true, acertou, escolha: letraEscolhida };
@@ -1011,10 +1122,14 @@ function atualizarContadorErrosUI() {
 function zerarBancoErros() {
     const errosSalvos = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
     if (errosSalvos.length === 0) return;
-    if (confirm(`Zerar ${errosSalvos.length} erro(s) acumulado(s)? Esta ação não pode ser desfeita.`)) {
-        localStorage.removeItem('quiz_pm_erros');
-        atualizarContadorErrosUI();
-    }
+    mostrarModal(
+        `Zerar ${errosSalvos.length} erro(s) acumulado(s)? Esta ação não pode ser desfeita.`,
+        () => {
+            localStorage.removeItem('quiz_pm_erros');
+            atualizarContadorErrosUI();
+        },
+        () => {} // Cancelar — fecha o modal sem ação
+    );
 }
 
 // =====================================================
@@ -1139,7 +1254,7 @@ function mostrarRelatorioSalvo(numProva) {
     const ultimaSessao = sessoes[sessoes.length - 1];
     
     if (!ultimaSessao.historicoRespostas || !ultimaSessao.idsQuestao) {
-        alert("O relatório detalhado não está disponível para esta sessão antiga.");
+        mostrarModal('O relatório detalhado não está disponível para esta sessão antiga.');
         return;
     }
     

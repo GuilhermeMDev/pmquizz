@@ -31,6 +31,18 @@
 <body>
 
     <button id="theme-toggle" class="theme-toggle" title="Alternar Tema">🌙</button>
+    <button id="sound-toggle" class="sound-toggle" title="Ativar/Desativar Sons" onclick="alternarSom()">🔔</button>
+
+    <!-- Modal customizado (substitui alert/confirm nativos) -->
+    <div id="modal-overlay" class="modal-overlay hidden" onclick="fecharModalOverlay(event)">
+        <div class="modal-box">
+            <p id="modal-mensagem" class="modal-mensagem"></p>
+            <div class="modal-acoes">
+                <button id="modal-btn-ok" class="modal-btn modal-btn-ok" onclick="modalCallbackOk()">OK</button>
+                <button id="modal-btn-cancelar" class="modal-btn modal-btn-cancelar hidden" onclick="modalCallbackCancelar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ===================== MENU PRINCIPAL ===================== -->
     <div id="menu-inicial">

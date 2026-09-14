@@ -124,6 +124,100 @@ body {
 }
 .theme-toggle:active { transform: scale(0.88); }
 
+/* Botão de Som — fica à esquerda do theme-toggle */
+.sound-toggle {
+    position: fixed;
+    top: 16px;
+    right: 68px; /* 16px margem + 44px theme-toggle + 8px gap */
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    color: var(--text-main);
+    z-index: 9999;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    touch-action: manipulation;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, opacity 0.2s;
+}
+.sound-toggle:active { transform: scale(0.88); }
+.sound-toggle.mudo { opacity: 0.45; }
+
+/* =========================================================
+   MODAL CUSTOMIZADO (substitui alert/confirm nativos)
+   ========================================================= */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.15s ease;
+}
+.modal-overlay.hidden { display: none; }
+
+.modal-box {
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 28px 24px 20px;
+    max-width: 360px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    animation: slideUp 0.2s ease;
+}
+
+.modal-mensagem {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin: 0 0 20px;
+    white-space: pre-line;
+}
+
+.modal-acoes {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.modal-btn {
+    padding: 10px 22px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+    font-family: inherit;
+}
+.modal-btn:active { transform: scale(0.95); }
+
+.modal-btn-ok {
+    background: var(--accent-color, #1565c0);
+    color: #fff;
+}
+.modal-btn-cancelar {
+    background: var(--border-color);
+    color: var(--text-main);
+}
+.modal-btn-cancelar.hidden { display: none; }
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+
 /* =========================================================
    MENU INICIAL
    ========================================================= */

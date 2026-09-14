@@ -33,7 +33,7 @@
     <button id="theme-toggle" class="theme-toggle" title="Alternar Tema">🌙</button>
 
     <!-- Modal customizado (substitui alert/confirm nativos) -->
-    <div id="modal-overlay" class="modal-overlay hidden" onclick="fecharModalOverlay(event)">
+    <div id="modal-overlay" class="modal-overlay hidden" style="z-index: 999999;" onclick="fecharModalOverlay(event)">
         <div class="modal-box">
             <p id="modal-mensagem" class="modal-mensagem"></p>
             <div class="modal-acoes">
@@ -285,11 +285,7 @@
                         console.log('[App] Service Worker registrado:', reg.scope);
                         navigator.serviceWorker.addEventListener('message', event => {
                             if (event.data && event.data.type === 'SW_UPDATED') {
-                                const ultimoReload = parseInt(sessionStorage.getItem('sw_reload') || '0');
-                                if (Date.now() - ultimoReload > 5000) {
-                                    sessionStorage.setItem('sw_reload', Date.now());
-                                    window.location.reload();
-                                }
+                                console.log('[App] Nova versão disponível. O usuário pode atualizar a página.');
                             }
                         });
                     })

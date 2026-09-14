@@ -1145,7 +1145,16 @@ function zerarBancoErros() {
 //  FINALIZAR QUIZ — salva histórico e atualiza ciclo
 // =====================================================
 
-function finalizarQuiz() {
+function finalizarQuiz(confirmado = false) {
+    if (!confirmado) {
+        mostrarModal(
+            "Tem certeza que deseja entregar a prova agora?",
+            () => finalizarQuiz(true), // Callback de OK
+            () => {} // Callback de Cancelar (fecha o modal)
+        );
+        return;
+    }
+
     const containerImg = document.getElementById('container-imagem');
     if (containerImg) containerImg.style.display = 'none';
     document.getElementById('pergunta-texto').style.display = 'none';

@@ -509,7 +509,16 @@ function verificarSaveGame() {
     const save = localStorage.getItem('quiz_pm_save');
     const btn = document.getElementById('btn-continuar');
     if (save) {
-        const dados = JSON.parse(save);
+        let dados;
+        try {
+            dados = JSON.parse(save);
+            if (typeof dados !== 'object' || dados === null) throw new Error('schema inválido');
+        } catch (e) {
+            console.warn('quiz_pm_save corrompido, limpando.', e);
+            localStorage.removeItem('quiz_pm_save');
+            btn.style.display = 'none';
+            return;
+        }
         btn.style.display = 'flex';
         let label = "Prova";
         if (dados.tipo && dados.tipo.startsWith('prova_')) {
@@ -575,7 +584,15 @@ function iniciarProva(tipo) {
 function retomarJogo() {
     const save = localStorage.getItem('quiz_pm_save');
     if (!save) return;
-    const dados = JSON.parse(save);
+    let dados;
+    try {
+        dados = JSON.parse(save);
+        if (typeof dados !== 'object' || dados === null) throw new Error('schema inválido');
+    } catch (e) {
+        console.warn('quiz_pm_save corrompido ao retomar, limpando.', e);
+        localStorage.removeItem('quiz_pm_save');
+        return;
+    }
     acertos = dados.acertos;
     erros = dados.erros;
     historicoRespostas = dados.historico;

@@ -44,7 +44,7 @@ function alternarSom() {
     localStorage.setItem('quiz_pm_som', somAtivo ? 'on' : 'off');
     const btn = document.getElementById('sound-toggle');
     if (btn) {
-        btn.textContent = somAtivo ? '🔔' : '🔕';
+        btn.textContent = somAtivo ? '🔊' : '🔇';
         btn.classList.toggle('mudo', !somAtivo);
     }
 }
@@ -52,7 +52,7 @@ function alternarSom() {
 function inicializarSomUI() {
     const btn = document.getElementById('sound-toggle');
     if (btn) {
-        btn.textContent = somAtivo ? '🔔' : '🔕';
+        btn.textContent = somAtivo ? '🔊' : '🔇';
         btn.classList.toggle('mudo', !somAtivo);
     }
 }

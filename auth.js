@@ -190,6 +190,5 @@ function submeterAuth(isCadastro) {
 
 // Inicia verificação ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
-    // Aguarda o script.js injetar o supabaseClient primeiro
-    setTimeout(verificarSessao, 500); 
+    verificarSessao();
 });

@@ -306,6 +306,16 @@ async function carregarBancoDeDados() {
             return a.id - b.id;
         });
         appCarregado = true;
+
+        // Pré-carregamento invisível de imagens para garantir funcionamento offline
+        setTimeout(() => {
+            const urlsUnicas = [...new Set(bancoCompleto.filter(q => q.imagem).map(q => q.imagem))];
+            urlsUnicas.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }, 1000);
+
     } catch (e) {
         console.error(e);
         const grid = document.getElementById('grid-provas');
@@ -611,12 +621,36 @@ function gerarBotoesProvas() {
     if (!grid) return;
     grid.innerHTML = "";
 
+    let progressoAtivo = null;
+    const save = localStorage.getItem('quiz_pm_save');
+    if (save) {
+        try {
+            const dados = JSON.parse(save);
+            if (dados && dados.tipo && dados.tipo.startsWith('prova_')) {
+                let proximoIndice = dados.indice || 0;
+                if (dados.idsQuestao && dados.historico) {
+                    const idxNaoRespondido = dados.idsQuestao.findIndex(uid => !dados.historico[uid]);
+                    if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
+                    else proximoIndice = dados.idsQuestao.length - 1;
+                }
+                progressoAtivo = {
+                    prova: parseInt(dados.tipo.split('_')[1]),
+                    posicao: proximoIndice + 1,
+                    total: dados.idsQuestao ? dados.idsQuestao.length : 40
+                };
+            }
+        } catch (e) {}
+    }
+
     for (let i = 1; i <= 11; i++) {
         const cor = PROVA_CORES[(i - 1) % PROVA_CORES.length];
         const dados = obterDadosProva(i);
 
         let scoreHTML = '<span class="prova-score trend-new">Não iniciada</span>';
-        if (dados) {
+        
+        if (progressoAtivo && progressoAtivo.prova === i) {
+            scoreHTML = `<span class="prova-score trend-new" style="color: #ff9800; border-color: #ff9800;">Em andamento (${progressoAtivo.posicao}/${progressoAtivo.total})</span>`;
+        } else if (dados) {
             let trendClass = 'trend-flat';
             let trendChar = '→';
             if (dados.trend !== null) {
@@ -656,9 +690,8 @@ function verificarSaveGame() {
         let label = "Prova";
         if (dados.tipo && dados.tipo.startsWith('prova_')) {
             label = `Prova ${dados.tipo.split('_')[1]}`;
-        } else if (dados.tipo === 'erros') {
-            label = "Revisão de Erros";
         }
+        
         let proximoIndice = dados.indice || 0;
         if (dados.idsQuestao && dados.historico) {
             const idxNaoRespondido = dados.idsQuestao.findIndex(uid => !dados.historico[uid]);

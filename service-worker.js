@@ -8,7 +8,7 @@
 //  • JSONs das provas  → Stale-While-Revalidate (rápido + se auto-atualiza)
 // =====================================================
 
-const CACHE_NAME = 'quiz-pm-v3.3';
+const CACHE_NAME = 'quiz-pm-v3.4';
 
 // Arquivos para pré-cachear na instalação (offline garantido desde o primeiro acesso)
 const PRE_CACHE_URLS = [

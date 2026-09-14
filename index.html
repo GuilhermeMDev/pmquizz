@@ -214,7 +214,8 @@
         <div class="modal-box" style="text-align: center; max-width: 340px;">
             
             <!-- PAINEL LOGIN -->
-            <div id="auth-panel-login">
+            <div id="auth-panel-login" style="position: relative;">
+                <button class="btn-fechar-modal" onclick="fecharModalAuth()">✖</button>
                 <div style="font-size: 2rem; margin-bottom: 10px;">☁️</div>
                 <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Entrar</h3>
                 <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 25px; line-height: 1.4;">
@@ -236,7 +237,8 @@
             </div>
 
             <!-- PAINEL CADASTRO -->
-            <div id="auth-panel-cadastro" style="display: none;">
+            <div id="auth-panel-cadastro" style="display: none; position: relative;">
+                <button class="btn-fechar-modal" onclick="fecharModalAuth()">✖</button>
                 <div style="font-size: 2rem; margin-bottom: 10px;">🚀</div>
                 <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Criar Conta</h3>
                 <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 25px; line-height: 1.4;">
@@ -261,7 +263,8 @@
             </div>
 
             <!-- PAINEL LOGADO -->
-            <div id="auth-panel-logado" style="display: none;">
+            <div id="auth-panel-logado" style="display: none; position: relative;">
+                <button class="btn-fechar-modal" onclick="fecharModalAuth()">✖</button>
                 <h3 style="margin-top:0; color:var(--text-color);">Seu Perfil</h3>
                 <p style="font-size:0.9rem; color:var(--text-muted);">Logado como: <br><strong id="auth-user-email" style="color:var(--primary-color);">...</strong></p>
                 <p style="font-size:0.85rem; color:#4caf50;">Seus dados estão sincronizados na nuvem!</p>

@@ -38,6 +38,7 @@ function atualizarUIAuth(logado) {
 }
 
 function traduzirErroSupabase(msg) {
+    if (!msg) return 'Erro desconhecido.';
     if (msg.includes('Email not confirmed')) return 'Você precisa confirmar seu e-mail antes de entrar. Cheque sua caixa de entrada ou spam!';
     if (msg.includes('Invalid login credentials')) return 'E-mail ou senha incorretos.';
     if (msg.includes('User already registered')) return 'Este e-mail já está cadastrado.';
@@ -64,7 +65,7 @@ async function loginSupabase(email, password) {
         await sincronizarComNuvem();
         return true;
     } catch (e) {
-        mostrarModal("❌ Erro de conexão com o servidor.");
+        mostrarModal("❌ Erro interno: " + (e.message || e.toString()));
         console.error(e);
         return false;
     }
@@ -91,16 +92,19 @@ async function cadastroSupabase(email, password) {
         
         fecharModalAuth();
         
+        // Se a conta for criada e já logar (confirm email desativado)
         if (data.session) {
+            usuarioAtual = data.session.user; // garante que tem o usuário atual setado antes do push
             mostrarModal("✅ Conta criada com sucesso! Sincronizando dados...");
             await pushParaNuvem();
-        } else {
+        } else if (data.user) {
+            // Conta criada, mas precisa confirmar e-mail
             mostrarModal("⚠️ Conta criada! O Supabase exige que você clique no link enviado para o seu e-mail antes de fazer o login.");
         }
         
         return true;
     } catch (e) {
-        mostrarModal("❌ Erro de conexão com o servidor.");
+        mostrarModal("❌ Erro interno no cadastro: " + (e.message || e.toString()));
         console.error(e);
         return false;
     }

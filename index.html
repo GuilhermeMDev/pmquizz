@@ -210,12 +210,11 @@
     </footer>
     
     <!-- Modal de Autenticação -->
-    <div id="modal-auth-overlay" class="modal-overlay hidden" onclick="if(event.target === this) fecharModalAuth()">
+    <div id="modal-auth-overlay" class="modal-overlay hidden">
         <div class="modal-box" style="text-align: center; max-width: 340px;">
             
             <!-- PAINEL LOGIN -->
             <div id="auth-panel-login" style="position: relative;">
-                <button class="btn-fechar-modal" onclick="fecharModalAuth()">✖</button>
                 <div style="font-size: 2rem; margin-bottom: 10px;">☁️</div>
                 <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Entrar</h3>
                 <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 25px; line-height: 1.4;">
@@ -233,12 +232,10 @@
                     <button class="btn-menu" style="padding:12px; font-weight: 700;" onclick="submeterLogin()">Entrar</button>
                     <button class="btn-menu" style="padding:12px; font-weight: 700; background:transparent; color:var(--primary-color); border:none;" onclick="alternarPainelAuth('cadastro')">Não tem conta? Cadastre-se</button>
                 </div>
-                <button style="margin-top:10px; background:none; border:none; color:var(--text-muted); text-decoration:none; font-size: 0.85rem; cursor:pointer;" onclick="fecharModalAuth()">Continuar offline</button>
             </div>
 
             <!-- PAINEL CADASTRO -->
             <div id="auth-panel-cadastro" style="display: none; position: relative;">
-                <button class="btn-fechar-modal" onclick="fecharModalAuth()">✖</button>
                 <div style="font-size: 2rem; margin-bottom: 10px;">🚀</div>
                 <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Criar Conta</h3>
                 <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 25px; line-height: 1.4;">
@@ -265,11 +262,11 @@
             <!-- PAINEL LOGADO -->
             <div id="auth-panel-logado" style="display: none; position: relative;">
                 <button class="btn-fechar-modal" onclick="fecharModalAuth()">✖</button>
-                <h3 style="margin-top:0; color:var(--text-color);">Seu Perfil</h3>
+                <div style="font-size: 2rem; margin-bottom: 10px;">👤</div>
+                <h3 style="margin-top:0; color:var(--text-color); font-weight: 800;">Minha Conta</h3>
                 <p style="font-size:0.9rem; color:var(--text-muted);">Logado como: <br><strong id="auth-user-email" style="color:var(--primary-color);">...</strong></p>
                 <p style="font-size:0.85rem; color:#4caf50;">Seus dados estão sincronizados na nuvem!</p>
                 <button class="btn-menu" style="width:100%; margin-top:20px; background:#f44336; border-color:#d32f2f;" onclick="logoutSupabase()">Sair da Conta</button>
-                <button style="margin-top:15px; background:none; border:none; color:var(--text-muted); text-decoration:underline; cursor:pointer;" onclick="fecharModalAuth()">Fechar</button>
             </div>
         </div>
     </div>

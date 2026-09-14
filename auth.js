@@ -7,8 +7,14 @@ async function verificarSessao() {
         usuarioAtual = data.session.user;
         atualizarUIAuth(true);
         sincronizarComNuvem(); // Baixa os dados ao entrar
+        fecharModalAuth(); // Se estiver logado, esconde
     } else {
         atualizarUIAuth(false);
+        // MODO OBRIGADO A LOGAR: Limpa o storage local solto e prende na tela de login
+        localStorage.removeItem('quiz_pm_historico');
+        localStorage.removeItem('quiz_pm_saves');
+        localStorage.removeItem('quiz_pm_erros');
+        abrirModalAuth(false);
     }
 
     // Fica escutando mudanças na autenticação
@@ -16,9 +22,17 @@ async function verificarSessao() {
         if (session) {
             usuarioAtual = session.user;
             atualizarUIAuth(true);
+            sincronizarComNuvem();
+            fecharModalAuth();
         } else {
             usuarioAtual = null;
             atualizarUIAuth(false);
+            localStorage.removeItem('quiz_pm_historico');
+            localStorage.removeItem('quiz_pm_saves');
+            localStorage.removeItem('quiz_pm_erros');
+            // Zera a tela caso estivesse no meio de uma prova
+            if (typeof voltarAoMenu === 'function') voltarAoMenu();
+            abrirModalAuth(false);
         }
     });
 }

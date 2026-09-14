@@ -37,19 +37,37 @@ function atualizarUIAuth(logado) {
     }
 }
 
+function traduzirErroSupabase(msg) {
+    if (msg.includes('Email not confirmed')) return 'Você precisa confirmar seu e-mail antes de entrar. Cheque sua caixa de entrada ou spam!';
+    if (msg.includes('Invalid login credentials')) return 'E-mail ou senha incorretos.';
+    if (msg.includes('User already registered')) return 'Este e-mail já está cadastrado.';
+    if (msg.includes('Password should be at least')) return 'A senha deve ter pelo menos 6 caracteres.';
+    return msg;
+}
+
 async function loginSupabase(email, password) {
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password
-    });
-    if (error) {
-        mostrarModal("Erro no login: " + error.message);
+    mostrarModal("Entrando... Aguarde.");
+    
+    try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+        
+        if (error) {
+            mostrarModal("❌ Falha no login: " + traduzirErroSupabase(error.message));
+            return false;
+        }
+        
+        fecharModalAuth();
+        mostrarModal("✅ Login realizado com sucesso! Sincronizando dados...");
+        await sincronizarComNuvem();
+        return true;
+    } catch (e) {
+        mostrarModal("❌ Erro de conexão com o servidor.");
+        console.error(e);
         return false;
     }
-    fecharModalAuth();
-    mostrarModal("Login realizado com sucesso! Sincronizando dados...");
-    await sincronizarComNuvem();
-    return true;
 }
 
 async function cadastroSupabase(email, password) {
@@ -58,29 +76,34 @@ async function cadastroSupabase(email, password) {
         return false;
     }
     
-    mostrarModal("Criando conta..."); // feedback imediato
+    mostrarModal("Criando conta... Aguarde."); // feedback imediato
     
-    const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password
-    });
-    
-    if (error) {
-        mostrarModal("Erro no cadastro: " + error.message);
+    try {
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password
+        });
+        
+        if (error) {
+            mostrarModal("❌ Erro no cadastro: " + traduzirErroSupabase(error.message));
+            return false;
+        }
+        
+        fecharModalAuth();
+        
+        if (data.session) {
+            mostrarModal("✅ Conta criada com sucesso! Sincronizando dados...");
+            await pushParaNuvem();
+        } else {
+            mostrarModal("⚠️ Conta criada! O Supabase exige que você clique no link enviado para o seu e-mail antes de fazer o login.");
+        }
+        
+        return true;
+    } catch (e) {
+        mostrarModal("❌ Erro de conexão com o servidor.");
+        console.error(e);
         return false;
     }
-    
-    fecharModalAuth();
-    
-    // O Supabase exige confirmação de email por padrão. Se 'session' for nula, o usuário precisa confirmar.
-    if (data.session) {
-        mostrarModal("Conta criada com sucesso! Sincronizando dados...");
-        await pushParaNuvem();
-    } else {
-        mostrarModal("Conta criada! O Supabase exige que você confirme o link enviado para o seu e-mail antes de fazer o primeiro login.");
-    }
-    
-    return true;
 }
 
 async function logoutSupabase() {

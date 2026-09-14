@@ -136,7 +136,7 @@ async function sincronizarComNuvem() {
     if (!usuarioAtual) return;
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await window.supabaseApp
             .from('user_sync')
             .select('*')
             .eq('user_id', usuarioAtual.id)
@@ -185,7 +185,7 @@ async function pushParaNuvem() {
             updated_at: new Date().toISOString()
         };
 
-        const { error } = await supabase
+        const { error } = await window.supabaseApp
             .from('user_sync')
             .upsert(payload, { onConflict: 'user_id' });
 

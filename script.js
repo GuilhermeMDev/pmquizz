@@ -94,13 +94,17 @@ function tocarSom(tipo) {
 let _modalCallbackOk = null;
 let _modalCallbackCancelar = null;
 
-function mostrarModal(mensagem, onOk, onCancelar) {
+function mostrarModal(mensagem, onOk = null, onCancelar = null, txtOk = "OK", txtCancelar = "Cancelar") {
     const overlay = document.getElementById('modal-overlay');
     const msg = document.getElementById('modal-mensagem');
+    const btnOk = document.getElementById('modal-btn-ok');
     const btnCancelar = document.getElementById('modal-btn-cancelar');
     if (!overlay || !msg) return;
 
     msg.textContent = mensagem;
+    if (btnOk) btnOk.textContent = txtOk;
+    if (btnCancelar) btnCancelar.textContent = txtCancelar;
+
     _modalCallbackOk = onOk || null;
     _modalCallbackCancelar = onCancelar || null;
 
@@ -621,35 +625,30 @@ function gerarBotoesProvas() {
     if (!grid) return;
     grid.innerHTML = "";
 
-    let progressoAtivo = null;
-    const save = localStorage.getItem('quiz_pm_save');
-    if (save) {
-        try {
-            const dados = JSON.parse(save);
-            if (dados && dados.tipo && dados.tipo.startsWith('prova_')) {
-                let proximoIndice = dados.indice || 0;
-                if (dados.idsQuestao && dados.historico) {
-                    const idxNaoRespondido = dados.idsQuestao.findIndex(uid => !dados.historico[uid]);
-                    if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
-                    else proximoIndice = dados.idsQuestao.length - 1;
-                }
-                progressoAtivo = {
-                    prova: parseInt(dados.tipo.split('_')[1]),
-                    posicao: proximoIndice + 1,
-                    total: dados.idsQuestao ? dados.idsQuestao.length : 40
-                };
-            }
-        } catch (e) {}
+    let saves = {};
+    const savesJSON = localStorage.getItem('quiz_pm_saves');
+    if (savesJSON) {
+        try { saves = JSON.parse(savesJSON); } catch (e) {}
     }
 
     for (let i = 1; i <= 11; i++) {
         const cor = PROVA_CORES[(i - 1) % PROVA_CORES.length];
         const dados = obterDadosProva(i);
+        const chaveProva = 'prova_' + i;
+        const progresso = saves[chaveProva];
 
         let scoreHTML = '<span class="prova-score trend-new">Não iniciada</span>';
         
-        if (progressoAtivo && progressoAtivo.prova === i) {
-            scoreHTML = `<span class="prova-score trend-new" style="color: #ff9800; border-color: #ff9800;">Em andamento (${progressoAtivo.posicao}/${progressoAtivo.total})</span>`;
+        if (progresso) {
+            let proximoIndice = progresso.indice || 0;
+            if (progresso.idsQuestao && progresso.historico) {
+                const idxNaoRespondido = progresso.idsQuestao.findIndex(uid => !progresso.historico[uid]);
+                if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
+                else proximoIndice = progresso.idsQuestao.length - 1;
+            }
+            const posicao = proximoIndice + 1;
+            const total = progresso.idsQuestao ? progresso.idsQuestao.length : 40;
+            scoreHTML = `<span class="prova-score trend-new" style="color: #ff9800; border-color: #ff9800;">Em andamento (${posicao}/${total})</span>`;
         } else if (dados) {
             let trendClass = 'trend-flat';
             let trendChar = '→';
@@ -667,46 +666,78 @@ function gerarBotoesProvas() {
             <span class="prova-numero">${i}</span>
             <span class="prova-label">Prova ${i}</span>
             ${scoreHTML}`;
-        btn.onclick = () => iniciarProva('prova_' + i);
+            
+        btn.onclick = () => {
+            if (progresso) {
+                mostrarModal(
+                    `Você tem uma sessão em andamento nesta prova. Deseja continuar de onde parou ou recomeçar?`,
+                    () => retomarJogo(chaveProva),
+                    () => iniciarProva(chaveProva),
+                    "Continuar",
+                    "Recomeçar"
+                );
+            } else {
+                iniciarProva(chaveProva);
+            }
+        };
         grid.appendChild(btn);
     }
 }
 
 function verificarSaveGame() {
-    const save = localStorage.getItem('quiz_pm_save');
+    const savesJSON = localStorage.getItem('quiz_pm_saves');
     const btn = document.getElementById('btn-continuar');
-    if (save) {
-        let dados;
-        try {
-            dados = JSON.parse(save);
-            if (typeof dados !== 'object' || dados === null) throw new Error('schema inválido');
-        } catch (e) {
-            console.warn('quiz_pm_save corrompido, limpando.', e);
-            localStorage.removeItem('quiz_pm_save');
-            btn.style.display = 'none';
-            return;
-        }
-        btn.style.display = 'flex';
-        let label = "Prova";
-        if (dados.tipo && dados.tipo.startsWith('prova_')) {
-            label = `Prova ${dados.tipo.split('_')[1]}`;
-        }
-        
-        let proximoIndice = dados.indice || 0;
-        if (dados.idsQuestao && dados.historico) {
-            const idxNaoRespondido = dados.idsQuestao.findIndex(uid => !dados.historico[uid]);
-            if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
-            else proximoIndice = dados.idsQuestao.length - 1;
-        }
-        const posicaoNaProva = proximoIndice + 1;
-        const totalQuestoes = dados.idsQuestao ? dados.idsQuestao.length : "?";
-        const titleEl = btn.querySelector('.btn-menu-title');
-        const subEl = document.getElementById('info-save');
-        if (titleEl) titleEl.textContent = `Continuar — ${label}`;
-        if (subEl) subEl.textContent = `Questão ${posicaoNaProva} de ${totalQuestoes}`;
-    } else {
+    if (!savesJSON) {
         btn.style.display = 'none';
+        return;
     }
+
+    let saves = {};
+    try {
+        saves = JSON.parse(savesJSON);
+    } catch (e) {
+        console.warn('quiz_pm_saves corrompido, limpando.', e);
+        localStorage.removeItem('quiz_pm_saves');
+        btn.style.display = 'none';
+        return;
+    }
+
+    let saveMaisRecente = null;
+    let dataMaisRecente = 0;
+    
+    for (const key in saves) {
+        if (saves[key] && saves[key].data > dataMaisRecente) {
+            saveMaisRecente = saves[key];
+            dataMaisRecente = saves[key].data;
+        }
+    }
+
+    if (!saveMaisRecente) {
+        btn.style.display = 'none';
+        return;
+    }
+
+    const dados = saveMaisRecente;
+    btn.style.display = 'flex';
+    let label = "Prova";
+    if (dados.tipo && dados.tipo.startsWith('prova_')) {
+        label = `Prova ${dados.tipo.split('_')[1]}`;
+    }
+    
+    let proximoIndice = dados.indice || 0;
+    if (dados.idsQuestao && dados.historico) {
+        const idxNaoRespondido = dados.idsQuestao.findIndex(uid => !dados.historico[uid]);
+        if (idxNaoRespondido !== -1) proximoIndice = idxNaoRespondido;
+        else proximoIndice = dados.idsQuestao.length - 1;
+    }
+    const posicaoNaProva = proximoIndice + 1;
+    const totalQuestoes = dados.idsQuestao ? dados.idsQuestao.length : "?";
+    const titleEl = btn.querySelector('.btn-menu-title');
+    const subEl = document.getElementById('info-save');
+    if (titleEl) titleEl.textContent = `Continuar — ${label}`;
+    if (subEl) subEl.textContent = `Questão ${posicaoNaProva} de ${totalQuestoes}`;
+    
+    btn.onclick = () => retomarJogo(dados.tipo);
 }
 
 // =====================================================
@@ -716,10 +747,12 @@ function verificarSaveGame() {
 function iniciarProva(tipo) {
     if (!appCarregado) return;
     
-    // Apenas limpa o save se estiver iniciando uma nova prova numerada.
-    // Assim, abrir "Erros" não apaga o progresso da prova atual.
     if (tipo !== 'erros') {
-        localStorage.removeItem('quiz_pm_save');
+        let saves = JSON.parse(localStorage.getItem('quiz_pm_saves')) || {};
+        if (saves[tipo]) {
+            delete saves[tipo];
+            localStorage.setItem('quiz_pm_saves', JSON.stringify(saves));
+        }
     }
     
     indiceAtual = 0;
@@ -753,21 +786,38 @@ function iniciarProva(tipo) {
     mostrarQuestao();
 }
 
-function retomarJogo() {
-    const save = localStorage.getItem('quiz_pm_save');
-    if (!save) return;
-    let dados;
+function retomarJogo(chaveProva = null) {
+    const savesJSON = localStorage.getItem('quiz_pm_saves');
+    if (!savesJSON) return;
+    
+    let saves = {};
     try {
-        dados = JSON.parse(save);
-        if (typeof dados !== 'object' || dados === null) throw new Error('schema inválido');
+        saves = JSON.parse(savesJSON);
     } catch (e) {
-        console.warn('quiz_pm_save corrompido ao retomar, limpando.', e);
-        localStorage.removeItem('quiz_pm_save');
+        console.warn('quiz_pm_saves corrompido ao retomar, limpando.', e);
+        localStorage.removeItem('quiz_pm_saves');
         return;
     }
-    acertos = dados.acertos;
-    erros = dados.erros;
-    historicoRespostas = dados.historico;
+
+    let dados = null;
+
+    if (chaveProva && saves[chaveProva]) {
+        dados = saves[chaveProva];
+    } else {
+        let maxData = 0;
+        for (const key in saves) {
+            if (saves[key] && saves[key].data > maxData) {
+                dados = saves[key];
+                maxData = saves[key].data;
+            }
+        }
+    }
+
+    if (!dados) return;
+
+    acertos = dados.acertos || 0;
+    erros = dados.erros || 0;
+    historicoRespostas = dados.historico || {};
     tipoProvaAtual = dados.tipo;
     isNavigating = false;
 
@@ -1137,7 +1187,10 @@ function salvarProgresso() {
         idsQuestao: questoesDaProva.map(q => q.uid),
         data: Date.now()
     };
-    localStorage.setItem('quiz_pm_save', JSON.stringify(dados));
+
+    let saves = JSON.parse(localStorage.getItem('quiz_pm_saves')) || {};
+    saves[tipoProvaAtual] = dados;
+    localStorage.setItem('quiz_pm_saves', JSON.stringify(saves));
 }
 
 function atualizarBancoErros(uidQuestao, acertou) {
@@ -1230,7 +1283,14 @@ function finalizarQuiz(confirmado = false) {
         tituloProva, aproveitamento, totalAcertos, totalErros, totalPuladas, 
         questoesDaProva, historicoRespostas, btnVoltar
     );
-    localStorage.removeItem('quiz_pm_save');
+    
+    if (tipoProvaAtual !== 'erros') {
+        let saves = JSON.parse(localStorage.getItem('quiz_pm_saves')) || {};
+        if (saves[tipoProvaAtual]) {
+            delete saves[tipoProvaAtual];
+            localStorage.setItem('quiz_pm_saves', JSON.stringify(saves));
+        }
+    }
 }
 
 // =====================================================

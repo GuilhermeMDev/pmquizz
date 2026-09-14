@@ -8,7 +8,7 @@
 //  • JSONs das provas  → Stale-While-Revalidate (rápido + se auto-atualiza)
 // =====================================================
 
-const CACHE_NAME = 'quiz-pm-v2.5';
+const CACHE_NAME = 'quiz-pm-v2.6';
 
 // Arquivos para pré-cachear na instalação (offline garantido desde o primeiro acesso)
 const PRE_CACHE_URLS = [
@@ -84,11 +84,11 @@ self.addEventListener('fetch', event => {
 
   const path = url.pathname;
 
-  // 1. JSONs das provas → Stale-While-Revalidate
-  //    Serve do cache na hora (rápido), e atualiza o cache em segundo plano.
-  //    Na próxima abertura, já tem a versão mais nova.
+  // 1. JSONs das provas → Network-First
+  //    Garante que o usuário sempre veja as questões mais atualizadas se tiver internet.
+  //    Se estiver offline, serve do cache.
   if (path.endsWith('.json')) {
-    event.respondWith(staleWhileRevalidate(request));
+    event.respondWith(networkFirst(request));
     return;
   }
 

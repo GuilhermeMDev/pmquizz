@@ -8,7 +8,7 @@
 //  • JSONs das provas  → Stale-While-Revalidate (rápido + se auto-atualiza)
 // =====================================================
 
-const CACHE_NAME = 'quiz-pm-v3.8';
+const CACHE_NAME = 'quiz-pm-v3.9';
 
 // Arquivos para pré-cachear na instalação (offline garantido desde o primeiro acesso)
 const PRE_CACHE_URLS = [
@@ -18,6 +18,7 @@ const PRE_CACHE_URLS = [
   './script.js',
   './auth.js',
   './supabaseClient.js',
+  './supabase.min.js',
   './manifest.json',
   '/age_logo.png',
   '/icon-192.png',

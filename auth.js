@@ -130,10 +130,10 @@ async function cadastroSupabase(email, password) {
     }
 }
 
-async function logoutSupabase() {
     localStorage.removeItem('quiz_pm_historico');
     localStorage.removeItem('quiz_pm_saves');
     localStorage.removeItem('quiz_pm_erros');
+    localStorage.removeItem('quiz_pm_ciclo');
     
     await window.supabaseApp.auth.signOut();
     usuarioAtual = null;
@@ -170,11 +170,13 @@ async function sincronizarComNuvem() {
             if (data.historico) localStorage.setItem('quiz_pm_historico', JSON.stringify(data.historico));
             if (data.savegame) localStorage.setItem('quiz_pm_saves', JSON.stringify(data.savegame));
             if (data.erros) localStorage.setItem('quiz_pm_erros', JSON.stringify(data.erros));
+            if (data.ciclo) localStorage.setItem('quiz_pm_ciclo', JSON.stringify(data.ciclo));
             
             // Recarrega a UI
             gerarBotoesProvas();
             verificarSaveGame();
             if (typeof atualizarContadorErrosUI === 'function') atualizarContadorErrosUI();
+            if (typeof atualizarCicloUI === 'function') atualizarCicloUI();
             
             console.log("Sincronização PULL concluída.");
         } else {
@@ -197,6 +199,10 @@ async function pushParaNuvem() {
     const historico = JSON.parse(localStorage.getItem('quiz_pm_historico')) || {};
     const saves = JSON.parse(localStorage.getItem('quiz_pm_saves')) || {};
     const erros = JSON.parse(localStorage.getItem('quiz_pm_erros')) || [];
+    const ciclo = JSON.parse(localStorage.getItem('quiz_pm_ciclo')) || {
+        ciclosCompletos: 0,
+        provasNoAtual: []
+    };
 
     try {
         const payload = {
@@ -204,6 +210,7 @@ async function pushParaNuvem() {
             historico: historico,
             savegame: saves,
             erros: erros,
+            ciclo: ciclo,
             updated_at: new Date().toISOString()
         };
 

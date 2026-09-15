@@ -10,10 +10,9 @@ async function verificarSessao() {
         fecharModalAuth(); // Se estiver logado, esconde
     } else {
         atualizarUIAuth(false);
-        // MODO OBRIGADO A LOGAR: Limpa o storage local solto e prende na tela de login
-        localStorage.removeItem('quiz_pm_historico');
-        localStorage.removeItem('quiz_pm_saves');
-        localStorage.removeItem('quiz_pm_erros');
+        // Não apagar o storage aqui! Se a internet estiver ruim, o getSession falha por timeout,
+        // mas o usuário ainda pode estar com a sessão válida no aparelho.
+        // Só forçamos o modal de login:
         abrirModalAuth(false);
     }
 
@@ -27,10 +26,7 @@ async function verificarSessao() {
         } else {
             usuarioAtual = null;
             atualizarUIAuth(false);
-            localStorage.removeItem('quiz_pm_historico');
-            localStorage.removeItem('quiz_pm_saves');
-            localStorage.removeItem('quiz_pm_erros');
-            // Zera a tela caso estivesse no meio de uma prova
+            // Só zera a tela (a limpeza do storage agora é exclusiva do botão de Sair)
             if (typeof voltarAoMenu === 'function') voltarAoMenu();
             abrirModalAuth(false);
         }
@@ -135,6 +131,10 @@ async function cadastroSupabase(email, password) {
 }
 
 async function logoutSupabase() {
+    localStorage.removeItem('quiz_pm_historico');
+    localStorage.removeItem('quiz_pm_saves');
+    localStorage.removeItem('quiz_pm_erros');
+    
     await window.supabaseApp.auth.signOut();
     usuarioAtual = null;
     fecharModalAuth();
@@ -148,6 +148,10 @@ async function logoutSupabase() {
 // PULL: Pega da nuvem e injeta no LocalStorage
 async function sincronizarComNuvem() {
     if (!usuarioAtual) return;
+    if (!navigator.onLine) {
+        console.log("Offline: Pulando sincronização PULL para não travar.");
+        return;
+    }
 
     try {
         const { data, error } = await window.supabaseApp
@@ -185,6 +189,10 @@ async function sincronizarComNuvem() {
 // PUSH: Manda do LocalStorage para a nuvem
 async function pushParaNuvem() {
     if (!usuarioAtual) return; // Se não tem login, só salva local e ignora nuvem
+    if (!navigator.onLine) {
+        console.log("Offline: Pulando PUSH (será enviado quando voltar a internet).");
+        return;
+    }
 
     const historico = JSON.parse(localStorage.getItem('quiz_pm_historico')) || {};
     const saves = JSON.parse(localStorage.getItem('quiz_pm_saves')) || {};

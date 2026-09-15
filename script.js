@@ -426,6 +426,21 @@ function atualizarCicloUI() {
         ciclosCompletos: 0,
         provasNoAtual: []
     };
+    
+    // Auto-correção: remove provas do ciclo que não possuem histórico local (bug de deslogar antigo)
+    const historico = JSON.parse(localStorage.getItem('quiz_pm_historico')) || {};
+    if (ciclo.provasNoAtual && ciclo.provasNoAtual.length > 0) {
+        const filtrado = ciclo.provasNoAtual.filter(num => {
+            const sessoes = historico[`prova_${num}`] || [];
+            return sessoes.length > 0;
+        });
+        if (filtrado.length !== ciclo.provasNoAtual.length) {
+            ciclo.provasNoAtual = filtrado;
+            localStorage.setItem('quiz_pm_ciclo', JSON.stringify(ciclo));
+            if (typeof pushParaNuvem === 'function') pushParaNuvem(); // Sincroniza a correção
+        }
+    }
+
     const completadas = ciclo.provasNoAtual || [];
     const cicloAtual = ciclo.ciclosCompletos + 1;
 

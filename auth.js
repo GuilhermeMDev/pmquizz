@@ -130,6 +130,7 @@ async function cadastroSupabase(email, password) {
     }
 }
 
+async function logoutSupabase() {
     localStorage.removeItem('quiz_pm_historico');
     localStorage.removeItem('quiz_pm_saves');
     localStorage.removeItem('quiz_pm_erros');

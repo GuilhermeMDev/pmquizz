@@ -5,16 +5,16 @@
 
 /* --- TOKENS DE DESIGN --- */
 :root {
-    --bg-color: #0d0d12;
-    --card-color: #16161f;
-    --card-elevated: #1e1e2a;
-    --card-hover: #23232f;
+    --bg-color: #050505;
+    --card-color: rgba(15, 15, 20, 0.6);
+    --card-elevated: rgba(20, 20, 28, 0.7);
+    --card-hover: rgba(30, 30, 45, 0.8);
     --text-main: #f0f0f5;
-    --text-sec: #8888a0;
-    --text-muted: #55556a;
-    --primary: #4f8ef7;
-    --primary-dark: #2563eb;
-    --primary-glow: rgba(79, 142, 247, 0.2);
+    --text-sec: #a0a0c0;
+    --text-muted: #777790;
+    --primary: #00c3ff;
+    --primary-dark: #008cc8;
+    --primary-glow: rgba(0, 195, 255, 0.3);
     --success: #22c55e;
     --success-dark: #16a34a;
     --success-glow: rgba(34, 197, 94, 0.2);
@@ -22,11 +22,11 @@
     --error-dark: #dc2626;
     --error-glow: rgba(239, 68, 68, 0.2);
     --warn: #f59e0b;
-    --border-color: #252535;
-    --border-mid: #333348;
-    --btn-bg: #1e1e2a;
-    --btn-hover: #26263a;
-    --header-bg: #1a1a26;
+    --border-color: rgba(0, 195, 255, 0.2);
+    --border-mid: rgba(0, 195, 255, 0.3);
+    --btn-bg: rgba(0, 0, 0, 0.5);
+    --btn-hover: rgba(0, 195, 255, 0.15);
+    --header-bg: rgba(5, 5, 10, 0.75);
     --shadow-sm: 0 2px 8px rgba(0,0,0,0.5);
     --shadow-md: 0 4px 24px rgba(0,0,0,0.7);
     --shadow-lg: 0 8px 48px rgba(0,0,0,0.85);
@@ -35,14 +35,14 @@
     --radius-md: 14px;
     --radius-lg: 18px;
     --radius-xl: 24px;
-    --prova-accent: #4f8ef7; /* Dinâmico via JS por prova */
+    --prova-accent: #00c3ff;
 }
 
 body.light-theme {
     --bg-color: #f0f2f7;
-    --card-color: #ffffff;
-    --card-elevated: #f7f8fc;
-    --card-hover: #eef0f8;
+    --card-color: rgba(255, 255, 255, 0.7);
+    --card-elevated: rgba(255, 255, 255, 0.8);
+    --card-hover: rgba(255, 255, 255, 0.9);
     --text-main: #111122;
     --text-sec: #5a5a78;
     --text-muted: #aaaacc;
@@ -55,11 +55,11 @@ body.light-theme {
     --error: #dc2626;
     --error-dark: #b91c1c;
     --error-glow: rgba(220, 38, 38, 0.12);
-    --border-color: #e2e4ef;
-    --border-mid: #c8cce0;
-    --btn-bg: #ffffff;
-    --btn-hover: #eef0f8;
-    --header-bg: #ffffff;
+    --border-color: rgba(37, 99, 235, 0.2);
+    --border-mid: rgba(37, 99, 235, 0.3);
+    --btn-bg: rgba(255, 255, 255, 0.6);
+    --btn-hover: rgba(37, 99, 235, 0.1);
+    --header-bg: rgba(255, 255, 255, 0.8);
     --shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
     --shadow-md: 0 4px 24px rgba(0,0,0,0.1);
     --shadow-lg: 0 8px 48px rgba(0,0,0,0.14);
@@ -82,10 +82,14 @@ html {
 
 body {
     background-color: var(--bg-color);
+    background-image: url('./assets/bg-aguia.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--text-main);
-    /* Inter como fonte principal — fallback para sistema */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11'; /* Variantes Inter mais limpas */
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,6 +99,14 @@ body {
     overflow-x: hidden;
     transition: background-color 0.3s, color 0.3s;
     -webkit-overflow-scrolling: touch;
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .hidden { display: none !important; }
@@ -2038,4 +2050,15 @@ footer {
         margin: 0 20px;
         padding: 30px 20px;
     }
+}/* Global Glassmorphism Filters for the App Theme */
+.menu-header, .btn-menu, .ciclo-tracker, .prova-card, #quiz-container, .nav-bar, #stats-container, .modal-box, .btn-auth-top {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+}
+.btn-menu {
+    border-color: rgba(0, 195, 255, 0.2);
+}
+.btn-menu:hover {
+    box-shadow: 0 0 15px rgba(0, 195, 255, 0.2);
 }

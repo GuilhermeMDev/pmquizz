@@ -82,11 +82,6 @@ html {
 
 body {
     background-color: var(--bg-color);
-    background-image: url('./assets/bg-aguia.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
     color: var(--text-main);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
@@ -99,14 +94,6 @@ body {
     overflow-x: hidden;
     transition: background-color 0.3s, color 0.3s;
     -webkit-overflow-scrolling: touch;
-}
-body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
-    z-index: -1;
-    pointer-events: none;
 }
 
 .hidden { display: none !important; }
@@ -1970,7 +1957,7 @@ footer {
     background: transparent;
     border: none;
     border-bottom: 1px solid rgba(255,255,255,0.2);
-    padding: 10px 0;
+    padding: 10px 12px;
     color: #fff;
     font-size: 1rem;
     outline: none;
@@ -1979,6 +1966,17 @@ footer {
 .auth-input-neon:focus {
     border-bottom: 1px solid #00c3ff;
     box-shadow: 0 4px 10px -6px #00c3ff;
+    background: rgba(0, 195, 255, 0.05);
+}
+
+/* Fix browser autofill background for dark themes */
+.auth-input-neon:-webkit-autofill,
+.auth-input-neon:-webkit-autofill:hover, 
+.auth-input-neon:-webkit-autofill:focus, 
+.auth-input-neon:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #1a1a24 inset !important;
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 .input-com-olho {

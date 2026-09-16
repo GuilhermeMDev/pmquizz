@@ -102,15 +102,22 @@ body {
 /* =========================================================
    BOTÃO TEMA
    ========================================================= */
-.theme-toggle {
+.top-right-controls {
     position: fixed;
     top: 16px;
     right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.theme-toggle {
+    position: relative;
     background: var(--card-color);
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-md);
     color: var(--text-main);
-    z-index: 9999;
     cursor: pointer;
     border-radius: 50%;
     display: flex;
@@ -925,10 +932,7 @@ body.light-theme .box-dica { background: #fffbeb; border-left-color: #d97706; co
 }
 
 .btn-auth-top {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
     background: rgba(33, 150, 243, 0.15);
     color: #64b5f6;
     border: 1px solid rgba(33, 150, 243, 0.3);
@@ -938,11 +942,61 @@ body.light-theme .box-dica { background: #fffbeb; border-left-color: #d97706; co
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    height: 36px;
 }
 .btn-auth-top:hover {
     background: rgba(33, 150, 243, 0.25);
     color: #90caf9;
 }
+
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999999;
+    pointer-events: none;
+}
+.toast {
+    background: rgba(30, 30, 42, 0.95);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.toast-success { border-left: 4px solid var(--success); }
+.toast-error { border-left: 4px solid var(--error); }
+.toast-info { border-left: 4px solid var(--primary); }
+.toast-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top: 2px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
 
 .auth-input {
     width: 100%;
@@ -1227,7 +1281,9 @@ footer {
     .logo-area h1 { font-size: 24px; }
     .logo-icon { font-size: 48px; }
     .grid-provas { grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .theme-toggle { top: 24px; right: 24px; width: 48px; height: 48px; font-size: 22px; }
+    .theme-toggle { width: 48px; height: 48px; font-size: 22px; }
+    .top-right-controls { top: 24px; right: 24px; }
+    .btn-auth-top { height: 48px; font-size: 1rem; padding: 0 20px; }
 }
 
 @media (min-width: 768px) {

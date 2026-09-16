@@ -144,6 +144,46 @@ function fecharModalOverlay(event) {
     }
 }
 
+function mostrarToast(mensagem, tipo = 'info') {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+    
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${tipo}`;
+    
+    if (tipo === 'loading') {
+        toast.innerHTML = `<div class="toast-spinner"></div><span>${mensagem}</span>`;
+        toast.className = `toast toast-info`;
+        toast.id = 'toast-loading';
+    } else {
+        toast.innerHTML = `<span>${mensagem}</span>`;
+    }
+    
+    container.appendChild(toast);
+    
+    requestAnimationFrame(() => toast.classList.add('show'));
+    
+    if (tipo !== 'loading') {
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3500);
+    }
+    return toast;
+}
+
+function removerToastLoading() {
+    const loader = document.getElementById('toast-loading');
+    if (loader) {
+        loader.classList.remove('show');
+        setTimeout(() => loader.remove(), 300);
+    }
+}
+
 
 // Suporte a teclado
 document.addEventListener('keydown', (e) => {

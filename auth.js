@@ -58,11 +58,11 @@ function traduzirErroSupabase(msg) {
 
 async function loginSupabase(email, password) {
     if (!window.supabaseApp) {
-        mostrarModal("❌ Erro: O servidor do banco de dados (Supabase) não pôde ser carregado. Verifique sua conexão, VPN ou se há algum bloqueador de anúncios (AdBlock) ativo na página.");
+        mostrarToast("O servidor do banco de dados não pôde ser carregado.", "error");
         return false;
     }
     
-    mostrarModal("Entrando... Aguarde.");
+    mostrarToast("Entrando... Aguarde.", "loading");
     
     try {
         const { data, error } = await window.supabaseApp.auth.signInWithPassword({
@@ -70,17 +70,19 @@ async function loginSupabase(email, password) {
             password: password
         });
         
+        removerToastLoading();
         if (error) {
-            mostrarModal("❌ Falha no login: " + traduzirErroSupabase(error.message));
+            mostrarToast(traduzirErroSupabase(error.message), "error");
             return false;
         }
         
         fecharModalAuth();
-        mostrarModal("✅ Login realizado com sucesso! Sincronizando dados...");
+        mostrarToast("Login realizado com sucesso! Sincronizando...", "success");
         await sincronizarComNuvem();
         return true;
     } catch (e) {
-        mostrarModal("❌ Erro interno: " + (e.message || e.toString()));
+        removerToastLoading();
+        mostrarToast("Erro interno: " + (e.message || e.toString()), "error");
         console.error(e);
         return false;
     }
@@ -88,16 +90,16 @@ async function loginSupabase(email, password) {
 
 async function cadastroSupabase(email, password) {
     if (!window.supabaseApp) {
-        mostrarModal("❌ Erro: O servidor do banco de dados (Supabase) não pôde ser carregado. Verifique sua conexão, VPN ou se há algum bloqueador de anúncios (AdBlock) ativo na página.");
+        mostrarToast("O servidor do banco de dados não pôde ser carregado.", "error");
         return false;
     }
 
     if (password.length < 6) {
-        mostrarModal("A senha deve ter pelo menos 6 caracteres.");
+        mostrarToast("A senha deve ter pelo menos 6 caracteres.", "warn");
         return false;
     }
     
-    mostrarModal("Criando conta... Aguarde."); // feedback imediato
+    mostrarToast("Criando conta... Aguarde.", "loading");
     
     try {
         const { data, error } = await window.supabaseApp.auth.signUp({
@@ -105,26 +107,26 @@ async function cadastroSupabase(email, password) {
             password: password
         });
         
+        removerToastLoading();
         if (error) {
-            mostrarModal("❌ Erro no cadastro: " + traduzirErroSupabase(error.message));
+            mostrarToast(traduzirErroSupabase(error.message), "error");
             return false;
         }
         
         fecharModalAuth();
         
-        // Se a conta for criada e já logar (confirm email desativado)
         if (data.session) {
-            usuarioAtual = data.session.user; // garante que tem o usuário atual setado antes do push
-            mostrarModal("✅ Conta criada com sucesso! Sincronizando dados...");
+            usuarioAtual = data.session.user;
+            mostrarToast("Conta criada com sucesso! Sincronizando...", "success");
             await pushParaNuvem();
         } else if (data.user) {
-            // Conta criada, mas precisa confirmar e-mail
-            mostrarModal("⚠️ Conta criada! O Supabase exige que você clique no link enviado para o seu e-mail antes de fazer o login.");
+            mostrarToast("Conta criada! Confirme no seu e-mail antes de logar.", "warn");
         }
         
         return true;
     } catch (e) {
-        mostrarModal("❌ Erro interno no cadastro: " + (e.message || e.toString()));
+        removerToastLoading();
+        mostrarToast("Erro interno no cadastro: " + (e.message || e.toString()), "error");
         console.error(e);
         return false;
     }
@@ -139,7 +141,7 @@ async function logoutSupabase() {
     await window.supabaseApp.auth.signOut();
     usuarioAtual = null;
     fecharModalAuth();
-    mostrarModal("Você saiu da conta.");
+    mostrarToast("Você saiu da conta.", "info");
 }
 
 // -----------------------------------------
@@ -269,7 +271,7 @@ function submeterLogin() {
     const senha = document.getElementById('auth-senha-login').value;
     
     if (!email || !senha) {
-        mostrarModal("Preencha email e senha!");
+        mostrarToast("Preencha email e senha!", "warn");
         return;
     }
     loginSupabase(email, senha);
@@ -281,12 +283,12 @@ function submeterCadastro() {
     const senhaConfirm = document.getElementById('auth-senha-confirm').value;
     
     if (!email || !senha || !senhaConfirm) {
-        mostrarModal("Preencha todos os campos!");
+        mostrarToast("Preencha todos os campos!", "warn");
         return;
     }
     
     if (senha !== senhaConfirm) {
-        mostrarModal("As senhas não coincidem!");
+        mostrarToast("As senhas não coincidem!", "warn");
         return;
     }
     
@@ -301,30 +303,32 @@ document.addEventListener('DOMContentLoaded', () => {
 async function redefinirSenhaSupabase() {
     const email = document.getElementById('auth-email-reset').value;
     if (!email) {
-        mostrarModal("Digite seu e-mail primeiro.");
+        mostrarToast("Digite seu e-mail primeiro.", "warn");
         return;
     }
 
     if (!window.supabaseApp) {
-        mostrarModal("❌ Erro: Conexão com o banco falhou.");
+        mostrarToast("Erro: Conexão com o banco falhou.", "error");
         return;
     }
 
-    mostrarModal("Enviando link... Aguarde.");
+    mostrarToast("Enviando link... Aguarde.", "loading");
     
     try {
         const { data, error } = await window.supabaseApp.auth.resetPasswordForEmail(email, {
             redirectTo: window.location.origin
         });
 
+        removerToastLoading();
         if (error) {
-            mostrarModal("❌ Erro ao enviar: " + traduzirErroSupabase(error.message));
+            mostrarToast(traduzirErroSupabase(error.message), "error");
         } else {
-            mostrarModal("✅ Link enviado! Verifique sua caixa de entrada (e o Spam) para redefinir sua senha.");
+            mostrarToast("Link enviado! Verifique sua caixa de entrada.", "success");
             alternarPainelAuth('login');
         }
     } catch (e) {
-        mostrarModal("❌ Erro interno: " + (e.message || e.toString()));
+        removerToastLoading();
+        mostrarToast("Erro interno: " + (e.message || e.toString()), "error");
     }
 }
 
@@ -335,6 +339,6 @@ window.addEventListener('online', () => {
     if (usuarioAtual) {
         console.log("Internet voltou! Sincronizando dados locais pra nuvem...");
         pushParaNuvem();
-        mostrarModal("🌐 Conexão restaurada. Progresso sincronizado na nuvem.");
+        mostrarToast("Conexão restaurada. Progresso sincronizado.", "success");
     }
 });
